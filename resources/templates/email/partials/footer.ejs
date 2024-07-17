@@ -1,0 +1,75 @@
+        <!-- footer -->
+        <tr>
+          <td
+            style="
+              line-height: 26.91px;
+              font-size: 18px;
+              color: rgba(71, 71, 71, 1);
+            "
+          >
+            <table style="width: 100%">
+              <tr>
+                <td align="center" style="padding-bottom: 30px">
+                  <a href="<%= siteUrl %>">
+                    <img src="<%= serverUrl %>/images/pouchfi-icon.png" style="height: 64px" alt="logo-icon" />
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="padding-bottom: 30px">
+                  <table>
+                    <tr>
+                      <td>
+                        <a href="http://www.twitter.com/pouchfi_" style="margin-right: 28px">
+                          <img src="<%= serverUrl %>/images/twitter.png" alt="twitter" />
+                        </a>
+                      </td>
+                      <td>
+                        <a href="https://instagram.com/pouchfi?igshid=YmMyMTA2M2Y=" style="margin-right: 28px">
+                          <img src="<%= serverUrl %>/images/instagram.png" alt="instagram" />
+                        </a>
+                      </td>
+                      <td>
+                        <a href="https://www.facebook.com/profile.php?id=100089939815700" style="margin-right: 28px">
+                          <img src="<%= serverUrl %>/images/facebook.png" alt="facebook" />
+                        </a>
+                      </td>
+                      <td>
+                        <a href="https://www.linkedin.com/groups/9316557">
+                          <img src="<%= serverUrl %>/images/linkedin.png" alt="linkedIn" />
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td align="center">
+                  <p
+                    style="
+                      line-height: 20.93px;
+                      font-size: 14px;
+                      opacity: 75%;
+                      color: rgba(71, 71, 71, 1);
+                      margin: 0;
+                      margin-bottom: 16px;
+                    "
+                  >
+                    Copyright <%=currentYear%>, <%=siteName%>. All rights reserved
+                  </p>
+                </td>
+              </tr>
+              <% if (locals.emailLink) { %>
+                <tr>
+                    <td align="center">
+                      <img src="<%= emailLink %>" style="display:none">
+                    </td>
+                </tr>
+              <% } %>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </center>
+  </body>
+</html>
