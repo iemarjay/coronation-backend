@@ -7,4 +7,5 @@ export enum Role {
 export enum UserCreatedEventRoute {
   FORM = 'FORM',
   SOCIAL = 'SOCIAL',
+  OKTA = 'OKTA',
 }

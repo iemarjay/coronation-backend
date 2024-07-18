@@ -21,7 +21,7 @@ import { UserModule } from 'src/user/user.module';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
-        type: 'mssql',
+        type: 'mysql',
         host: configService.get('database.host'),
         port: +configService.get('database.port'),
         username: configService.get('database.username'),

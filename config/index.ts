@@ -17,7 +17,7 @@ export default function configuration() {
       from_name: process.env.MAIL_FROM_NAME ?? 'PouchFi',
     },
     database: {
-      type: 'mssql',
+      type: 'mysql',
       host: process.env.DATABASE_HOST || '127.0.0.1',
       port: parseInt(process.env.DATABASE_PORT, 10) || 5432,
       username: process.env.DATABASE_USERNAME,

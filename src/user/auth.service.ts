@@ -9,6 +9,8 @@ import { ConfigService } from '@nestjs/config';
 import { MailService } from 'src/shared/mail.service';
 import { AuthVerifyDto } from './dtos/auth-verify.dto';
 import { instanceToPlain } from 'class-transformer';
+import { Role, UserCreatedEventRoute } from './types';
+import { UserCreatedEvent, UserEvents } from './user.event';
 
 @Injectable()
 export class AuthService {
@@ -66,5 +68,25 @@ export class AuthService {
         secret: this.config.get('auth.secret'),
       },
     );
+  }
+
+  async fromOkta(dto: { first_name: string; last_name: string; sub: string }) {
+    let user: User;
+    const { first_name, last_name, sub } = dto;
+    try {
+      user = await this.userRepository.findBAdminByEmailOrFail(sub);
+    } catch {
+      user = await this.userRepository.save({
+        first_name,
+        last_name,
+        email: sub,
+        role: Role.admin,
+      });
+      this.emitter.emit(
+        UserEvents.USER_CREATED,
+        new UserCreatedEvent(user, UserCreatedEventRoute.OKTA),
+      );
+    }
+    return user;
   }
 }

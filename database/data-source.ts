@@ -8,7 +8,7 @@ const config = configuration();
 const database = config?.database;
 
 export const dataSource = new DataSource({
-  type: 'mssql',
+  type: 'mysql',
   host: database.host,
   port: database.port,
   synchronize: config.env !== 'production',

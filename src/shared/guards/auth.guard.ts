@@ -7,6 +7,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
+import { OktaService } from 'src/user/okta.service';
 import { UserRepository } from 'src/user/repositories/user.repository';
 import { Role } from 'src/user/types';
 
@@ -15,6 +16,7 @@ export class AuthGuard implements CanActivate {
   constructor(
     private readonly reflector: Reflector,
     private jwtService: JwtService,
+    private oktaService: OktaService,
     private repository: UserRepository,
     private config: ConfigService,
   ) {}
@@ -26,10 +28,21 @@ export class AuthGuard implements CanActivate {
       throw new UnauthorizedException();
     }
     try {
-      const payload = await this.jwtService.verifyAsync(token, {
-        secret: this.config.get('auth.secret'),
+      let payload;
+      try {
+        payload = await this.jwtService.verifyAsync(token, {
+          secret: this.config.get('auth.secret'),
+        });
+      } catch {
+        payload = await this.oktaService.verify(token);
+      }
+
+      if (!payload) {
+        throw new UnauthorizedException();
+      }
+      request['user'] = await this.repository.findOne({
+        where: [{ id: payload.sub }, { email: payload.sub }],
       });
-      request['user'] = await this.repository.findOneBy({ id: payload.sub });
     } catch {
       throw new UnauthorizedException();
     }

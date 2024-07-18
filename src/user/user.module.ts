@@ -7,10 +7,19 @@ import { SharedModule } from 'src/shared/shared.module';
 import { UserRepository } from './repositories/user.repository';
 import { AuthService } from './auth.service';
 import { AuthController } from './controllers/auth.controller';
+import { PassportModule } from '@nestjs/passport';
+import { OktaStrategy } from './strategies/okta.strategy';
+import { OktaService } from './okta.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User]), SharedModule],
+  imports: [TypeOrmModule.forFeature([User]), SharedModule, PassportModule],
   controllers: [UserController, AuthController],
-  providers: [UserService, UserRepository, AuthService],
+  providers: [
+    UserService,
+    UserRepository,
+    AuthService,
+    OktaStrategy,
+    OktaService,
+  ],
 })
 export class UserModule {}
