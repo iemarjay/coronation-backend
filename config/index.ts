@@ -9,8 +9,15 @@ export default function configuration() {
 
     client: { url: process.env.CLIENT_URL },
     admin: { url: process.env.ADMIN_URL },
+    mailchimp: {
+      apiKey: process.env.MAILCHIMP_API_KEY,
+    },
+    mail: {
+      from: process.env.MAIL_FROM ?? 'noreply@pouchfi.io',
+      from_name: process.env.MAIL_FROM_NAME ?? 'PouchFi',
+    },
     database: {
-      type: 'mysql',
+      type: 'mssql',
       host: process.env.DATABASE_HOST || '127.0.0.1',
       port: parseInt(process.env.DATABASE_PORT, 10) || 5432,
       username: process.env.DATABASE_USERNAME,
@@ -34,3 +41,5 @@ export default function configuration() {
     },
   };
 }
+
+export * from './okta.config';

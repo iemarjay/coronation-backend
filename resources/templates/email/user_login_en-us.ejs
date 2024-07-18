@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 343px;
+        margin: 0 auto;
+        padding: 40px auto;
+        background-color: #ffffff;
+        border-radius: 8px;
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .header img {
+        width: 164px;
+        height: 46px;
+      }
+      .header h1 {
+        font-size: 24px;
+        margin: 0;
+        color: #333;
+      }
+      .content {
+        text-align: left;
+        font-family: 'SF-Pro-Regular';
+      }
+      .content p {
+        font-weight: 400;
+        color: #5c6570;
+        font-size: 16px;
+        line-height: 22.4px;
+      }
+      .code {
+        width: 100%;
+        text-align: center;
+        background-color: #f3f5f9;
+        height: 54px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        font-family: 'SF-Pro-Bold';
+        color: #202124;
+      }
+      .footer {
+        margin-top: 12px;
+        color: #999999;
+        font-size: 12px;
+        line-height: 16.8px;
+        font-family: 'SF-Pro-Regular';
+        text-align: center;
+        margin-bottom: 71px;
+      }
+
+      @media (min-width: 768px) {
+        #container {
+          margin-top: 75px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <table
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      style="background-color: #f9f9f9"
+    >
+      <tr>
+        <td align="center">
+          <table
+            id="container"
+            style="background-color: white; width: 646px; padding: 0 20px"
+          >
+            <tr>
+              <td>
+                <table class="container" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td class="content">
+                      <h2
+                        style="
+                          margin-top: 20px;
+                          font-weight: 700;
+                          font-size: 24px;
+                          line-height: 28px;
+                          color: #202124;
+                        "
+                      >
+                        Login with your OTP
+                      </h2>
+                      <p style="margin-top: 12px; margin-bottom: 18px">
+                        Hi there,
+                      </p>
+                      <p>
+                        Use the code below to complete your login to Coronation.
+                      </p>
+                      <div class="code">
+                        <h2 style="padding-top: 14px"><%= otp %></h2>
+                      </div>
+                      <p style="margin-bottom: 18px">
+                        If you did not request this otp, you can ignore this
+                        message.
+                      </p>
+                      <p>Warm regards,<br />Coronation.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="footer">
+                      <p>Copyright © 2024</p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
