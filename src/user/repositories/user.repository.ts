@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { User } from 'src/user/entities/user.entity';
 import { DataSource, Repository } from 'typeorm';
 import { CreateUserDto } from '../dtos/create-user.dto';
+import { Role } from '../types';
 
 @Injectable()
 export class UserRepository extends Repository<User> {
@@ -14,5 +15,11 @@ export class UserRepository extends Repository<User> {
     if (id && user?.id === id) return false;
     else if (user) return true;
     return false;
+  }
+
+  async findBAdminByEmailOrFail(email: string) {
+    return await this.findOneOrFail({
+      where: { email, role: Role.admin },
+    });
   }
 }

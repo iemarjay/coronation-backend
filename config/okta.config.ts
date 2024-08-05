@@ -1,8 +1,9 @@
 import { registerAs } from '@nestjs/config';
+import { env } from 'process';
 
 export const oktaConfiguration = registerAs('okta', () => ({
-  clientId: process.env.OKTA_CLIENT_ID,
-  clientSecret: process.env.OKTA_CLIENT_SECRET,
-  issuer: process.env.OKTA_ISSUER,
-  redirectUri: process.env.OKTA_REDIRECT_URI,
+  clientId: env.OKTA_CLIENT_ID,
+  clientSecret: env.OKTA_CLIENT_SECRET,
+  issuer: env.OKTA_ISSUER,
+  audience: env.OKTA_AUDIENCE,
 }));
