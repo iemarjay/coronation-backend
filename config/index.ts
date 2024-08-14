@@ -17,7 +17,7 @@ export default function configuration() {
       from_name: process.env.MAIL_FROM_NAME ?? 'PouchFi',
     },
     database: {
-      type: 'mssql',
+      type: 'mysql',
       host: process.env.DATABASE_HOST || '127.0.0.1',
       port: parseInt(process.env.DATABASE_PORT, 10) || 5432,
       username: process.env.DATABASE_USERNAME,
@@ -38,6 +38,10 @@ export default function configuration() {
       port: parseInt(process.env.REDIS_PORT),
       // db: parseInt(process.env.REDIS_DB),
       password: process.env.REDIS_PASSWORD,
+    },
+    azure: {
+      connection_string: process.env.AZURE_STORAGE_CONNECTION_STRING,
+      container_name: process.env.AZURE_STORAGE_CONTAINER_NAME,
     },
   };
 }

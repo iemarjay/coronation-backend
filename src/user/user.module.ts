@@ -21,5 +21,6 @@ import { OktaService } from './okta.service';
     OktaStrategy,
     OktaService,
   ],
+  exports: [OktaService, UserRepository],
 })
 export class UserModule {}

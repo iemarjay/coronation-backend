@@ -43,10 +43,10 @@ export class AuthGuard implements CanActivate {
       request['user'] = await this.repository.findOne({
         where: [{ id: payload.sub }, { email: payload.sub }],
       });
-    } catch {
-      throw new UnauthorizedException();
+      return this.authorizeUser(request, context);
+    } catch (err) {
+      throw new UnauthorizedException('Token validation error', err);
     }
-    return this.authorizeUser(request, context);
   }
 
   private async authorizeUser(
