@@ -23,7 +23,7 @@ import { TeamModule } from './team/team.module';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
-        type: 'mysql',
+        type: 'mssql',
         host: configService.get('database.host'),
         port: +configService.get('database.port'),
         username: configService.get('database.username'),
