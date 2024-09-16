@@ -32,7 +32,7 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column({ default: Role.staff, type: 'enum', enum: Role })
+  @Column({ default: Role.staff, type: 'varchar', enum: Role })
   role: Role;
 
   @Column({ default: false })

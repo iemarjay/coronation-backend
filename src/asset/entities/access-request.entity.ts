@@ -26,7 +26,7 @@ export class AccessRequest {
   asset: Asset;
 
   @Column({
-    type: 'enum',
+    type: 'varchar',
     enum: AccessRequestStatus,
     default: AccessRequestStatus.noAccess,
   })

@@ -9,6 +9,7 @@ import {
   Patch,
   Query,
   Get,
+  ClassSerializerInterceptor,
 } from '@nestjs/common';
 import {
   Authenticate,
@@ -21,6 +22,7 @@ import { CreateMultipleAssetDto } from '../dto/create-asset.dto';
 import { User } from 'src/user/entities/user.entity';
 
 @Controller('assets')
+@UseInterceptors(ClassSerializerInterceptor)
 export class AssetController {
   constructor(private readonly assetService: AssetService) {}
 
@@ -50,6 +52,12 @@ export class AssetController {
   @Get('/:id')
   get(@AuthUser() user: User, @Param('id') id: string) {
     return this.assetService.getAsset(user, id);
+  }
+
+  @Authenticate()
+  @Get('download/:id')
+  download(@AuthUser() user: User, @Param('id') id: string) {
+    return this.assetService.downloadAsset(user, id);
   }
 
   @Authenticate(Role.admin)

@@ -13,7 +13,7 @@ export class AssetDownload {
   id: string;
 
   @ManyToOne(() => Asset, (asset) => asset.downloads)
-  assets: Asset;
+  asset: Asset;
 
   @ManyToOne(() => User)
   user: User;

@@ -25,8 +25,11 @@ export class Asset {
   @Column()
   name: string;
 
-  @Column({ default: AccessType.private, type: 'enum', enum: AccessType })
+  @Column({ default: AccessType.private, type: 'varchar', enum: AccessType })
   access: string;
+
+  @Column()
+  url: string;
 
   @Column()
   type: string;
@@ -40,7 +43,7 @@ export class Asset {
   @OneToMany(() => AssetVersion, (assetVersion) => assetVersion.asset)
   versions: AssetVersion[];
 
-  @OneToMany(() => AssetDownload, (assetDownload) => assetDownload.assets)
+  @OneToMany(() => AssetDownload, (assetDownload) => assetDownload.asset)
   downloads: AssetDownload[];
 
   @ManyToMany(() => Tag)

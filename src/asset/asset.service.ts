@@ -5,27 +5,20 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { CreateMultipleAssetDto } from './dto/create-asset.dto';
-import { StorageService } from 'src/shared/storage.service';
 import { User } from 'src/user/entities/user.entity';
-import { EntityManager } from 'typeorm';
 import { Asset } from './entities/asset.entity';
-import { AssetVersion } from './entities/asset-version.entity';
-import { TagRepository } from './repositories/tag.repository';
 import { AssetRepository } from './repositories/asset.repository';
-import { CategoryRepository } from './repositories/category.repository';
 import { AccessRequestStatus, AccessType } from './types';
 import { AccessRequestRepository } from './repositories/access-request.repository';
 import { Role } from 'src/user/types';
+import { AssetDownloadRepository } from './repositories/access-download.repository';
 
 @Injectable()
 export class AssetService {
   constructor(
-    private storage: StorageService,
-    private entityManager: EntityManager,
     private assetRepository: AssetRepository,
-    private categoryRepository: CategoryRepository,
-    private tagRepository: TagRepository,
     private accessRequestRepository: AccessRequestRepository,
+    private assetDownloadRepository: AssetDownloadRepository,
   ) {}
   async create(
     user: User,
@@ -37,73 +30,26 @@ export class AssetService {
         'Number of files does not match number of assets',
       );
     }
+    const assets = await this.assetRepository.createMany(user, files, dto);
+    return assets;
+  }
 
-    const uploadedAssets = await this.entityManager.transaction(
-      async (transactionalEntityManager) => {
-        const assets = [];
+  async downloadAsset(user: User, id: string) {
+    const asset = await this.assetRepository.findAssetOrFail(id);
 
-        for (let i = 0; i < files.length; i++) {
-          const assetMetadata = dto.assets[i];
-          if (!assetMetadata.tags.length || !assetMetadata.category) {
-            throw new BadRequestException(
-              'Asset must have tags and category before uploading',
-            );
-          }
-          const uploadedFile = await this.storage.upload(
-            files[i],
-            assetMetadata.name,
-          );
+    await this.getUserAccess(user, asset);
 
-          const asset = new Asset();
-          asset.name = assetMetadata.name;
-          asset.type = files[i].mimetype;
-          asset.createdBy = user;
-
-          const assetVersion = new AssetVersion();
-          assetVersion.path = uploadedFile;
-          assetVersion.url = uploadedFile;
-          asset.versions = [assetVersion];
-
-          asset.tags = await this.tagRepository.findOrCreateMany(
-            assetMetadata.tags,
-          );
-
-          asset.category = await this.categoryRepository.findOneByOrFail({
-            id: assetMetadata.category,
-          });
-
-          assets.push(await transactionalEntityManager.save(Asset, asset));
-        }
-
-        return assets;
-      },
-    );
-
-    return uploadedAssets;
+    await this.assetDownloadRepository.save({
+      asset,
+      user,
+    });
+    return { data: asset.url };
   }
 
   async getAsset(user: User, id: string) {
     const asset = await this.assetRepository.findAssetOrFail(id);
-    if (!asset.isPublished) {
-      throw new UnauthorizedException('Asset has not been published');
-    } else if (
-      asset.type === AccessType.public ||
-      [Role.admin, Role.staff].includes(user.role)
-    ) {
-      return asset;
-    } else if (asset.teams.includes(user.team)) {
-      return asset;
-    }
-    const userAccess = await this.accessRequestRepository.findByUserAndAssetId(
-      user,
-      id,
-    );
-    if (!userAccess || userAccess.status !== AccessRequestStatus.approved) {
-      throw new UnauthorizedException(
-        'You do not have access to view this asset',
-      );
-    }
-    return userAccess.asset;
+    await this.getUserAccess(user, asset);
+    return asset;
   }
 
   async getAllAssets({
@@ -153,5 +99,30 @@ export class AssetService {
       asset,
       status: AccessRequestStatus.pending,
     });
+  }
+
+  async getUserAccess(user: User, asset: Asset) {
+    const userAccess = await this.accessRequestRepository.findByUserAndAssetId(
+      user,
+      asset.id,
+    );
+    if ([Role.admin, Role.staff].includes(user.role)) {
+      return true;
+    } else if (!asset.isPublished) {
+      throw new UnauthorizedException('Asset has not been published');
+    } else if (asset.type === AccessType.public) {
+      return true;
+    } else if (asset.teams.includes(user.team)) {
+      return true;
+    } else if (
+      !userAccess ||
+      userAccess.status !== AccessRequestStatus.approved
+    ) {
+      throw new UnauthorizedException(
+        'You do not have access to view this asset',
+      );
+    }
+
+    return true;
   }
 }

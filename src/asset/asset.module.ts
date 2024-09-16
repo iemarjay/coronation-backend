@@ -16,6 +16,7 @@ import { CategoryService } from './category.service';
 import { AccessRequest } from './entities/access-request.entity';
 import { AccessRequestRepository } from './repositories/access-request.repository';
 import { CategoryController } from './controllers/category.controller';
+import { AssetDownloadRepository } from './repositories/access-download.repository';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { CategoryController } from './controllers/category.controller';
     AssetRepository,
     CategoryService,
     AccessRequestRepository,
+    AssetDownloadRepository,
   ],
 })
 export class AssetModule {}
