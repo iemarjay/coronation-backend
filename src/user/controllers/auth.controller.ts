@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthService } from 'src/user/auth.service';
 import { AuthCreateDto } from 'src/user/dtos/auth-create.dto';
 import { AuthVerifyDto } from '../dtos/auth-verify.dto';
@@ -18,7 +18,7 @@ export class AuthController {
     return this.authService.verify(verifyAuthDto);
   }
 
-  @Get('okta')
+  @Post('okta')
   @UseGuards(OktaAuthGuard('okta'))
   async oktaLogin(@Req() req) {
     return this.authService.fromOkta(req.user);
