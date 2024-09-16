@@ -2,10 +2,15 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { Role } from '../types';
+import { Team } from 'src/team/entities/team.entity';
+import { Exclude } from 'class-transformer';
+import { Asset } from 'src/asset/entities/asset.entity';
 
 @Entity('users')
 export class User {
@@ -13,24 +18,34 @@ export class User {
   id: string;
 
   @Column({ nullable: true })
-  first_name?: string;
+  firstName?: string;
 
   @Column({ nullable: true })
-  last_name?: string;
+  lastName?: string;
 
   @Column()
   email: string;
 
   @CreateDateColumn()
-  created_date: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
-  updated_date: Date;
+  updatedAt: Date;
 
-  @Column({ default: Role.vendor, type: 'enum', enum: Role })
-  role: string;
+  @Column({ default: Role.staff, type: 'varchar', enum: Role })
+  role: Role;
+
+  @Column({ default: false })
+  @Exclude()
+  isAdmin: boolean;
+
+  @OneToMany(() => Asset, (asset) => asset.createdBy)
+  createdAssets: Asset[];
+
+  @ManyToOne(() => Team)
+  team: Team;
 
   get full_name(): string {
-    return `${this.first_name} ${this.last_name}`;
+    return `${this.firstName} ${this.lastName}`;
   }
 }

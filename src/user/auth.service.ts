@@ -77,10 +77,10 @@ export class AuthService {
       user = await this.userRepository.findBAdminByEmailOrFail(sub);
     } catch {
       user = await this.userRepository.save({
-        first_name,
-        last_name,
+        firstName: first_name,
+        lastName: last_name,
         email: sub,
-        role: Role.admin,
+        role: Role.staff,
       });
       this.emitter.emit(
         UserEvents.USER_CREATED,

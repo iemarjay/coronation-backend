@@ -6,7 +6,10 @@ export class CreateUserDto {
   email: string;
 
   @IsNotEmpty()
-  first_name: string;
+  firstName: string;
+
+  @IsNotEmpty()
+  lastName: string;
 
   @IsEnum(Role)
   role: Role;

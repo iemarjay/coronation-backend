@@ -6,7 +6,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { UserCreatedEvent, UserEvents } from './user.event';
 import { instanceToPlain } from 'class-transformer';
 import { User } from './entities/user.entity';
-import { UserCreatedEventRoute } from './types';
+import { Role, UserCreatedEventRoute } from './types';
 
 @Injectable()
 export class UserService {
@@ -23,6 +23,7 @@ export class UserService {
 
     const user = await this.repository.save({
       ...dto,
+      isAdmin: dto.role === Role.admin,
     });
 
     this.event.emit(
@@ -32,5 +33,7 @@ export class UserService {
         UserCreatedEventRoute.FORM,
       ),
     );
+
+    return user;
   }
 }

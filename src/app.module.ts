@@ -10,6 +10,8 @@ import configuration, { oktaConfiguration } from 'config';
 import { join } from 'path';
 import { env } from 'process';
 import { UserModule } from 'src/user/user.module';
+import { AssetModule } from './asset/asset.module';
+import { TeamModule } from './team/team.module';
 
 @Module({
   imports: [
@@ -46,6 +48,8 @@ import { UserModule } from 'src/user/user.module';
       rootPath: join(__dirname, '..', 'storage/public'),
     }),
     UserModule,
+    AssetModule,
+    TeamModule,
   ],
   controllers: [AppController],
   providers: [AppService],

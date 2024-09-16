@@ -39,6 +39,10 @@ export default function configuration() {
       // db: parseInt(process.env.REDIS_DB),
       password: process.env.REDIS_PASSWORD,
     },
+    azure: {
+      connection_string: process.env.AZURE_STORAGE_CONNECTION_STRING,
+      container_name: process.env.AZURE_STORAGE_CONTAINER_NAME,
+    },
   };
 }
 
