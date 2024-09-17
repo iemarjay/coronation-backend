@@ -20,6 +20,7 @@ import { FilesInterceptor } from '@nestjs/platform-express';
 import { AssetService } from '../asset.service';
 import { CreateMultipleAssetDto } from '../dto/create-asset.dto';
 import { User } from 'src/user/entities/user.entity';
+import { AccessRequestStatus } from '../types';
 
 @Controller('assets')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -66,9 +67,43 @@ export class AssetController {
     return this.assetService.publish(id);
   }
 
+  @Authenticate(Role.admin)
+  @Patch('request/:id')
+  updateAccessStatus(
+    @Param('id') id: string,
+    @Body('status') status: AccessRequestStatus,
+  ) {
+    return this.assetService.updateAccessStatus(id, status);
+  }
+
   @Authenticate(Role.vendor)
-  @Get('request/:id')
+  @Post('request/:id')
   request(@AuthUser() user: User, @Param('id') id: string) {
     return this.assetService.requestAccess(user, id);
+  }
+
+  @Authenticate(Role.admin)
+  @Get('request/all')
+  getAllAccessRequest(
+    @Query('page') page: number,
+    @Query('limit') limit: number,
+    @Query('status') status: AccessRequestStatus,
+  ) {
+    return this.assetService.getAllAccessRequest({ page, limit, status });
+  }
+
+  @Authenticate(Role.admin)
+  @Get('request/user/:id')
+  getAllAccessRequestByUser(
+    @Param('id') id: string,
+    @Query('page') page: number,
+    @Query('limit') limit: number,
+    @Query('status') status: AccessRequestStatus,
+  ) {
+    return this.assetService.getAllAccessRequestByUser(id, {
+      page,
+      limit,
+      status,
+    });
   }
 }

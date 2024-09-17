@@ -28,7 +28,7 @@ export class AccessRequest {
   @Column({
     type: 'varchar',
     enum: AccessRequestStatus,
-    default: AccessRequestStatus.noAccess,
+    default: AccessRequestStatus.pending,
   })
   status: AccessRequestStatus;
 

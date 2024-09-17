@@ -7,6 +7,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
+import { isUUID } from 'class-validator';
 import { OktaService } from 'src/user/okta.service';
 import { UserRepository } from 'src/user/repositories/user.repository';
 import { Role } from 'src/user/types';
@@ -40,12 +41,20 @@ export class AuthGuard implements CanActivate {
       if (!payload) {
         throw new UnauthorizedException();
       }
+
+      const isEmail = payload.sub.includes('@');
+      const isValidUUID = isUUID(payload.sub);
+
+      if (!isEmail && !isValidUUID) {
+        throw new UnauthorizedException('Invalid identifier in token');
+      }
+
+      const queryField = isEmail ? 'email' : 'id';
       request['user'] = await this.repository.findOne({
-        where: [{ email: payload.sub }],
+        where: { [queryField]: payload.sub },
       });
       return this.authorizeUser(request, context);
     } catch (err) {
-      console.log(err.message);
       throw new UnauthorizedException('Token validation error', err);
     }
   }

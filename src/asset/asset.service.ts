@@ -94,17 +94,67 @@ export class AssetService {
       throw new ForbiddenException('Access request already submitted');
     }
 
-    return await this.accessRequestRepository.save({
+    await this.accessRequestRepository.save({
       user,
       asset,
-      status: AccessRequestStatus.pending,
+    });
+
+    return {
+      message: `Request for access to ${asset.name} sent`,
+    };
+  }
+
+  async getAllAccessRequest({
+    limit,
+    page,
+    status,
+  }: {
+    limit: number;
+    page: number;
+    status: AccessRequestStatus;
+  }) {
+    return await this.accessRequestRepository.getAllAccessRequest({
+      limit: limit ?? 10,
+      page: page ?? 1,
+      status: status,
+    });
+  }
+
+  async updateAccessStatus(id: string, status: AccessRequestStatus) {
+    const request = await this.accessRequestRepository.findOne({
+      where: {
+        id,
+      },
+      relations: ['user'],
+    });
+    request.status = status;
+    await this.accessRequestRepository.save(request);
+
+    return {
+      success: true,
+      message: `Access updated to ${status} for user: ${request.user.email}`,
+    };
+  }
+
+  async getAllAccessRequestByUser(
+    id: string,
+    {
+      limit,
+      page,
+      status,
+    }: { limit: number; page: number; status: AccessRequestStatus },
+  ) {
+    return await this.accessRequestRepository.findByUserId(id, {
+      limit: limit ?? 10,
+      page: page ?? 1,
+      status: status,
     });
   }
 
   async getUserAccess(user: User, asset: Asset) {
     const userAccess = await this.accessRequestRepository.findByUserAndAssetId(
       user,
-      asset.id,
+      asset,
     );
     if ([Role.admin, Role.staff].includes(user.role)) {
       return true;
