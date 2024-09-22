@@ -5,7 +5,7 @@ import { CacheService, TTL } from 'src/shared/cache.service';
 export class OtpService {
   constructor(private cache: CacheService) {}
   async generateFor(userId: string): Promise<string> {
-    const code = Math.floor(100000 + Math.random() * 900000).toString();
+    const code = Math.floor(10000 + Math.random() * 90000).toString();
     await this.cache.set(`otp:${code}`, userId, TTL.FIVE_MINUTES);
     return code;
   }
