@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { OtpService } from 'src/shared/otp.service';
 import { UserRepository } from 'src/user/repositories/user.repository';
 import { AuthCreateDto } from 'src/user/dtos/auth-create.dto';
@@ -11,6 +11,7 @@ import { instanceToPlain } from 'class-transformer';
 
 @Injectable()
 export class AuthService {
+  private readonly logger = new Logger(AuthService.name);
   constructor(
     private readonly userRepository: UserRepository,
     private readonly jwtService: JwtService,
@@ -26,6 +27,11 @@ export class AuthService {
       });
     } catch (error) {
       throw new UnauthorizedException('User does not exist');
+    }
+
+    const code = await this.otp.getOtpByUserId(user.id);
+    if (code) {
+      await this.otp.invalidate(code, user.id);
     }
 
     this.mail.sendUserLoginOtp(user, await this.otp.generateFor(user.id));
@@ -49,6 +55,10 @@ export class AuthService {
     if (!(await this.otp.verify(dto.code, user.id))) {
       throw new UnauthorizedException('Invalid or expired OTP code');
     }
+
+    this.otp.invalidate(dto.code, user.id).catch((error) => {
+      this.logger.error(error);
+    });
     return {
       data: instanceToPlain<Partial<User>>(user),
       access_token: await this.generateAccessToken(user.id),

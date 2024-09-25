@@ -7,6 +7,7 @@ export class OtpService {
   async generateFor(userId: string): Promise<string> {
     const code = Math.floor(10000 + Math.random() * 90000).toString();
     await this.cache.set(`otp:${code}`, userId, TTL.FIVE_MINUTES);
+    await this.cache.set(`user_otp:${userId}`, code, TTL.FIVE_MINUTES);
     return code;
   }
 
@@ -15,7 +16,12 @@ export class OtpService {
     return cachedUserId === userId;
   }
 
-  async invalidate(code: string): Promise<void> {
+  async invalidate(code: string, userId: string): Promise<void> {
     await this.cache.del(`otp:${code}`);
+    await this.cache.del(`user_otp:${userId}`);
+  }
+
+  async getOtpByUserId(userId: string): Promise<string | null> {
+    return await this.cache.get(`user_otp:${userId}`);
   }
 }
