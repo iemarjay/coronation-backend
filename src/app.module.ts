@@ -6,7 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import configuration, { oktaConfiguration } from 'config';
+import configuration, { auth0Configuration, oktaConfiguration } from 'config';
 import { join } from 'path';
 import { env } from 'process';
 import { UserModule } from 'src/user/user.module';
@@ -16,7 +16,7 @@ import { TeamModule } from './team/team.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [configuration, oktaConfiguration],
+      load: [configuration, oktaConfiguration, auth0Configuration],
       cache: env.APP_ENV === 'production',
       isGlobal: true,
     }),

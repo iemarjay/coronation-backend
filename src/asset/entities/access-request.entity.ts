@@ -4,7 +4,6 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -17,12 +16,10 @@ export class AccessRequest {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => User, { eager: true })
-  @JoinColumn({ name: 'userId' })
+  @ManyToOne(() => User, (user) => user.requests, { eager: true })
   user: User;
 
-  @ManyToOne(() => Asset, { eager: true })
-  @JoinColumn({ name: 'assetId' })
+  @ManyToOne(() => Asset, (asset) => asset.requests, { eager: true })
   asset: Asset;
 
   @Column({

@@ -2,15 +2,20 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Role } from '../types';
+import { Role, Status } from '../types';
 import { Team } from 'src/team/entities/team.entity';
 import { Exclude } from 'class-transformer';
+import { Permission } from './permission.entity';
 import { Asset } from 'src/asset/entities/asset.entity';
+import { AccessRequest } from 'src/asset/entities/access-request.entity';
+import { AssetDownload } from 'src/asset/entities/asset-download.entity';
 
 @Entity('users')
 export class User {
@@ -23,7 +28,7 @@ export class User {
   @Column({ nullable: true })
   lastName?: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @CreateDateColumn()
@@ -39,11 +44,35 @@ export class User {
   @Exclude()
   isAdmin: boolean;
 
-  @OneToMany(() => Asset, (asset) => asset.createdBy)
-  createdAssets: Asset[];
+  @ManyToOne(() => User, { nullable: true })
+  createdBy: User;
 
-  @ManyToOne(() => Team)
+  @ManyToOne(() => User, { nullable: true })
+  lastModifiedBy: User;
+
+  @Column({ nullable: true })
+  imageUrl: string;
+
+  @Column({ default: Status.inactive, type: 'varchar', enum: Status })
+  status: Status;
+
+  @ManyToOne(() => Team, { nullable: true })
   team: Team;
+
+  @OneToMany(() => AccessRequest, (accessRequest) => accessRequest.user)
+  requests: AccessRequest[];
+
+  @ManyToMany(() => Permission)
+  @JoinTable({ name: 'user_permissions' })
+  permissions: Permission[];
+
+  @ManyToMany(() => Asset, (asset) => asset.users, { nullable: true })
+  assets: Asset[];
+
+  @OneToMany(() => AssetDownload, (assetDownload) => assetDownload.user, {
+    cascade: true,
+  })
+  downloads: AssetDownload[];
 
   get full_name(): string {
     return `${this.firstName} ${this.lastName}`;

@@ -1,26 +1,46 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTeamDto } from './dto/create-team.dto';
 import { UpdateTeamDto } from './dto/update-team.dto';
+import { TeamRepository } from './repositories/team.repository';
+import { User } from 'src/user/entities/user.entity';
 
 @Injectable()
 export class TeamService {
-  create(createTeamDto: CreateTeamDto) {
-    return 'This action adds a new team';
+  constructor(protected repository: TeamRepository) {}
+  async create(dto: CreateTeamDto, user: User) {
+    return await this.repository.save({
+      ...dto,
+      createdBy: user,
+      lastModifiedBy: user,
+    });
   }
 
-  findAll() {
-    return `This action returns all team`;
+  async getAll({ limit, page }: { limit: number; page: number }) {
+    return await this.repository.getAllTeams({
+      limit: limit ?? 10,
+      page: page ?? 1,
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} team`;
+  async update(id: string, dto: UpdateTeamDto, user: User) {
+    const team = await this.repository.findOne({
+      where: {
+        id,
+      },
+    });
+
+    team.name = dto.name;
+    team.lastModifiedBy = user;
+    await this.repository.save(team);
+
+    return team;
   }
 
-  update(id: number, updateTeamDto: UpdateTeamDto) {
-    return `This action updates a #${id} team`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} team`;
+  async remove(id: string) {
+    const team = await this.repository.findOneByOrFail({ id });
+    await this.repository.delete({ id });
+    return {
+      message: `${team.name} team deleted`,
+    };
   }
 }

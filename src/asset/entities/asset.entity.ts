@@ -13,9 +13,9 @@ import {
 import { AssetDownload } from './asset-download.entity';
 import { Team } from 'src/team/entities/team.entity';
 import { AssetVersion } from './asset-version.entity';
-import { Tag } from './tag.entity';
 import { Category } from './category.entity';
 import { AccessType } from '../types';
+import { AccessRequest } from './access-request.entity';
 
 @Entity()
 export class Asset {
@@ -37,30 +37,40 @@ export class Asset {
   @CreateDateColumn()
   createdAt: Date;
 
-  @ManyToOne(() => User, (user) => user.createdAssets)
+  @ManyToOne(() => User, {
+    nullable: true,
+  })
   createdBy: User;
 
-  @OneToMany(() => AssetVersion, (assetVersion) => assetVersion.asset)
+  @ManyToOne(() => User, { nullable: true })
+  lastModifiedBy: User;
+
+  @OneToMany(() => AssetVersion, (assetVersion) => assetVersion.asset, {
+    cascade: true,
+  })
   versions: AssetVersion[];
 
-  @OneToMany(() => AssetDownload, (assetDownload) => assetDownload.asset)
+  @OneToMany(() => AssetDownload, (assetDownload) => assetDownload.asset, {
+    cascade: true,
+  })
   downloads: AssetDownload[];
 
-  @ManyToMany(() => Tag)
-  @JoinTable({ name: 'asset_tag' })
-  tags: Tag[];
-
   @ManyToOne(() => Category, (category) => category.assets)
-  @JoinColumn({ name: 'categoryId' })
+  @JoinColumn()
   category: Category;
 
-  @ManyToMany(() => Team)
-  @JoinTable({ name: 'asset_team' })
+  @ManyToMany(() => Team, (team) => team.assets)
+  @JoinTable({ name: 'asset_teams' })
   teams: Team[];
 
-  @ManyToMany(() => User)
-  @JoinTable({ name: 'asset_user' })
+  @ManyToMany(() => User, (user) => user.assets)
+  @JoinTable({ name: 'asset_users' })
   users: User[];
+
+  @OneToMany(() => AccessRequest, (accessRequest) => accessRequest.asset, {
+    cascade: true,
+  })
+  requests: AccessRequest[];
 
   @Column({ default: false })
   isPublished: boolean;

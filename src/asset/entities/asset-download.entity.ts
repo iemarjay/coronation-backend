@@ -15,7 +15,7 @@ export class AssetDownload {
   @ManyToOne(() => Asset, (asset) => asset.downloads)
   asset: Asset;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, (user) => user.downloads)
   user: User;
 
   @CreateDateColumn()

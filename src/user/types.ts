@@ -2,7 +2,12 @@ export enum Role {
   admin = 'admin',
   staff = 'staff',
   vendor = 'vendor',
-  agency = 'agency',
+  owner = 'owner',
+}
+
+export enum Status {
+  active = 'Active',
+  inactive = 'Inactive',
 }
 
 export enum UserCreatedEventRoute {

@@ -4,9 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { SharedModule } from 'src/shared/shared.module';
 import { AssetDownload } from './entities/asset-download.entity';
 import { AssetVersion } from './entities/asset-version.entity';
-import { Tag } from './entities/tag.entity';
 import { Asset } from './entities/asset.entity';
-import { TagRepository } from './repositories/tag.repository';
 import { AssetController } from './controllers/asset.controller';
 import { UserModule } from 'src/user/user.module';
 import { Category } from './entities/category.entity';
@@ -24,7 +22,6 @@ import { AssetDownloadRepository } from './repositories/access-download.reposito
       Asset,
       AssetDownload,
       AssetVersion,
-      Tag,
       Category,
       AccessRequest,
     ]),
@@ -34,7 +31,6 @@ import { AssetDownloadRepository } from './repositories/access-download.reposito
   controllers: [AssetController, CategoryController],
   providers: [
     AssetService,
-    TagRepository,
     CategoryRepository,
     AssetRepository,
     CategoryService,

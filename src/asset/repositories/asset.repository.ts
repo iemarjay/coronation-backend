@@ -1,9 +1,4 @@
-import {
-  BadRequestException,
-  HttpException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { HttpException, Injectable, NotFoundException } from '@nestjs/common';
 import * as path from 'path';
 import { DataSource, Repository } from 'typeorm';
 import { Asset } from '../entities/asset.entity';
@@ -12,11 +7,10 @@ import { Role } from 'src/user/types';
 import { CreateMultipleAssetDto } from '../dto/create-asset.dto';
 import { StorageService } from 'src/shared/storage.service';
 import { CategoryRepository } from './category.repository';
-import { TagRepository } from './tag.repository';
 import { AccessRequestRepository } from './access-request.repository';
 import { AssetDownloadRepository } from './access-download.repository';
 import { AssetVersion } from '../entities/asset-version.entity';
-import { Category } from '../entities/category.entity';
+// import { Category } from '../entities/category.entity';
 
 @Injectable()
 export class AssetRepository extends Repository<Asset> {
@@ -24,7 +18,6 @@ export class AssetRepository extends Repository<Asset> {
     private datasource: DataSource,
     private storage: StorageService,
     private categoryRepository: CategoryRepository,
-    private tagRepository: TagRepository,
     private accessRequestRepository: AccessRequestRepository,
     private assetDownloadRepository: AssetDownloadRepository,
   ) {
@@ -44,20 +37,20 @@ export class AssetRepository extends Repository<Asset> {
 
       for (let i = 0; i < files.length; i++) {
         const assetMetadata = dto.assets[i];
-        if (!assetMetadata.tags.length || !assetMetadata.category) {
-          throw new BadRequestException(
-            'Asset must have tags and category before uploading',
-          );
-        }
+        // if (!assetMetadata.tags.length || !assetMetadata.category) {
+        //   throw new BadRequestException(
+        //     'Asset must have tags and category before uploading',
+        //   );
+        // }
 
-        let category: Category;
-        try {
-          category = await this.categoryRepository.findOneByOrFail({
-            id: assetMetadata.category,
-          });
-        } catch (error) {
-          throw new NotFoundException('Category not found');
-        }
+        // let category: Category;
+        // try {
+        //   category = await this.categoryRepository.findOneByOrFail({
+        //     id: assetMetadata.category,
+        //   });
+        // } catch (error) {
+        //   throw new NotFoundException('Category not found');
+        // }
         const name = `${assetMetadata.name}${path.extname(files[i].originalname).toLowerCase()}`;
         const uploadedFile = await this.storage.upload(files[i], name);
 
@@ -66,10 +59,7 @@ export class AssetRepository extends Repository<Asset> {
         asset.type = files[i].mimetype;
         asset.createdBy = user;
         asset.url = uploadedFile;
-        asset.category = category;
-        asset.tags = await this.tagRepository.findOrCreateMany(
-          assetMetadata.tags,
-        );
+        // asset.category = category;
 
         const assetVersion = new AssetVersion();
         assetVersion.path = uploadedFile;

@@ -6,6 +6,7 @@ import { CacheService } from 'src/shared/cache.service';
 import { MailService } from 'src/shared/mail.service';
 import { OtpService } from 'src/shared/otp.service';
 import { StorageService } from './storage.service';
+import { UserModule } from 'src/user/user.module';
 
 @Module({
   imports: [],

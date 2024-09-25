@@ -1,14 +1,16 @@
 import {
   CanActivate,
   ExecutionContext,
+  HttpException,
   Injectable,
+  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { isUUID } from 'class-validator';
-import { OktaService } from 'src/user/okta.service';
+import { Auth0Service } from 'src/user/services/auth0.service';
 import { UserRepository } from 'src/user/repositories/user.repository';
 import { Role } from 'src/user/types';
 
@@ -17,7 +19,7 @@ export class AuthGuard implements CanActivate {
   constructor(
     private readonly reflector: Reflector,
     private jwtService: JwtService,
-    private oktaService: OktaService,
+    private auth0Service: Auth0Service,
     private repository: UserRepository,
     private config: ConfigService,
   ) {}
@@ -26,7 +28,7 @@ export class AuthGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const token = this.extractTokenFromHeader(request);
     if (!token) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('No token provided');
     }
     try {
       let payload;
@@ -35,27 +37,29 @@ export class AuthGuard implements CanActivate {
           secret: this.config.get('auth.secret'),
         });
       } catch {
-        payload = await this.oktaService.verify(token);
+        payload = await this.auth0Service.verify(token);
       }
 
       if (!payload) {
-        throw new UnauthorizedException();
+        throw new UnauthorizedException('Token validation error');
       }
 
-      const isEmail = payload.sub.includes('@');
       const isValidUUID = isUUID(payload.sub);
 
-      if (!isEmail && !isValidUUID) {
-        throw new UnauthorizedException('Invalid identifier in token');
-      }
-
-      const queryField = isEmail ? 'email' : 'id';
-      request['user'] = await this.repository.findOne({
-        where: { [queryField]: payload.sub },
+      const queryField = isValidUUID ? 'id' : 'email';
+      const param = isValidUUID ? payload.sub : payload.email;
+      const userExists = await this.repository.findOne({
+        where: { [queryField]: param },
       });
+
+      if (!userExists) {
+        throw new NotFoundException(`User not found`);
+      }
+      request.user = userExists;
+
       return this.authorizeUser(request, context);
     } catch (err) {
-      throw new UnauthorizedException('Token validation error', err);
+      throw new HttpException(err.message, err.status);
     }
   }
 

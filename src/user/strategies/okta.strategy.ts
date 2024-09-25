@@ -2,7 +2,7 @@ import { HttpException, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-http-bearer';
 import { ConfigService } from '@nestjs/config';
-import { OktaService } from 'src/user/okta.service';
+import { OktaService } from 'src/user/services/okta.service';
 
 @Injectable()
 export class OktaStrategy extends PassportStrategy(Strategy, 'okta') {
@@ -18,6 +18,7 @@ export class OktaStrategy extends PassportStrategy(Strategy, 'okta') {
     done: (error: HttpException, value: boolean | string) => any,
   ) {
     try {
+      console.log(token);
       const user = await this.okta.verify(token);
       return user;
     } catch (error) {
