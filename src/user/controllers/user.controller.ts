@@ -70,7 +70,8 @@ export class UserController {
     @Query('limit') limit: number,
     @Query('role') role: Role,
     @Query('status') status: Status,
+    @Query('search') search: string,
   ) {
-    return this.userService.getAllUsers({ page, limit, role, status });
+    return this.userService.getAllUsers({ page, limit, role, status, search });
   }
 }

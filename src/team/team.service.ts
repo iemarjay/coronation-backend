@@ -15,10 +15,19 @@ export class TeamService {
     });
   }
 
-  async getAll({ limit, page }: { limit: number; page: number }) {
+  async getAll({
+    limit,
+    page,
+    search,
+  }: {
+    limit: number;
+    page: number;
+    search: string;
+  }) {
     return await this.repository.getAllTeams({
       limit: limit ?? 10,
       page: page ?? 1,
+      search,
     });
   }
 

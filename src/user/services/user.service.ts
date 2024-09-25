@@ -119,17 +119,20 @@ export class UserService {
     page,
     role,
     status,
+    search,
   }: {
     limit: number;
     page: number;
     role: Role;
     status: Status;
+    search: string;
   }) {
     return await this.repository.getAllUsers({
       limit: limit ?? 10,
       page: page ?? 1,
       role,
       status,
+      search,
     });
   }
 

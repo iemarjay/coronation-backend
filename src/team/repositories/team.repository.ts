@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { DataSource, FindManyOptions, Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 
 import { Team } from '../entities/team.entity';
 
@@ -9,14 +9,19 @@ export class TeamRepository extends Repository<Team> {
     super(Team, datasource.createEntityManager());
   }
 
-  getAllTeams(filter: { limit: number; page: number }) {
-    const queryOptions: FindManyOptions = {
-      order: { updatedAt: 'DESC' },
-      take: filter.limit,
-      skip: filter.limit * ((filter.page ?? 1) - 1),
-      relations: ['createdBy', 'lastModifiedBy'],
-    };
+  async getAllTeams(filter: { limit: number; page: number; search?: string }) {
+    const query = this.createQueryBuilder('team')
+      .leftJoinAndSelect('team.createdBy', 'createdBy')
+      .leftJoinAndSelect('team.lastModifiedBy', 'lastModifiedBy')
+      .orderBy('team.updatedAt', 'DESC')
+      .take(filter.limit)
+      .skip(filter.limit * ((filter.page ?? 1) - 1));
 
-    return this.find(queryOptions);
+    if (filter.search) {
+      const searchTerm = `%${filter.search}%`;
+      query.andWhere('team.name LIKE :search', { search: searchTerm });
+    }
+
+    return query.getMany();
   }
 }
