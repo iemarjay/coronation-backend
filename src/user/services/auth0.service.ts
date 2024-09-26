@@ -35,6 +35,8 @@ export class Auth0Service {
       throw new UnauthorizedException('Invalid token');
     }
 
+    this.logger.debug(this.configService.get('auth0.domain'));
+    this.logger.debug(this.configService.get<string>('auth0.issuer'));
     this.logger.debug(decodedToken);
 
     // const kid = decodedToken.header.kid;
@@ -48,7 +50,6 @@ export class Auth0Service {
     //     algorithms: ['RS256'],
     //   });
 
-    // this.logger.debug(payload);
     return decodedToken.payload;
     // } catch (error) {
     //   throw new UnauthorizedException('Token verification failed');

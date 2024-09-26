@@ -48,8 +48,6 @@ export class AuthGuard implements CanActivate {
 
       const isValidUUID = isUUID(payload.sub);
 
-      this.logger.debug(payload);
-
       const queryField = isValidUUID ? 'id' : 'email';
       const param = isValidUUID ? payload.sub : payload.email;
       const userExists = await this.repository.findOne({
@@ -60,8 +58,6 @@ export class AuthGuard implements CanActivate {
         throw new NotFoundException(`User not found`);
       }
       request.user = userExists;
-
-      this.logger.debug(userExists);
 
       return this.authorizeUser(request, context);
     } catch (err) {
