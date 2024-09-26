@@ -54,6 +54,16 @@ export class UserRepository extends Repository<User> {
       );
     }
 
-    return query.getMany();
+    const [users, totalCount] = await query.getManyAndCount();
+
+    const totalPages = Math.ceil(totalCount / filter.limit);
+
+    return {
+      currentPage: filter.page,
+      pageSize: filter.limit,
+      totalCount: totalCount,
+      totalPages: totalPages,
+      users,
+    };
   }
 }

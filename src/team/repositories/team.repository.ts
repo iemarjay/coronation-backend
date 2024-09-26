@@ -22,6 +22,16 @@ export class TeamRepository extends Repository<Team> {
       query.andWhere('team.name LIKE :search', { search: searchTerm });
     }
 
-    return query.getMany();
+    const [teams, totalCount] = await query.getManyAndCount();
+
+    const totalPages = Math.ceil(totalCount / filter.limit);
+
+    return {
+      currentPage: filter.page,
+      pageSize: filter.limit,
+      totalCount: totalCount,
+      totalPages: totalPages,
+      teams,
+    };
   }
 }
