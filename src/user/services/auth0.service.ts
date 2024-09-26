@@ -49,7 +49,7 @@ export class Auth0Service {
       });
 
       this.logger.debug(payload);
-      return payload;
+      return decodedToken.payload;
     } catch (error) {
       throw new UnauthorizedException('Token verification failed');
     }
