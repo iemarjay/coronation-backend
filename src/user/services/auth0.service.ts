@@ -1,6 +1,7 @@
 import {
   Injectable,
   InternalServerErrorException,
+  Logger,
   UnauthorizedException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -12,7 +13,7 @@ import { ManagementClient } from 'auth0';
 export class Auth0Service {
   private jwksClient: JwksClient.JwksClient;
   private managementClient: ManagementClient;
-
+  private readonly logger = new Logger(Auth0Service.name);
   constructor(private configService: ConfigService) {
     this.jwksClient = JwksClient({
       jwksUri: `${this.configService.get('auth0.issuer')}.well-known/jwks.json`,
@@ -33,6 +34,8 @@ export class Auth0Service {
     if (!decodedToken || typeof decodedToken === 'string') {
       throw new UnauthorizedException('Invalid token');
     }
+
+    this.logger.error(decodedToken);
 
     const kid = decodedToken.header.kid;
     const key = await this.jwksClient.getSigningKey(kid);
