@@ -35,25 +35,23 @@ export class Auth0Service {
       throw new UnauthorizedException('Invalid token');
     }
 
-    this.logger.debug(this.configService.get('auth0.domain'));
-    this.logger.debug(this.configService.get<string>('auth0.issuer'));
-    this.logger.debug(decodedToken);
+    this.logger.error(decodedToken);
 
-    // const kid = decodedToken.header.kid;
-    // const key = await this.jwksClient.getSigningKey(kid);
-    // const signingKey = key.getPublicKey();
+    const kid = decodedToken.header.kid;
+    const key = await this.jwksClient.getSigningKey(kid);
+    const signingKey = key.getPublicKey();
 
-    // try {
-    //   const payload = verify(token, signingKey, {
-    //     audience: this.configService.get('auth0.audience'),
-    //     issuer: this.configService.get('auth0.issuer'),
-    //     algorithms: ['RS256'],
-    //   });
+    try {
+      const payload = verify(token, signingKey, {
+        audience: this.configService.get('auth0.audience'),
+        issuer: this.configService.get('auth0.issuer'),
+        algorithms: ['RS256'],
+      });
 
-    return decodedToken.payload;
-    // } catch (error) {
-    //   throw new UnauthorizedException('Token verification failed');
-    // }
+      return payload;
+    } catch (error) {
+      throw new UnauthorizedException('Token verification failed');
+    }
   }
 
   generatePassword(length = 12): string {
