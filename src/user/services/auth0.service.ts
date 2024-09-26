@@ -35,7 +35,7 @@ export class Auth0Service {
       throw new UnauthorizedException('Invalid token');
     }
 
-    this.logger.error(decodedToken);
+    this.logger.debug(decodedToken);
 
     const kid = decodedToken.header.kid;
     const key = await this.jwksClient.getSigningKey(kid);
@@ -48,6 +48,7 @@ export class Auth0Service {
         algorithms: ['RS256'],
       });
 
+      this.logger.debug(payload);
       return payload;
     } catch (error) {
       throw new UnauthorizedException('Token verification failed');

@@ -3,6 +3,7 @@ import {
   ExecutionContext,
   HttpException,
   Injectable,
+  Logger,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -16,6 +17,7 @@ import { Role } from 'src/user/types';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
+  private readonly logger = new Logger(AuthGuard.name);
   constructor(
     private readonly reflector: Reflector,
     private jwtService: JwtService,
@@ -46,6 +48,8 @@ export class AuthGuard implements CanActivate {
 
       const isValidUUID = isUUID(payload.sub);
 
+      this.logger.debug(payload);
+
       const queryField = isValidUUID ? 'id' : 'email';
       const param = isValidUUID ? payload.sub : payload.email;
       const userExists = await this.repository.findOne({
@@ -56,6 +60,8 @@ export class AuthGuard implements CanActivate {
         throw new NotFoundException(`User not found`);
       }
       request.user = userExists;
+
+      this.logger.debug(userExists);
 
       return this.authorizeUser(request, context);
     } catch (err) {

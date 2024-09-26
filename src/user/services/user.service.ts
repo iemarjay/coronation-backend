@@ -136,6 +136,8 @@ export class UserService {
         status,
         search,
       });
+
+      this.logger.debug(data);
       return data;
     } catch (error) {
       this.logger.error(error);
