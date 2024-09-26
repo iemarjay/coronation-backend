@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   Injectable,
+  InternalServerErrorException,
   Logger,
   NotFoundException,
   UnauthorizedException,
@@ -127,13 +128,19 @@ export class UserService {
     status: Status;
     search: string;
   }) {
-    return await this.repository.getAllUsers({
-      limit: limit ?? 10,
-      page: page ?? 1,
-      role,
-      status,
-      search,
-    });
+    try {
+      const data = await this.repository.getAllUsers({
+        limit: limit ?? 10,
+        page: page ?? 1,
+        role,
+        status,
+        search,
+      });
+      return data;
+    } catch (error) {
+      this.logger.error(error);
+      throw new InternalServerErrorException(error);
+    }
   }
 
   async updateUser(id: string, dto: UpdateUserDto, modifier: User) {
