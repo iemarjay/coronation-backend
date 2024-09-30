@@ -31,7 +31,9 @@ export class AuthService {
     }
 
     if (user.role !== Role.vendor) {
-      throw new UnauthorizedException('Login with microsoft account');
+      throw new UnauthorizedException(
+        `Access denied. ${user.role} members should log in using Microsoft social login`,
+      );
     }
 
     const code = await this.otp.getOtpByUserId(user.id);
