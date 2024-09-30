@@ -34,8 +34,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       isOwner = true;
     }
 
-    this.logger.debug(payload);
-
     return {
       email: payload.email,
       given_name: payload.given_name,

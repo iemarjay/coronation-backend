@@ -35,8 +35,6 @@ export class Auth0Service {
       throw new UnauthorizedException('Invalid token');
     }
 
-    this.logger.error(decodedToken);
-
     const kid = decodedToken.header.kid;
     const key = await this.jwksClient.getSigningKey(kid);
     const signingKey = key.getPublicKey();

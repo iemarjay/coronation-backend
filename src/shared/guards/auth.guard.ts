@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
     private readonly reflector: Reflector,
     private jwtService: JwtService,
     private auth0Service: Auth0Service,
-    private repository: UserRepository,
+    private userRepository: UserRepository,
     private config: ConfigService,
   ) {}
 
@@ -50,14 +50,20 @@ export class AuthGuard implements CanActivate {
 
       const queryField = isValidUUID ? 'id' : 'email';
       const param = isValidUUID ? payload.sub : payload.email;
-      const userExists = await this.repository.findOne({
+      let userExists = await this.userRepository.findOne({
         where: { [queryField]: param },
       });
 
       if (!userExists) {
         throw new NotFoundException(`User not found`);
       }
+
+      if (payload.picture && !userExists.imageUrl) {
+        userExists.imageUrl = payload.picture;
+        userExists = await this.userRepository.save(userExists);
+      }
       request.user = userExists;
+      this.logger.debug(request.user);
 
       return this.authorizeUser(request, context);
     } catch (err) {
