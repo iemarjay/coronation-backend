@@ -24,8 +24,8 @@ export class Auth0Service {
 
     this.managementClient = new ManagementClient({
       domain: this.configService.get('auth0.domain'),
-      clientId: this.configService.get('auth0.clientId'),
-      clientSecret: this.configService.get('auth0.clientSecret'),
+      clientId: this.configService.get('auth0.apiClientId'),
+      clientSecret: this.configService.get('auth0.apiClientSecret'),
     });
   }
 
@@ -43,7 +43,10 @@ export class Auth0Service {
 
     try {
       const payload = verify(token, signingKey, {
-        audience: this.configService.get('auth0.audience'),
+        audience: [
+          this.configService.get('auth0.audience'),
+          this.configService.get('auth0.clientId'),
+        ],
         issuer: this.configService.get('auth0.issuer'),
         algorithms: ['RS256'],
       });
