@@ -54,7 +54,6 @@ export class UserService {
       firstName,
       lastName,
       team,
-      isAdmin: dto.role === Role.admin,
     });
     if (role === Role.vendor && permissions) {
       const selectedPermissions = await this.permissionRepository.findBy({
@@ -104,7 +103,6 @@ export class UserService {
         lastName: family_name,
         email,
         role,
-        isAdmin: true,
         imageUrl: picture,
       });
       this.event.emit(
@@ -146,7 +144,6 @@ export class UserService {
   async updateUser(id: string, dto: UpdateUserDto, modifier: User) {
     const user = await this.repository.findOne({
       where: { id },
-      relations: ['permissions'],
     });
     if (!user) throw new NotFoundException('User not found');
 
@@ -170,7 +167,6 @@ export class UserService {
 
     if (role) {
       user.role = role;
-      user.isAdmin = role === Role.admin;
     }
 
     if (status) {
@@ -189,5 +185,18 @@ export class UserService {
     user.lastModifiedBy = modifier;
 
     return this.repository.save(user);
+  }
+
+  async deleteUser(id: string) {
+    const user = await this.repository.findOne({
+      where: { id },
+    });
+    if (!user) throw new NotFoundException('User not found');
+
+    this.repository.remove(user);
+
+    return {
+      message: `user with email ${user.email} deleted`,
+    };
   }
 }

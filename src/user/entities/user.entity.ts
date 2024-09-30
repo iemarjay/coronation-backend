@@ -11,7 +11,6 @@ import {
 } from 'typeorm';
 import { Role, Status } from '../types';
 import { Team } from 'src/team/entities/team.entity';
-import { Exclude } from 'class-transformer';
 import { Permission } from './permission.entity';
 import { Asset } from 'src/asset/entities/asset.entity';
 import { AccessRequest } from 'src/asset/entities/access-request.entity';
@@ -39,10 +38,6 @@ export class User {
 
   @Column({ default: Role.staff, type: 'varchar', enum: Role })
   role: Role;
-
-  @Column({ default: false })
-  @Exclude()
-  isAdmin: boolean;
 
   @ManyToOne(() => User, { nullable: true })
   createdBy: User;

@@ -8,6 +8,7 @@ import {
   Param,
   UseGuards,
   Req,
+  Delete,
 } from '@nestjs/common';
 import { UserService } from 'src/user/services/user.service';
 import { CreateUserDto } from 'src/user/dtos/create-user.dto';
@@ -73,5 +74,11 @@ export class UserController {
     @Query('search') search: string,
   ) {
     return this.userService.getAllUsers({ page, limit, role, status, search });
+  }
+
+  @Authenticate(Role.admin)
+  @Delete(':id')
+  delete(@Param('id') id: string) {
+    return this.userService.deleteUser(id);
   }
 }
