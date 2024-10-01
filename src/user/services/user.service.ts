@@ -17,6 +17,7 @@ import { TeamRepository } from 'src/team/repositories/team.repository';
 import { PermissionRepository } from '../repositories/permission.repository';
 import { In } from 'typeorm';
 import { UpdateUserDto } from '../dtos/update-user.dto';
+import { Permission } from '../entities/permission.entity';
 
 @Injectable()
 export class UserService {
@@ -33,7 +34,8 @@ export class UserService {
       throw new BadRequestException('User email already exists');
     }
 
-    const { email, firstName, lastName, role, teamId, permissions } = dto;
+    const { email, firstName, lastName, role, teamId, permissions, status } =
+      dto;
 
     if (role === Role.staff && !teamId) {
       throw new BadRequestException(
@@ -43,7 +45,9 @@ export class UserService {
 
     let team = null;
     if (teamId) {
-      team = await this.teamRepository.findOne({ where: { id: teamId } });
+      team = await this.teamRepository.findOne({
+        where: { id: teamId.trim() },
+      });
       if (!team) {
         throw new BadRequestException('Team not found');
       }
@@ -51,32 +55,42 @@ export class UserService {
     let user = Object.assign(new User(), {
       role,
       email,
-      firstName,
-      lastName,
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
       team,
     });
-    if (role === Role.vendor && permissions) {
-      const selectedPermissions = await this.permissionRepository.findBy({
+    if (role === Role.vendor && teamId) {
+      throw new BadRequestException('A vendor cannot be added to a team');
+    }
+
+    let userPermissions: Permission[] = [];
+    if (role === Role.vendor && permissions && permissions.length > 0) {
+      userPermissions = await this.permissionRepository.findBy({
         id: In(permissions),
       });
-      user.permissions = selectedPermissions;
-    } else {
-      const allPermissions = await this.permissionRepository.find();
-      user.permissions = allPermissions;
+    } else if (role !== Role.vendor && !permissions) {
+      userPermissions = await this.permissionRepository.find();
+    } else if (role !== Role.vendor && permissions && permissions.length > 0) {
+      userPermissions = await this.permissionRepository.findBy({
+        id: In(permissions),
+      });
     }
+
+    user.permissions = userPermissions;
     user.lastModifiedBy = modifier;
+    if (status) {
+      user.status = status;
+    }
 
     user = await this.repository.save(user);
 
-    if (role !== Role.vendor) {
-      this.event.emit(
-        UserEvents.USER_CREATED,
-        new UserCreatedEvent(
-          instanceToPlain<Partial<User>>(user),
-          UserCreatedEventRoute.FORM,
-        ),
-      );
-    }
+    this.event.emit(
+      UserEvents.USER_CREATED,
+      new UserCreatedEvent(
+        instanceToPlain<Partial<User>>(user),
+        UserCreatedEventRoute.FORM,
+      ),
+    );
 
     return user;
   }

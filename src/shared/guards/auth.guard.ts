@@ -63,7 +63,6 @@ export class AuthGuard implements CanActivate {
         userExists = await this.userRepository.save(userExists);
       }
       request.user = userExists;
-      this.logger.debug(request.user);
 
       return this.authorizeUser(request, context);
     } catch (err) {
