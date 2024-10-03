@@ -26,7 +26,7 @@ import { ChangeAssetStatusDto } from '../dto/change-asset-status.dto';
 import { FindAllQueryDto } from '../dto/find-all-asset.dto';
 import { CreateAccessRequestDto } from '../dto/create-access-request.dto';
 
-@Controller('asset')
+@Controller('assets')
 @UseInterceptors(ClassSerializerInterceptor)
 export class AssetController {
   constructor(
@@ -46,13 +46,13 @@ export class AssetController {
     return this.assetService.create(user, file, dto);
   }
 
-  // @Authenticate()
+  @Authenticate(Role.admin)
   @Post('create-type')
   createType(@Body() dto: CreateAssetTypeDto) {
     return this.assetTypeService.createAssetType(dto);
   }
 
-  @Get('type')
+  @Get('types')
   getTypes() {
     return this.assetTypeService.getAssetTypes();
   }

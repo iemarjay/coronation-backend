@@ -18,7 +18,7 @@ import {
 import { Role } from 'src/user/types';
 import { User } from 'src/user/entities/user.entity';
 
-@Controller('team')
+@Controller('teams')
 @Authenticate(Role.admin)
 export class TeamController {
   constructor(private readonly teamService: TeamService) {}
