@@ -1,4 +1,8 @@
-import { BlobServiceClient, ContainerClient } from '@azure/storage-blob';
+import {
+  BlobServiceClient,
+  ContainerClient,
+  BlobDeleteResponse,
+} from '@azure/storage-blob';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
@@ -27,5 +31,12 @@ export class StorageService {
     const blobClient = this.client.getBlobClient(fileName);
     const response = await blobClient.download();
     return response.readableStreamBody;
+  }
+
+  async deleteFile(fileName: string): Promise<BlobDeleteResponse> {
+    const blobClient = this.client.getBlobClient(fileName);
+    const deleteResponse = await blobClient.delete();
+
+    return deleteResponse;
   }
 }

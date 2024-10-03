@@ -38,6 +38,6 @@ import { PermissionService } from './services/permission.service';
     Auth0Service,
     JwtStrategy,
   ],
-  exports: [OktaService, UserRepository, Auth0Service],
+  exports: [OktaService, UserRepository, PermissionRepository, Auth0Service],
 })
 export class UserModule {}

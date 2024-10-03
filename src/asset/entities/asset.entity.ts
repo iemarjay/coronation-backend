@@ -14,8 +14,10 @@ import { AssetDownload } from './asset-download.entity';
 import { Team } from 'src/team/entities/team.entity';
 import { AssetVersion } from './asset-version.entity';
 import { Category } from './category.entity';
-import { AccessType } from '../types';
 import { AccessRequest } from './access-request.entity';
+import { AssetType } from './asset-type.entity';
+import { Subcategory } from './subcategory.entity';
+import { Status } from 'src/user/types';
 
 @Entity()
 export class Asset {
@@ -25,9 +27,6 @@ export class Asset {
   @Column()
   name: string;
 
-  @Column({ default: AccessType.private, type: 'varchar', enum: AccessType })
-  access: string;
-
   @Column()
   url: string;
 
@@ -36,6 +35,9 @@ export class Asset {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @Column()
+  size: number;
 
   @ManyToOne(() => User, {
     nullable: true,
@@ -55,9 +57,17 @@ export class Asset {
   })
   downloads: AssetDownload[];
 
-  @ManyToOne(() => Category, (category) => category.assets)
-  @JoinColumn()
+  @ManyToOne(() => Category, (category) => category.assets, {
+    nullable: true,
+  })
+  @JoinColumn({ name: 'categoryId' })
   category: Category;
+
+  @ManyToOne(() => Subcategory, (subcategory) => subcategory.assets, {
+    nullable: true,
+  })
+  @JoinColumn({ name: 'subcategoryId' })
+  subcategory: Subcategory;
 
   @ManyToMany(() => Team, (team) => team.assets)
   @JoinTable({ name: 'asset_teams' })
@@ -72,6 +82,9 @@ export class Asset {
   })
   requests: AccessRequest[];
 
-  @Column({ default: false })
-  isPublished: boolean;
+  @Column({ default: Status.inactive, type: 'varchar', enum: Status })
+  status: Status;
+
+  @ManyToOne(() => AssetType, (assetType) => assetType.assets)
+  assetType: AssetType;
 }

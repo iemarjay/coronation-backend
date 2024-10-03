@@ -21,12 +21,12 @@ import { Permission } from '../entities/permission.entity';
 
 @Injectable()
 export class UserService {
-  private logger = new Logger(UserService.name);
+  private readonly logger = new Logger(UserService.name);
   constructor(
     protected repository: UserRepository,
     protected teamRepository: TeamRepository,
     protected permissionRepository: PermissionRepository,
-    private event: EventEmitter2,
+    private readonly event: EventEmitter2,
   ) {}
 
   async create(dto: CreateUserDto, modifier: User) {

@@ -35,20 +35,6 @@ export class AccessRequestRepository extends Repository<AccessRequest> {
     return this.find(queryOptions);
   }
 
-  async findByUserAndAsset(user: User, asset: Asset) {
-    return this.findOne({
-      where: {
-        user: {
-          id: user.id,
-        },
-        asset: {
-          id: asset.id,
-        },
-      },
-      relations: ['asset'],
-    });
-  }
-
   async findByUserAndAssetId(user: User, asset: Asset) {
     return this.findOne({
       relations: ['asset', 'user'],
@@ -65,6 +51,7 @@ export class AccessRequestRepository extends Repository<AccessRequest> {
     limit: number;
     page: number;
     status?: AccessRequestStatus;
+    user?: string;
   }) {
     const queryOptions: FindManyOptions = {
       order: { updatedAt: 'DESC' },
@@ -75,6 +62,14 @@ export class AccessRequestRepository extends Repository<AccessRequest> {
 
     if (filter.status) {
       queryOptions.where = { status: filter.status };
+    }
+
+    if (filter.user) {
+      queryOptions.where = {
+        user: {
+          id: filter.user,
+        },
+      };
     }
 
     return this.find(queryOptions);

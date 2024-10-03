@@ -1,18 +1,19 @@
-import { Type } from 'class-transformer';
-import { IsArray, IsNotEmpty, IsString, ValidateNested } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateAssetDto {
   @IsString()
+  @IsNotEmpty()
   name: string;
 
   @IsString()
   @IsNotEmpty()
-  category: string;
-}
+  type: string;
 
-export class CreateMultipleAssetDto {
-  @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => CreateAssetDto)
-  assets: CreateAssetDto[];
+  @IsString()
+  @IsOptional()
+  category?: string;
+
+  @IsString()
+  @IsOptional()
+  subcategory?: string;
 }

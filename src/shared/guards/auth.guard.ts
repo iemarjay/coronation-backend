@@ -20,8 +20,8 @@ export class AuthGuard implements CanActivate {
   private readonly logger = new Logger(AuthGuard.name);
   constructor(
     private readonly reflector: Reflector,
-    private jwtService: JwtService,
-    private auth0Service: Auth0Service,
+    private readonly jwtService: JwtService,
+    private readonly auth0Service: Auth0Service,
     private userRepository: UserRepository,
     private config: ConfigService,
   ) {}

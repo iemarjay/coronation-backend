@@ -87,7 +87,7 @@ export class Auth0Service {
 
       const roles = await this.getAllRoles(role);
       let userRole: string;
-      if (roles.data && roles.data.length) {
+      if (roles?.data.length) {
         userRole = roles.data[0].id;
 
         await this.managementClient.users.assignRoles(

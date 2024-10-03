@@ -2,7 +2,6 @@ import {
   applyDecorators,
   createParamDecorator,
   ExecutionContext,
-  Logger,
   SetMetadata,
   UseGuards,
 } from '@nestjs/common';
@@ -11,9 +10,7 @@ import { AuthGuard } from '../guards/auth.guard';
 
 export const AuthUser = createParamDecorator(
   (data: unknown, ctx: ExecutionContext) => {
-    const logger = new Logger(AuthUser.name);
     const request = ctx.switchToHttp().getRequest();
-    logger.debug(request.user);
     return request.user;
   },
 );

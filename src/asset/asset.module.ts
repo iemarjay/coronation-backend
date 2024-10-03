@@ -15,6 +15,12 @@ import { AccessRequest } from './entities/access-request.entity';
 import { AccessRequestRepository } from './repositories/access-request.repository';
 import { CategoryController } from './controllers/category.controller';
 import { AssetDownloadRepository } from './repositories/access-download.repository';
+import { AssetType } from './entities/asset-type.entity';
+import { Subcategory } from './entities/subcategory.entity';
+import { AssetTypeRepository } from './repositories/asset-type.repository';
+import { SubcategoryRepository } from './repositories/subcategory.repository';
+import { AssetTypeService } from './asset-type.service';
+import { AssetListener } from './listeners/asset.listener';
 
 @Module({
   imports: [
@@ -24,6 +30,8 @@ import { AssetDownloadRepository } from './repositories/access-download.reposito
       AssetVersion,
       Category,
       AccessRequest,
+      AssetType,
+      Subcategory,
     ]),
     SharedModule,
     UserModule,
@@ -31,11 +39,15 @@ import { AssetDownloadRepository } from './repositories/access-download.reposito
   controllers: [AssetController, CategoryController],
   providers: [
     AssetService,
+    AssetTypeService,
     CategoryRepository,
     AssetRepository,
     CategoryService,
     AccessRequestRepository,
+    AssetListener,
     AssetDownloadRepository,
+    AssetTypeRepository,
+    SubcategoryRepository,
   ],
 })
 export class AssetModule {}

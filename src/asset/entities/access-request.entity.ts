@@ -16,6 +16,9 @@ export class AccessRequest {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column('text')
+  message: string;
+
   @ManyToOne(() => User, (user) => user.requests, { eager: true })
   user: User;
 
