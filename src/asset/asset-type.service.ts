@@ -16,6 +16,7 @@ export class AssetTypeService {
   ) {}
 
   async createAssetType(dto: CreateAssetTypeDto) {
+    dto.name = dto.name.toLowerCase();
     if (await this.assetTypeRepository.findOneBy({ name: dto.name })) {
       throw new BadRequestException(`Asset type ${dto.name} already exists`);
     }

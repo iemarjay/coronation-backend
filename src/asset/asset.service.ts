@@ -152,11 +152,13 @@ export class AssetService {
     );
     await this.getUserPermission(user, accessType);
     if (user.role === Role.admin) {
-      return true;
+      return;
     } else if (asset.status === Status.inactive) {
       throw new UnauthorizedException('Asset has not been published');
     } else if (asset.teams.includes(user.team)) {
-      return true;
+      return;
+    } else if (asset.users.includes(user)) {
+      return;
     } else if (
       !userAccess ||
       userAccess.status !== AccessRequestStatus.approved
@@ -166,7 +168,7 @@ export class AssetService {
       );
     }
 
-    return true;
+    return;
   }
 
   async getUserPermission(user: User, accessType: string) {

@@ -5,29 +5,28 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import * as path from 'path';
-import { DataSource, Repository } from 'typeorm';
+import { DataSource, In, Repository } from 'typeorm';
 import { Asset } from '../entities/asset.entity';
 import { User } from 'src/user/entities/user.entity';
 import { Role, Status } from 'src/user/types';
 import { CreateAssetDto } from '../dto/create-asset.dto';
 import { StorageService } from 'src/shared/storage.service';
-import { CategoryRepository } from './category.repository';
-import { AccessRequestRepository } from './access-request.repository';
-import { AssetDownloadRepository } from './access-download.repository';
 import { AssetTypeRepository } from './asset-type.repository';
 import { AssetVersion } from '../entities/asset-version.entity';
 import { Subcategory } from '../entities/subcategory.entity';
 import { Category } from '../entities/category.entity';
+import { TeamRepository } from 'src/team/repositories/team.repository';
+import { Team } from 'src/team/entities/team.entity';
+import { UserRepository } from 'src/user/repositories/user.repository';
 
 @Injectable()
 export class AssetRepository extends Repository<Asset> {
   constructor(
     private readonly datasource: DataSource,
     private readonly storage: StorageService,
-    private categoryRepository: CategoryRepository,
+    private teamRepository: TeamRepository,
     private assetTypeRepository: AssetTypeRepository,
-    private accessRequestRepository: AccessRequestRepository,
-    private assetDownloadRepository: AssetDownloadRepository,
+    private userRepository: UserRepository,
   ) {
     super(Asset, datasource.createEntityManager());
   }
@@ -40,10 +39,12 @@ export class AssetRepository extends Repository<Asset> {
     let uploadedFile: string | null = null;
     let category: Category | null = null;
     let subcategory: Subcategory | null = null;
+    let teams: Team[] | [] = [];
+    let users: User[] | [] = [];
     try {
       const assetType = await this.assetTypeRepository.findOne({
         where: {
-          id: dto.type,
+          name: dto.type.toLowerCase(),
         },
         relations: ['categories', 'categories.subcategories'],
       });
@@ -61,7 +62,7 @@ export class AssetRepository extends Repository<Asset> {
         );
       } else if (dto.category) {
         category = assetType.categories.find(
-          (item) => item.id === dto.category,
+          (item) => item.name === dto.category.toLowerCase(),
         );
         if (!category) {
           throw new BadRequestException(
@@ -78,13 +79,25 @@ export class AssetRepository extends Repository<Asset> {
 
       if (dto.subcategory && category.subcategories?.length) {
         subcategory = category.subcategories.find(
-          (s) => s.id === dto.subcategory,
+          (s) => s.name === dto.subcategory.toLowerCase(),
         );
         if (!subcategory) {
           throw new BadRequestException(
             'Provided subcategory does not exist within this asset type.',
           );
         }
+      }
+
+      if (dto?.teams) {
+        teams = await this.teamRepository.find({
+          where: { id: In(dto.teams) },
+        });
+      }
+
+      if (dto?.users) {
+        users = await this.userRepository.find({
+          where: { id: In(dto.users) },
+        });
       }
 
       const name = `${dto.name}${path.extname(file.originalname).toLowerCase()}`;
@@ -110,6 +123,14 @@ export class AssetRepository extends Repository<Asset> {
       }
       if (dto.subcategory) {
         asset.subcategory = subcategory;
+      }
+
+      if (dto?.teams) {
+        asset.teams = teams;
+      }
+
+      if (dto?.users) {
+        asset.users = users;
       }
 
       asset.versions = [assetVersion];

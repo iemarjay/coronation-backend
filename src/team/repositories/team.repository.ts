@@ -12,6 +12,7 @@ export class TeamRepository extends Repository<Team> {
   async getAllTeams(filter: { limit: number; page: number; search?: string }) {
     const query = this.createQueryBuilder('team')
       .leftJoinAndSelect('team.createdBy', 'createdBy')
+      .leftJoinAndSelect('team.users', 'users')
       .leftJoinAndSelect('team.lastModifiedBy', 'lastModifiedBy')
       .orderBy('team.updatedAt', 'DESC')
       .take(filter.limit)

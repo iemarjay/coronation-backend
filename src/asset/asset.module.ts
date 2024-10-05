@@ -21,6 +21,7 @@ import { AssetTypeRepository } from './repositories/asset-type.repository';
 import { SubcategoryRepository } from './repositories/subcategory.repository';
 import { AssetTypeService } from './asset-type.service';
 import { AssetListener } from './listeners/asset.listener';
+import { TeamModule } from 'src/team/team.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { AssetListener } from './listeners/asset.listener';
     ]),
     SharedModule,
     UserModule,
+    TeamModule,
   ],
   controllers: [AssetController, CategoryController],
   providers: [

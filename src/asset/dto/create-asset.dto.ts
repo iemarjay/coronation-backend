@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateAssetDto {
   @IsString()
@@ -16,4 +16,12 @@ export class CreateAssetDto {
   @IsString()
   @IsOptional()
   subcategory?: string;
+
+  @IsArray({ each: true })
+  @IsOptional()
+  teams?: string[];
+
+  @IsArray({ each: true })
+  @IsOptional()
+  users?: string[];
 }
