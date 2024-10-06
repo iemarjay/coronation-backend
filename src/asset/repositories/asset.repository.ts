@@ -88,15 +88,15 @@ export class AssetRepository extends Repository<Asset> {
         }
       }
 
-      if (dto?.teams?.replaceAll(' ', '')) {
+      if (dto?.teams) {
         teams = await this.teamRepository.find({
-          where: { id: In(dto.teams.split(',')) },
+          where: { id: In(dto.teams) },
         });
       }
 
-      if (dto?.users?.replaceAll(' ', '')) {
+      if (dto?.users) {
         users = await this.userRepository.find({
-          where: { id: In(dto.users.split(',')) },
+          where: { id: In(dto.users) },
         });
       }
 
@@ -125,11 +125,11 @@ export class AssetRepository extends Repository<Asset> {
         asset.subcategory = subcategory;
       }
 
-      if (dto?.teams?.replaceAll(' ', '')) {
+      if (dto?.teams) {
         asset.teams = teams;
       }
 
-      if (dto?.users?.replaceAll(' ', '')) {
+      if (dto?.users) {
         asset.users = users;
       }
 

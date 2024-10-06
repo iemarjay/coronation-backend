@@ -17,11 +17,11 @@ export class CreateAssetDto {
   @IsOptional()
   subcategory?: string;
 
-  @IsString()
+  @IsString({ each: true })
   @IsOptional()
-  teams?: string;
+  teams?: string[];
 
-  @IsString()
+  @IsString({ each: true })
   @IsOptional()
-  users?: string;
+  users?: string[];
 }
