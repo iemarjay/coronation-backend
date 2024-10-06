@@ -40,13 +40,10 @@ export class AssetController {
   @UseInterceptors(FileInterceptor('file'))
   @Post('add')
   create(
-    @Body('body') jsonData: string,
+    @Body() dto: CreateAssetDto,
     @AuthUser() user: User,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    this.logger.debug(jsonData);
-    this.logger.debug(file);
-    const dto: CreateAssetDto = JSON.parse(jsonData);
     return this.assetService.create(user, file, dto);
   }
 
