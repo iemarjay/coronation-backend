@@ -100,11 +100,12 @@ export class AssetRepository extends Repository<Asset> {
         });
       }
 
-      const name = `${dto.name}${path.extname(file.originalname).toLowerCase()}`;
-      uploadedFile = await this.storage.upload(file, name);
+      const filename = `${dto.name}${path.extname(file.originalname).toLowerCase()}`;
+      uploadedFile = await this.storage.upload(file, filename);
 
       const asset = this.create({
-        name,
+        name: dto.name,
+        filename,
         type: file.mimetype,
         size: file.size,
         createdBy: user,

@@ -28,6 +28,9 @@ export class Asset {
   name: string;
 
   @Column()
+  filename: string;
+
+  @Column()
   url: string;
 
   @Column()
