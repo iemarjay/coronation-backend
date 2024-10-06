@@ -9,6 +9,7 @@ import {
   Get,
   ClassSerializerInterceptor,
   UploadedFile,
+  Logger,
 } from '@nestjs/common';
 import {
   Authenticate,
@@ -29,6 +30,7 @@ import { CreateAccessRequestDto } from '../dto/create-access-request.dto';
 @Controller('assets')
 @UseInterceptors(ClassSerializerInterceptor)
 export class AssetController {
+  private readonly logger = new Logger(AssetController.name);
   constructor(
     private readonly assetService: AssetService,
     private readonly assetTypeService: AssetTypeService,
@@ -42,6 +44,8 @@ export class AssetController {
     @AuthUser() user: User,
     @UploadedFile() file: Express.Multer.File,
   ) {
+    this.logger.debug(jsonData);
+    this.logger.debug(file);
     const dto: CreateAssetDto = JSON.parse(jsonData);
     return this.assetService.create(user, file, dto);
   }
