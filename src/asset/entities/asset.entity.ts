@@ -9,6 +9,7 @@ import {
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { AssetDownload } from './asset-download.entity';
 import { Team } from 'src/team/entities/team.entity';
@@ -38,6 +39,9 @@ export class Asset {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @Column()
   size: number;
