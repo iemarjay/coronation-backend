@@ -56,11 +56,13 @@ export class Asset {
 
   @OneToMany(() => AssetVersion, (assetVersion) => assetVersion.asset, {
     cascade: true,
+    onDelete: 'CASCADE',
   })
   versions: AssetVersion[];
 
   @OneToMany(() => AssetDownload, (assetDownload) => assetDownload.asset, {
     cascade: true,
+    onDelete: 'CASCADE',
   })
   downloads: AssetDownload[];
 
@@ -76,16 +78,23 @@ export class Asset {
   @JoinColumn({ name: 'subcategoryId' })
   subcategory: Subcategory;
 
-  @ManyToMany(() => Team, (team) => team.assets)
+  @ManyToMany(() => Team, (team) => team.assets, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
   @JoinTable({ name: 'asset_teams' })
   teams: Team[];
 
-  @ManyToMany(() => User, (user) => user.assets)
+  @ManyToMany(() => User, (user) => user.assets, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
   @JoinTable({ name: 'asset_users' })
   users: User[];
 
   @OneToMany(() => AccessRequest, (accessRequest) => accessRequest.asset, {
     cascade: true,
+    onDelete: 'CASCADE',
   })
   requests: AccessRequest[];
 

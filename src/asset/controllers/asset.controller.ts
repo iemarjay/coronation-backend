@@ -10,6 +10,7 @@ import {
   ClassSerializerInterceptor,
   UploadedFile,
   Logger,
+  Delete,
 } from '@nestjs/common';
 import {
   Authenticate,
@@ -68,6 +69,12 @@ export class AssetController {
   @Get('/:id')
   get(@AuthUser() user: User, @Param('id') id: string) {
     return this.assetService.getAsset(user, id);
+  }
+
+  @Authenticate()
+  @Delete('/:id')
+  delete(@AuthUser() user: User, @Param('id') id: string) {
+    return this.assetService.deleteAsset(user, id);
   }
 
   @Authenticate()

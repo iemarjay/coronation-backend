@@ -19,7 +19,7 @@ export class AssetVersion {
   @Column()
   url: string;
 
-  @ManyToOne(() => Asset, (asset) => asset.versions)
+  @ManyToOne(() => Asset, (asset) => asset.versions, { onDelete: 'CASCADE' })
   @Exclude({ toPlainOnly: true })
   asset: Asset;
 

@@ -55,6 +55,16 @@ export class AssetService {
     return asset;
   }
 
+  async deleteAsset(user: User, id: string) {
+    const asset = await this.assetRepository.findAssetOrFail(id);
+    await this.getUserAccess(user, asset, 'write');
+    await this.assetRepository.remove(asset);
+    return {
+      success: true,
+      message: 'Asset deleted',
+    };
+  }
+
   async getAllAssets(filter: FindAllQueryDto, user: User) {
     return await this.assetRepository.findAll({
       limit: filter.limit ?? 10,
@@ -153,7 +163,7 @@ export class AssetService {
     await this.getUserPermission(user, accessType);
     if (user.role === Role.admin) {
       return;
-    } else if (asset.status === Status.inactive) {
+    } else if (asset.status === Status.inactive && accessType !== 'write') {
       throw new UnauthorizedException('Asset has not been published');
     } else if (asset.teams.includes(user.team)) {
       return;
