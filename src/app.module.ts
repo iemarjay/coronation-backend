@@ -32,6 +32,11 @@ import { TeamModule } from './team/team.module';
         synchronize: configService.get('env') !== 'production',
         migrationsRun: true,
         migrations: ['dist/migrations/*{.ts,.js}'],
+        options: {
+          encrypt: false,
+          trustServerCertificate:
+            configService.get('env') === 'development' ? true : false,
+        },
         logging:
           configService.get('env') === 'development'
             ? 'all'

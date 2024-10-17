@@ -11,6 +11,7 @@ import {
   UploadedFile,
   Logger,
   Delete,
+  Redirect,
 } from '@nestjs/common';
 import {
   Authenticate,
@@ -79,6 +80,7 @@ export class AssetController {
 
   @Authenticate()
   @Get('download/:id')
+  @Redirect()
   download(@AuthUser() user: User, @Param('id') id: string) {
     return this.assetService.downloadAsset(user, id);
   }
@@ -110,8 +112,15 @@ export class AssetController {
     @Query('page') page: number,
     @Query('limit') limit: number,
     @Query('status') status: AccessRequestStatus,
+    @Query('date') date: string,
     @Query('user') user: string,
   ) {
-    return this.assetService.getAllAccessRequest({ page, limit, status, user });
+    return this.assetService.getAllAccessRequest({
+      page,
+      limit,
+      status,
+      user,
+      date,
+    });
   }
 }

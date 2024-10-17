@@ -28,6 +28,7 @@ export class AssetService {
     private permissionRepository: UserRepository,
     private readonly event: EventEmitter2,
   ) {}
+
   async create(user: User, file: Express.Multer.File, dto: CreateAssetDto) {
     await this.getUserPermission(user, 'upload');
     if (!file) {
@@ -46,7 +47,7 @@ export class AssetService {
       asset,
       user,
     });
-    return { data: asset.url };
+    return { url: asset.url };
   }
 
   async getAsset(user: User, id: string) {
@@ -74,6 +75,7 @@ export class AssetService {
       type: filter.type,
       category: filter.category,
       subcategory: filter.subcategory,
+      date: filter.date,
     });
   }
 
@@ -120,17 +122,20 @@ export class AssetService {
     page,
     status,
     user,
+    date,
   }: {
     limit: number;
     page: number;
     status: AccessRequestStatus;
     user: string;
+    date: string;
   }) {
     return await this.accessRequestRepository.getAllAccessRequest({
       limit: limit ?? 10,
       page: page ?? 1,
       status: status,
       user,
+      date,
     });
   }
 

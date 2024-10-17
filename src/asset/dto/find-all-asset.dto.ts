@@ -29,4 +29,8 @@ export class FindAllQueryDto {
   @IsOptional()
   @IsString()
   subcategory?: string;
+
+  @IsOptional()
+  @IsString()
+  date?: Date;
 }

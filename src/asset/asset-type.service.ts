@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, OnModuleInit } from '@nestjs/common';
 import { AssetTypeRepository } from './repositories/asset-type.repository';
 import { CreateAssetTypeDto } from './dto/create-asset-type.dto';
 import { AssetType } from './entities/asset-type.entity';
@@ -6,14 +6,30 @@ import { Category } from './entities/category.entity';
 import { Subcategory } from './entities/subcategory.entity';
 import { SubcategoryRepository } from './repositories/subcategory.repository';
 import { CategoryRepository } from './repositories/category.repository';
+import { assetTypeData } from './asset-type.data';
 
 @Injectable()
-export class AssetTypeService {
+export class AssetTypeService implements OnModuleInit {
   constructor(
     private assetTypeRepository: AssetTypeRepository,
     private categoryRepository: CategoryRepository,
     private subcategoryRepository: SubcategoryRepository,
   ) {}
+
+  async onModuleInit() {
+    await this.initializeAssetTypes();
+  }
+
+  private async initializeAssetTypes() {
+    for (const type of assetTypeData) {
+      const existingPermission = await this.assetTypeRepository.findOneBy({
+        name: type.name,
+      });
+      if (!existingPermission) {
+        await this.createAssetType(type);
+      }
+    }
+  }
 
   async createAssetType(dto: CreateAssetTypeDto) {
     dto.name = dto.name.toLowerCase();

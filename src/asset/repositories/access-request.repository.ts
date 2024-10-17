@@ -47,31 +47,45 @@ export class AccessRequestRepository extends Repository<AccessRequest> {
     });
   }
 
-  getAllAccessRequest(filter: {
+  async getAllAccessRequest(filter: {
     limit: number;
     page: number;
     status?: AccessRequestStatus;
     user?: string;
+    date?: string;
   }) {
-    const queryOptions: FindManyOptions = {
-      order: { updatedAt: 'DESC' },
-      take: filter.limit,
-      skip: filter.limit * ((filter.page ?? 1) - 1),
-      relations: ['user'],
-    };
+    const queryBuilder = this.createQueryBuilder('accessRequest')
+      .leftJoinAndSelect('accessRequest.user', 'user')
+      .orderBy('accessRequest.createdAt', 'DESC')
+      .take(filter.limit)
+      .skip(filter.limit * ((filter.page ?? 1) - 1));
 
     if (filter.status) {
-      queryOptions.where = { status: filter.status };
+      queryBuilder.andWhere('accessRequest.status = :status', {
+        status: filter.status,
+      });
     }
 
     if (filter.user) {
-      queryOptions.where = {
-        user: {
-          id: filter.user,
-        },
-      };
+      queryBuilder.andWhere('user.id = :userId', { userId: filter.user });
     }
 
-    return this.find(queryOptions);
+    if (filter.date) {
+      queryBuilder.andWhere('CONVERT(date,accessRequest.createdAt) = :date', {
+        date: filter.date,
+      });
+    }
+
+    const [requests, totalCount] = await queryBuilder.getManyAndCount();
+
+    const totalPages = Math.ceil(totalCount / filter.limit);
+
+    return {
+      currentPage: filter.page,
+      pageSize: filter.limit,
+      totalCount: totalCount,
+      totalPages: totalPages,
+      requests,
+    };
   }
 }

@@ -173,6 +173,7 @@ export class AssetRepository extends Repository<Asset> {
     user: User;
     search?: string;
     type: string;
+    date?: Date;
     category?: string;
     subcategory?: string;
   }) {
@@ -208,6 +209,12 @@ export class AssetRepository extends Repository<Asset> {
 
     if (filter.subcategory) {
       query.andWhere('subcategory.name = :name', { name: filter.subcategory });
+    }
+
+    if (filter.date) {
+      query.andWhere('CONVERT(date,asset.createdAt) = :date', {
+        date: filter.date,
+      });
     }
 
     const [assets, totalCount] = await query.getManyAndCount();
