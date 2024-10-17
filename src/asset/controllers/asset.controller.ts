@@ -12,6 +12,7 @@ import {
   Logger,
   Delete,
   Redirect,
+  Res,
 } from '@nestjs/common';
 import {
   Authenticate,
@@ -80,9 +81,8 @@ export class AssetController {
 
   @Authenticate()
   @Get('download/:id')
-  @Redirect()
-  download(@AuthUser() user: User, @Param('id') id: string) {
-    return this.assetService.downloadAsset(user, id);
+  download(@AuthUser() user: User, @Param('id') id: string, @Res() res) {
+    return this.assetService.downloadAsset(user, id, res);
   }
 
   @Authenticate(Role.admin)

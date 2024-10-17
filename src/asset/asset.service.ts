@@ -38,7 +38,7 @@ export class AssetService {
     return assets;
   }
 
-  async downloadAsset(user: User, id: string) {
+  async downloadAsset(user: User, id: string, res) {
     const asset = await this.assetRepository.findAssetOrFail(id);
 
     await this.getUserAccess(user, asset, 'download');
@@ -47,7 +47,7 @@ export class AssetService {
       asset,
       user,
     });
-    return { url: asset.url };
+    return res.redirect(asset.url);
   }
 
   async getAsset(user: User, id: string) {

@@ -34,8 +34,7 @@ import { TeamModule } from './team/team.module';
         migrations: ['dist/migrations/*{.ts,.js}'],
         options: {
           encrypt: true,
-          trustServerCertificate:
-            configService.get('env') === 'development' ? true : false,
+          trustServerCertificate: false,
         },
         logging:
           configService.get('env') === 'development'
