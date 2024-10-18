@@ -100,7 +100,7 @@ export class AssetRepository extends Repository<Asset> {
         });
       }
 
-      const filename = `${dto.name}${path.extname(file.originalname).toLowerCase()}`;
+      const filename = `${dto.name.toLowerCase().replaceAll(' ', '-')}${path.extname(file.originalname).toLowerCase()}`;
       uploadedFile = await this.storage.upload(file, filename);
 
       const asset = this.create({
