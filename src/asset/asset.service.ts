@@ -123,12 +123,14 @@ export class AssetService {
     status,
     user,
     date,
+    search
   }: {
     limit: number;
     page: number;
     status: AccessRequestStatus;
     user: string;
     date: string;
+    search: string;
   }) {
     return await this.accessRequestRepository.getAllAccessRequest({
       limit: limit ?? 10,
@@ -136,6 +138,8 @@ export class AssetService {
       status: status,
       user,
       date,
+      search,
+
     });
   }
 

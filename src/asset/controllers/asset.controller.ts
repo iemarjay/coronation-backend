@@ -112,6 +112,7 @@ export class AssetController {
     @Query('page') page: number,
     @Query('limit') limit: number,
     @Query('status') status: AccessRequestStatus,
+    @Query('search') search: string,
     @Query('date') date: string,
     @Query('user') user: string,
   ) {
@@ -121,6 +122,7 @@ export class AssetController {
       status,
       user,
       date,
+      search
     });
   }
 }
