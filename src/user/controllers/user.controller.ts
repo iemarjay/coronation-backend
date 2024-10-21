@@ -30,7 +30,7 @@ export class UserController {
     private readonly permissionService: PermissionService,
   ) {}
 
-  @Authenticate(Role.admin)
+  // @Authenticate(Role.admin)
   @Post('create')
   create(@Body() dto: CreateUserDto, @AuthUser() user: User) {
     return this.userService.create(dto, user);

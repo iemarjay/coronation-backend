@@ -29,6 +29,7 @@ import { CreateAssetDto } from '../dto/create-asset.dto';
 import { ChangeAssetStatusDto } from '../dto/change-asset-status.dto';
 import { FindAllQueryDto } from '../dto/find-all-asset.dto';
 import { CreateAccessRequestDto } from '../dto/create-access-request.dto';
+import { UpdateAssetDto } from '../dto/update-asset.dto';
 
 @Controller('assets')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -71,6 +72,18 @@ export class AssetController {
   @Get('/:id')
   get(@AuthUser() user: User, @Param('id') id: string) {
     return this.assetService.getAsset(user, id);
+  }
+
+  @Authenticate()
+  @UseInterceptors(FileInterceptor('file'))
+  @Patch('/:id')
+  update(
+    @AuthUser() user: User,
+    @Body() dto: UpdateAssetDto,
+    @UploadedFile() file: Express.Multer.File,
+    @Param('id') id: string,
+  ) {
+    return this.assetService.update(user, id, file, dto);
   }
 
   @Authenticate()
@@ -122,7 +135,7 @@ export class AssetController {
       status,
       user,
       date,
-      search
+      search,
     });
   }
 }

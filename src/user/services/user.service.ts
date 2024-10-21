@@ -112,12 +112,15 @@ export class UserService {
     try {
       user = await this.repository.findBAdminByEmailOrFail(email);
     } catch {
+      const userPermissions = await this.permissionRepository.find();
       user = await this.repository.save({
         firstName: given_name,
         lastName: family_name,
         email,
         role,
         imageUrl: picture,
+        status: Status.active,
+        permissions: userPermissions,
       });
       this.event.emit(
         UserEvents.USER_CREATED,

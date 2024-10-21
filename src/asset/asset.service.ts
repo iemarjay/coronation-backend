@@ -18,6 +18,8 @@ import { FindAllQueryDto } from './dto/find-all-asset.dto';
 import { CreateAccessRequestDto } from './dto/create-access-request.dto';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { AccessRequestedEvent, AssetEvents } from './events/asset.event';
+import { StorageService } from 'src/shared/storage.service';
+import { UpdateAssetDto } from './dto/update-asset.dto';
 
 @Injectable()
 export class AssetService {
@@ -27,6 +29,7 @@ export class AssetService {
     private assetDownloadRepository: AssetDownloadRepository,
     private permissionRepository: UserRepository,
     private readonly event: EventEmitter2,
+    private readonly storage: StorageService,
   ) {}
 
   async create(user: User, file: Express.Multer.File, dto: CreateAssetDto) {
@@ -35,7 +38,26 @@ export class AssetService {
       throw new BadRequestException('File missing');
     }
     const assets = await this.assetRepository.createAsset(user, file, dto);
-    return assets;
+    return {
+      success: true,
+      message: 'File has been uploaded successfully.',
+      data: assets,
+    };
+  }
+
+  async update(
+    user: User,
+    id: string,
+    file: Express.Multer.File,
+    dto: UpdateAssetDto,
+  ) {
+    await this.getUserPermission(user, 'write');
+    const assets = await this.assetRepository.updateAsset(user, id, file, dto);
+    return {
+      success: true,
+      message: 'File has been updated successfully.',
+      data: assets,
+    };
   }
 
   async downloadAsset(user: User, id: string, res) {
@@ -59,10 +81,11 @@ export class AssetService {
   async deleteAsset(user: User, id: string) {
     const asset = await this.assetRepository.findAssetOrFail(id);
     await this.getUserAccess(user, asset, 'write');
+    await this.storage.deleteFile(asset.filename);
     await this.assetRepository.remove(asset);
     return {
       success: true,
-      message: 'Asset deleted',
+      message: 'File deleted. It will be permanently removed from the website',
     };
   }
 
@@ -84,7 +107,12 @@ export class AssetService {
     const asset = await this.assetRepository.findAssetOrFail(dto.id);
 
     asset.status = dto.status;
-    return this.assetRepository.save(asset);
+    const result = this.assetRepository.save(asset);
+    return {
+      success: true,
+      message: `File ${dto.status === Status.active ? 'Activated' : 'Deactivated'}`,
+      data: result,
+    };
   }
 
   async requestAccess(user: User, dto: CreateAccessRequestDto) {
@@ -123,7 +151,7 @@ export class AssetService {
     status,
     user,
     date,
-    search
+    search,
   }: {
     limit: number;
     page: number;
@@ -139,7 +167,6 @@ export class AssetService {
       user,
       date,
       search,
-
     });
   }
 

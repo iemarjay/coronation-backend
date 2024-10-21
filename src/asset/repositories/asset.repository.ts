@@ -18,6 +18,7 @@ import { Category } from '../entities/category.entity';
 import { TeamRepository } from 'src/team/repositories/team.repository';
 import { Team } from 'src/team/entities/team.entity';
 import { UserRepository } from 'src/user/repositories/user.repository';
+import { UpdateAssetDto } from '../dto/update-asset.dto';
 
 @Injectable()
 export class AssetRepository extends Repository<Asset> {
@@ -135,6 +136,124 @@ export class AssetRepository extends Repository<Asset> {
       }
 
       asset.versions = [assetVersion];
+      await this.save(asset);
+
+      return asset;
+    } catch (error) {
+      if (uploadedFile) {
+        await this.storage.deleteFile(uploadedFile);
+      }
+      if (error instanceof BadRequestException) {
+        throw error;
+      } else {
+        console.log(error);
+        throw new InternalServerErrorException('Failed to upload asset');
+      }
+    }
+  }
+
+  async updateAsset(
+    user: User,
+    id: string,
+    file: Express.Multer.File,
+    dto: UpdateAssetDto,
+  ) {
+    let uploadedFile: string | null = null;
+    let category: Category | null = null;
+    let subcategory: Subcategory | null = null;
+    let teams: Team[] | [] = [];
+    let users: User[] | [] = [];
+    try {
+      const asset = await this.findOne({
+        where: {
+          id,
+        },
+        relations: [
+          'assetType.categories',
+          'assetType.categories.subcategories',
+          'category.subcategories',
+          'versions',
+        ],
+      });
+
+      console.log(dto);
+
+      if (!asset) {
+        throw new BadRequestException('Asset not found');
+      }
+
+      if (!asset.assetType.categories.length && dto.category) {
+        throw new BadRequestException(
+          'Category is not applicable for this asset type.',
+        );
+      } else if (dto.category) {
+        category = asset.assetType.categories.find(
+          (item) => item.name === dto.category.toLowerCase(),
+        );
+        if (!category) {
+          throw new BadRequestException(
+            'Provided category does not exist within this asset type.',
+          );
+        }
+
+        asset.category = category;
+      }
+      console.log(asset.category);
+
+      if (category?.subcategories.length && !dto.subcategory) {
+        throw new BadRequestException(
+          `Subcategory is required for ${category.name} category`,
+        );
+      }
+
+      if (dto.subcategory && category.subcategories?.length) {
+        subcategory = category.subcategories.find(
+          (s) => s.name === dto.subcategory.toLowerCase(),
+        );
+        if (!subcategory) {
+          throw new BadRequestException(
+            'Provided subcategory does not exist within this asset type.',
+          );
+        }
+
+        asset.subcategory = subcategory;
+      }
+
+      if (dto?.teams) {
+        teams = await this.teamRepository.find({
+          where: { id: In(dto.teams) },
+        });
+        asset.teams = teams;
+      }
+
+      if (dto?.users) {
+        users = await this.userRepository.find({
+          where: { id: In(dto.users) },
+        });
+        asset.users;
+      }
+
+      if (dto.name) {
+        asset.name = dto.name;
+      }
+
+      if (file) {
+        await this.storage.deleteFile(asset.filename);
+        const filename = `${dto.name.toLowerCase().replaceAll(' ', '-')}${path.extname(file.originalname).toLowerCase()}`;
+        uploadedFile = await this.storage.upload(file, filename);
+        asset.filename = filename;
+        asset.type = file.mimetype;
+        asset.size = file.size;
+        asset.lastModifiedBy = user;
+        asset.url = uploadedFile;
+      }
+
+      const assetVersion = new AssetVersion();
+      assetVersion.path = file ? uploadedFile : asset.url;
+      assetVersion.url = file ? uploadedFile : asset.url;
+      assetVersion.asset = asset;
+
+      asset.versions.push(assetVersion);
       await this.save(asset);
 
       return asset;
