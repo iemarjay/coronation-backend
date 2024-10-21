@@ -18,7 +18,6 @@ export class OktaStrategy extends PassportStrategy(Strategy, 'okta') {
     done: (error: HttpException, value: boolean | string) => any,
   ) {
     try {
-      console.log(token);
       const user = await this.okta.verify(token);
       return user;
     } catch (error) {

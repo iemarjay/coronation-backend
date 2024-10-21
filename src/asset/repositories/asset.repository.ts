@@ -176,8 +176,6 @@ export class AssetRepository extends Repository<Asset> {
         ],
       });
 
-      console.log(dto);
-
       if (!asset) {
         throw new BadRequestException('Asset not found');
       }
@@ -198,7 +196,6 @@ export class AssetRepository extends Repository<Asset> {
 
         asset.category = category;
       }
-      console.log(asset.category);
 
       if (category?.subcategories.length && !dto.subcategory) {
         throw new BadRequestException(
