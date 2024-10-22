@@ -50,6 +50,7 @@ export class AccessRequestRepository extends Repository<AccessRequest> {
   async getAllAccessRequest(filter: {
     limit: number;
     page: number;
+    type?: 'pending' | 'past';
     status?: AccessRequestStatus;
     user?: string;
     date?: string;
@@ -61,6 +62,16 @@ export class AccessRequestRepository extends Repository<AccessRequest> {
       .orderBy('accessRequest.createdAt', 'DESC')
       .take(filter.limit)
       .skip(filter.limit * ((filter.page ?? 1) - 1));
+
+    if (filter.type) {
+      let status =
+        filter.type === 'pending'
+          ? [AccessRequestStatus.pending]
+          : [AccessRequestStatus.accepted, AccessRequestStatus.declined];
+
+      console.log(status);
+      queryBuilder.andWhere('accessRequest.status IN (:...status)', { status });
+    }
 
     if (filter.status) {
       queryBuilder.andWhere('accessRequest.status = :status', {
@@ -78,16 +89,18 @@ export class AccessRequestRepository extends Repository<AccessRequest> {
       });
     }
 
-if (filter.search) {
-  const searchTerm = `%${filter.search}%`;
-  queryBuilder.andWhere(new Brackets(qb => {
-    qb.where('accessRequest.message LIKE :search', { search: searchTerm })
-      .orWhere('user.email LIKE :search', { search: searchTerm })
-      .orWhere('user.firstName LIKE :search', { search: searchTerm })
-      .orWhere('user.lastName LIKE :search', { search: searchTerm })
-      .orWhere('asset.name LIKE :search', { search: searchTerm });
-  }));
-}
+    if (filter.search) {
+      const searchTerm = `%${filter.search}%`;
+      queryBuilder.andWhere(
+        new Brackets((qb) => {
+          qb.where('accessRequest.message LIKE :search', { search: searchTerm })
+            .orWhere('user.email LIKE :search', { search: searchTerm })
+            .orWhere('user.firstName LIKE :search', { search: searchTerm })
+            .orWhere('user.lastName LIKE :search', { search: searchTerm })
+            .orWhere('asset.name LIKE :search', { search: searchTerm });
+        }),
+      );
+    }
     const [requests, totalCount] = await queryBuilder.getManyAndCount();
 
     const totalPages = Math.ceil(totalCount / filter.limit);

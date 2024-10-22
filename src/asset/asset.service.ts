@@ -107,7 +107,7 @@ export class AssetService {
     const asset = await this.assetRepository.findAssetOrFail(dto.id);
 
     asset.status = dto.status;
-    const result = this.assetRepository.save(asset);
+    const result = await this.assetRepository.save(asset);
     return {
       success: true,
       message: `File ${dto.status === Status.active ? 'Activated' : 'Deactivated'}`,
@@ -149,13 +149,15 @@ export class AssetService {
     limit,
     page,
     status,
+    type,
     user,
     date,
     search,
   }: {
     limit: number;
     page: number;
-    status: AccessRequestStatus;
+    type: 'pending' | 'past';
+    status?: AccessRequestStatus;
     user: string;
     date: string;
     search: string;
@@ -163,7 +165,8 @@ export class AssetService {
     return await this.accessRequestRepository.getAllAccessRequest({
       limit: limit ?? 10,
       page: page ?? 1,
-      status: status,
+      status,
+      type,
       user,
       date,
       search,
@@ -187,7 +190,7 @@ export class AssetService {
 
     return {
       success: true,
-      message: `Access updated to ${status} for user: ${request.user.email}`,
+      message: `User's request ${status} successfully`,
     };
   }
 
@@ -207,7 +210,7 @@ export class AssetService {
       return;
     } else if (
       !userAccess ||
-      userAccess.status !== AccessRequestStatus.approved
+      userAccess.status !== AccessRequestStatus.accepted
     ) {
       throw new UnauthorizedException(
         'You do not have access to view this asset',

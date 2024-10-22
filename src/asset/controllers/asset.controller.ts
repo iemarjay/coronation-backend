@@ -76,7 +76,7 @@ export class AssetController {
 
   @Authenticate()
   @UseInterceptors(FileInterceptor('file'))
-  @Patch('/:id')
+  @Patch('update/:id')
   update(
     @AuthUser() user: User,
     @Body() dto: UpdateAssetDto,
@@ -124,6 +124,7 @@ export class AssetController {
   getAllAccessRequest(
     @Query('page') page: number,
     @Query('limit') limit: number,
+    @Query('type') type: 'pending' | 'past',
     @Query('status') status: AccessRequestStatus,
     @Query('search') search: string,
     @Query('date') date: string,
@@ -133,6 +134,7 @@ export class AssetController {
       page,
       limit,
       status,
+      type,
       user,
       date,
       search,

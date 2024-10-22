@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { UserCreatedEvent, UserEvents } from 'src/user/user.event';
 import { Auth0Service } from '../services/auth0.service';
+import { Role } from '../types';
 
 @Injectable()
 export class UserListener {
@@ -18,8 +19,10 @@ export class UserListener {
       role: user.role,
     };
 
-    this.auth0.createUser(dto).catch((error) => {
-      this.logger.error(error);
-    });
+    if (user.role !== Role.vendor) {
+      this.auth0.createUser(dto).catch((error) => {
+        this.logger.error(error);
+      });
+    }
   }
 }
