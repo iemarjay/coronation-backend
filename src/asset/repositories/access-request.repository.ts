@@ -69,7 +69,6 @@ export class AccessRequestRepository extends Repository<AccessRequest> {
           ? [AccessRequestStatus.pending]
           : [AccessRequestStatus.accepted, AccessRequestStatus.declined];
 
-      console.log(status);
       queryBuilder.andWhere('accessRequest.status IN (:...status)', { status });
     }
 
