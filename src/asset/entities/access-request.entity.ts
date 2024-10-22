@@ -25,7 +25,10 @@ export class AccessRequest {
   @ManyToOne(() => User, (user) => user.requests, { eager: true })
   user: User;
 
-  @ManyToOne(() => Asset, (asset) => asset.requests, { eager: true })
+  @ManyToOne(() => Asset, (asset) => asset.requests, {
+    eager: true,
+    onDelete: 'CASCADE',
+  })
   asset: Asset;
 
   @Column({
