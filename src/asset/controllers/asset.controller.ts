@@ -30,6 +30,7 @@ import { ChangeAssetStatusDto } from '../dto/change-asset-status.dto';
 import { FindAllQueryDto } from '../dto/find-all-asset.dto';
 import { CreateAccessRequestDto } from '../dto/create-access-request.dto';
 import { UpdateAssetDto } from '../dto/update-asset.dto';
+import { ChangeRequestStatusDto } from '../dto/change-request-status.dto';
 
 @Controller('assets')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -108,9 +109,9 @@ export class AssetController {
   @Patch('request/:id')
   updateAccessStatus(
     @Param('id') id: string,
-    @Body('status') status: AccessRequestStatus,
+    @Body() dto: ChangeRequestStatusDto,
   ) {
-    return this.assetService.updateAccessStatus(id, status);
+    return this.assetService.updateAccessStatus(id, dto);
   }
 
   @Authenticate(Role.vendor)

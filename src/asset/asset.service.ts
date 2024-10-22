@@ -20,6 +20,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { AccessRequestedEvent, AssetEvents } from './events/asset.event';
 import { StorageService } from 'src/shared/storage.service';
 import { UpdateAssetDto } from './dto/update-asset.dto';
+import { ChangeRequestStatusDto } from './dto/change-request-status.dto';
 
 @Injectable()
 export class AssetService {
@@ -173,14 +174,25 @@ export class AssetService {
     });
   }
 
-  async updateAccessStatus(id: string, status: AccessRequestStatus) {
+  async updateAccessStatus(id: string, dto: ChangeRequestStatusDto) {
     let request = await this.accessRequestRepository.findOne({
       where: {
         id,
       },
       relations: ['user'],
     });
-    request.status = status;
+
+    if (!request) {
+      throw new BadRequestException('Request not found');
+    }
+
+    if (dto.status === AccessRequestStatus.declined && !dto.reason) {
+      throw new BadRequestException('Reason for rejection is required');
+    }
+
+    request.status = dto.status;
+
+    if (dto.reason) request.rejectionReason = dto.reason;
     request = await this.accessRequestRepository.save(request);
 
     this.event.emit(
@@ -190,7 +202,7 @@ export class AssetService {
 
     return {
       success: true,
-      message: `User's request ${status} successfully`,
+      message: `User's request ${dto.status} successfully`,
     };
   }
 

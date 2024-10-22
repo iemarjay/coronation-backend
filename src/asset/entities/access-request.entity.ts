@@ -19,6 +19,9 @@ export class AccessRequest {
   @Column('text')
   message: string;
 
+  @Column('text', { nullable: true })
+  rejectionReason: string;
+
   @ManyToOne(() => User, (user) => user.requests, { eager: true })
   user: User;
 
