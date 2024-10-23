@@ -123,6 +123,9 @@ export class UserService {
         status: Status.active,
         permissions: userPermissions,
       });
+      user.lastModifiedBy = user;
+      user.createdBy = user;
+      this.repository.save(user);
       this.event.emit(
         UserEvents.USER_CREATED,
         new UserCreatedEvent(user, UserCreatedEventRoute.OKTA),
