@@ -38,6 +38,11 @@ export class AccessRequest {
   })
   status: AccessRequestStatus;
 
+  @ManyToOne(() => User, {
+    nullable: true,
+  })
+  updatedBy: User;
+
   @CreateDateColumn()
   createdAt: Date;
 

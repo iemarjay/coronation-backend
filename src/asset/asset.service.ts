@@ -174,7 +174,11 @@ export class AssetService {
     });
   }
 
-  async updateAccessStatus(id: string, dto: ChangeRequestStatusDto) {
+  async updateAccessStatus(
+    id: string,
+    dto: ChangeRequestStatusDto,
+    user: User,
+  ) {
     let request = await this.accessRequestRepository.findOne({
       where: {
         id,
@@ -191,6 +195,7 @@ export class AssetService {
     }
 
     request.status = dto.status;
+    request.updatedBy = user;
 
     if (dto.reason) request.rejectionReason = dto.reason;
     request = await this.accessRequestRepository.save(request);

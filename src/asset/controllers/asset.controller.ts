@@ -109,9 +109,10 @@ export class AssetController {
   @Patch('request/:id')
   updateAccessStatus(
     @Param('id') id: string,
+    @AuthUser() user: User,
     @Body() dto: ChangeRequestStatusDto,
   ) {
-    return this.assetService.updateAccessStatus(id, dto);
+    return this.assetService.updateAccessStatus(id, dto, user);
   }
 
   @Authenticate(Role.vendor)
