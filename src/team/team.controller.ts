@@ -33,8 +33,9 @@ export class TeamController {
     @Query('page') page: number,
     @Query('limit') limit: number,
     @Query('search') search: string,
+    @Query('date') date: Date,
   ) {
-    return this.teamService.getAll({ page, limit, search });
+    return this.teamService.getAll({ page, limit, search, date });
   }
 
   @Patch(':id')

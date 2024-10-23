@@ -9,7 +9,12 @@ export class TeamRepository extends Repository<Team> {
     super(Team, datasource.createEntityManager());
   }
 
-  async getAllTeams(filter: { limit: number; page: number; search?: string }) {
+  async getAllTeams(filter: {
+    limit: number;
+    page: number;
+    search?: string;
+    date?: Date;
+  }) {
     const query = this.createQueryBuilder('team')
       .leftJoinAndSelect('team.createdBy', 'createdBy')
       .leftJoinAndSelect('team.users', 'users')
@@ -21,6 +26,12 @@ export class TeamRepository extends Repository<Team> {
     if (filter.search) {
       const searchTerm = `%${filter.search}%`;
       query.andWhere('team.name LIKE :search', { search: searchTerm });
+    }
+
+    if (filter.date) {
+      query.andWhere('CONVERT(date,team.createdAt) = :date', {
+        date: filter.date,
+      });
     }
 
     const [teams, totalCount] = await query.getManyAndCount();

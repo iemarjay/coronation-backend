@@ -136,12 +136,16 @@ export class UserService {
     role,
     status,
     search,
+    team,
+    date,
   }: {
     limit: number;
     page: number;
     role: Role;
     status: Status;
     search: string;
+    team: string;
+    date: string;
   }) {
     try {
       const data = await this.repository.getAllUsers({
@@ -150,6 +154,8 @@ export class UserService {
         role,
         status,
         search,
+        team,
+        date,
       });
       return data;
     } catch (error) {

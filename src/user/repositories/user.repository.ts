@@ -29,6 +29,8 @@ export class UserRepository extends Repository<User> {
     role?: Role;
     status?: Status;
     search?: string;
+    team?: string;
+    date?: string;
   }) {
     const query = this.createQueryBuilder('user')
       .leftJoinAndSelect('user.permissions', 'permissions')
@@ -46,12 +48,23 @@ export class UserRepository extends Repository<User> {
       query.andWhere('user.status = :status', { status: filter.status });
     }
 
+    if (filter.team) {
+      console.log(filter.team);
+      query.andWhere('team.name = :name', { name: filter.team });
+    }
+
     if (filter.search) {
       const searchTerm = `%${filter.search}%`;
       query.andWhere(
         '(user.firstName LIKE :search OR user.lastName LIKE :search OR user.email LIKE :search)',
         { search: searchTerm },
       );
+    }
+
+    if (filter.date) {
+      query.andWhere('CONVERT(date,[user].createdAt) = :date', {
+        date: filter.date,
+      });
     }
 
     const [users, totalCount] = await query.getManyAndCount();

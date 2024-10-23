@@ -19,15 +19,18 @@ export class TeamService {
     limit,
     page,
     search,
+    date,
   }: {
     limit: number;
     page: number;
     search: string;
+    date?: Date;
   }) {
     return await this.repository.getAllTeams({
       limit: limit ?? 10,
       page: page ?? 1,
       search,
+      date,
     });
   }
 

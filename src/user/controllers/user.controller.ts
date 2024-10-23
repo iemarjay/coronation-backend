@@ -30,7 +30,7 @@ export class UserController {
     private readonly permissionService: PermissionService,
   ) {}
 
-  // @Authenticate(Role.admin)
+  @Authenticate(Role.admin)
   @Post('create')
   create(@Body() dto: CreateUserDto, @AuthUser() user: User) {
     return this.userService.create(dto, user);
@@ -72,8 +72,18 @@ export class UserController {
     @Query('role') role: Role,
     @Query('status') status: Status,
     @Query('search') search: string,
+    @Query('date') date: string,
+    @Query('team') team: string,
   ) {
-    return this.userService.getAllUsers({ page, limit, role, status, search });
+    return this.userService.getAllUsers({
+      page,
+      limit,
+      role,
+      status,
+      search,
+      team,
+      date,
+    });
   }
 
   @Authenticate(Role.admin)
