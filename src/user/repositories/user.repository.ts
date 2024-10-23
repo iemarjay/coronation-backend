@@ -36,6 +36,7 @@ export class UserRepository extends Repository<User> {
       .leftJoinAndSelect('user.permissions', 'permissions')
       .leftJoinAndSelect('user.team', 'team')
       .leftJoinAndSelect('user.createdBy', 'createdBy')
+      .leftJoinAndSelect('user.lastModifiedBy', 'lastModifiedBy')
       .orderBy('user.updatedAt', 'DESC')
       .take(filter.limit)
       .skip(filter.limit * ((filter.page ?? 1) - 1));
