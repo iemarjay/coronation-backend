@@ -37,7 +37,7 @@ export class AccessRequestRepository extends Repository<AccessRequest> {
 
   async findByUserAndAssetId(user: User, asset: Asset) {
     return this.findOne({
-      relations: ['asset', 'user'],
+      relations: ['asset', 'user', 'updatedBy'],
       where: {
         user: { id: user.id },
         asset: {
@@ -59,6 +59,7 @@ export class AccessRequestRepository extends Repository<AccessRequest> {
     const queryBuilder = this.createQueryBuilder('accessRequest')
       .leftJoinAndSelect('accessRequest.user', 'user')
       .leftJoinAndSelect('accessRequest.asset', 'asset')
+      .leftJoinAndSelect('accessRequest.updatedBy', 'updatedBy')
       .orderBy('accessRequest.createdAt', 'DESC')
       .take(filter.limit)
       .skip(filter.limit * ((filter.page ?? 1) - 1));
