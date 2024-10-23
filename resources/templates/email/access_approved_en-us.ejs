@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+    <style type="text/css">
+      body {
+        margin: 0;
+        background-color: #cccccc;
+      }
+      table {
+        border-spacing: 0;
+      }
+      td {
+        padding: 0;
+      }
+      img {
+        border: 0;
+      }
+      .wrapper {
+        width: 100%;
+        table-layout: fixed;
+        background-color: #eff1f3;
+        padding-bottom: 60px;
+      }
+
+      p a {
+        text-decoration: none;
+        color: #ff002b !important;
+      }
+
+      .main {
+        background-color: #ffffff;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 700px;
+        border-spacing: 0;
+        font-family: 'Lato', sans-serif;
+        color: #2a2d32;
+      }
+
+      .content {
+        text-align: left;
+        font-family: 'Lato', sans-serif;
+        padding: 40px 56px;
+        max-width: 700px;
+      }
+
+      .content p {
+        font-weight: 400;
+        color: #2a2d32;
+        font-size: 14px;
+        line-height: 22px;
+      }
+
+      .login {
+        display: inline-block;
+        width: 100%;
+        padding: 11px 0;
+        text-align: center;
+        background-color: #000;
+        vertical-align: top;
+        font-family: 'Lato', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .footer {
+        margin-top: 12px;
+        color: #999999;
+        background-color: #f5f5f5;
+        height: 92px;
+        /* width: 700.5px; */
+        line-height: 16.8px;
+        text-align: center;
+        vertical-align: middle;
+      }
+
+      .footer img {
+        line-height: 16.8px;
+        vertical-align: middle;
+        margin-right: 32px;
+      }
+
+      @media (max-width: 425px) {
+        .header img {
+          width: 258.67px;
+          height: 32px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <center class="wrapper">
+      <table class="main" width="100%">
+        <tr style="background-color: #191919">
+          <td
+            class="header"
+            style="margin-bottom: 0; text-align: center; vertical-align: middle"
+          >
+            <img
+              src="https://res.cloudinary.com/ddwsbqk2d/image/upload/f_auto,q_auto/v1/coronation/logo"
+              alt="coronation-logo"
+              width="436.5"
+              style="max-width: 100%; padding: 40px 0"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <table width="100%">
+              <tr>
+                <td class="content" style="text-align: left">
+                  <h2
+                    style="
+                      font-weight: 700;
+                      font-size: 24px;
+                      line-height: 30px;
+                      color: #191919;
+                      margin: 0;
+                    "
+                  >
+                    Request for File Download - Access Approved
+                  </h2>
+                  <p style="margin-top: 12px; margin-bottom: 18px">
+                    Dear <%= user.firstName %>,
+                  </p>
+                  <p>
+                    We are pleased to inform you that your request to download
+                    the file, <%= fileName %>, has been approved. You can access
+                    the requested file by clicking the button below:
+                  </p>
+                  <a class="login" target="_blank" href="<%= url %>">
+                    DOWNLOAD ASSET
+                  </a>
+                  <p style="margin-bottom: 12px">
+                    Or copy and paste the link below into your browser to view
+                    asset.
+                  </p>
+                  <div
+                    class="copy"
+                    style="
+                      text-align: start;
+                      background-color: #ffffff;
+                      border: 1px solid #eef0f2;
+                      margin-bottom: 20px;
+                      padding: 9px 24px;
+                      position: relative;
+                      vertical-align: middle;
+                    "
+                  >
+                    <table style="width: 100%; border-collapse: collapse">
+                      <tr>
+                        <td style="width: 90%; vertical-align: middle">
+                          <p
+                            style="
+                              font-size: 14px;
+                              font-weight: 700;
+                              color: #ff002b;
+                              margin: 0;
+                              text-decoration: none;
+                            "
+                          >
+                            <%= url %>
+                          </p>
+                        </td>
+                        <td style="vertical-align: top">
+                          <img
+                            src="https://res.cloudinary.com/ddwsbqk2d/image/upload/v1729678739/coronation/f5zn9bvrpasf2av6ovy1.png"
+                            style="width: 20px; height: 20px; cursor: pointer"
+                            alt=""
+                            onclick="copyToClipboard('<%= url %>')"
+                          />
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <p>
+                    If you encounter any issues or need further assistance,
+                    please don't hesitate to reach out to us. Thank you for your
+                    patience, and we hope the file meets your needs.
+                  </p>
+                  <hr style="color: #eef0f2; border-style: solid" />
+                  <p
+                    style="
+                      font-weight: 400;
+                      size: 14px;
+                      color: #2a2d32;
+                      line-height: 22px;
+                    "
+                  >
+                    Best regards,<br />
+                    <span
+                      style="
+                        font-weight: 700;
+                        size: 16px;
+                        color: #191919;
+                        line-height: 20px;
+                      "
+                      >Coronation Team</span
+                    >
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <table width="100%">
+              <tr>
+                <td class="footer">
+                  <img
+                    src="https://res.cloudinary.com/ddwsbqk2d/image/upload/f_auto,q_auto/v1/coronation/gsmlu7jiqbnhwpz53rfj"
+                    alt="youtube-logo"
+                  />
+                  <img
+                    src="https://res.cloudinary.com/ddwsbqk2d/image/upload/f_auto,q_auto/v1/coronation/smh4i6xlpcavd3im4mn0"
+                    alt="x-logo"
+                  />
+                  <img
+                    src="https://res.cloudinary.com/ddwsbqk2d/image/upload/f_auto,q_auto/v1/coronation/fygzrygyhy4sspi2e5ot"
+                    alt="linkedin-logo"
+                  />
+                  <img
+                    src="https://res.cloudinary.com/ddwsbqk2d/image/upload/f_auto,q_auto/v1/coronation/w0ol81szzcbt8swtbtqr"
+                    alt="facebook-logo"
+                  />
+                  <img
+                    src="https://res.cloudinary.com/ddwsbqk2d/image/upload/f_auto,q_auto/v1/coronation/a1ltdyhvrk8epwr1ledk"
+                    style="margin-right: 0"
+                    alt="instagram-logo"
+                  />
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </center>
+
+    <script>
+      function copyToClipboard(text) {
+        const input = document.createElement('input');
+        input.value = text;
+        document.body.appendChild(input);
+
+        input.select();
+        document.execCommand('copy');
+
+        document.body.removeChild(input);
+      }
+    </script>
+  </body>
+</html>

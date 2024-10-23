@@ -2,126 +2,289 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+    <style type="text/css">
       body {
-        background-color: #f9f9f9;
         margin: 0;
+        background-color: #cccccc;
+      }
+      table {
+        border-spacing: 0;
+      }
+      td {
         padding: 0;
       }
-      .container {
-        width: 343px;
-        margin: 0 auto;
-        padding: 40px auto;
+      img {
+        border: 0;
+      }
+      .wrapper {
+        width: 100%;
+        table-layout: fixed;
+        background-color: #eff1f3;
+        padding-bottom: 60px;
+      }
+
+      p a {
+        text-decoration: none;
+        color: #ff002b !important;
+      }
+
+      .main {
         background-color: #ffffff;
-        border-radius: 8px;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 700px;
+        border-spacing: 0;
+        font-family: 'Lato', sans-serif;
+        color: #2a2d32;
       }
-      .header {
-        text-align: center;
-        margin-bottom: 20px;
-      }
-      .header img {
-        width: 164px;
-        height: 46px;
-      }
-      .header h1 {
-        font-size: 24px;
-        margin: 0;
-        color: #333;
-      }
+
       .content {
         text-align: left;
-        font-family: 'SF-Pro-Regular';
+        font-family: 'Lato', sans-serif;
+        padding: 40px 56px;
+        max-width: 700px;
       }
+
       .content p {
         font-weight: 400;
-        color: #5c6570;
-        font-size: 16px;
-        line-height: 22.4px;
+        color: #2a2d32;
+        font-size: 14px;
+        line-height: 22px;
       }
-      .code {
+
+      .login {
+        display: inline-block;
         width: 100%;
+        padding: 11px 0;
         text-align: center;
-        background-color: #f3f5f9;
-        height: 54px;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        font-family: 'SF-Pro-Bold';
-        color: #202124;
+        background-color: #000;
+        vertical-align: top;
+        font-family: 'Lato', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #fff;
+        text-decoration: none;
       }
+
       .footer {
         margin-top: 12px;
         color: #999999;
-        font-size: 12px;
+        background-color: #f5f5f5;
+        height: 92px;
+        /* width: 700.5px; */
         line-height: 16.8px;
-        font-family: 'SF-Pro-Regular';
         text-align: center;
-        margin-bottom: 71px;
+        vertical-align: middle;
       }
 
-      @media (min-width: 768px) {
-        #container {
-          margin-top: 75px;
+      .footer img {
+        line-height: 16.8px;
+        vertical-align: middle;
+        margin-right: 32px;
+      }
+
+      @media (max-width: 425px) {
+        .header img {
+          width: 258.67px;
+          height: 32px;
         }
       }
     </style>
   </head>
   <body>
-    <table
-      width="100%"
-      cellpadding="0"
-      cellspacing="0"
-      style="background-color: #f9f9f9"
-    >
-      <tr>
-        <td align="center">
-          <table
-            id="container"
-            style="background-color: white; width: 646px; padding: 0 20px"
+    <center class="wrapper">
+      <table class="main" width="100%">
+        <tr style="background-color: #191919">
+          <td
+            class="header"
+            style="margin-bottom: 0; text-align: center; vertical-align: middle"
           >
-            <tr>
-              <td>
-                <table class="container" cellpadding="0" cellspacing="0">
-                  <tr>
-                    <td class="content">
-                      <h2
+            <img
+              src="https://res.cloudinary.com/ddwsbqk2d/image/upload/f_auto,q_auto/v1/coronation/logo"
+              alt="coronation-logo"
+              width="436.5"
+              style="max-width: 100%; padding: 40px 0"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <table width="100%">
+              <tr>
+                <td class="content" style="text-align: left">
+                  <h2
+                    style="
+                      font-weight: 700;
+                      font-size: 24px;
+                      line-height: 30px;
+                      color: #191919;
+                      margin: 0;
+                    "
+                  >
+                    Access code for Login,
+                  </h2>
+                  <p style="margin-top: 12px; margin-bottom: 18px">
+                    Dear <%= user.firstName %>,
+                  </p>
+                  <p>
+                    Your access code for logging into the Coronation brand
+                    portal has been generated. Please use the code below to
+                    complete your login:
+                  </p>
+
+                  <table
+                    cellpadding="0"
+                    cellspacing="0"
+                    style="border-collapse: separate; border-spacing: 16px"
+                  >
+                    <tr>
+                      <td
                         style="
-                          margin-top: 20px;
-                          font-weight: 700;
-                          font-size: 24px;
-                          line-height: 28px;
-                          color: #202124;
+                          width: 40px;
+                          height: 40px;
+                          font-size: 18px;
+                          border: 1px solid #eef0f2;
+                          text-align: center;
+                          color: #ff002b;
+                          font-weight: bold;
                         "
                       >
-                        Login with your OTP
-                      </h2>
-                      <p style="margin-top: 12px; margin-bottom: 18px">
-                        Hi there,
-                      </p>
-                      <p>
-                        Use the code below to complete your login to Coronation.
-                      </p>
-                      <div class="code">
-                        <h2 style="padding-top: 14px"><%= otp %></h2>
-                      </div>
-                      <p style="margin-bottom: 18px">
-                        If you did not request this otp, you can ignore this
-                        message.
-                      </p>
-                      <p>Warm regards,<br />Coronation.</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="footer">
-                      <p>Copyright © 2024</p>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>
+                        <%= otp[0] %>
+                      </td>
+                      <td
+                        style="
+                          width: 40px;
+                          height: 40px;
+                          font-size: 18px;
+                          border: 1px solid #eef0f2;
+                          text-align: center;
+                          color: #ff002b;
+                          font-weight: bold;
+                        "
+                      >
+                        <%= otp[1] %>
+                      </td>
+                      <td
+                        style="
+                          width: 40px;
+                          font-size: 18px;
+                          height: 40px;
+                          border: 1px solid #eef0f2;
+                          text-align: center;
+                          color: #ff002b;
+                          font-weight: bold;
+                        "
+                      >
+                        <%= otp[2] %>
+                      </td>
+                      <td
+                        style="
+                          width: 40px;
+                          font-size: 18px;
+                          height: 40px;
+                          border: 1px solid #eef0f2;
+                          text-align: center;
+                          color: #ff002b;
+                          font-weight: bold;
+                        "
+                      >
+                        <%= otp[3] %>
+                      </td>
+                      <td
+                        style="
+                          width: 40px;
+                          font-size: 18px;
+                          height: 40px;
+                          border: 1px solid #eef0f2;
+                          text-align: center;
+                          color: #ff002b;
+                          font-weight: bold;
+                        "
+                      >
+                        <%= otp[4] %>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <hr style="color: #eef0f2; border-style: solid" />
+                  <p
+                    style="
+                      font-weight: 400;
+                      size: 14px;
+                      color: #2a2d32;
+                      line-height: 22px;
+                    "
+                  >
+                    Best regards,<br />
+                    <span
+                      style="
+                        font-weight: 700;
+                        size: 16px;
+                        color: #191919;
+                        line-height: 20px;
+                      "
+                      >Coronation Team</span
+                    >
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <table width="100%">
+              <tr>
+                <td class="footer">
+                  <img
+                    src="https://res.cloudinary.com/ddwsbqk2d/image/upload/f_auto,q_auto/v1/coronation/gsmlu7jiqbnhwpz53rfj"
+                    alt="youtube-logo"
+                  />
+                  <img
+                    src="https://res.cloudinary.com/ddwsbqk2d/image/upload/f_auto,q_auto/v1/coronation/smh4i6xlpcavd3im4mn0"
+                    alt="x-logo"
+                  />
+                  <img
+                    src="https://res.cloudinary.com/ddwsbqk2d/image/upload/f_auto,q_auto/v1/coronation/fygzrygyhy4sspi2e5ot"
+                    alt="linkedin-logo"
+                  />
+                  <img
+                    src="https://res.cloudinary.com/ddwsbqk2d/image/upload/f_auto,q_auto/v1/coronation/w0ol81szzcbt8swtbtqr"
+                    alt="facebook-logo"
+                  />
+                  <img
+                    src="https://res.cloudinary.com/ddwsbqk2d/image/upload/f_auto,q_auto/v1/coronation/a1ltdyhvrk8epwr1ledk"
+                    style="margin-right: 0"
+                    alt="instagram-logo"
+                  />
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </center>
+
+    <script>
+      function copyToClipboard(text) {
+        const input = document.createElement('input');
+        input.value = text;
+        document.body.appendChild(input);
+
+        input.select();
+        document.execCommand('copy');
+
+        document.body.removeChild(input);
+      }
+    </script>
   </body>
 </html>

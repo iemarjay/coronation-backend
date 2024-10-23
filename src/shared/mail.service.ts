@@ -6,6 +6,8 @@ import * as path from 'path';
 import { getResourcesDir } from 'src/helpers/path.helper';
 import * as Mailchimp from '@mailchimp/mailchimp_transactional';
 import { User } from 'src/user/entities/user.entity';
+import { UserCreatedEvent } from 'src/user/user.event';
+import { AccessRequestedEvent } from 'src/asset/events/asset.event';
 
 interface ConfigServiceShape {
   url: string;
@@ -90,6 +92,62 @@ export class MailService {
         recipient: { email: data.user.email, name: data.user.full_name },
         tags: ['user_login'],
         subject: 'Login to Coronation',
+      },
+    })
+      .then((r) => {
+        this.logger.log({ response: r, data });
+      })
+      .catch((error) => this.logger.error('Failed to send email', error));
+  }
+
+  sendUserWelcomeEmail(data: UserCreatedEvent) {
+    const payload = {
+      user: data.user,
+      url: `${this.config.get('client.url', { infer: true })}sign-in`,
+    };
+    this.sendTemplate('user_welcome', payload, {
+      mail: {
+        recipient: { email: data.user.email, name: data.user.full_name },
+        tags: ['user_registration'],
+        subject: 'Login to Coronation Brand Portal',
+      },
+    })
+      .then((r) => {
+        this.logger.log({ response: r, data });
+      })
+      .catch((error) => this.logger.error('Failed to send email', error));
+  }
+
+  sendAccessApprovedEmail(data: AccessRequestedEvent) {
+    const payload = {
+      user: data.request.user,
+      url: `${this.config.get('client.url', { infer: true })}downloads?tab=${data.request.asset.assetType.name}`,
+      fileName: data.request.asset.filename,
+    };
+    this.sendTemplate('access_approved', payload, {
+      mail: {
+        recipient: { email: payload.user.email, name: payload.user.full_name },
+        tags: ['access_granted'],
+        subject: 'Request for File Download - Access Approved',
+      },
+    })
+      .then((r) => {
+        this.logger.log({ response: r, data });
+      })
+      .catch((error) => this.logger.error('Failed to send email', error));
+  }
+
+  sendAccessDeclinedEmail(data: AccessRequestedEvent) {
+    const payload = {
+      user: data.request.user,
+      reason: data.request.rejectionReason,
+      fileName: data.request.asset.filename,
+    };
+    this.sendTemplate('access_declined', payload, {
+      mail: {
+        recipient: { email: payload.user.email, name: payload.user.full_name },
+        tags: ['access_granted'],
+        subject: 'Request for File Download - Access Declined',
       },
     })
       .then((r) => {

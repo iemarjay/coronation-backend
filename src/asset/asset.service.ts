@@ -138,7 +138,7 @@ export class AssetService {
 
     this.event.emit(
       AssetEvents.ACCESS_REQUESTED,
-      new AccessRequestedEvent(request),
+      new AccessRequestedEvent(request, user),
     );
 
     return {
@@ -183,11 +183,19 @@ export class AssetService {
       where: {
         id,
       },
-      relations: ['user'],
+      relations: ['user', 'asset.assetType'],
     });
 
     if (!request) {
       throw new BadRequestException('Request not found');
+    }
+
+    if (request.status === AccessRequestStatus.declined) {
+      throw new BadRequestException('Request has already been declined');
+    }
+
+    if (request.status === AccessRequestStatus.accepted) {
+      throw new BadRequestException('Request has already been accepted');
     }
 
     if (dto.status === AccessRequestStatus.declined && !dto.reason) {
@@ -202,7 +210,7 @@ export class AssetService {
 
     this.event.emit(
       AssetEvents.ACCESS_UPDATED,
-      new AccessRequestedEvent(request),
+      new AccessRequestedEvent(request, user),
     );
 
     return {
