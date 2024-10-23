@@ -35,6 +35,7 @@ export class UserRepository extends Repository<User> {
     const query = this.createQueryBuilder('user')
       .leftJoinAndSelect('user.permissions', 'permissions')
       .leftJoinAndSelect('user.team', 'team')
+      .leftJoinAndSelect('user.createdBy', 'createdBy')
       .orderBy('user.updatedAt', 'DESC')
       .take(filter.limit)
       .skip(filter.limit * ((filter.page ?? 1) - 1));

@@ -78,6 +78,7 @@ export class UserService {
 
     user.permissions = userPermissions;
     user.lastModifiedBy = modifier;
+    user.createdBy = modifier;
     if (status) {
       user.status = status;
     }
