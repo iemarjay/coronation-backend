@@ -35,7 +35,6 @@ export class UserService {
     }
 
     const { email, firstName, role, teamId, permissions, status } = dto;
-    console.log(dto);
 
     if (role === Role.staff && !teamId) {
       throw new BadRequestException(
