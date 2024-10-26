@@ -35,15 +35,19 @@ export class TeamService {
   }
 
   async update(id: string, dto: UpdateTeamDto, user: User) {
-    const team = await this.repository.findOne({
+    let team = await this.repository.findOne({
       where: {
         id,
       },
     });
 
-    team.name = dto.name;
+    team = {
+      ...team,
+      ...dto,
+    };
+    // team.status = dto.status;
     team.lastModifiedBy = user;
-    await this.repository.save(team);
+    team = await this.repository.save(team);
 
     return team;
   }

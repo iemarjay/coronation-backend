@@ -1,0 +1,18 @@
+// .vscode/settings.json
+{
+  // ...
+  "sqltools.connections": [
+    {
+      "mssqlOptions": {
+        "appName": "SQLTools",
+        "useUTC": true,
+        "encrypt": true,
+        "requestTimeout": 0 // 0 to disable
+      },
+      "previewLimit": 50,
+      "port": 1433,
+      "driver": "MSSQL",
+      // ...omitting creds and stuff
+    }
+  ]
+}

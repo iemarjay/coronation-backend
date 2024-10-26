@@ -16,12 +16,15 @@ export class UserListener {
   @OnEvent(UserEvents.USER_CREATED)
   async handleUserCreatedEvent(event: UserCreatedEvent) {
     const { user } = event;
-    const dto = {
+    const dto: any = {
       email: user.email,
       given_name: user.firstName,
-      family_name: user.lastName,
       role: user.role,
     };
+
+    if (user.lastName) {
+      dto.family_name = user.lastName.trim();
+    }
 
     if (user.role !== Role.vendor) {
       this.auth0.createUser(dto).catch((error) => {

@@ -1,8 +1,14 @@
 import { PickType } from '@nestjs/mapped-types';
 import { CreateTeamDto } from './create-team.dto';
-import { IsNotEmpty } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { Status } from '../types';
 
-export class UpdateTeamDto extends PickType(CreateTeamDto, ['name'] as const) {
-  @IsNotEmpty()
+export class UpdateTeamDto {
+  @IsOptional()
+  @IsString()
   name: string;
+
+  @IsOptional()
+  @IsEnum(Status)
+  status: Status;
 }

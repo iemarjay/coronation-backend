@@ -34,8 +34,8 @@ export class UserService {
       throw new BadRequestException('User email already exists');
     }
 
-    const { email, firstName, lastName, role, teamId, permissions, status } =
-      dto;
+    const { email, firstName, role, teamId, permissions, status } = dto;
+    console.log(dto);
 
     if (role === Role.staff && !teamId) {
       throw new BadRequestException(
@@ -52,13 +52,19 @@ export class UserService {
         throw new BadRequestException('Team not found');
       }
     }
-    let user = Object.assign(new User(), {
+
+    let data: any = {
       role,
       email,
       firstName: firstName.trim(),
-      lastName: lastName.trim(),
       team,
-    });
+    };
+    let lastName: string;
+
+    if (dto.lastName) {
+      data.lastName = lastName.trim();
+    }
+    let user = Object.assign(new User(), data);
     if (role === Role.vendor && teamId) {
       throw new BadRequestException('A vendor cannot be added to a team');
     }
