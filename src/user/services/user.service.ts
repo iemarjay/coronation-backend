@@ -18,6 +18,7 @@ import { PermissionRepository } from '../repositories/permission.repository';
 import { In } from 'typeorm';
 import { UpdateUserDto } from '../dtos/update-user.dto';
 import { Permission } from '../entities/permission.entity';
+import { ActivateDeactvateUserDto } from '../dtos/activate-deactivate-user.dto';
 
 @Injectable()
 export class UserService {
@@ -179,7 +180,7 @@ export class UserService {
     });
     if (!user) throw new NotFoundException('User not found');
 
-    const { firstName, lastName, role, teamId, permissions, status } = dto;
+    const { firstName, lastName, role, teamId, permissions } = dto;
 
     if (permissions) {
       const selectedPermissions = await this.permissionRepository.findBy({
@@ -201,10 +202,6 @@ export class UserService {
       user.role = role;
     }
 
-    if (status) {
-      user.status = status;
-    }
-
     let team = null;
     if (teamId && user.role !== Role.vendor) {
       team = await this.teamRepository.findOne({ where: { id: teamId } });
@@ -217,6 +214,25 @@ export class UserService {
     user.lastModifiedBy = modifier;
 
     return this.repository.save(user);
+  }
+
+  async activateDeactivate(
+    id: string,
+    dto: ActivateDeactvateUserDto,
+    modifier: User,
+  ) {
+    const user = await this.repository.findOne({
+      where: { id },
+    });
+    if (!user) throw new NotFoundException('User not found');
+
+    user.status = dto.status;
+    const result = await this.repository.save(user);
+    return {
+      success: true,
+      message: `User ${dto.status === Status.active ? 'Activated' : 'Deactivated'}`,
+      data: result,
+    };
   }
 
   async deleteUser(id: string) {

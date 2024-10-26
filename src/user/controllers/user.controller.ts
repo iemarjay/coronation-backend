@@ -22,6 +22,7 @@ import { AuthGuard as JwtAuthGuard } from '@nestjs/passport';
 import { User } from '../entities/user.entity';
 import { UpdateUserDto } from '../dtos/update-user.dto';
 import { PermissionService } from '../services/permission.service';
+import { ActivateDeactvateUserDto } from '../dtos/activate-deactivate-user.dto';
 
 @Controller('user')
 export class UserController {
@@ -50,6 +51,16 @@ export class UserController {
     @AuthUser() user: User,
   ) {
     return this.userService.updateUser(id, dto, user);
+  }
+
+  @Authenticate(Role.admin)
+  @Patch('activate-deactivate/:id')
+  toggleActivation(
+    @Param('id') id: string,
+    @Body() dto: ActivateDeactvateUserDto,
+    @AuthUser() user: User,
+  ) {
+    return this.userService.activateDeactivate(id, dto, user);
   }
 
   @Authenticate()
