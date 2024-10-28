@@ -274,7 +274,14 @@ export class AssetRepository extends Repository<Asset> {
         where: {
           id,
         },
-        relations: ['versions', 'downloads', 'users', 'teams'],
+        relations: [
+          'versions',
+          'downloads',
+          'users',
+          'teams',
+          'createdBy',
+          'lastModifiedBy',
+        ],
       });
     } catch (error) {
       throw new NotFoundException('Asset not found');
