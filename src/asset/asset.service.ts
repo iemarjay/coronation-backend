@@ -125,8 +125,20 @@ export class AssetService {
     const existingRequest =
       await this.accessRequestRepository.findByUserAndAssetId(user, asset);
 
-    if (existingRequest) {
-      throw new ForbiddenException('Access request already submitted');
+    if (
+      existingRequest &&
+      existingRequest.status === AccessRequestStatus.pending
+    ) {
+      throw new ForbiddenException(
+        'Request to access this asset already exists',
+      );
+    }
+
+    if (
+      existingRequest &&
+      existingRequest.status === AccessRequestStatus.declined
+    ) {
+      throw new ForbiddenException('Request to access this asset declined');
     }
 
     const request = await this.accessRequestRepository.save({
@@ -219,10 +231,11 @@ export class AssetService {
   }
 
   async getUserAccess(user: User, asset: Asset, accessType: string) {
-    const userAccess = await this.accessRequestRepository.findByUserAndAssetId(
-      user,
-      asset,
-    );
+    const userAccess =
+      await this.accessRequestRepository.findAcceptedRequestUserAndAssetId(
+        user,
+        asset,
+      );
     await this.getUserPermission(user, accessType);
     if (user.role === Role.admin) {
       return;
@@ -232,10 +245,7 @@ export class AssetService {
       return;
     } else if (asset.users.includes(user)) {
       return;
-    } else if (
-      !userAccess ||
-      userAccess.status !== AccessRequestStatus.accepted
-    ) {
+    } else if (!userAccess) {
       throw new UnauthorizedException(
         'You do not have access to view this asset',
       );

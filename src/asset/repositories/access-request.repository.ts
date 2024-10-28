@@ -47,6 +47,19 @@ export class AccessRequestRepository extends Repository<AccessRequest> {
     });
   }
 
+  async findAcceptedRequestUserAndAssetId(user: User, asset: Asset) {
+    return this.findOne({
+      relations: ['asset', 'user', 'updatedBy'],
+      where: {
+        status: AccessRequestStatus.accepted,
+        user: { id: user.id },
+        asset: {
+          id: asset.id,
+        },
+      },
+    });
+  }
+
   async getAllAccessRequest(filter: {
     limit: number;
     page: number;
