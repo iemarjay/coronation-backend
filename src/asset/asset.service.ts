@@ -138,7 +138,9 @@ export class AssetService {
       existingRequest &&
       existingRequest.status === AccessRequestStatus.declined
     ) {
-      throw new ForbiddenException('Request to access this asset declined');
+      throw new ForbiddenException(
+        'Your request to access this asset has been declined',
+      );
     }
 
     const request = await this.accessRequestRepository.save({
