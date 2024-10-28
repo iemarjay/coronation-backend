@@ -75,7 +75,6 @@ export class AssetService {
 
   async getAsset(user: User, id: string) {
     const asset = await this.assetRepository.findAssetOrFail(id);
-    await this.getUserAccess(user, asset, 'read');
     return asset;
   }
 
