@@ -31,6 +31,7 @@ import { FindAllQueryDto } from '../dto/find-all-asset.dto';
 import { CreateAccessRequestDto } from '../dto/create-access-request.dto';
 import { UpdateAssetDto } from '../dto/update-asset.dto';
 import { ChangeRequestStatusDto } from '../dto/change-request-status.dto';
+import { Response } from 'express';
 
 @Controller('assets')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -95,7 +96,11 @@ export class AssetController {
 
   @Authenticate()
   @Get('download/:id')
-  download(@AuthUser() user: User, @Param('id') id: string, @Res() res) {
+  download(
+    @AuthUser() user: User,
+    @Param('id') id: string,
+    @Res() res: Response,
+  ) {
     return this.assetService.downloadAsset(user, id, res);
   }
 

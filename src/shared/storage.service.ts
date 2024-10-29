@@ -30,7 +30,7 @@ export class StorageService {
   async download(fileName: string) {
     const blobClient = this.client.getBlobClient(fileName);
     const response = await blobClient.download();
-    return response.readableStreamBody;
+    return response;
   }
 
   async deleteFile(fileName: string): Promise<BlobDeleteResponse> {

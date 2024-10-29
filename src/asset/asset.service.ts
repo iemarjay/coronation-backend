@@ -21,6 +21,7 @@ import { AccessRequestedEvent, AssetEvents } from './events/asset.event';
 import { StorageService } from 'src/shared/storage.service';
 import { UpdateAssetDto } from './dto/update-asset.dto';
 import { ChangeRequestStatusDto } from './dto/change-request-status.dto';
+import { Response } from 'express';
 
 @Injectable()
 export class AssetService {
@@ -61,16 +62,21 @@ export class AssetService {
     };
   }
 
-  async downloadAsset(user: User, id: string, res) {
+  async downloadAsset(user: User, id: string, res: Response) {
     const asset = await this.assetRepository.findAssetOrFail(id);
 
     await this.getUserAccess(user, asset, 'download');
+    const response = await this.storage.download(asset.filename);
+    res.set({
+      'Content-Disposition': `attachment; filename="${asset.filename}"`,
+      'Content-Type': response.contentType || 'application/octet-stream',
+    });
 
     await this.assetDownloadRepository.save({
       asset,
       user,
     });
-    return res.redirect(asset.url);
+    response.readableStreamBody.pipe(res);
   }
 
   async getAsset(user: User, id: string) {
