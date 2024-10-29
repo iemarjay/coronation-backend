@@ -65,17 +65,17 @@ export class AssetService {
   async downloadAsset(user: User, id: string, res: Response) {
     const asset = await this.assetRepository.findAssetOrFail(id);
 
-    await this.getUserAccess(user, asset, 'download');
+    // await this.getUserAccess(user, asset, 'download');
     const response = await this.storage.download(asset.filename);
     res.set({
       'Content-Disposition': `attachment; filename="${asset.filename}"`,
       'Content-Type': response.contentType || 'application/octet-stream',
     });
 
-    await this.assetDownloadRepository.save({
-      asset,
-      user,
-    });
+    // await this.assetDownloadRepository.save({
+    //   asset,
+    //   user,
+    // });
     response.readableStreamBody.pipe(res);
   }
 

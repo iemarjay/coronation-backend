@@ -94,7 +94,7 @@ export class AssetController {
     return this.assetService.deleteAsset(user, id);
   }
 
-  @Authenticate()
+  // @Authenticate()
   @Get('download/:id')
   download(
     @AuthUser() user: User,
