@@ -21,7 +21,7 @@ import { AccessRequestedEvent, AssetEvents } from './events/asset.event';
 import { StorageService } from 'src/shared/storage.service';
 import { UpdateAssetDto } from './dto/update-asset.dto';
 import { ChangeRequestStatusDto } from './dto/change-request-status.dto';
-import { Response } from 'express';
+import { Readable } from 'stream';
 
 @Injectable()
 export class AssetService {
@@ -62,21 +62,28 @@ export class AssetService {
     };
   }
 
-  async downloadAsset(user: User, id: string, res: Response) {
+  async downloadAsset(user: User, id: string, res) {
     const asset = await this.assetRepository.findAssetOrFail(id);
 
     // await this.getUserAccess(user, asset, 'download');
+
     const response = await this.storage.download(asset.filename);
-    res.set({
-      'Content-Disposition': `attachment; filename="${asset.filename}"`,
-      'Content-Type': response.contentType || 'application/octet-stream',
-    });
 
     // await this.assetDownloadRepository.save({
     //   asset,
     //   user,
     // });
-    response.readableStreamBody.pipe(res);
+    res.set({
+      'Content-Disposition': `attachment; filename="${asset.filename}"`, // force download with a file name
+      'Content-Type': response.contentType || 'application/octet-stream', // default binary type
+      'Content-Length': response.contentLength.toString(), // optional: set the file length
+    });
+
+    const fileBuffer = Buffer.from(asset.url, 'base64');
+    const fileStream = Readable.from(fileBuffer);
+
+    // Pipe the blob data directly to the response
+    fileStream.pipe(res);
   }
 
   async getAsset(user: User, id: string) {
@@ -284,7 +291,7 @@ export class AssetService {
       case 'read':
         return 'You do not have permission to view this asset. Please request access from the admin.';
       case 'write':
-        return 'You do not have permission to edit or delete this asset. Only authorized team members can make changes.';
+        return 'You do not have permission to edit or delete this asset. Only authorized staff can make changes.';
       case 'upload':
         return 'You do not have permission to upload asset. Please request access from the admin.';
       case 'download':

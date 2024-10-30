@@ -56,7 +56,7 @@ export class TeamService {
     const team = await this.repository.findOneByOrFail({ id });
     await this.repository.delete({ id });
     return {
-      message: `${team.name} team deleted`,
+      message: `${team.name} department deleted`,
     };
   }
 }

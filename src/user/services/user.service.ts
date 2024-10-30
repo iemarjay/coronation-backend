@@ -39,7 +39,7 @@ export class UserService {
 
     if (role === Role.staff && !teamId) {
       throw new BadRequestException(
-        'A staff member must be associated with a valid team',
+        'A staff must be associated with a valid department',
       );
     }
 
@@ -49,7 +49,7 @@ export class UserService {
         where: { id: teamId.trim() },
       });
       if (!team) {
-        throw new BadRequestException('Team not found');
+        throw new BadRequestException('Department not found');
       }
     }
 
@@ -66,7 +66,7 @@ export class UserService {
     }
     let user = Object.assign(new User(), data);
     if (role === Role.vendor && teamId) {
-      throw new BadRequestException('A vendor cannot be added to a team');
+      throw new BadRequestException('A vendor cannot be added to a department');
     }
 
     let userPermissions: Permission[] = [];
@@ -206,7 +206,7 @@ export class UserService {
     if (teamId && user.role !== Role.vendor) {
       team = await this.teamRepository.findOne({ where: { id: teamId } });
       if (!team) {
-        throw new BadRequestException('Team not found');
+        throw new BadRequestException('Department not found');
       }
       user.team = team;
     }
