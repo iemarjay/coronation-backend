@@ -2,6 +2,7 @@ import {
   BadRequestException,
   ForbiddenException,
   Injectable,
+  Logger,
   UnauthorizedException,
 } from '@nestjs/common';
 import { User } from 'src/user/entities/user.entity';
@@ -22,9 +23,13 @@ import { StorageService } from 'src/shared/storage.service';
 import { UpdateAssetDto } from './dto/update-asset.dto';
 import { ChangeRequestStatusDto } from './dto/change-request-status.dto';
 import { Readable } from 'stream';
+import { ChangeBulkAssetStatusDto } from './dto/bulk-change-asset-status.dto';
+import { In } from 'typeorm';
+import { DeleteBulkAssetDto } from './dto/bulk-delete-asset.dto';
 
 @Injectable()
 export class AssetService {
+  private readonly logger = new Logger(AssetService.name);
   constructor(
     private assetRepository: AssetRepository,
     private accessRequestRepository: AccessRequestRepository,
@@ -102,6 +107,26 @@ export class AssetService {
     };
   }
 
+  async deleteAssets(dto: DeleteBulkAssetDto, user: User) {
+    await this.getUserPermission(user, 'write');
+
+    const deletePromises = dto.assetIds.map(async (id) => {
+      const asset = await this.assetRepository.findAssetById(id);
+      if (asset) {
+        await this.storage.deleteFile(asset.filename);
+        await this.assetRepository.remove(asset);
+      } else {
+        this.logger.error(`Asset with id ${id} not found`);
+      }
+    });
+
+    await Promise.all(deletePromises);
+    return {
+      success: true,
+      message: 'Files deleted. It will be permanently removed from the website',
+    };
+  }
+
   async getAllAssets(filter: FindAllQueryDto, user: User) {
     return await this.assetRepository.findAll({
       limit: filter.limit ?? 10,
@@ -125,6 +150,19 @@ export class AssetService {
       success: true,
       message: `File ${dto.status === Status.active ? 'Activated' : 'Deactivated'}`,
       data: result,
+    };
+  }
+
+  async updateAssetStatus(dto: ChangeBulkAssetStatusDto, user: User) {
+    await this.getUserPermission(user, 'write');
+    await this.assetRepository.update(
+      { id: In(dto.assetIds) },
+      { status: dto.status },
+    );
+
+    return {
+      success: true,
+      message: `Assets ${dto.status === Status.active ? 'Activated' : 'Deactivated'}`,
     };
   }
 

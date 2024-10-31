@@ -32,6 +32,8 @@ import { CreateAccessRequestDto } from '../dto/create-access-request.dto';
 import { UpdateAssetDto } from '../dto/update-asset.dto';
 import { ChangeRequestStatusDto } from '../dto/change-request-status.dto';
 import { Response } from 'express';
+import { ChangeBulkAssetStatusDto } from '../dto/bulk-change-asset-status.dto';
+import { DeleteBulkAssetDto } from '../dto/bulk-delete-asset.dto';
 
 @Controller('assets')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -76,7 +78,7 @@ export class AssetController {
     return this.assetService.getAsset(user, id);
   }
 
-  @Authenticate()
+  @Authenticate(Role.admin)
   @UseInterceptors(FileInterceptor('file'))
   @Patch('update/:id')
   update(
@@ -88,10 +90,16 @@ export class AssetController {
     return this.assetService.update(user, id, file, dto);
   }
 
-  @Authenticate()
+  @Authenticate(Role.admin)
   @Delete('/:id')
   delete(@AuthUser() user: User, @Param('id') id: string) {
     return this.assetService.deleteAsset(user, id);
+  }
+
+  @Authenticate(Role.admin)
+  @Delete('delete/multiple')
+  async deleteFiles(@Body() dto: DeleteBulkAssetDto, @AuthUser() user: User) {
+    return await this.assetService.deleteAssets(dto, user);
   }
 
   // @Authenticate()
@@ -108,6 +116,15 @@ export class AssetController {
   @Patch('change-status')
   toggleActivation(@Body() dto: ChangeAssetStatusDto, @AuthUser() user: User) {
     return this.assetService.changeStatus(dto, user);
+  }
+
+  @Authenticate(Role.admin)
+  @Patch('change-status/bulk')
+  async updateAssetsStatus(
+    @Body() dto: ChangeBulkAssetStatusDto,
+    @AuthUser() user: User,
+  ) {
+    return await this.assetService.updateAssetStatus(dto, user);
   }
 
   @Authenticate(Role.admin)

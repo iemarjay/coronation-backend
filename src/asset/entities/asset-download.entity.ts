@@ -12,7 +12,7 @@ export class AssetDownload {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => Asset, (asset) => asset.downloads)
+  @ManyToOne(() => Asset, (asset) => asset.downloads, { onDelete: 'CASCADE' })
   asset: Asset;
 
   @ManyToOne(() => User, (user) => user.downloads)

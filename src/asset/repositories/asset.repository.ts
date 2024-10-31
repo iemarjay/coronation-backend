@@ -290,6 +290,29 @@ export class AssetRepository extends Repository<Asset> {
     return asset;
   }
 
+  async findAssetById(id: string) {
+    let asset: Asset;
+    try {
+      asset = await this.findOne({
+        where: {
+          id,
+        },
+        relations: [
+          'versions',
+          'downloads',
+          'users',
+          'teams',
+          'createdBy',
+          'lastModifiedBy',
+        ],
+      });
+    } catch (error) {
+      throw new NotFoundException('Asset not found');
+    }
+
+    return asset;
+  }
+
   async findAll(filter: {
     limit: number;
     page: number;
