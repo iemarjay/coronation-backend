@@ -3,10 +3,14 @@ import { User } from 'src/user/entities/user.entity';
 import { DataSource, Repository } from 'typeorm';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { Role, Status } from '../types';
+import { TeamRepository } from 'src/team/repositories/team.repository';
 
 @Injectable()
 export class UserRepository extends Repository<User> {
-  constructor(private datasource: DataSource) {
+  constructor(
+    private datasource: DataSource,
+    protected teamRepository: TeamRepository,
+  ) {
     super(User, datasource.createEntityManager());
   }
 
@@ -79,6 +83,21 @@ export class UserRepository extends Repository<User> {
       totalCount: totalCount,
       totalPages: totalPages,
       users,
+    };
+  }
+
+  async getAllTeamsAndUsers() {
+    const teams = await this.teamRepository.find({
+      select: ['id', 'name'],
+    });
+
+    const users = await this.find({
+      select: ['id', 'firstName', 'lastName'],
+    });
+
+    return {
+      users,
+      teams,
     };
   }
 }

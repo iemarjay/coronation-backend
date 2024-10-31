@@ -102,4 +102,10 @@ export class UserController {
   delete(@Param('id') id: string) {
     return this.userService.deleteUser(id);
   }
+
+  @Authenticate(Role.admin)
+  @Get('teams-and-users')
+  getAllTeamsAndUsers() {
+    return this.userService.getAllTeamsAndUsers();
+  }
 }

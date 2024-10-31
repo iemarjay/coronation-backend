@@ -247,4 +247,13 @@ export class UserService {
       message: `user with email ${user.email} deleted`,
     };
   }
+
+  async getAllTeamsAndUsers() {
+    const result = await this.repository.getAllTeamsAndUsers();
+
+    return {
+      success: true,
+      data: result,
+    };
+  }
 }
