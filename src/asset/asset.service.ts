@@ -40,7 +40,6 @@ export class AssetService {
   ) {}
 
   async create(user: User, file: Express.Multer.File, dto: CreateAssetDto) {
-    this.logger.debug(dto);
     await this.getUserPermission(user, 'upload');
     if (!file) {
       throw new BadRequestException('File missing');

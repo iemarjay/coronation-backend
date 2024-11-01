@@ -35,8 +35,8 @@ import { TeamModule } from './team/team.module';
         options: {
           encrypt: true,
           trustServerCertificate: true,
-          requestTimeout: 30000, // Increase query timeout to 30 seconds
-          connectionTimeout: 30000,
+          requestTimeout: 60000, // Increase query timeout to 30 seconds
+          connectionTimeout: 60000,
         },
         logging:
           configService.get('env') === 'development'
