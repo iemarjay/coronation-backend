@@ -12,6 +12,7 @@ import { env } from 'process';
 import { UserModule } from 'src/user/user.module';
 import { AssetModule } from './asset/asset.module';
 import { TeamModule } from './team/team.module';
+import { PageModule } from './page/page.module';
 
 @Module({
   imports: [
@@ -56,6 +57,7 @@ import { TeamModule } from './team/team.module';
     UserModule,
     AssetModule,
     TeamModule,
+    PageModule,
   ],
   controllers: [AppController],
   providers: [AppService],
