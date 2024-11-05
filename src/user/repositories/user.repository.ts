@@ -55,7 +55,6 @@ export class UserRepository extends Repository<User> {
     }
 
     if (filter.team) {
-      console.log(filter.team);
       query.andWhere('team.name = :name', { name: filter.team });
     }
 

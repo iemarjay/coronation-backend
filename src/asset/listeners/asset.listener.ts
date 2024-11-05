@@ -11,7 +11,6 @@ export class AssetListener {
 
   @OnEvent(AssetEvents.ACCESS_UPDATED)
   async handleAccessStatusEvent(event: AccessRequestedEvent) {
-    console.log(event.request.status);
     if (event.request.status === AccessRequestStatus.accepted) {
       this.mail.sendAccessApprovedEmail(event);
     } else if (event.request.status === AccessRequestStatus.declined) {

@@ -50,6 +50,9 @@ export class PageService {
   }
 
   async search(searchTerm: string) {
+    if (typeof searchTerm || searchTerm.length) {
+      return [];
+    }
     const pages = await this.pageRepository.getSearchResults(searchTerm);
 
     const highlightedPages = pages
