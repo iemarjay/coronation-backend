@@ -50,7 +50,7 @@ export class PageService {
   }
 
   async search(searchTerm: string) {
-    if (typeof searchTerm || searchTerm.length) {
+    if (typeof searchTerm !== 'string' || searchTerm.length < 1) {
       return [];
     }
     const pages = await this.pageRepository.getSearchResults(searchTerm);
