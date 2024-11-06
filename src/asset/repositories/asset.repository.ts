@@ -225,6 +225,8 @@ export class AssetRepository extends Repository<Asset> {
         });
 
         asset.teams = teams;
+      } else {
+        asset.teams = [];
       }
 
       if (dto?.users) {
@@ -233,6 +235,8 @@ export class AssetRepository extends Repository<Asset> {
           where: { id: In(usersArray) },
         });
         asset.users = users;
+      } else {
+        asset.users = [];
       }
 
       if (dto.name) {

@@ -188,6 +188,8 @@ export class UserService {
       });
 
       user.permissions = selectedPermissions;
+    } else {
+      user.permissions = [];
     }
 
     if (firstName) {
