@@ -50,7 +50,7 @@ export class PageService {
   }
 
   async search(searchTerm: string) {
-    if (typeof searchTerm !== 'string' || searchTerm.length < 1) {
+    if (typeof searchTerm !== 'string' || searchTerm.length < 3) {
       return [];
     }
     const pages = await this.pageRepository.getSearchResults(searchTerm);
@@ -65,8 +65,8 @@ export class PageService {
         );
 
         const highlightedSentences = matchingSentences.map((sentence) => {
-          const regex = new RegExp(`(${searchTerm})`, 'gi');
-          return sentence.replace(regex, '<b>$1</b>');
+          const regex = new RegExp(`\\b\\w*${searchTerm}\\w*\\b`, 'gi');
+          return sentence.replace(regex, '<b>$&</b>');
         });
 
         return {

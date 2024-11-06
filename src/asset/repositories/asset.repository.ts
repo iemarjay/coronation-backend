@@ -219,17 +219,20 @@ export class AssetRepository extends Repository<Asset> {
       }
 
       if (dto?.teams) {
+        const teamsArray = Array.isArray(dto.teams) ? dto.teams : [dto.teams];
         teams = await this.teamRepository.find({
-          where: { id: In(dto.teams) },
+          where: { id: In(teamsArray) },
         });
+
         asset.teams = teams;
       }
 
       if (dto?.users) {
+        const usersArray = Array.isArray(dto.users) ? dto.users : [dto.users];
         users = await this.userRepository.find({
-          where: { id: In(dto.users) },
+          where: { id: In(usersArray) },
         });
-        asset.users;
+        asset.users = users;
       }
 
       if (dto.name) {
