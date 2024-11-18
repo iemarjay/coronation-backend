@@ -55,7 +55,7 @@ export class AuthGuard implements CanActivate {
       });
 
       if (!userExists) {
-        throw new NotFoundException(`User not found`);
+        throw new NotFoundException(`Authorization failed`);
       }
 
       if (payload.picture && !userExists.imageUrl) {

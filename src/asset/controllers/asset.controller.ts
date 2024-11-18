@@ -11,7 +11,6 @@ import {
   UploadedFile,
   Logger,
   Delete,
-  Redirect,
   Res,
 } from '@nestjs/common';
 import {
@@ -102,7 +101,7 @@ export class AssetController {
     return await this.assetService.deleteAssets(dto, user);
   }
 
-  // @Authenticate()
+  @Authenticate()
   @Get('download/:id')
   download(
     @AuthUser() user: User,

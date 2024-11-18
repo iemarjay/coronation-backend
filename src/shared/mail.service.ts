@@ -8,6 +8,7 @@ import * as Mailchimp from '@mailchimp/mailchimp_transactional';
 import { User } from 'src/user/entities/user.entity';
 import { UserCreatedEvent } from 'src/user/user.event';
 import { AccessRequestedEvent } from 'src/asset/events/asset.event';
+import axios from 'axios';
 
 interface ConfigServiceShape {
   url: string;
@@ -82,17 +83,47 @@ export class MailService {
     });
   }
 
+  private async sendEmail<T>(
+    body: string,
+    data: T,
+    mail?: {
+      recipient: string;
+      subject: string;
+    },
+  ) {
+    const url = new URL(
+      'https://ctechnotificationapi.azurewebsites.net/api/v1/Email/SendEmail',
+    );
+
+    const templatePath = getResourcesDir(
+      path.join('templates/email', `${body}_en-us.ejs`),
+    );
+
+    const html = await ejs.renderFile(templatePath, data);
+
+    const payload = {
+      to: mail.recipient,
+      subject: mail.subject,
+      body: html,
+    };
+
+    const response = await axios.post(url.toString(), payload, {
+      headers: {
+        'x-api-key': '0jgMN1DmYfaTa7wKR9RhEkQzoUuHO6Ba',
+      },
+    });
+
+    return response.data;
+  }
+
   sendUserLoginOtp(user: Partial<User>, otp: string) {
     const data = {
       user,
       otp,
     };
-    this.sendTemplate('user_login', data, {
-      mail: {
-        recipient: { email: data.user.email, name: data.user.full_name },
-        tags: ['user_login'],
-        subject: 'Login to Coronation',
-      },
+    this.sendEmail('user_login', data, {
+      recipient: user.email,
+      subject: 'Login to Coronation',
     })
       .then((r) => {
         this.logger.log({ response: r, data });

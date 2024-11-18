@@ -22,7 +22,6 @@ import { AccessRequestedEvent, AssetEvents } from './events/asset.event';
 import { StorageService } from 'src/shared/storage.service';
 import { UpdateAssetDto } from './dto/update-asset.dto';
 import { ChangeRequestStatusDto } from './dto/change-request-status.dto';
-import { Readable } from 'stream';
 import { ChangeBulkAssetStatusDto } from './dto/bulk-change-asset-status.dto';
 import { In } from 'typeorm';
 import { DeleteBulkAssetDto } from './dto/bulk-delete-asset.dto';
@@ -70,25 +69,16 @@ export class AssetService {
   async downloadAsset(user: User, id: string, res) {
     const asset = await this.assetRepository.findAssetOrFail(id);
 
-    // await this.getUserAccess(user, asset, 'download');
+    await this.getUserAccess(user, asset, 'download');
 
     const response = await this.storage.download(asset.filename);
 
-    // await this.assetDownloadRepository.save({
-    //   asset,
-    //   user,
-    // });
-    res.set({
-      'Content-Disposition': `attachment; filename="${asset.filename}"`, // force download with a file name
-      'Content-Type': response.contentType || 'application/octet-stream', // default binary type
-      'Content-Length': response.contentLength.toString(), // optional: set the file length
+    await this.assetDownloadRepository.save({
+      asset,
+      user,
     });
 
-    const fileBuffer = Buffer.from(asset.url, 'base64');
-    const fileStream = Readable.from(fileBuffer);
-
-    // Pipe the blob data directly to the response
-    fileStream.pipe(res);
+    response.readableStreamBody.pipe(res);
   }
 
   async getAsset(user: User, id: string) {

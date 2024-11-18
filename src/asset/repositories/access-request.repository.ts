@@ -78,7 +78,7 @@ export class AccessRequestRepository extends Repository<AccessRequest> {
       .skip(filter.limit * ((filter.page ?? 1) - 1));
 
     if (filter.type) {
-      let status =
+      const status =
         filter.type === 'pending'
           ? [AccessRequestStatus.pending]
           : [AccessRequestStatus.accepted, AccessRequestStatus.declined];
