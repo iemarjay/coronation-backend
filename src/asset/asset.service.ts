@@ -282,6 +282,11 @@ export class AssetService {
         user,
         asset,
       );
+    if (!userAccess) {
+      throw new UnauthorizedException(
+        'You do not have access to view this asset',
+      );
+    }
     if (asset.status === Status.inactive && accessType !== 'write') {
       throw new UnauthorizedException('Asset has not been published');
     } else if (userAccess.status === AccessRequestStatus.accepted) {
@@ -290,10 +295,6 @@ export class AssetService {
       return;
     } else if (asset.users.includes(user)) {
       return;
-    } else if (!userAccess) {
-      throw new UnauthorizedException(
-        'You do not have access to view this asset',
-      );
     }
     await this.getUserPermission(user, accessType);
 
