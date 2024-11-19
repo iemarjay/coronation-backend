@@ -21,6 +21,7 @@ interface ConfigServiceShape {
   mail: {
     from: string;
     from_name: string;
+    api_key: string;
   };
 }
 
@@ -109,7 +110,7 @@ export class MailService {
 
     const response = await axios.post(url.toString(), payload, {
       headers: {
-        'x-api-key': '0jgMN1DmYfaTa7wKR9RhEkQzoUuHO6Ba',
+        'x-api-key': this.config.get('mail.api_key', { infer: true }),
       },
     });
 

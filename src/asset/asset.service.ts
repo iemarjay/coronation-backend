@@ -274,16 +274,18 @@ export class AssetService {
   }
 
   async getUserAccess(user: User, asset: Asset, accessType: string) {
+    if (user.role === Role.admin) {
+      return;
+    }
     const userAccess =
       await this.accessRequestRepository.findAcceptedRequestUserAndAssetId(
         user,
         asset,
       );
-    await this.getUserPermission(user, accessType);
-    if (user.role === Role.admin) {
-      return;
-    } else if (asset.status === Status.inactive && accessType !== 'write') {
+    if (asset.status === Status.inactive && accessType !== 'write') {
       throw new UnauthorizedException('Asset has not been published');
+    } else if (userAccess.status === AccessRequestStatus.accepted) {
+      return;
     } else if (asset.teams.includes(user.team)) {
       return;
     } else if (asset.users.includes(user)) {
@@ -293,6 +295,7 @@ export class AssetService {
         'You do not have access to view this asset',
       );
     }
+    await this.getUserPermission(user, accessType);
 
     return;
   }
