@@ -1,52 +1,78 @@
-import { BadRequestException, Injectable, Logger } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  Logger,
+  OnModuleInit,
+} from '@nestjs/common';
 import { CreatePageDto } from './dto/create-page.dto';
 import { DataType, Page } from './entites.ts/page.entity';
 import { PageRepository } from './repositories/page.repository';
 import { instanceToPlain } from 'class-transformer';
+import { pagesData } from './resources/pages';
 
 @Injectable()
-export class PageService {
+export class PageService implements OnModuleInit {
   private readonly logger = new Logger(PageService.name);
   constructor(private pageRepository: PageRepository) {}
 
-  async create(dto: CreatePageDto) {
-    if (dto.type === DataType.block && !dto.content) {
-      throw new BadRequestException('Content required');
-    }
+  async onModuleInit() {
+    await this.initializePages();
+  }
 
-    let sectionSlug = null,
-      subPagesSlug = [],
-      parentPagesSlug = [];
+  private async initializePages() {
+    try {
+      const existingPages = await this.pageRepository.find();
 
-    if (dto.sectionTitle) {
-      sectionSlug = slugify(dto.sectionTitle);
-    }
-    if (dto.subPagesTitle?.length > 0) {
-      for (const title of dto.subPagesTitle) {
-        subPagesSlug.push(slugify(title));
+      if (existingPages.length === 0) {
+        const pages = await this.create(pagesData);
+        this.logger.log(pages.message);
+      } else {
+        this.logger.log('Pages already exist.');
       }
+    } catch (error) {
+      this.logger.error('Error initializing pages: ', error);
     }
+  }
 
-    if (dto.parentPagesTitle?.length > 0) {
-      for (const title of dto.parentPagesTitle) {
-        parentPagesSlug.push(slugify(title));
+  async create(dtos: CreatePageDto | CreatePageDto[]) {
+    const pagesToCreate = Array.isArray(dtos) ? dtos : [dtos];
+    const createdPages = [];
+
+    for (const dto of pagesToCreate) {
+      if (dto.type === DataType.block && !dto.content) {
+        throw new BadRequestException('Content required');
       }
-    }
 
-    const page = await this.pageRepository.save({
-      ...dto,
-      documentSlug: slugify(dto.documentTitle),
-      pageSlug: slugify(dto.pageTitle),
-      sectionSlug,
-      parentPagesSlug,
-      subPagesSlug,
-    });
+      const sectionSlug = dto.sectionTitle ? slugify(dto.sectionTitle) : null;
+
+      const subPagesSlug = dto.subPagesTitle?.map(slugify) || [];
+      const parentPagesSlug = dto.parentPagesTitle?.map(slugify) || [];
+
+      const page = await this.pageRepository.save({
+        ...dto,
+        documentSlug: slugify(dto.documentTitle),
+        pageSlug: slugify(dto.pageTitle),
+        sectionSlug,
+        parentPagesSlug,
+        subPagesSlug,
+      });
+
+      createdPages.push(instanceToPlain<Partial<Page>>(page));
+    }
 
     return {
-      message: 'page added',
+      message: pagesToCreate.length > 1 ? 'pages added' : 'page added',
       success: true,
-      data: instanceToPlain<Partial<Page>>(page),
+      data: createdPages,
     };
+  }
+
+  async getPages() {
+    return await this.pageRepository.find({
+      where: {
+        type: DataType.page,
+      },
+    });
   }
 
   async search(searchTerm: string) {
@@ -84,5 +110,5 @@ function slugify(text: string): string {
   return text
     .toLowerCase()
     .replace(/ /g, '-')
-    .replace(/[^\w-]+/g, '');
+    .replace(/[^\w-&?]+/g, '');
 }

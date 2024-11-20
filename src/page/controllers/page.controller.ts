@@ -8,8 +8,13 @@ export class PageController {
   constructor(private readonly pageService: PageService) {}
 
   @Post('create')
-  create(@Body() dto: CreatePageDto) {
-    return this.pageService.create(dto);
+  create(@Body() dtos: CreatePageDto | CreatePageDto[]) {
+    return this.pageService.create(dtos);
+  }
+
+  @Get('')
+  getAllPages() {
+    return this.pageService.getPages();
   }
 
   @Get('search')
