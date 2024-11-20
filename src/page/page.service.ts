@@ -68,11 +68,7 @@ export class PageService implements OnModuleInit {
   }
 
   async getPages() {
-    return await this.pageRepository.find({
-      where: {
-        type: DataType.page,
-      },
-    });
+    return await this.pageRepository.find();
   }
 
   async search(searchTerm: string) {
