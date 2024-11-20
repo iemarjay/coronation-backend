@@ -6,7 +6,7 @@ export const pagesData: CreatePageDto[] = [
     url: '/brand-toolkit/brand-basics/introduction#overview',
     documentTitle: 'Brand Toolkit',
     pageTitle: 'Introduction',
-    parentPagesTitle: ['Brand Toolkit', 'Brand Basics'],
+    parentPagesTitle: ['Brand Basics', 'Introduction'],
     sectionTitle: 'Overview',
     content:
       "Brand guidelines, also known as brand style guides, ensure a consistent and cohesive brand identity. They cover elements like the logo, colour palette, typography, imagery, and brand voice, ensuring all communications reflect the brand's core values and mission accurately. These guidelines are crucial for building brand recognition and trust. They serve as a reference for teams and partners, ensuring consistent visual and verbal identity. This consistency strengthens the brand's reputation and helps it stand out in a competitive marketplace.",
@@ -16,7 +16,7 @@ export const pagesData: CreatePageDto[] = [
     url: '/brand-toolkit/brand-basics/our-logo#our-logo',
     documentTitle: 'Brand Toolkit',
     pageTitle: 'Our Logo',
-    parentPagesTitle: ['Brand Toolkit', 'Brand Basics'],
+    parentPagesTitle: ['Brand Basics', 'Our Logo'],
     sectionTitle: 'Our Logo',
     content:
       'We have two logos. Our primary logo is the Coronation wordmark which is the face of the brand. However, in certain instances, we can use our vertical logos.',
@@ -26,7 +26,7 @@ export const pagesData: CreatePageDto[] = [
     url: '/brand-toolkit/brand-basics/fonts#what-font-to-use',
     documentTitle: 'Brand Toolkit',
     pageTitle: 'Fonts',
-    parentPagesTitle: ['Brand Toolkit', 'Brand Basics'],
+    parentPagesTitle: ['Brand Basics', 'Fonts'],
     sectionTitle: 'What font to use?',
     content:
       'Lato bold for headlines, subheads, headers, callout and pull quotes. Lato for body copy. Complete sentences should always be in the sentence case.',
@@ -36,7 +36,7 @@ export const pagesData: CreatePageDto[] = [
     url: '/brand-toolkit/brand-basics/fonts#usage',
     documentTitle: 'Brand Toolkit',
     pageTitle: 'Fonts',
-    parentPagesTitle: ['Brand Toolkit', 'Brand Basics'],
+    parentPagesTitle: ['Brand Basics', 'Fonts'],
     sectionTitle: 'Usage',
     content:
       'Lato is for everyday usage in instances such as email and PowerPoint.Other uses include PowerPoint presentations, charts, graphs, maps, tables, country names, acronyms and abbreviation. Fonts must comply with our fonts guidelines',
@@ -46,7 +46,7 @@ export const pagesData: CreatePageDto[] = [
     url: '/brand-toolkit/brand-basics/colours#overview',
     documentTitle: 'Brand Toolkit',
     pageTitle: 'Colours',
-    parentPagesTitle: ['Brand Toolkit', 'Brand Basics'],
+    parentPagesTitle: ['Brand Basics', 'Colours'],
     sectionTitle: 'Overview',
     content:
       'Our colours serve as the foundation of our brand identity, consistently applied to the main text and key elements. They also highlight specific features, add contrast for visual interest, and enhance icons, illustrations, and small elements that need to stand out. The Coronation brand has two distinct colour palettes based on what it is to be used for.',
@@ -56,7 +56,7 @@ export const pagesData: CreatePageDto[] = [
     url: '/brand-toolkit/brand-basics/colours#corporate-palette',
     documentTitle: 'Brand Toolkit',
     pageTitle: 'Colours',
-    parentPagesTitle: ['Brand Toolkit', 'Brand Basics'],
+    parentPagesTitle: ['Brand Basics', 'Colours'],
     sectionTitle: 'Corporate Palette',
     content:
       'These colours are used in all materials related to or being shared with Corporate (business-to-business) partners. This palette is not to be used for materials related to products marketed to consumers (individuals).',
@@ -66,7 +66,7 @@ export const pagesData: CreatePageDto[] = [
     url: '/brand-toolkit/brand-basics/colours#consumer-palette',
     documentTitle: 'Brand Toolkit',
     pageTitle: 'Colours',
-    parentPagesTitle: ['Brand Toolkit', 'Brand Basics'],
+    parentPagesTitle: ['Brand Basics', 'Colours'],
     sectionTitle: 'Consumer Palette',
     content:
       'The colours chosen are subtle yet confident reflecting the Coronation brand sentiment. For consumer-facing applications, brighter shades take priority to achieve a friendlier, more approachable tone. Colours must comply with our colours guidelines',
@@ -76,7 +76,7 @@ export const pagesData: CreatePageDto[] = [
     url: '/brand-toolkit/brand-basics/photography#overview',
     documentTitle: 'Brand Toolkit',
     pageTitle: 'Photography',
-    parentPagesTitle: ['Brand Toolkit', 'Brand Basics'],
+    parentPagesTitle: ['Brand Basics', 'Photography'],
     sectionTitle: 'Overview',
     content:
       'Images are an important part of our communication. Our images should consistently follow the rules and guidelines set out. In our visuals, differences are shown in how they are being portrayed to both the Corporate and Consumer Section.',
@@ -86,7 +86,7 @@ export const pagesData: CreatePageDto[] = [
     url: '/brand-toolkit/brand-basics/photography#photography-corporate',
     documentTitle: 'Brand Toolkit',
     pageTitle: 'Photography',
-    parentPagesTitle: ['Brand Toolkit', 'Brand Basics'],
+    parentPagesTitle: ['Brand Basics', 'Photography'],
     sectionTitle: 'Photography Corporate',
     content:
       'Photography Corporate. These colours are used for materials related to products marketed to businesses. The neutral colours take the lead while the brighter colours should be used as accents where necessary.',
@@ -96,7 +96,7 @@ export const pagesData: CreatePageDto[] = [
     url: '/brand-toolkit/brand-basics/photography#photography-consumer',
     documentTitle: 'Brand Toolkit',
     pageTitle: 'Photography',
-    parentPagesTitle: ['Brand Toolkit', 'Brand Basics'],
+    parentPagesTitle: ['Brand Basics', 'Photography'],
     sectionTitle: 'Photography Consumer',
     content:
       'Photography Consumer. These colours are used in all materials related to brief shared with consumers.',
@@ -106,7 +106,7 @@ export const pagesData: CreatePageDto[] = [
     url: '/brand-toolkit/faqs/brand-identity',
     documentTitle: 'Brand Toolkit',
     pageTitle: 'Brand Identity',
-    parentPagesTitle: ['Brand Toolkit', 'FAQs'],
+    parentPagesTitle: ['FAQs', 'Brand Identity'],
     content:
       "You will find answers to all your questions about the elements that make up our image, our values, personality, mission, vision, and other visual elements like colour palettes, logos, etc. Brand Identity. How do I create a logo for my team? You can use our designated design tools or consult our brand guidelines for assistance here. What are the main colours from our brand colour palette? Explore the brand colour palette in our brand guidelines to find the main colours. What is our boilerplate? You can find our official boiler plate in the brand portal's resources section or click Brand Guidelines to view the latest version. What is our brand essence? Tap here to explore the core values and unique messaging that make up our brand essence. What is our purpose at Coronation? Coronation's purpose is to create a prosperous future for clients and the African continent. Learn More. What is Coronation's Tone of Voice We sound confident and concise, friendly and approachable, and essentially human.",
     type: DataType.block,
@@ -115,7 +115,7 @@ export const pagesData: CreatePageDto[] = [
     url: '/brand-toolkit/faqs/vendors-and-third-parties',
     documentTitle: 'Brand Toolkit',
     pageTitle: 'Vendors and Third Parties',
-    parentPagesTitle: ['Brand Toolkit', 'FAQs'],
+    parentPagesTitle: ['FAQs', 'Vendors and Third Parties'],
     content:
       'You will find answers to all your questions about the elements that make up our image, our values, personality, mission, vision, and other visual elements like colour palettes, logos, etc. Vendor and Third Parties. How can my vendor access the brand portal? Your vendor(s) can access the brand portal through a designated login area. You can contact {department} here for the access details. What if an outside party wants to use our logo? For external use of our logo, please follow our logo usage guidelines in the brand portal.',
     type: DataType.block,
@@ -124,7 +124,7 @@ export const pagesData: CreatePageDto[] = [
     url: '/brand-toolkit/faqs/templates',
     documentTitle: 'Brand Toolkit',
     pageTitle: 'Templates',
-    parentPagesTitle: ['Brand Toolkit', 'FAQs'],
+    parentPagesTitle: ['FAQs', 'Templates'],
     content:
       'You will find answers to all your questions about the elements that make up our image, our values, personality, mission, vision, and other visual elements like colour palettes, logos, etc. Templates. Where do I find the most recent PowerPoint templates? To find the most recent PowerPoint templates, please visit the PowerPoint templates section available in the brand portal. Where do I find our boiler plate? You can find our boilerplate here in the resources section of the brand portal. Or click on the brand guidelines for more information.',
     type: DataType.block,
@@ -133,7 +133,7 @@ export const pagesData: CreatePageDto[] = [
     url: '/brand-toolkit/faqs/resources',
     documentTitle: 'Brand Toolkit',
     pageTitle: 'Resources',
-    parentPagesTitle: ['Brand Toolkit', 'FAQs'],
+    parentPagesTitle: ['FAQs', 'Resources'],
     content:
       "You will find answers to all your questions about the elements that make up our image, our values, personality, mission, vision, and other visual elements like colour palettes, logos, etc. Resources. How can I create a new logo? You can create a new logo by checking out our resources on the brand portal or visiting our brand guidelines to get tools and detailed instructions on how to create a new logo. How do I order business cards? You can order for business cards by following the process outlined here in the brand portal or contact department here. How do I create email signatures for my new campaign? In order to create your email signatures, please click on the guidelines provided in the brand portal's resources. Who is a brand ambassador, and how can I become one? To learn about becoming a brand ambassador in our brand ambassador program, click here. How do I access templates for stationery, letterhead, agenda and memos? Find templates for stationery, letterhead, agenda, and memos here. Are there standards for uniforms and equipment? Yes there are requirements and standards for uniforms and equipment. Click here to learn more. Where can I find approved Coronation images? You can access approved coronation images in the resources section of the brand portal. Is there a Coronation template for PowerPoints? Yes, you can find the most recent PowerPoint templates here",
     type: DataType.block,
