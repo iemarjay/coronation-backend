@@ -15,7 +15,8 @@ export default function configuration() {
     mail: {
       from: process.env.MAIL_FROM ?? 'noreply@pouchfi.io',
       from_name: process.env.MAIL_FROM_NAME ?? 'PouchFi',
-      api_key: process.env.MAIL_API_KEY,
+      apiKey: process.env.MAIL_API_KEY,
+      url: process.env.MAIL_URL,
     },
     database: {
       type: 'mssql',

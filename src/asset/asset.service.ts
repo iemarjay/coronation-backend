@@ -310,6 +310,9 @@ export class AssetService {
         },
       },
     });
+    if (user.role === Role.admin) {
+      return;
+    }
     if (!hasPermission) {
       const errorMessage = this.getUnauthorizedMessage(accessType);
       throw new UnauthorizedException(errorMessage);

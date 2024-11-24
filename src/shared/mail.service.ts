@@ -8,6 +8,7 @@ import * as Mailchimp from '@mailchimp/mailchimp_transactional';
 import { User } from 'src/user/entities/user.entity';
 import { UserCreatedEvent } from 'src/user/user.event';
 import { AccessRequestedEvent } from 'src/asset/events/asset.event';
+import axios from 'axios';
 
 interface ConfigServiceShape {
   url: string;
@@ -20,7 +21,19 @@ interface ConfigServiceShape {
   mail: {
     from: string;
     from_name: string;
+    url: string;
+    apiKey: string;
   };
+}
+
+interface EmailRequest {
+  to: string;
+
+  subject: string;
+
+  body: string;
+
+  cc?: string;
 }
 
 @Injectable()
@@ -82,17 +95,50 @@ export class MailService {
     });
   }
 
+  async sendEmail<T>(
+    template: string,
+    data: T,
+    mail: {
+      recipient: { email: string; name: string };
+      cc?: string;
+      subject: string;
+    },
+  ) {
+    const templatePath = getResourcesDir(
+      path.join('templates/email', `${template}_en-us.ejs`),
+    );
+
+    const html = await ejs.renderFile(templatePath, data);
+    const url = new URL(this.config.get('mail.url', { infer: true }));
+
+    const requestData: EmailRequest = {
+      to: mail.recipient.email,
+      subject: mail.subject,
+      body: html,
+    };
+
+    if (mail.cc) {
+      requestData.cc = mail.cc;
+    }
+    const response = await axios.post(url.toString(), requestData, {
+      headers: {
+        'x-api-key': this.config.get('mail.apiKey', { infer: true }),
+      },
+    });
+
+    console.log(typeof html);
+
+    return response.data;
+  }
+
   sendUserLoginOtp(user: Partial<User>, otp: string) {
     const data = {
       user,
       otp,
     };
-    this.sendTemplate('user_login', data, {
-      mail: {
-        recipient: { email: data.user.email, name: data.user.full_name },
-        tags: ['user_login'],
-        subject: 'Login to Coronation',
-      },
+    this.sendEmail('user_login', data, {
+      recipient: { email: data.user.email, name: data.user.full_name },
+      subject: 'Login to Coronation',
     })
       .then((r) => {
         this.logger.log({ response: r, data });
@@ -105,12 +151,9 @@ export class MailService {
       user: data.user,
       url: `${this.config.get('client.url', { infer: true })}sign-in`,
     };
-    this.sendTemplate('user_welcome', payload, {
-      mail: {
-        recipient: { email: data.user.email, name: data.user.full_name },
-        tags: ['user_registration'],
-        subject: 'Login to Coronation Brand Portal',
-      },
+    this.sendEmail('user_welcome', payload, {
+      recipient: { email: data.user.email, name: data.user.full_name },
+      subject: 'Login to Coronation Brand Portal',
     })
       .then((r) => {
         this.logger.log({ response: r, data });
@@ -124,12 +167,9 @@ export class MailService {
       url: `${this.config.get('client.url', { infer: true })}downloads?tab=${data.request.asset.assetType.name}`,
       fileName: data.request.asset.filename,
     };
-    this.sendTemplate('access_approved', payload, {
-      mail: {
-        recipient: { email: payload.user.email, name: payload.user.full_name },
-        tags: ['access_granted'],
-        subject: 'Request for File Download - Access Approved',
-      },
+    this.sendEmail('access_approved', payload, {
+      recipient: { email: payload.user.email, name: payload.user.full_name },
+      subject: 'Request for File Download - Access Approved',
     })
       .then((r) => {
         this.logger.log({ response: r, data });
@@ -143,12 +183,9 @@ export class MailService {
       reason: data.request.rejectionReason,
       fileName: data.request.asset.filename,
     };
-    this.sendTemplate('access_declined', payload, {
-      mail: {
-        recipient: { email: payload.user.email, name: payload.user.full_name },
-        tags: ['access_granted'],
-        subject: 'Request for File Download - Access Declined',
-      },
+    this.sendEmail('access_declined', payload, {
+      recipient: { email: payload.user.email, name: payload.user.full_name },
+      subject: 'Request for File Download - Access Declined',
     })
       .then((r) => {
         this.logger.log({ response: r, data });

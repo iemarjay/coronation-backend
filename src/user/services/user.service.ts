@@ -228,6 +228,7 @@ export class UserService {
     });
     if (!user) throw new NotFoundException('User not found');
 
+    user.lastModifiedBy = modifier;
     user.status = dto.status;
     const result = await this.repository.save(user);
     return {

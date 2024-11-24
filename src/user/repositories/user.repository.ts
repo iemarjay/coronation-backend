@@ -61,8 +61,8 @@ export class UserRepository extends Repository<User> {
     if (filter.search) {
       const searchTerm = `%${filter.search}%`;
       query.andWhere(
-        '(user.firstName LIKE :search OR user.lastName LIKE :search OR user.email LIKE :search)',
-        { search: searchTerm },
+        '(LOWER(user.firstName) LIKE :search OR LOWER(user.lastName) LIKE :search OR LOWER(user.email) LIKE :search)',
+        { search: searchTerm.toLocaleLowerCase() },
       );
     }
 
