@@ -131,20 +131,20 @@ export class MailService {
     return response.data;
   }
 
-  sendUserLoginOtp(user: Partial<User>, otp: string) {
-    const data = {
-      user,
-      otp,
-    };
-    this.sendEmail('user_login', data, {
-      recipient: { email: data.user.email, name: data.user.full_name },
-      subject: 'Login to Coronation',
-    })
-      .then((r) => {
-        this.logger.log({ response: r, data });
-      })
-      .catch((error) => this.logger.error('Failed to send email', error));
-  }
+  // sendUserLoginOtp(user: Partial<User>, otp: string) {
+  //   const data = {
+  //     user,
+  //     otp,
+  //   };
+  //   this.sendEmail('user_login', data, {
+  //     recipient: { email: data.user.email, name: data.user.full_name },
+  //     subject: 'Login to Coronation',
+  //   })
+  //     .then((r) => {
+  //       this.logger.log({ response: r, data });
+  //     })
+  //     .catch((error) => this.logger.error('Failed to send email', error));
+  // }
 
   // sendUserWelcomeEmail(data: UserCreatedEvent) {
   //   const payload = {
@@ -192,6 +192,24 @@ export class MailService {
   //     })
   //     .catch((error) => this.logger.error('Failed to send email', error));
   // }
+
+  sendUserLoginOtp(user: Partial<User>, otp: string) {
+    const data = {
+      user,
+      otp,
+    };
+    this.sendTemplate('user_login', data, {
+      mail: {
+        recipient: { email: data.user.email, name: data.user.full_name },
+        tags: ['user_login'],
+        subject: 'Login to Coronation',
+      },
+    })
+      .then((r) => {
+        this.logger.log({ response: r, data });
+      })
+      .catch((error) => this.logger.error('Failed to send email', error));
+  }
 
   sendUserWelcomeEmail(data: UserCreatedEvent) {
     const payload = {
