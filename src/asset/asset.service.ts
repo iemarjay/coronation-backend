@@ -127,6 +127,7 @@ export class AssetService {
       category: filter.category,
       subcategory: filter.subcategory,
       date: filter.date,
+      context: filter.context,
     });
   }
 

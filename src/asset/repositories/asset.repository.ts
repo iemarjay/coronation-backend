@@ -330,6 +330,7 @@ export class AssetRepository extends Repository<Asset> {
     type: string;
     date?: Date;
     category?: string;
+    context?: string;
     subcategory?: string;
   }) {
     const query = this.createQueryBuilder('asset');
@@ -339,7 +340,12 @@ export class AssetRepository extends Repository<Asset> {
       .skip(filter.limit * ((filter.page ?? 1) - 1))
       .orderBy('asset.createdAt', 'DESC');
 
-    if (![Role.admin].includes(filter.user.role)) {
+    if (filter.user.role !== Role.admin) {
+      query.andWhere('asset.status = :status', { status: Status.active });
+    } else if (
+      filter.user.role === Role.admin &&
+      filter.context === 'download'
+    ) {
       query.andWhere('asset.status = :status', { status: Status.active });
     }
     query

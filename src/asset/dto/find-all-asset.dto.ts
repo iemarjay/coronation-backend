@@ -33,4 +33,8 @@ export class FindAllQueryDto {
   @IsOptional()
   @IsString()
   date?: Date;
+
+  @IsOptional()
+  @IsString()
+  context?: 'download';
 }
