@@ -775,4 +775,1744 @@ export const pagesData: CreatePageDto[] = [
     parentPagesTitle: ['Brand in the world', 'Best of Brands'],
     type: DataType.page,
   },
+  {
+    url: '/using-our-brand/core-brand-elements/introduction',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Introduction',
+    // "sectionTitle":"Overview",
+    content:
+      "Defining Our Visual Identity. The Core Brand Elements of Coronation are the foundation of our visual identity, ensuring consistency, clarity, and professionalism across all communications. From our distinct Logo to the carefully chosen Typography that enhances readability, every element reflects our brand's commitment to excellence and cohesion.. Our Colour Palette is divided into corporate and consumer categories, with each carefully designed to convey the appropriate tone while adhering to accessibility standards. The use of Photography and Icons further enhances our visual narrative, providing a unique and authentic look that differentiates Coronation from competitors. Lastly, Illustrations are employed to create distinctive, engaging visuals that amplify our brand's message across all platforms. Together, these elements work seamlessly to create a unified and powerful representation of the Coronation brand",
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Introduction'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/logo/wordmark#wordmark',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Wordmark',
+    sectionTitle: 'Wordmark',
+    content:
+      'Wordmark. Our primary logo is the coronation wordmark which is the face of the brand. In certain scenarios, we can use our vertical logos. We have two logos. Trust, innovation, leadership: These are the aspects that are captured in our wordmark. Why? Because these are what makes up Coronation. And these are what you want consumers to feel when they see your brand for the first time',
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Logo', 'Wordmark'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/logo/wordmark#choosing-wordmark',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Wordmark',
+    sectionTitle: 'Choosing Wordmark Colour',
+    content:
+      'Choosing Wordmark Colour. Regardless of where it is used, it is essential that the wordmark is always as easily readable. This is why the wordmark for Coronation is always black or white. Whichever version generates the greatest difference in its context should be used, according to this rule. In this case, the black version would be used if the background is white or another lighter colour.',
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Logo', 'Wordmark'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/logo/wordmark#logo-library',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Wordmark',
+    sectionTitle: 'Logo Library',
+    content: 'Logo Library. Master brand logo. Business marker logo.',
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Logo', 'Wordmark'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/logo/animated-wordmark#animated-wordmark',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Animated wordmark',
+    sectionTitle: 'Animated Wordmark',
+    content:
+      'Animated Wordmark. For the animated wordmark, the Coronation “O” is designed in such a way that is able to be animated for more dynamic use. These include presentations, on the websites and other instances where this is possible and would make for more visually appealing communication. There are 3 versions of the animated logo. Each version is distinct from each other.',
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Logo', 'Animated Wordmark'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/logo/animated-wordmark##How-to-use-the-Coronation-Wordmark',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Animated wordmark',
+    sectionTitle: 'How to use the Coronation Wordmark',
+    content:
+      'How to use the Coronation Wordmark. The wordmark is included in all our communication material i.e., for digital, desktop, print and design purposes.',
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Logo', 'Animated Wordmark'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/logo/animated-wordmark#Where-to-use-the-Coronation-Wordmark',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Animated wordmark',
+    sectionTitle: 'Where to use the Coronation Wordmark',
+    content:
+      'Where to use the Coronation Wordmark. On brand documents (e.g., forms, letterhead etc.). To support headline. For event branding',
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Logo', 'Animated Wordmark'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/logo/spacing#spacing',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Spacing',
+    sectionTitle: 'Spacing',
+    content:
+      "Spacing. The wordmark must always be surrounded by a minimum amount of clear space to make sure that it is easily ledgible wherever it is being used. The 'N' from the wordmark is what must be used as a tool to work out the size of this space. This is depicted in blue on the diagram on this page. No copy or graphic or other visual element should interfere or overlap with this space.",
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Logo', 'Spacing'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/logo/spacing#keeping-our-wordmark-legible',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Spacing',
+    sectionTitle: 'Keeping our Wordmark Legible',
+    content:
+      "Keeping our Wordmark Legible. The wordmark's 'N' must be used as a measuring tool to determine the size of this space. This is shown in the diagram below . There should be no copy, graphics, or other visual elements that obstruct or overlap this space. Same principle applies to the Business marker wordmark. The minimum size accepted for the Master brand wordmark is 1inch, while the accepted minimum size for the Business marker is 1.5 inches.",
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Logo', 'Spacing'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/logo/spacing#incorrect-use',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Spacing',
+    sectionTitle: 'Spacing',
+    content:
+      'Incorrect Use. In building a brand identity, consistency is key. This is a list of absolute “don’ts” when applying the wordmark:. Do not display the wordmark in any other colour other than black or white. Do not distort the wordmark or change its proportions. Do not allow any elements to interfere with the minimum clear space around the wordmark. Do not recreate the wordmark using an alternative font. Do not allow any elements to interfere with the minimum clear space around the wordmark. Do not italicise the wordmark. Do not use multiple colours or apply a gradient to the wordmark. Do not apply a wordmark to a very detailed background, instead place a solid black or white block behind it to ensure legibility.',
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Logo', 'Spacing'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/colours/introduction#introduction',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Introduction',
+    sectionTitle: 'Introduction',
+    content:
+      'Introduction. Our colours form the foundation of our brand identity, consistently applied to main texts and key elements to maintain visual coherence. They add contrast, highlight specific features, and enhance icons, illustrations, and other small elements that need to stand out. All colour choices comply with accessibility standards, ensuring sufficient contrast for readability and usability. This creates a visually appealing and cohesive brand experience.',
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Colours', 'Introduction'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/colours/introduction#corporate-color-values',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Introduction',
+    sectionTitle: 'Corporate Colour Values',
+    content:
+      'Corporate Colour Values. Neutral colours (black, white, and greys) are predominant, while brighter colours are used as accents. The green (Pantone 7739) should be used sparingly and only when referencing Nigeria. The orange-red gradient adds interest and depth in both print and digital applications. Neutral colours (black, white, and greys) are predominant in our corporate palette, with brighter colours used as accents. For colour breakdown, gradient stops, proportions, and angles for printed materials, refer to the accompanying diagrams. These colours are exclusively for materials related to or shared with Corporate (B2B) partners, and should not be used for consumer-facing (B2C) materials.',
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Colours', 'Introduction'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/colours/introduction#consumer-colour-values',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Introduction',
+    sectionTitle: 'Consumer Colour Values',
+    content:
+      "Consumer Colour Values. The consumer colour palette reflects the Coronation brand's sentiment of subtle confidence. For consumer-facing applications, brighter shades take priority to create a friendlier and more approachable tone. Brighter colours are predominant with neutral colours serving as accents. Use black sparingly in consumer materials - avoid using black or dark grey for more than 20% of any layout. These colours are designated for materials related to or shared with consumers (individuals) and should not be used for corporate (B2B) communications. The wordmark should always be in black or white, while the body text can be in black, white or dark grey. For the colour breakdowns when using body copy in printed materials, please refer to the diagrams alongside.",
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Colours', 'Introduction'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/colours/background-colour',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Background Colour',
+    content:
+      "Background Colour. These are the background guidelines on how to use. Incorrect Use.Consistency is key to building a strong brand identity. Avoid the following 'don'ts' when applying our colour palettes: colour. Do not display the wordmark in any colour other than black or white. Do not mix corporate and consumer palettes in a single layout. Do not use the green from the corporate palette as the primary colour in layouts. Do not use the green from the corporate palette when not referring to Nigeria. Do not alter the palette or choose your own",
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Colours', 'Background Colour'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/typography#introduction',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Typography',
+    sectionTitle: 'Introduction',
+    content:
+      'Introduction. Brand communication is majorly done through words, hence the choice of typeface – or font – is a key part of Coronation’s brand Corporate Identity (CI). Functionally, it also needs to be legible across many applications and media. Our typography enhances readability, and aesthetics by ensuring the text is both legible and visually appealing. A consistent font choice across all materials reflects our brand identity, creating a cohesive and professional appearance that enhances the overall user experience and reinforces our brand message.',
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Typography'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/typography#fonts',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Typography',
+    sectionTitle: 'Fonts',
+    content:
+      "Font. Lato is a sans-serif typeface that is easy to read in body text while maintaining its distinctive qualities in larger sizes. It conveys warmth and approachability through its elegant proportions, while its sturdy design reflects the reliability and dependability of the Coronation brand. It has classical, elegant proportions and has a feeling of warmth and approachability. The strong structure speaks to stability and reliability associated with the Coronation brand. It enhances readability, and the aesthetics by ensuring text is legible. It reflects the brand identity through a consistent font choice.  By maintaining consistent typography across all pages, we create a cohesive and professional appearance, enhancing overall user experience and reinforcing our brand message. For headlines and display text, choose any weight that suits the application For body texts , avoid using weights lighter than 'Regular' or heavier than 'Bold' to maintain legibility. Italic may be used for emphasis, but not for large sections of text.",
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Typography'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/photography/photography-corporate',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Photography Corporate',
+    content:
+      'Photography Corporate. Images are an important part of our communication. For consumer-facing advertising and content, photography should be in full colour to differentiate it from corporate communication. All images should be commissioned by professional photographers with locally sourced models to ensure exclusivity. This guarantees that our images are unique to Coronation and cannot be repurposed by other brands. If stock images are used, they must be carefully selected in accordance with our image guidelines. Alternatively, purchasing exclusive rights to these images is recommended to prevent usage by other brands. Note that all selected or commissioned images should adhere to the following Coronation. Opt for images that appear natural, avoiding forced stances or poses; candid shots are preferable. For stock images, ensure models appear local to the market where the images will be used. Incorporate white space to accommodate the logo, or alternatively, use the black block. There are two major categories of Corporate Photography of Coronation:. Architectural Images. These pictures are of the Coronation offices. They may be used in any advertising, presentations or other corporate communications. Use interesting angles and crop the images to produce a more abstract end product. Where possible, leave white space to accommodate the logo, alternatively, make use of the black block. Potrait images. When highlighting a staff member’s achievements or presenting a biography, use a professionally shot black-and-white portrait. Avoid stereotypical poses or boring headshots if the image is to be used on social media or in advertising.',
+    type: DataType.page,
+    parentPagesTitle: [
+      'Core Brand Elements',
+      'Photography',
+      'Photography Corporate',
+    ],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/photography/photography-consumer',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Photography Consumer',
+    content:
+      'Photography Consumer. Photography for consumer-facing advertising and content is in full colour to differentiate this from corporate communication. Ideally, these images should always be commissioned from professional photographers using local people as models. This means that the images are owned by Coronation and will not be associated with other brands. Failing this, stock photography can be used but must be sourced carefully so as to follow the guidelines set out on these pages. Where budget allows, purchase exclusive rights to images so that they cannot be bought by other brands while Coronation is using them. For either, please keep the below in mind:. Choose images that look as natural as possible (no forced stances or poses), and aim for candid shots whenever possible. Try to use local models or source stock photography with models who will pass for local in the market that the image will be used. Where possible, leave white space to accommodate the logo, alternatively, make use of the black block.',
+    type: DataType.page,
+    parentPagesTitle: [
+      'Core Brand Elements',
+      'Photography',
+      'Photography Consumer',
+    ],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/icons',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Icons',
+    content:
+      'Icons are used to communicate the essence of our brand through clear and concise symbolic representations.',
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Icons'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/illustrations',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Illustrations',
+    content:
+      'We use illustrations to create distinctive visual elements that amplify our brand strategy in a way that sets the Coronation brand apart from competitors.',
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Illustrations'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/personality',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Personality',
+    content:
+      "Coronation's brand personality strikes the perfect balance between confidence, determination, and ingenuity. It exudes an air of assurance that resonates with financial experts, yet remains warmly approachable. This personality encapsulates both a sense of high regard that reassures those well-versed in finance, and a relatable demeanor that treats everyone with respect, regardless of their financial status. This synergy fosters trust among a diverse range of consumers and underscores the message that Coronation is a dedicated companion in their individual financial quests. Coronation’s copy tone finds the sweet spot where confidence, drive and resourcefulness meet. However, it never sounds unapproachable. The tone embodies an esteem that reassures financial experts but also a personality that doesn’t look down on those that aren’t at that financial level yet. This builds trust across the consumer spectrum and assures people that they are indeed partners with Coronation in their financial journey. There are different segments within the Coronation customer base and each segment is covered within the Coronation voice and tone.",
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'Personality'],
+  },
+  {
+    url: '/using-our-brand/core-brand-elements/faqs',
+    documentTitle: 'Using our brand',
+    pageTitle: 'FAQs',
+    content:
+      "Core Brand Element FAQs. What typeface does Coronation use for its branding? Coronation uses Lato, a sans-serif typeface that is easy to read in body text and maintains distinctive qualities in larger sizes. Lato’s elegant proportions convey warmth and approachability, while its sturdy design reflects the reliability and dependability of the Coronation brand. What are the typography guidelines for Coronation’s brand? For headlines and display text, any weight of Lato can be used, depending on the application. However, for body text, avoid weights lighter than 'Regular' or heavier than 'Bold' to ensure legibility. Italics are permissible for emphasis but should not be used for large sections of text. What colours are used in Coronation’s corporate materials? Coronation’s corporate colour palette comprises neutral colours such as black, white, and greys, with brighter colours used as accents. The orange-red gradient is used to add interest and depth, while green (Pantone 7739) is used sparingly and only when referencing Nigeria. These colours are exclusively for B2B (corporate) communications. What colours are used in consumer-facing materials? The consumer colour palette reflects a friendlier and more approachable tone, with brighter colours taking precedence. Neutral colours are used as accents, and black should not cover more than 20% of the layout. This palette is designated for B2C (consumer) communications. What are the rules for using the wordmark in Coronation’s branding? The wordmark should always be displayed in either black or white. For body text, you may use black, white, or dark grey. The wordmark should never appear in any other colours. What should I avoid when applying Coronation’s colour palettes? To ensure brand consistency: - Do not display the wordmark in colours other than black or white. - Do not mix corporate and consumer colour palettes within a single layout. - Avoid using corporate green as the primary colour unless it references Nigeria. - Do not alter the approved palettes or select your own colours. What are the photography guidelines for Coronation’s brand? Consumer-facing advertising and content should feature full-colour photography. All images should be commissioned from professional photographers with locally sourced models to ensure exclusivity. If stock images can be used, exclusive rights must be purchased to prevent usage by other brands. What type of photography should be used for Coronation’s branding? Choose images that appear natural and candid, avoiding forced poses. Ensure stock images feature models who look local to the market where they will be used. Additionally, incorporate white space or a black block to accommodate the logo. What are the rules for using icons in Coronation’s brand materials? Icons should clearly and concisely communicate the essence of the Coronation brand. You can download the approved icon set from the provided resources. How does Coronation use illustrations in its branding? Coronation uses illustrations to create distinctive visual elements that amplify the brand’s strategy. These illustrations differentiate the Coronation brand from competitors, adding uniqueness and enhancing the overall visual identity.",
+    type: DataType.page,
+    parentPagesTitle: ['Core Brand Elements', 'FAQs'],
+  },
+  {
+    url: '/using-our-brand/the-coronation-brand/introduction',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Introduction',
+    content:
+      "Coronation is Africa's premier investment management powerhouse. Our goal is to be recognised as the brand driving that shift on the continent. Coronation holds diverse interests in Asset Management, Insurance, Merchant Banking, Brokerage, Trustees, Private Equity, Venture Building/Capital, Distribution and Registrars. Part of the ambition of the Coronation brand is to be the engine of Africa's growth by leading the evolution of the financial services sector – shifting the center of gravity from commercial banking to high finance – by providing solutions with the level of sophistication needed to create sustainable economic impact in the region. Our Journey. 2012. Coronation Capital Limited Incorporated. 2013. Coronation Insurance PLC, recapitalized as a top 5 Insurer. 2014. Tengen Holdings (Mauritius) Limited and Coronation Capital (Mauritius) Limited established. 2015. Trium limited commercial operations. 2016. Coronation Capital Limited Incorporated. 2019. Coronation Asset Management, Coronation Trustees and Coronation securities restructured in independent business. 2020. United Securities changed its name to Coronation Registrars Limited. 2020. WAPIC Life Assurance changed its name to Coronation Life Assurance Limited. 2021. Coronation Ghana Limited recapitalized as country’s sole underwriter with Nigerian parent. 2022. Woven Finance Limited issued Payment Service Solution Provider license by the CBN. 2023. Fiducia launched for business. 2023. Coronation Group Limited issued Capital Market Holding Company license by the SEC",
+    type: DataType.page,
+    parentPagesTitle: ['The Coronation Brand', 'Introduction'],
+  },
+  {
+    url: '/using-our-brand/the-coronation-brand/family-of-verticals',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Family of Verticals',
+    content:
+      'Coronation Group Limited obtained a Capital Market Holding License from the Securities and Exchange Commission (SEC) and transitioned into a licensed group structure in June 2023. Our group Structure. The new group structure is comprised as follows: The Group Company (Group Co): This is the holding company - Coronation Group Limited. The Group Co provides strategic direction and acts as a center of excellence to entities in the Ecosystem through its strategic functions including Finance, Human Resources, Technology, Marketing and Communications, Customer Experience, Risk Management, Internal Control and Compliance. Subsidiary Companies (Sub Cos): These are companies owned directly by the Group Co. and regulated by the Securities and Exchange Commission (SEC). Our subsidiary companies include Coronation Capital Limited, Coronation Asset Management Limited, Coronation Trustees Limited, Coronation Securities Limited, Coronation Registrars Limited, Coronation Technology Limited, and Trium Limited. Affiliate Companies (Affil Cos): These companies affiliated with the Coronation Group, continue to operate under the oversight of their respective regulatory bodies. These affiliate companies currently include Coronation Insurance Plc., Coronation Life Assurance Limited, Coronation Insurance Ghana Limited, and Coronation Merchant Bank Limited. Investee Companies (Invest Cos): Coronation Group also maintains strategic investments in leading players in the technology and energy sectors, both independently and through strategic partnerships. Coronation Group’s current investee companies include Fiducia and Woven.',
+    type: DataType.page,
+    parentPagesTitle: ['The Coronation Brand', 'Family of Verticals'],
+  },
+  {
+    url: '/using-our-brand/the-coronation-brand/faqs',
+    documentTitle: 'Using our brand',
+    pageTitle: 'FAQs',
+    content:
+      "Coronation Brand Element FAQs. What is the mission of Coronation? Coronation's mission is to lead Africa's financial evolution by transitioning from traditional commercial banking to high finance. Our goal is to offer sophisticated financial solutions that drive sustainable economic impact across the continent. What sectors does Coronation operate in? Coronation operates across a diverse portfolio that includes Asset Management, Insurance, Merchant Banking, Brokerage, Trustees, Private Equity, Venture Building/Capital, Distribution, and Registrars. This broad range of services positions Coronation at the forefront of Africa's financial transformation. What is Coronation's vision for the future of finance in Africa? Coronation envisions leading Africa's financial growth by championing the shift from traditional financial services to more sophisticated, high-finance solutions. Our aim is to promote long-term economic sustainability and impact across the continent. What is Coronation’s Group Structure? Coronation Group is structured with a holding company (GroupCo), directly owned subsidiary companies (Sub Cos), affiliate companies (Affil Cos), and investee companies (Invest Cos) that reflect its strategic investments in various sectors.. What are the rules for using the wordmark in Coronation's branding? The wordmark should always be displayed in either black or white. For body text, you may use black, white, or dark grey. The wordmark should never appear in any other colours.. What are the core functions of the Group Company (Group Co)? The Group Co, Coronation Group Limited, provides strategic direction and serves as a hub for key functions such as Finance, Human Resources, Technology, Marketing and Communications, Customer Experience, Risk Management, Internal Control, and Compliance within the Coronation ecosystem.. Which subsidiaries operate under Coronation Group Limited? Coronation's subsidiaries, which are directly owned and regulated by the SEC, include:. •Coronation Capital Limited. • Coronation Asset Management Limited. • Coronation Trustees Limited. • Coronation Securities Limited. • Coronation Registrars Limited. • Coronation Technology Limited. • Trium Limited.. Who are Coronation's affiliates? Affiliate companies operate independently under their respective regulatory bodies but are part of the Coronation ecosystem. They include:. •Coronation Insurance Plc. • Coronation Life Assurance Limited. •Coronation Insurance Ghana Limited. • Coronation Merchant Bank Limited. What are Investee Companies and which ones are part of Coronation? Investee companies are businesses in which Coronation holds strategic investments, either independently or in partnerships. Current investee companies include: •Fiducia Woven. What industries are Coronation's investee companies involved in? Coronation's investee companies operate in the technology and energy sectors, focusing on industries with high-growth potential and substantial impact. When did Coronation transition to a licensed group structure? Coronation officially transitioned into a licensed group structure in June 2023 after acquiring a Capital Market Holding License from the Securities and Exchange Commission (SEC).",
+    type: DataType.page,
+    parentPagesTitle: ['The Coronation Brand', 'FAQs'],
+  },
+  {
+    url: '/using-our-brand/brand-training',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Brand Training',
+    content:
+      'This manual serves as a guide to maintain consistency in the messaging, tone, and design of our brand across all channels. This consistency is crucial in creating a strong and recognizable brand identity that resonates with our target audience. BRAND MANUAL DOCUMENT. Stay ahead of your training with our easy-access manual. AUXILIARY STAFF TRAINING DOCUMENT. Empower your team with top of the line training docs. PITCHBOOKS. Check out these recommended pitchbook resources',
+    type: DataType.page,
+    parentPagesTitle: ['Using our brand', 'brand-training'],
+  },
+  {
+    url: '/using-our-brand/narrative/introduction',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Introduction',
+    content:
+      "Bringing Our Brand to Life. The Coronation brand goes beyond products and services—it's about creating meaningful connections and experiences. The Coronation brand story captures our history, values, mission, vision, and culture. It communicates our company's essence to employees, customers, investors, and the public, shaping how people perceive our identity and role in the market. This narrative fosters connection and understanding among all our stakeholders, reinforcing our brand's significance and purpose. In this section, we showcase how our Other Merchandise and Stationery reflect our values of quality, style, and craftsmanship. From stylish apparel to elegant writing tools, every item speaks to our dedication to excellence. Our innovative tools, like the QR Code Generator, offer functionality with a personal touch, making it easy for businesses and individuals to connect and engage. At the heart of it all are our Brand Ambassadors, who bring our offerings to life, and our Contact Personnel, whose expertise and support ensure that every interaction with Coronation is seamless and satisfying.",
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Introduction'],
+  },
+  {
+    url: '/using-our-brand/narrative/boiler-plates#Group',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Boiler Plates',
+    sectionTitle: 'About Coronation Group',
+    content:
+      'About Coronation Group. Coronation Art Gallery is a premier destination for art enthusiasts, showcasing exceptional works of art that embody cultural significance and creative brilliance. With a commitment to fostering artistic appreciation, the gallery aims to inspire and uplift through the magic of visual expression. For more information about the Coronation Art Gallery, please visit www.coronation.ng/art-gallery/',
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Boiler Plates'],
+  },
+  {
+    url: '/using-our-brand/narrative/boiler-plates#Asset%20Management%20Limited',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Boiler Plates',
+    sectionTitle: 'About Coronation Asset Management Limited',
+    content:
+      "About Coronation Asset Management Limited. Coronation Asset Management Limited is a distinguished leader in wealth management, investment management, and research, and is consistently recognised for its excellence in the financial services industry. With an impressive investment rating of A- from Agusto & Co., our firm is dedicated to providing innovative and effective financial solutions tailored to the unique needs of our clients. Our comprehensive suite of services includes Fund Management, offering access to both public and private funds, as well as infrastructure funds designed to meet diverse investment goals. Through our Portfolio Management services, we provide discretionary, non-discretionary, and execution-only management, alongside lending options against managed portfolios, ensuring our clients' assets are optimally managed and strategically leveraged. In addition, our Research division delivers insightful thematic research, as well as in-depth equity and fixed-income analysis, empowering our clients with the knowledge needed to navigate complex financial markets. Our commitment to excellence has earned us multiple accolades, including the Fastest Growing Fund Management Company in Nigeria 2020 from the Global Banking & Finance Awards, Asset Management Firm of the Year 2021 and Investment Research House of the Year 2021 from the BusinessDay Banking & Other Financial Institutions Awards. At Coronation Asset Management, we are driven by a passion for excellence, trust, and innovation, continually striving to provide transformational financial solutions that create lasting value for our clients",
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Boiler Plates'],
+  },
+  {
+    url: '/using-our-brand/narrative/boiler-plates#Capital%20Limited',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Boiler Plates',
+    sectionTitle: 'About Coronation Capital Limited',
+    content:
+      'About Coronation Capital Limited. Coronation Capital Limited is a premier financial services firm, dedicated to delivering state-of-the-art solutions to discerning clients with sophisticated investment needs. As a subsidiary of Coronation Group, our purpose is to create a prosperous future for our clients and the African continent. We combine strategic partnerships, a pedigree of excellence, and a deep understanding of the financial landscape to deliver valuable results to both institutional and individual clients. Our expertise spans three core areas: Financial Advisory, Financing Arrangement, and Investment Management. We offer unparalleled advisory services on alternative and illiquid investments, guiding clients through complex financial transactions, business valuations, and corporate restructuring. In financing arrangements, we assist companies and investors in raising capital, leveraging the Coronation brand to connect them with a broad network of credible investors. Our investment management services include private equity, venture capital, and portfolio management, where we help clients optimise their investment portfolios and capitalise on value-enhancing opportunities',
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Boiler Plates'],
+  },
+  {
+    url: '/using-our-brand/narrative/boiler-plates#Group%20Limited',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Boiler Plates',
+    sectionTitle: 'About Coronation Group Limited',
+    content:
+      "About Coronation Group Limited. Coronation Group Limited is a leading African Financial Markets Holding Company headquartered in Lagos Nigeria. As the holding company, it provides strategic oversight to a diverse portfolio of companies operating in the Financial Services, Technology, and Energy sectors across the continent. Coronation Group's Financial Services companies offer a comprehensive range of investment, lending, and assurance solutions tailored to address the unique needs of its clients. The Group holds non-operating investments in energy, technology, and consumer businesses, diversifying its presence in key sectors. Coronation Group's vision extends beyond the present, continuously evolving to meet the changing needs of its customers. For more information about Coronation Group and its subsidiaries, please visit www.coronation.ng.",
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Boiler Plates'],
+  },
+  {
+    url: '/using-our-brand/narrative/boiler-plates#Insurance%20Plc',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Boiler Plates',
+    sectionTitle: 'About Coronation Insurance Plc',
+    content:
+      "About Coronation Insurance Plc. Coronation Insurance Plc is a leading provider of non-life insurance solutions in Nigeria, with a legacy of over 60 years marked by an exceptional track record of claims payments. Through our subsidiary, Coronation Insurance Ghana, we also extend our services to the Ghanaian market, delivering comprehensive insurance coverage across various sectors. We offer a diverse range of insurance products designed to meet the unique needs of our clients. Our offerings include Property Insurance, Motor Insurance, Travel Insurance, Special Risks, and a wide array of Other Insurance solutions. Whether it's specialist home insurance, high-value motor vehicle insurance, or complex risk covers like Oil & Gas or Cyber Risk Insurance, Coronation Insurance provides tailored policies for every risk type. Our Bancassurance partnership with Access Bank Plc further enhances our service delivery, providing clients with convenient access to premium finance and corporate health check services. At Coronation Insurance, we are committed to delivering industry-leading insurance services that protect and empower our clients, ensuring their peace of mind through innovative and reliable risk management solutions. ",
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Boiler Plates'],
+  },
+  {
+    url: '/using-our-brand/narrative/boiler-plates#Insurance%20Ghana%20Limited',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Boiler Plates',
+    sectionTitle: 'About Coronation Insurance Ghana Limited',
+    content:
+      'About Coronation Insurance Ghana Limited. Coronation Insurance Ghana is a leading provider of comprehensive insurance solutions, offering a diverse portfolio of products and services that cater to both general and special risk businesses. Fully licensed to underwrite all classes of non-life insurance, we specialise in motor insurance, marine insurance, fire and special perils, goods-in-transit, all risks insurance, and more. Our expertise in risk management and actuarial services, honed over years of industry experience, has established us as one of the fastest-growing insurance companies in Ghana. We are dedicated to delivering value that extends beyond traditional insurance offerings, driven by a commitment to total customer satisfaction and an exceptional customer experience. With Coronation Insurance Ghana, you can trust that your business and assets are protected by products designed to meet your unique needs. Secure your future today with our comprehensive range of insurance solutions',
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Boiler Plates'],
+  },
+  {
+    url: '/using-our-brand/narrative/boiler-plates#Life%20Assurance%20Limited',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Boiler Plates',
+    sectionTitle: 'About Coronation Life Assurance Limited',
+    content:
+      'About Coronation Life Assurance Limited. Coronation Life Assurance Limited, a subsidiary of Coronation Insurance Plc, was licensed in 2016 and has since established itself as a leading player in digital insurance solutions. We are committed to providing innovative and comprehensive life insurance products tailored to meet the diverse needs of our clients. Through our strategic bancassurance partnership with Access Bank Plc, we offer seamless access to a broad range of life assurance products and services. Our offerings include Life Protection, Bancassurance, and Investment products designed to safeguard the financial futures of individuals and businesses alike. These include Term Assurance, Individual Life, Group Life, Endowment Policies, and Credit Protection. We also provide specialised solutions such as Key Management Risk Protection, investment-linked life policies, Annuities, and Retirement Planning services. At Coronation Life Assurance, we are dedicated to helping our clients protect what matters most, offering policies for every risk type and ensuring peace of mind through expertly crafted insurance solutions',
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Boiler Plates'],
+  },
+  {
+    url: '/using-our-brand/narrative/boiler-plates#Merchant%20Bank%20Limited',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Boiler Plates',
+    sectionTitle: 'About Coronation Merchant Bank Limited',
+    content:
+      'About Coronation Merchant Bank Limited. Coronation Merchant Bank was established in 2015 to provide wholesale banking to a long-underserved market. The Bank offers Corporate & Investment Banking, Private Banking/Wealth Management and Global Markets/Treasury Services to its niche clientele. It is the first and only merchant bank in Nigeria with an international risk rating (B- from Fitch). It presently has two branches in Abuja and Port Harcourt with its Head Office in Lagos, Nigeria. The Bank has been the recipient of numerous international and national awards including Best Investment Bank in Nigeria by Global Finance, Best Investment Bank in Nigeria by World Finance, Best Investment Bank in Nigeria by Global Banking & Finance Review, Best Investment Bank by Global Business Outlook, Best Investment Bank in Nigeria by International Finance and Best Investment Bank in Nigeria at the BusinessDay Banking and Financial Institution Awards.',
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Boiler Plates'],
+  },
+  {
+    url: '/using-our-brand/narrative/boiler-plates#Registrars%20Limited',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Boiler Plates',
+    sectionTitle: 'About Coronation Registrars Limited',
+    content:
+      'About Coronation Registrars Limited. Coronation Registrars Limited is a leading provider of registrar and data administration services, managing the shareholders of companies that collectively represent 40% of the Nigerian listed equity market capitalisation. As a trusted partner in the financial services industry, we are committed to delivering innovative and efficient solutions that meet the evolving needs of our clients. Our comprehensive range of Registrar & Data Management services includes advanced platforms like Coronation ShareholderLive, Coronation IssuerLive, and Coronation StockbrokerLive, designed to streamline shareholder management and enhance transparency. In Meetings Administration, we offer Coronation Virtual, a state-of-the-art solution for managing both physical and virtual shareholder meetings. We also specialise in Payment & Transfers, facilitating seamless Dividend Payment, Coupon Payment, and Interest Payment services. Our Research offerings provide valuable insights through Economic Intelligence Reports, Company News, Capital Market News, Industry Insight & Reports, and Peer Analytics, empowering our clients to make informed decisions. At Coronation Registrars, we are dedicated to excellence, leveraging technology and expertise to deliver superior service in registrar and data management.',
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Boiler Plates'],
+  },
+  {
+    url: '/using-our-brand/narrative/boiler-plates#Securities%20Limited',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Boiler Plates',
+    sectionTitle: 'About Coronation Securities Limited',
+    content:
+      'About Coronation Securities Limited. Coronation Securities Limited is a premier securities trading and stockbroking firm, proudly serving all segments of the investing public since 1992. With a distinguished track record in the Nigerian capital market, we have been privileged to advise on some of the most significant transactions in the industry, reinforcing our reputation as a trusted and experienced partner in financial services. Our comprehensive offerings include Equities Brokerage, where we provide both full-service and self-service accounts, supported by cutting-edge online digital trading platforms and securities lending services. In Fixed Income, we offer access to a wide range of sovereign and corporate debt securities, as well as mutual funds, catering to diverse investment needs. Our Research division delivers in-depth market research, investment portfolio analytics, and tailored investment advisory services, empowering our clients with the insights needed to make informed decisions. Additionally, our Advisory services encompass equity capital listings, debt capital listings, and capital raising, supporting businesses in their growth and expansion efforts. At Coronation Securities, we are committed to excellence, leveraging our deep market expertise and innovative solutions to deliver exceptional value to our clients',
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Boiler Plates'],
+  },
+  {
+    url: '/using-our-brand/narrative/boiler-plates#Trustees%20Limited',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Boiler Plates',
+    sectionTitle: 'About Coronation Trustees Limited',
+    content:
+      "About Coronation Trustees Limited. Coronation Trustees Limited is a leading provider of comprehensive estate planning and fiduciary services for both corporate and individual clients. As a proud subsidiary of Coronation Asset Management, we distinguish ourselves through our dedicated in-house team of qualified trust and fiduciary experts, offering personalised solutions that safeguard and enhance our clients' wealth across generations. Our suite of services includes meticulous Estate Planning and Fiduciary Services, encompassing the creation and management of Wills, Family Trusts, Living Trusts, and Lifestyle Asset Administration, ensuring that our clients' assets are expertly managed and seamlessly transferred according to their wishes. We also support philanthropic endeavours through the establishment and administration of tailored Philanthropy structures. In addition, we provide strategic Advisory Services designed to optimise our clients' financial portfolios and support their investment goals. Our expertise spans a wide range of financial instruments and services, including Corporate Bonds, Debentures, Loan Syndications, Collateral Trusts, and Fund Management. Through these services, we offer robust solutions that drive growth and provide stability in an ever-evolving financial landscape. At Coronation Trustees Limited, our commitment to excellence, integrity, and personalised service ensures that we consistently deliver trusted and innovative solutions that meet the unique needs of each client",
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Boiler Plates'],
+  },
+  {
+    url: '/using-our-brand/narrative/boiler-plates#Fiducia',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Boiler Plates',
+    sectionTitle: 'About Coronation Fiducia',
+    content:
+      'About Coronation Fiducia. Fiducia is a pioneering fintech company dedicated to transforming SME financing in Africa through innovative technology. Our platform empowers small and medium-sized enterprises by providing fast, simple, and reliable access to capital, enabling them to unlock growth and stability. With a focus on enhancing cash flow, increasing liquidity, and streamlining the financing process, Fiducia supports businesses in building robust supply chains and achieving sustainable success. Our mission is to create a marketplace where millions of African SMEs can easily secure the funding they need, fostering economic development across the continent',
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Boiler Plates'],
+  },
+  {
+    url: '/using-our-brand/narrative/boiler-plates#Trium%20Limited',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Boiler Plates',
+    sectionTitle: 'About Coronation Trium Limited',
+    content:
+      'About Coronation Trium Limited. We are the ‘Venture Builder’ business of one of Africa’s largest financial services ecosystems in Nigeria and are focused on digital technologies that have the potential to fundamentally improve lives. Our ecosystem is renowned for innovation and agility in building successful businesses.',
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Boiler Plates'],
+  },
+  {
+    url: '/using-our-brand/narrative/vertical-narrative',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Vertical Narrative',
+    content: '',
+    type: DataType.page,
+    parentPagesTitle: ['Narrative'],
+  },
+  {
+    url: '/using-our-brand/narrative/self-service-elements',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Self Service Elements',
+    content:
+      'Create custom QR codes quickly and easily with our user-friendly QR Code Generator. Whether you are linking to a website, sharing contact information, or promoting an event, our tool offers a variety of customisation options to suit your needs. Ideal for businesses, marketers, and individuals, the generator supports multiple formats and styles, ensuring your QR codes are both functional and visually appealing.',
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Self Service Elements'],
+  },
+  {
+    url: '/using-our-brand/narrative/other-merchandise',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Other Merchandise',
+    content:
+      "Our curated collection of branded merchandise highlights the unique identity of the Coronation brand. Featuring an array of items—from stylish apparel and accessories to distinctive branded pieces—these products embody our commitment to quality and design. Each piece in this collection reflects our brand values, serving as a representation of Coronation's dedication to excellence and innovation.",
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Other Merchandise'],
+  },
+  {
+    url: '/using-our-brand/narrative/other-stationeries',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Other Stationeries',
+    content:
+      "Our selection of branded stationery offers a glimpse into the refined aesthetic of the Coronation brand. From elegant notebooks and planners to sophisticated pens and art supplies, each item is designed to reflect our attention to detail and quality. These stationery items are not only functional but also serve as a testament to the Coronation brand's commitment to style and craftsmanship.",
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Other Stationeries'],
+  },
+  {
+    url: '/using-our-brand/narrative/brand-ambassadors',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Brand Ambassadors',
+    content:
+      'Our passionate brand ambassadors bring our products to life and connect us with our community. They showcase our merchandise, stationery, and tools like the QR Code Generator with enthusiasm and authenticity. By sharing their experiences, they highlight the quality and creativity of our brand and inspire others to explore our offerings.',
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Brand Ambassadors'],
+  },
+  {
+    url: '/using-our-brand/narrative/contact-personnel',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Contact Personnel',
+    content:
+      'Our dedicated professionals provide exceptional support and service to our customers. They are friendly, knowledgeable and efficient, ensuring you have a seamless experience while addressing any enquiries about our merchandise, the QR code generator or general questions about our offerings.',
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'Contact Personnel'],
+  },
+  {
+    url: '/using-our-brand/narrative/faqs',
+    documentTitle: 'Using our brand',
+    pageTitle: 'FAQs',
+    content:
+      "Narrative FAQs. What services does Coronation Capital Limited provide? Coronation Capital Limited specialises in Financial Advisory, Financing Arrangements, and Investment Management. We guide clients through complex transactions, raise capital, and manage portfolios to maximise long-term value and return on investment. What sectors does Coronation Group operate in? Coronation Group operates in the Financial Services, Technology, and Energy sectors across Africa. The Group provides strategic oversight for its subsidiaries and holds key investments in technology and energy industries. What insurance products does Coronation Insurance Plc offer? Coronation Insurance Plc provides a comprehensive suite of non-life insurance products, including Property Insurance, Motor Insurance, Travel Insurance, Special Risks, and more. Additionally, we offer tailored risk solutions including Oil & Gas Insurance and Cyber Risk Insurance. What services does Coronation Life Assurance Limited provide? Coronation Life Assurance Limited offers a broad range of life insurance solutions, such as Term Assurance, Group Life, Credit Protection, and Investment-linked Life Policies, designed to offer financial security and peace of mind to individuals and businesses. How can I  about the Coronation Art Gallery? The Coronation Art Gallery is a premier destination for showcasing culturally significant artworks. To , visit the gallery's page at https://coronation.ng/art-gallery/. What services does Coronation Registrars Limited provide? Coronation Registrars Limited specialises in Registrar & Data Management services, offering solutions like shareholder management platforms, virtual meeting administration, and payment services for dividends, coupons, and interests. Additionally, the company provides research insights for strategic decision-making. What is Fiducia’s role in the African market? Fiducia is a fintech company focused on providing accessible financing to small and medium-sized enterprises (SMEs) in Africa. By offering reliable and efficient access to capital, Fiducia fosters growth and stability within the SME sector, contributing to economic development. How do I use the QR Code Generator? The QR Code Generator allows users to create custom QR codes for linking to websites, sharing contact information, and more. With various customisation options, the tool ensures that your QR codes are both functional and visually appealing. Who are the Coronation brand ambassadors? Coronation brand ambassadors are dedicated individuals who showcase our products, including merchandise, stationery, and tools like the QR Code Generator. They engage with the community, share their experiences, and inspire others to explore the Coronation brand.",
+    type: DataType.page,
+    parentPagesTitle: ['Narrative', 'FAQs'],
+  },
+  {
+    url: '/using-our-brand/brand-application/introduction',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Introduction',
+    content:
+      "Building Consistency Across Every Touchpoint. At Coronation, our brand is more than just a logo—it's a representation of our values, identity, and professionalism. The Brand Application section provides the essential guidelines and resources needed to ensure consistent brand representation across every platform and medium. From Digital Branding and Email Communications to Print Materials and Merchandise, every element plays a crucial role in building and maintaining the Coronation brand. Our comprehensive toolkit includes everything from Email Signatures to Infographics, PowerPoint Presentations, and Uniform & Equipment guidelines. Additionally, we provide frameworks for managing Business Partnerships and Sponsorships and ensuring that our Tone of Voice is aligned across all communications. Whether you're engaging digitally or in person, these resources ensure that the Coronation brand remains strong, cohesive, and instantly recognizable.",
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Introduction'],
+  },
+  {
+    url: '/using-our-brand/brand-application/digital',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Digital',
+    content:
+      'Access resources for digital branding, including website design, social media visuals, and digital marketing materials, to maintain a cohesive brand presence across all digital platforms.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Digital'],
+  },
+  {
+    url: '/using-our-brand/brand-application/email',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Email',
+    content:
+      "Apply our email branding guidelines to maintain consistency and professionalism in all communications. Access templates, signature standards, and best practices for creating effective and cohesive email messaging. The email signature should measure 650px X150px and be constructed like the diagram on this page; Wordmark. The wordmark should appear in black and be centred within a 245px space on the left side of the signature with its width measuring 170px. Signature Copy. Position: Left aligned to the 245px mark and centred Business markerly to the height of the signature as indicated in the diagram. Individual's Name: Lato Black, Uppercase, 11pt | 14pt | Optical, 300 | 3px. Job Title: Lato Regular, Uppercase, 8.5pt | 10.5pt | Optical, 300 | 10px. Contact Numbers: Lato Regular, 7.5pt | 10pt | Optical, 25. E-mail Address: Lato Regular, 7.5pt | 10pt | Optical, 25 | 6px. Address Details: Lato Regular, Title Case, 7.5pt | 10pt | Optical, 25 | 6px. URL: Lato Regular, Lowercase, 7.5pt | 10pt | Optical, 25 | 6px. Separate different contact numbers and the address details from each other using a Business marker line (|) as indicated",
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Email'],
+  },
+  {
+    url: '/using-our-brand/brand-application/newsletter',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Newsletter',
+    content:
+      'Craft professional and brand-aligned newsletters by using our templates, design standards, and best practices to engage our audience effectively.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Newsletter'],
+  },
+  {
+    url: '/using-our-brand/brand-application/employee-network',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Employee Network',
+    content:
+      "Coronation is on a transformative journey to become Africa's leading investment management powerhouse, fully aligned with our vision of a Continent Transformed. At the core of this journey are diversity and inclusion. By embracing varied backgrounds, experiences, and perspectives, we cultivate an environment where innovation thrives, and every individual can excel. Our dynamic employee networks play a crucial role in fostering a sense of belonging and community. These networks, such as Coronation WIN, are platforms for collaboration, shared experiences, and mutual support, empowering us to build an inclusive culture together. Connect and collaborate with colleagues across the organisation through our Employee Network. Join groups, share insights, and build relationships that foster professional growth and a supportive work environment. Women Initiative Network (WIN). Dynamic platform for where women can thrive. Fosters gender inclusivity. Championing women development and advancement. Diverse perspectives of women are celebrated. A Network Patron will be appointed to serve as an advisor to the Network Leadership. In certain instances where there are less than 5 females, smaller entities will be consolidated to form an Entity Cluster",
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Employee Network'],
+  },
+  {
+    url: '/using-our-brand/brand-application/house-style',
+    documentTitle: 'Using our brand',
+    pageTitle: 'House Style',
+    content:
+      "We are committed to upholding a high standard of professionalism, courtesy, and respect for all who engage with the Coronation Ecosystem—clients, employees, and visitors alike. Whether receiving guests or utilising common spaces, our actions and behaviour should ensure that everyone who enters and exits our premises feels nothing short of royalty. To maintain this standard, we have established house rules, which we expect all stakeholders to observe. This guide is designed to ensure consistency and uniformity in our written and visual communication across all platforms. Adhering to these guidelines will strengthen our brand identity and help convey a professional image to our audience. Logo Usage: Provide specifications for logo usage, including size, colour variations, and clear space requirements. Colour Palette: Detail the primary and secondary colour palette for both print and digital media. Include hexadecimal codes for digital use and Pantone or CMYK values for print. Typography: Specify the fonts to be used for headings, subheadings, and body text. Include font sizes and formatting guidelines. Colour Palette: Detail the primary and secondary colour palette for both print and digital media. Include hexadecimal codes for digital use and Pantone or CMYK values for print. Voice and Tone: Define the preferred tone for communication. Whether it's formal, casual, or a specific brand personality, outline how our written content should sound to our audience. Grammar and Punctuation: Provide guidelines for common grammar and punctuation rules. Address any company-specific preferences or exceptions. Writing Style: Establish guidelines for writing style, such as preferred spelling (e.g., American English vs. British English), use of abbreviations, and writing for different mediums (web, print, social media). Visual Elements: Detail the guidelines for using images, graphics, and other visual elements in our materials. Include resolution requirements and preferred formats. Social Media Guidelines: Provide best practices for representing the company on social media platforms, including tone, content sharing, and engagement. Email Communication: Outline expectations for professional email communication, including formatting, signatures, and response times. Document Formatting: Specify guidelines for creating consistent documents, presentations, and other materials. Include templates when applicable. Accessibility Standards: Emphasize the importance of creating content that is accessible to all individuals, including those with disabilities. Provide guidelines for accessible design and content. Legal and Compliance: Ensure that all content complies with relevant legal standards and regulations. Include disclaimers or other necessary statements",
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'House Style'],
+  },
+  {
+    url: '/using-our-brand/brand-application/infographics/grouped',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Grouped',
+    content:
+      "Explore our library of infographics that transform complex data into concise, impactful visuals for presentations, reports, and social media. These infographics effectively communicate information and enhance understanding for any audience.  Infographics is a powerful visual tool for our brand to convey information, tell stories, and engage audience. When creating infographics for our brand, it's essential to ensure they align with our core brand identity and effectively communicate the presenter's message.",
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Infographics', 'Grouped'],
+  },
+  {
+    url: '/using-our-brand/brand-application/infographics/ungrouped',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Ungrouped',
+    content:
+      "Infographics is a powerful visual tool for our brand to convey information, tell stories, and engage audience. When creating infographics for our brand, it's essential to ensure they align with our core brand identity and effectively communicate the presenter's message.",
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Infographics', 'Ungrouped'],
+  },
+  {
+    url: '/using-our-brand/brand-application/powerpoint-and-presentations/corporate#overview',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Corporate',
+    sectionTitle: 'Overview',
+    content:
+      "Enhance your visual storytelling with our wide range of customisable PowerPoint templates, designed to deliver impactful and professional presentations for any occasion. For many of our customer's our website and other digital elements will be their first contact with Coronation's brand so it is vital that these elements are in line with our branding guidelines.",
+    type: DataType.page,
+    parentPagesTitle: [
+      'Brand Application',
+      'Powerpoint Presentations',
+      'Corporate',
+    ],
+  },
+  {
+    url: '/using-our-brand/brand-application/powerpoint-and-presentations/corporate#Cover,%20Divider%20&%20End%20Slides',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Corporate',
+    sectionTitle: 'Cover, Divider & End Slides',
+    content:
+      "Corporate Presentation Template. Cover, Divider & End Slides. A PowerPoint presentation must implement the elements of Coronation's corporate identity. It should be clear from viewing any and every slide in a presentation which brand is being represented. Every slide must contain the same branding - using uniform colours, fonts, images, and graphics helps to reinforce our brand. These contain the logo, a background picture, and a title band that contains the name and date of the presentation, and the Coronation Business marker name. The title band extends across the width of the slide for on cover. On the divider and end slides, this band is smaller, and the length can be adjusted to accommodate the copy it needs to contain. A template has been provided for use, see the link below. Avoid deviations, from this design, and do not design your own templates.",
+    type: DataType.page,
+    parentPagesTitle: [
+      'Brand Application',
+      'Powerpoint Presentations',
+      'Corporate',
+    ],
+  },
+  {
+    url: '/using-our-brand/brand-application/powerpoint-and-presentations/corporate#Copy%20Slides',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Corporate',
+    sectionTitle: 'Copy Slides',
+    content:
+      'Copy Slides. Several iterations of copy slides have been provided in the template for different types of content. If you have more content than will fit into one slide, split information into more slides to avoid making the copy smaller in order to ensure legibility. A template has been provided for use, see the link below. Avoid deviations, from this design, and do not design your own templates',
+    type: DataType.page,
+    parentPagesTitle: [
+      'Brand Application',
+      'Powerpoint Presentations',
+      'Corporate',
+    ],
+  },
+  {
+    url: '/using-our-brand/brand-application/powerpoint-and-presentations/corporate#Copy%20&%20Image%20Slides',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Corporate',
+    sectionTitle: 'Copy & Image Slides',
+    content:
+      'Copy & Image Slides. Images add interest and can help to break up copy-heavy slides. Refer to page xx for the corporate photography guidelines. If you have more content than will fit into one slide, split information into more slides to avoid making the copy smaller in order to ensure legibility. A template has been provided for use, see the link below. Avoid deviations, from this design, and do not design your own templates.',
+    type: DataType.page,
+    parentPagesTitle: [
+      'Brand Application',
+      'Powerpoint Presentations',
+      'Corporate',
+    ],
+  },
+  {
+    url: '/using-our-brand/brand-application/powerpoint-and-presentations/corporate#Graph%20Slides',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Corporate',
+    sectionTitle: 'Graph Slides',
+    content:
+      'Graph Slides. Charts and infographics present information in an easily digestible way. Edit the charts and tables in the template provided, or build your own using the same style, fonts, and colours as these examples. If the use of icons is necessary, choose simple, one-colour icons similar to the ones used in the master slides provided. A template has been provided for use, see the link below. Avoid deviations, from this design, and do not design your own templates.',
+    type: DataType.page,
+    parentPagesTitle: [
+      'Brand Application',
+      'Powerpoint Presentations',
+      'Corporate',
+    ],
+  },
+  {
+    url: '/using-our-brand/brand-application/powerpoint-and-presentations/corporate#Table%20Slides',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Corporate',
+    sectionTitle: 'Table Slides',
+    content:
+      'Table Slides. This page shows the two table styles provided in the master template. These have been built to accommodate different densities of information - choose the one that most suits the information you need to convey. A template has been provided for use, see the link below. Avoid deviations, from this design and do not design your own templates.',
+    type: DataType.page,
+    parentPagesTitle: [
+      'Brand Application',
+      'Powerpoint Presentations',
+      'Corporate',
+    ],
+  },
+  {
+    url: '/using-our-brand/brand-application/powerpoint-and-presentations/consumer',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Consumer',
+    content:
+      "For many of our customer's our website and other digital elements will be their first contact with Coronation's brand so it is vital that these elements are in line with our branding guidelines. Consumer Presentation Template. All Slides. The slides for consumer-facing presentations use the same layout and design as the master template used for corporate presentations. More colour and image options have been supplied for the cover, divider, end slides and copy + image slides. Images may be changed to suit the content of the presentations as long as the chosen images follow the photography guidelines set out on page 20 of this document. A template has been provided for use, see link below. Avoid deviations, from this design and do not design your own templates.",
+    type: DataType.page,
+    parentPagesTitle: [
+      'Brand Application',
+      'Powerpoint Presentations',
+      'Consumer',
+    ],
+  },
+  {
+    url: '/using-our-brand/brand-application/publications/brochure#overview',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Brochure',
+    sectionTitle: 'Overview',
+    content:
+      'In an age where marketing is increasingly focused on digital, its easy to dismiss print. This can be a mistake - printed materials allow more time for detail, are more likely to be kept for a length of time, more likely to be passed on and have been proven to have a higher recall with consumers than many other mediums.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Publications', 'Brochure'],
+  },
+  {
+    url: '/using-our-brand/brand-application/publications/brochure#Brochures',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Brochure',
+    sectionTitle: 'Brochures',
+    content:
+      'Brochures. Brochures are A4 finished size in portrait format and have a saddle stitched (or stapled) binding. This means that the page count must always be divisible by four. Text Box Colour: Any of the bright colours from the consumer palette, 90% capacity. Position: left aligned to the 245px mark and centered Business markerly. Copy Text Colou: Black or white, whichever is more legible. Corporate. The contents of brochures will vary from product to product. The example on this page shows a spread containing copy and a comparative table. Be sure to adhere to the font, Corporate colour palette and Corporate photography guidelines. Consumer. The brochure should include a spread containing copy and a lifestyle image to inject warmth. Be sure to adhere to the font, Consumer colour palette and Consumer photography guidelines.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Publications', 'Brochure'],
+  },
+  {
+    url: '/using-our-brand/brand-application/publications/brochure#Event%20Brochures',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Brochure',
+    sectionTitle: 'Event Brochures',
+    content:
+      'Event Brochures. Event brochures are multi-faceted, they serve as a crucial tool for communication and promotion in the context of an event',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Publications', 'Brochure'],
+  },
+  {
+    url: '/using-our-brand/brand-application/publications/flyers',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Flyers',
+    content:
+      'Flyers are a much more condensed version of information than a brochure. Use these to highlight one service offering or a promotion. These are printed at A5 size in landscape format and are double-sided. Refer to landscape print advertising for guidelines on how to lay out the front side. The back of the flyer contains the product/promotion information and space allowing, may make use of a second lifestyle image. Flyers are intended only for Consumers. Be sure to adhere to the font, Consumer colour palette and Consumer photography guidelines',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Publications', 'Flyers'],
+  },
+  {
+    url: '/using-our-brand/brand-application/publications/press-release',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Press Release',
+    content:
+      "Press releases are functional and must, above all else be easy to read and understand. The layout follows the same guidelines as set out for the Internal Memo. Please also pay attention to Coronation's Copy Tone.",
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Publications', 'Press Release'],
+  },
+  {
+    url: '/using-our-brand/brand-application/publications/annual-report#overview',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Annual Report',
+    sectionTitle: 'Overview',
+    content:
+      'In an age where marketing is increasingly focused on digital, its easy to dismiss print. This can be a mistake - printed materials allow more time for detail, are more likely to be kept for a length of time, more likely to be passed on and have been proven to have a higher recall with consumers than many other mediums.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Publications', 'Annual Report'],
+  },
+  {
+    url: '/using-our-brand/brand-application/publications/annual-report#Cover',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Annual Report',
+    sectionTitle: 'Cover',
+    content:
+      "Cover. The purpose of an Annual Report is to provide disclosure of the company's yearly performance to shareholders and other stakeholders. Although the audience may be Corporate or Consumer, the information is about Coronation's own activities, so the Corporate colour palette and photography styles are used. Annual Reports are produced at an A4 finished size. Binding may be saddle-stitched or perfect-bound depending on the number of pages contained in the publication. The look of a report will change from year to year, the covers illustrated on this page serve as examples only. For the font page, follow roughly the same guidelines as for portrait advertising with some allowance made for point size of the title of the report. Be sure to adhere to Corporate colour palette and Corporate photography guidelines",
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Publications', 'Annual Report'],
+  },
+  {
+    url: '/using-our-brand/brand-application/publications/annual-report#Copy%20Layout',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Annual Report',
+    sectionTitle: 'Copy Layout',
+    content:
+      "Copy Layout. Annual Reports contain many different types of information, which necessitates different types of layouts. A copy heavy layout like the CEO's statement shown below is made easier to digest by using a two-column layout and breaking the copy up with pull quotes and an image. The Director's Report example has less text but includes a simple table and allows room for an image and pull quote for interest on the opposite page. The look of a report will change from year to year, the layouts illustrated on this page serve as examples only. Be sure to adhere to the font, Corporate colour palette and Corporate photography guidelines as set out in this brand portal",
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Publications', 'Annual Report'],
+  },
+  {
+    url: '/using-our-brand/brand-application/publications/annual-report#Financial%20Statements',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Annual Report',
+    sectionTitle: 'Financial Statements',
+    content:
+      'Financial Statements. The most important consideration on these pages is legibility. This can be achieved by avoiding overcrowding on the page to allow the information room to breathe. Be sure to adhere to the font, Corporate colour palette and Corporate photography guidelines as set out in this brand portal.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Publications', 'Annual Report'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/business-cards',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Business Cards',
+    content:
+      "Business cards measure 90 x 50mm and are printed double-sided in 1 colour (Pantone Black 3). Wordmark. The wordmark occupies one side of the business card on its own. It appears in white, centred to the card on a plain black field. Wordmark width= 75% of the width of the card (67,5mm). Details (Card Reverse) The back of the card contains all of the contact details printed in black on a white field. Text Area: Allow an 8mm margin around the entire card - all information must be contained in the remaining space (measuring 74 x 34mm) Name of company vertical: Lato Black, Uppercase, 8.5pt | 10.5pt | Optical, 300 | 2mm. Individual's Name: Lato Black, Uppercase, 8.5pt | 10.5pt | Optical, 300. Job Title: Lato Regular, Uppercase, 8.5pt | 10.5pt | Optical, 300 | 4mm. Contact Numbers: Lato Regular, 7pt | 9,5pt | Optical, 25. E-mail Address: Lato Regular, 7pt | 9,5pt | Optical, 25 | 2mm. Address Details: Lato Regular, Title Case, 7pt | 9,5pt | Optical, 25 | 2mm. URL: Lato Regular, Lowercase, 7pt | 9,5pt | Optical, 25",
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Business Cards'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/letterheads#Overviews',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Letterheads',
+    sectionTitle: 'Overviews',
+    content:
+      'Letterheads are A4 (210 x 297mm), printed in 1 colour (black), with exceptions made when an endorsement logo must be included as per the example on this page. Unless otherwise specified type is black and set as follows:Left aligned (ragged right), Lato Regular, Sentence Case, 9.5pt | 12.5pt | Optical, 0 | 3mm',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Letterheads'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/letterheads#Wordmark',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Letterheads',
+    sectionTitle: 'Wordmark',
+    content:
+      'Wordmark. The wordmark must be placed in the top right hand corner of the letterhead. Wordmark width= 25% of the width of the page. Use the N spacer to determine the distances between edges and different elements as illustrated in the diagram on this page.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Letterheads'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/letterheads#Company%20Details',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Letterheads',
+    sectionTitle: 'Company Details',
+    content:
+      'Company Details. The Company details are left aligned under the logo and must follow the sizing set out below. Position:left aligned under the logo. Name of company vertical:Lato Bold, Title Case, 8.5pt | 11.5pt | Optical, 0 | 1mm. Address Details:Lato Regular, Title Case, 7pt | 10pt | Optical, 0 | 0 or 1mm. Group like information together ( physical address and postal address together, phone numbers together etc. ) by not adding spaces after these lines. Seperate these groups by adding a 1mm space after each.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Letterheads'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/letterheads#Type%20Area',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Letterheads',
+    sectionTitle: 'Type Area',
+    content:
+      'Type Area. Determine the type area using the N spacers as set out in the diagram on this page. This ensures consistency and neatness in all communications. Do not allow copy to exceed the bounds of this area, instead use a continuation sheet (see page 25).',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Letterheads'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/letterheads#Addressee',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Letterheads',
+    sectionTitle: 'Addressee',
+    content:
+      "Addressee. The position of the addressee's details is carefully measured to ensure that they appear in the windows of DL, C5 and C4 envelopes. Name and Surname: Lato Bold, Title Case, 1mm space after. Address Details:Title Case. No spaces between the address lines, as doing so would exceed the size of the envelope windows. 6mm space between the address and the date.",
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Letterheads'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/letterheads#Body',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Letterheads',
+    sectionTitle: 'Body',
+    content:
+      'Body. Date:Title Case, 3mm space after. Subject line:Lato Bold, Title Case, 6mm space after. Sign off:Right aligned, Title Case, 18mm space after (this allows enough space for a signature)',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Letterheads'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/letterheads#Footer',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Letterheads',
+    sectionTitle: 'Footer',
+    content:
+      'Footer. Directors (title):Lato Bold, Uppercase, 6pt | 9pt | Optical, 0 | 0mm. Directors (names):Lato Bold, Title Case, 6pt | 9pt | Optical, 0 | 1mm. Legal Line:Lato Italic, 70% Black, 5.5pt | 8.5pt | Optical, 0. Endorsement logo:(only if required) Must be contained in the space illustrated and may not exceed the visual weight of the Coronation wordmark.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Letterheads'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/continuation-sheet#Overviews',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Continuation Sheet',
+    sectionTitle: 'Overviews',
+    content:
+      "Continuation sheets follow the same guidelines as the letterhead (see page 24), but do not need to contain company details beyond the wordmark and URL. Please note the difference in spacing of the header and footer as set out in the diagram on this page. Note: This stationery may only be used in conjunction with the letterhead, never on it's own. Unless otherwise specified type is black and set as follows: Left aligned (ragged right), Lato Regular, Sentence Case, 9.5pt | 12.5pt | Optical, 0 | 3mm",
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Continuation Sheet'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/continuation-sheet#Wordmark',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Continuation Sheet',
+    sectionTitle: 'Wordmark',
+    content:
+      'Wordmark. The wordmark must be placed in the top right hand corner of the letterhead. Wordmark width = 25% of the width of the page. Use the N spacer to determine the distances between edges and different elements as illustrated in the diagram on this page.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Continuation Sheet'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/continuation-sheet#Type%20Area',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Continuation Sheet',
+    sectionTitle: 'Type Area',
+    content:
+      'Type Area. Determine the type area (indicated in green) using the N spacers as set out in the diagram on this page. This ensures consistency and neatness in all communications.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Continuation Sheet'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/continuation-sheet#Body',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Continuation Sheet',
+    sectionTitle: 'Body',
+    content:
+      'Body. Body copy: As specified above. Sign off: Right aligned, Title Case, 18mm space after (this allows enough space for a signature)',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Continuation Sheet'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/continuation-sheet#Footer',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Continuation Sheet',
+    sectionTitle: 'Footer',
+    content: 'Footer. URL: Lato Bold, Lowercase, 7pt | 10pt | Optical, 0',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Continuation Sheet'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/compliment-slips',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Compliment Slips',
+    content:
+      'Compliments slips measure 210 x 99mm and are printed in 1 colour (black). Wordmark. The wordmark must be placed in the top right hand corner of the compliments slip. Wordmark width = 25% of the width of the page. Use the N spacer to determine the distances between edges and different elements as illustrated in the diagram on this page. With Compliments Title. Lato Light, Uppercase, 19pt | Auto | Optical, 100. Company Details. Position: Left aligned under the title, on the bottom left. Name of company vertical: Lato Bold, Title Case, 8.5pt | 11.5pt | Optical, 0 | 1mm. Address Details: Lato Regular, Title Case, 7pt | 10pt | Optical, 0 | 0. Contact Numbers: Lato Regular, Title Case, 7pt | 10pt | Optical, 0 | 1,5mm. E-mail & URL: Lato Regular, Lowercase, 7pt | 10pt | Optical, 0. Separate physical and postal address, different contact numbers and the e-mail and URL from each other using a vertical line (|).',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Compliment Slips'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/envelope',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Envelope',
+    content:
+      'In Coronation, there are four types of envelope; These are; DL Window Envelope. C5 Window Envelope. C4 Window Envelope. C3 Window Envelope. DL & C5. Wordmark placement - use the N spacer to determine the placement of the logo as demonstrated in the diagrams on this page. Address placement - the baseline of the address lines up with the baseline of the wordmark, use the N spacer to determine = the distance from the left edge of the envelope as demonstrated in the diagrams on this page. DL Window Envelope. Finished size: 220 x 110mm. Wordmark width: 25% of the width of the envelope (55mm) C5 Window Envelope. Finished size: 220 x 162mm. Wordmark width: 25% of the width of the envelope. C4 & C3. Wordmark placement - use the N spacer to determine the placement of the logo as demonstrated in the diagrams on this page. C4 Window Envelope. Finished size: 229 x 324mm. Wordmark width: 225% of the width of the envelope (57,25mm) C3 Window Envelope. Finished size: 324 x 458mm. Wordmark width: 25% of the width of the envelope (81mm)',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Envelope'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/memo#Overviews',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Memo',
+    sectionTitle: 'Overviews',
+    content:
+      "A memo (also known as a memorandum, or 'reminder') is used for internal communications regarding procedures or official business within an organization. Memo is a message which is sent to a large group of employees, i.e., an entire department or everyone at the company. Please also pay attention to Coronation's Copy Tone. The Internal Memo follows the same guidelines as the letterhead (see page 24), but do not need to contain company details beyond the wordmark and URL. Unless otherwise specified type is black and set as follows: Left aligned (ragged right), Lato Regular, Sentence Case, 9.5pt | 12.5pt | Optical, 0 | 3mm",
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Memo'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/memo#Wordmark',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Memo',
+    sectionTitle: 'Wordmark',
+    content:
+      'Wordmark. The wordmark must be placed in the top right hand corner of the letterhead. Wordmark width = 25% of the width of the page. Use the N spacer to determine the distances between edges and different elements as illustrated in the diagram on this page.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Memo'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/memo#Type Area',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Memo',
+    sectionTitle: 'Type Area',
+    content:
+      'Type Area. Determine the type area (as indicated in green) using the N spacers as set out in the diagram on this page. This ensures consistency and neatness in all communications. Do not allow copy to exceed the bounds of this area.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Memo'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/memo#Title',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Memo',
+    sectionTitle: 'Title',
+    content:
+      'Title. 70% black. Lato Black, Uppercase, 24pt | Auto | Optical, 75 | 6mm',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Memo'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/memo#Subject',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Memo',
+    sectionTitle: 'Subject',
+    content: 'Subject. Lato Bold, 6mm space after',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Memo'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/memo#Body',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Memo',
+    sectionTitle: 'Body',
+    content:
+      'Body. Body copy: As specified above. Sign off: Right aligned, Title Case, 18mm space after (this allows enough space for a signature)',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Memo'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/memo#Footer',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Memo',
+    sectionTitle: 'Footer',
+    content: 'Footer. URL: Lato Bold, Lowercase, 7pt | 10pt | Optical, 0',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Stationery', 'Memo'],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/security-and-tags-lanyards#Overviews',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Security Tags & Lanyards',
+    sectionTitle: 'Overviews',
+    content:
+      'Security tags are used to easily identify who does and does not belong in the building and are an essential component of workplace safety. These must be made of durable materials, which are more environmentally friendly more difficult to copy than paper versions.',
+    type: DataType.page,
+    parentPagesTitle: [
+      'Brand Application',
+      'Stationery',
+      'Security Tags & Lanyards',
+    ],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/security-and-tags-lanyards#Staff%20Security%20Tags',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Security Tags & Lanyards',
+    sectionTitle: 'Staff Security Tags',
+    content:
+      'Staff Security Tags. These are double-sided. One side is black with the Coronation wordmark in white and the second side contains the following employee details: ID photo - clear pic, easy to identify person from image. Name. Staff ID number. Joined Date. Barcode - to be scanned on entrance and exit of building',
+    type: DataType.page,
+    parentPagesTitle: [
+      'Brand Application',
+      'Stationery',
+      'Security Tags & Lanyards',
+    ],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/security-and-tags-lanyards#Visitor%20Security%20Tags',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Security Tags & Lanyards',
+    sectionTitle: 'Visitor Security Tags',
+    content:
+      'Visitor Security Tags. These are double-sided. Both sides contain the same information so that a visitor is always easily identifiable: Large, easily visible red “V” to denote a visitor. Barcode - to be scanned on entrance and exit of building.White Coronation wordmark contained in a black band (please adhere to the clear space rules for the logo on page xx).',
+    type: DataType.page,
+    parentPagesTitle: [
+      'Brand Application',
+      'Stationery',
+      'Security Tags & Lanyards',
+    ],
+  },
+  {
+    url: '/using-our-brand/brand-application/stationery/security-and-tags-lanyards#Lanyards',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Security Tags & Lanyards',
+    sectionTitle: 'Lanyards',
+    content:
+      'Lanyards. Lanyards are black with a white Coronation wordmark repeated along their length and use a red stitching detail. Choose high quality materials that are long-wearing.',
+    type: DataType.page,
+    parentPagesTitle: [
+      'Brand Application',
+      'Stationery',
+      'Security Tags & Lanyards',
+    ],
+  },
+  {
+    url: '/using-our-brand/brand-application/forms/form-types#Form%20Types',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Form Types',
+    sectionTitle: 'Form Types',
+    content:
+      'Form Types. Almost all of our clients will interact with our forms at come point in their relationship with Coronation. It is very important that they are as user-friendly and consistent as possible. There are three types of form samples: Corporate Forms. Consumer Forms. Internal Forms',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Forms', 'Form Types'],
+  },
+  {
+    url: '/using-our-brand/brand-application/forms/form-types#Corporate%20Forms',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Form Types',
+    sectionTitle: 'Corporate Forms',
+    content:
+      'The wordmark must be placed in the top right hand corner of the letterhead. Wordmark width = 25% of the width of the page. Use the N spacer to determine the distances between edges and different elements as illustrated in the diagram on this page. All corporate-facing (Business to Business) forms use black and the orange from the Corporate palette.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Forms', 'Form Types'],
+  },
+  {
+    url: '/using-our-brand/brand-application/forms/form-types#Consumer%20Forms',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Form Types',
+    sectionTitle: 'Consumer Forms',
+    content:
+      'Consumer Forms. The wordmark must be placed in the top right hand corner of the letterhead. Wordmark width = 25% of the width of the page. Use the N spacer to determine the distances between edges and different elements as illustrated in the diagram on this page. All consumer-facing (Individual) forms use black and the green from the Corporate palette.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Forms', 'Form Types'],
+  },
+  {
+    url: '/using-our-brand/brand-application/forms/form-types#Internal%20Forms',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Form Types',
+    sectionTitle: 'Internal Forms',
+    content:
+      'Internal Forms. The wordmark must be placed in the top right hand corner of the letterhead. Wordmark width = 25% of the width of the page. Use the N spacer to determine the distances between edges and different elements as illustrated in the diagram on this page. All forms for internal use appear exclusively in shades of grey.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Forms', 'Form Types'],
+  },
+  {
+    url: '/using-our-brand/brand-application/forms/form-construction#Form%20Construction',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Form Construction',
+    sectionTitle: 'Form Construction',
+    content:
+      'Form Construction. Forms must be set in InDesign and are A4 (210 x 297mm), printed in 2 colours (black + 1 Pantone colour). The example on this page uses the orange from the coporate palette, for consumer facing forms, use the light green from the palette specified for consumer-facing materials. Internal forms are printed in 1 colour only (black).',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Forms', 'Form Construction'],
+  },
+  {
+    url: '/using-our-brand/brand-application/forms/form-construction#Form%20Header',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Form Construction',
+    sectionTitle: 'Form Header',
+    content:
+      'Form Header. The top of the form is reserved for any necessary instructions. These will vary depending on the contents of the form but may contain directions as to how to fill in the form, inclusions like ID photos, contact details not included at the bottom of the form and more. This information is always on a white background. Use the specifications below to set copy and refer to the examples on this page of different uses of the form header. Position: within the margins, at least 1 N spacer below the logo. Allow 2 N spacers if dense information or space for an ID photo falls directly below the wordmark.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Forms', 'Form Construction'],
+  },
+  {
+    url: '/using-our-brand/brand-application/forms/form-construction#Form%20Field',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Form Construction',
+    sectionTitle: 'Form Field',
+    content:
+      'Form Field Text Box. Draw a text box (illustrated in orange) inside the margins of the page as previously determined by the N spacer. Fill the text box with 50% of the colour being used for the form (Pantone 151U for corporate-facing and 382U for consumer-facing forms). Colour is used to indicate the sections of the form that the applicant must fill out. Where space allows, position this at least 1 N spacer below the contents of the form header. This text box will house a table to help keep alignment and form fields consistent. Form Field Table. Insert a table containing 36 columns and as many rows as fill the text box. Centre this table in the text box. Next, select the whole table and set the stroke to 0.25pt wide and 50% of the colour being used for the form. This makes the table an invisible base in which to set information. Table Rows. The height of each row of the table will vary depend on the purpose of the row. Row heights are as follows: Top spacer row: 2.5mm | no fill. Section heading: 4.5mm | 100% form colour. Spacer: 1.058 mm | no fill (this is the minimum height that InDesign allows for a table row). Form field: 5mm | no fill for instruction cells, white fill for content cells. Spacer with copy: 3 mm | no fill (this is sometimes neccessary when copy needs to be contained above or below a form field). Section spacer: 1.5 mm | no fill (this is the space before a new section heading). Text area variable: | no fill. The text field illustrated on this page is 5mm high but the height of this row will vary depending on how much information it contains. Text fields are used for declarations, disclaimers and terms. Note: The space at the bottom of a form field text box will naturally vary depending on the content of the form. Wherever possible, avoid leaving less space than the top spacer row (2.5mm).',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Forms', 'Form Construction'],
+  },
+  {
+    url: '/using-our-brand/brand-application/forms/form-construction#Form%20Field%20Types',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Form Construction',
+    sectionTitle: 'Form Field Types',
+    content:
+      'Form Field Types. Table cells can be merged to create space for instrucitons or white form fields as needed. The examples below are some of the fields you may need to construct a form. Blank field- these can house almost any kind of information that does not have to have a counted number of characters. Field with guideline- text added to a blank field to guide the applicant with the order and content of the form field. Multi-line field - in some cases, two or more lines will be required to house information like addresses, descriptions or lists. Do not add spacers between the rows of at multi-line field to separate them. Counted field- use a counted field when a specific number digits is required, e.g. bank verification numbers, account numbers, etc. Date field- these contain a text guideline so that the formatting of dates in the form is standard. Take note of the two different types in the examples on this page. Tick boxes- single cell boxes used for selecting a range of options. Signature field- must reasonably sized for a signature, Allow 3 rows and 10 cells or more across if the space is available. Company seal field- must be large enough to contain a company seal/stamp. Allow 6/7 rows and at least 14 cells across.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Forms', 'Form Construction'],
+  },
+  {
+    url: '/using-our-brand/brand-application/forms/form-construction#Copy%20Sizes',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Form Construction',
+    sectionTitle: 'Copy Sizes',
+    content:
+      'Copy Sizes. Unless indicated otherwise, all text must be centered vertically within the table cells. Follow the guidelines set out below to ensure consistency on all forms. Form title: Lato Black, Uppercase, 100% form colour 12pt | 14pt | Optical, 0 | 2mm (or 0mm if adding form type). Form type (optional): Lato Bold, Uppercase, 100% black 8pt | 10pt | Optical, 0 | 2mm. Form number (where applicable): Lato Bold, Title case, 100% black 8pt | 10pt | Optical, 0 | 2mm (same line as form type).Instructions: Lato Semibold, headline Uppercase/ body copy Sentence case, 70% black 5pt | 6.6pt | Optical, 0 | 0mm. Note: an exception is made for when the header contains form fields. Section heading: Lato Black, white, 8.5pt | Auto | Optical, 0. Form field: instruction Lato Medium, Sentence case, 100% black 7pt | Auto | Optical, 0 | instructions on the far left are left aligned and those placed elsewhere are right aligned in the cell. Small form field: instruction Lato Semibold, Sentence case, 100% black 5pt | Auto | Optical, 0 | same alignments above applies (these are used when fields relate back to another form field instruction like options for a title or when space is limited). Form field guideline: Lato Black, Uppercase, 30% form colour 7pt | Auto | Optical, 0 | left aligned or centered depending on the field - see variations in the example on this page (these help to guide the applicant with the order and content of the form field). Copy in spacer: Lato Semibold, Sentence case, 100% black 5pt | Auto | Optical, 0 | usually centered over the form field that the copy applies to. Text field: Lato Semibold, Sentence case, 100% black 5pt | Auto | Optical, 0 | left aligned',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Forms', 'Form Construction'],
+  },
+  {
+    url: '/using-our-brand/brand-application/forms/form-construction#Office%20Use%20Sections',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Form Construction',
+    sectionTitle: 'Office Use Sections',
+    content:
+      "Office Use Sections. Just as colour is used to indicate the sections of the form that the applicant must fill out, white sections of the form indicate form fields that are meant for Coronation's use. The text box that contains the form field table has no colour fill in these sections. Section titles, copy colour and size remain the same. All form fields must be outlined using 50% of the form colour",
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Forms', 'Form Construction'],
+  },
+  {
+    url: '/using-our-brand/brand-application/forms/form-folder#Form%20Folder',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Form Folder',
+    sectionTitle: 'Form Folder',
+    content:
+      'Form Folder. Just like the forms, we have forms folders for these forms. Corporate Form Folder. Consumer Form Form Folder',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Forms', 'Form Folder'],
+  },
+  {
+    url: '/using-our-brand/brand-application/forms/form-folder#Corporate%20Form%20Folder',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Form Folder',
+    sectionTitle: 'Corporate Form Folder',
+    content:
+      'Corporate Form Folder. Follow the same guidelines as set out for A4 portrait adverts on page 44 to lay out the covers of form folders. The wordmark may be displayed in black or white depending on what provides the most contrast to the background image. If using a detailed image that compromises the visability of the wordmark, make use of a holding device (see page 44 for further instruction on this). Use the N spacer to determine the distances between edges and different elements as illustrated in the diagrams on this page. Text Box. Colour: Any of the bright colours from the consumer palette, 90% opacity. Position: as illustrated. COPY. Text colour: Black or white, whichever is more legible. Refer to page 44 for details regarding point size and weights of copy. IMAGE. Full colour lifestyle image (refer to page XX for more consumer photography guidelines). FOLDER COLOUR. Match the chosen colour from the text box and apply this to the spine, back and inside of the folder at 100% opacity.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Forms', 'Form Folder'],
+  },
+  {
+    url: '/using-our-brand/brand-application/forms/form-folder#Consumer%20Form%20Folder',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Form Folder',
+    sectionTitle: 'Consumer Form Folder',
+    content:
+      'Consumer Form Folder. Follow the same guidelines as set out for A4 portrait adverts on page 44 to lay out the covers of form folders. The wordmark may be displayed in black or white depending on what provides the most contrast to the background image. If using a detailed image that compromises the visability of the wordmark, make use of a holding device (see page 44 for further instruction on this). Use the N spacer to determine the distances between edges and different elements as illustrated in the diagrams on this page. Text Box. Colour: Any of the bright colours from the consumer palette, 90% opacity. Position: as illustrated. COPY. Text colour: Black or white, whichever is more legible. Refer to page 44 for details regarding point size and weights of copy. IMAGE. Full colour (lifestyle image refer to page XX for more consumer photography guidelines). FOLDER COLOUR. Match the chosen colour from the text box and apply this to the spine, back and inside of the folder at 100% opacity.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Forms', 'Form Folder'],
+  },
+  {
+    url: '/using-our-brand/brand-application/tone-of-voice',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Tone of Voice',
+    content:
+      "As a brand, you're not just talking to customers, you're talking to people. It is imperative to get the tone of language used just right to bring across the correct personality of the brand. Copy tone can be the difference between connecting with your potential consumer or not. And this, in turn, affects a potential sale. Coronation's copy tone finds the sweet spot where confidence, drive and resourcefulness meet. However, it never sounds unapproachable. The tone embodies an esteem that reassures financial experts but also a personality that doesn't look down on those that aren't at that financial level yet. This builds trust across the consumer spectrum and assures people that they are indeed partners with Coronation in their financial journey. There are different segments within the Coronation customer base. Sometimes we'll be talking to people who are incredibly wealthy. These people have made their money and want to begin or continue their journey with Coronation. When talking to these people, we use language that makes the consumer feel like they are “one of us”. The language is less explanatory because these people are au fait with monetary concepts. There's an acknowledgment of the person's achievements and success. Other times, we'll be talking to someone closer to starting out: the person who maybe doesn't have as much money as those who are established but has enough to fulfill potential. In no way is our tone condescending. Instead, we take a respectful, warm tone, acknowledging their money's potential and their wisdom in wanting to see it grow. In general, when it comes to word choice, Coronation doesn't use language so casual that it misrepresents the company's expertise. But neither do we use words that are lofty or cold - the other extreme of the tonality spectrum. This applies across both consumer segments described above. At the end of the day, when people read any communication, they must finish with a strong sense that what's important to them is important to Coronation. NB: Our tone of voice does not apply to legal information or legal disclaimers. Copy Tone Example. Coronation's copy tone is one that perfectly balances professionalism and approachability. It speaks finance in a way that is relatable and in language that is understood by all customers, without ever losing the premium nature of the brand. The tone also steers clear of long-winded sentences to make the writing easier to read and digest.",
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Tone of Voice'],
+  },
+  {
+    url: '/using-our-brand/brand-application/sponsorship#Overviews',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Sponsorship',
+    sectionTitle: 'Overviews',
+    content:
+      'Expressing our brand at events and   external initiatives. There are a variety of ways we express our brand when we sponsor events and initiatives hosted by external partners. The examples in this section demonstrate how to co-brand using the Access Bank logo. When co-branding with other brands, whose logo proportions vary, designers should use their judgement based on the pages that follow. Guidelines have been supplied for when Coronation is the major or minor sponsor and for when the spotlight is being shared equally with another brand.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Sponsorship'],
+  },
+  {
+    url: '/using-our-brand/brand-application/sponsorship#Major%20Sponsor',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Sponsorship',
+    sectionTitle: 'Major Sponsor',
+    content:
+      'Major Sponsor. When Coronation is the major sponsor at an event or main brand in a piece of shared communication, our CI guidelines must be used and our wordmark must be the most prominent. Print Layouts. Follow the letterhead guidelines (page 30) to determine the size and placement of the wordmark. Wherever possible, place the wordmark in the top right-hand corner of the layout. Preferred placement: The lesser co-brand is either placed in the bottom or left corner of the layout. Alternate Placement: Lesser co-brand is separated from the wordmark with N spacers and 1pt line (70% black, 2x the height of the wordmark). Narrow executions: a stacked execution may be used when horizontal space is limited. Here, logos are centered above each other with a 1pt line (70% black, width of the wordmark) separating them. Other Branding. On apparel, signage and promotional items, consider the area available for branding. In the example below, the stacked execution is used, using N spacers to maintain clear space between the respective logos. In this case, the Access Bank logo measures half the width of the Coronation wordmark. Please take note of alignment and spacing in the examples below:',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Sponsorship'],
+  },
+  {
+    url: '/using-our-brand/brand-application/sponsorship#Equal%20Sponsor',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Sponsorship',
+    sectionTitle: 'Equal Sponsor',
+    content:
+      'Equal Sponsor. When Coronation is the equal sponsor at an event or main brand in a piece of shared communication, our CI guidelines must be used and our wordmark must be the most prominent. Print Layouts. Follow the letterhead guidelines (page 30) to determine the size and placement of the wordmark. Wherever possible, place the wordmark in the top right-hand corner of the layout. Preferred placement: The lesser co-brand is either placed in the bottom or left corner of the layout. Alternate Placement: Lesser co-brand is separated from the wordmark with N spacers and 1pt line (70% black, 2x the height of the wordmark). Narrow executions: a stacked execution may be used when horizontal space is limited. Here, logos are centered above each other with a 1pt line (70% black, width of the wordmark) separating them. Other Branding. On apparel, signage and promotional items, consider the area available for branding. In the example below, the stacked execution is used, using N spacers to maintain clear space between the respective logos. In this case, the Access Bank logo measures half the width of the Coronation wordmark. Please take note of alignment and spacing in the examples below:',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Sponsorship'],
+  },
+  {
+    url: '/using-our-brand/brand-application/sponsorship#Minor%20Sponsor',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Sponsorship',
+    sectionTitle: 'Minor Sponsor',
+    content:
+      'Minor Sponsor. When Coronation is the minor sponsor at an event or main brand in a piece of shared communication, our CI guidelines must be used and our wordmark must be the most prominent. Print Layouts. Follow the letterhead guidelines (page 30) to determine the size and placement of the wordmark. Wherever possible, place the wordmark in the top right-hand corner of the layout. Preferred placement: The lesser co-brand is either placed in the bottom or left corner of the layout. Alternate Placement: Lesser co-brand is separated from the wordmark with N spacers and 1pt line (70% black, 2x the height of the wordmark). Narrow executions: a stacked execution may be used when horizontal space is limited. Here, logos are centered above each other with a 1pt line (70% black, width of the wordmark) separating them. Other Branding. On apparel, signage and promotional items, consider the area available for branding. In the example below, the stacked execution is used, using N spacers to maintain clear space between the respective logos. In this case, the Access Bank logo measures half the width of the Coronation wordmark. Please take note of alignment and spacing in the examples below:',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Sponsorship'],
+  },
+  {
+    url: '/using-our-brand/brand-application/sponsorship#Sole%20Sponsor',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Sponsorship',
+    sectionTitle: 'Sole Sponsor',
+    content:
+      'Sole Sponsor. When Coronation is the sole sponsor at an event or main brand in a piece of shared communication, our CI guidelines must be used and our wordmark must be the most prominent. Print Layouts. Follow the letterhead guidelines (page 30) to determine the size and placement of the wordmark. Wherever possible, place the wordmark in the top right-hand corner of the layout. Preferred placement: The lesser co-brand is either placed in the bottom or left corner of the layout. Alternate Placement: Lesser co-brand is separated from the wordmark with N spacers and 1pt line (70% black, 2x the height of the wordmark).',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Sponsorship'],
+  },
+  {
+    url: '/using-our-brand/brand-application/business-partnerships',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Business Partnerships',
+    content:
+      "Business partnerships can be valuable for our brand as they offer opportunities for growth, expanded reach, and enhanced credibility. When considering business partnerships for our brand, it's essential to select partners that align with our brand's values, objectives, and target audience. Some types of business partnerships to consider include: Strategic Alliances. Co-Branding. Distribution Partnerships. Content Collaboration. Event Sponsorships",
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application'],
+  },
+  {
+    url: '/using-our-brand/brand-application/merchandise#Overviews',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Merchandise',
+    sectionTitle: 'Overviews',
+    content:
+      "Branded merchandise, also known as promotional products or swag, involves creating and distributing items featuring your brand's logo or messaging. These items can serve as promotional tools, gifts, or products for sale. Branded merchandise can help increase brand visibility, foster customer loyalty, and generate brand revenue.",
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Merchandise'],
+  },
+  {
+    url: '/using-our-brand/brand-application/merchandise#Brochure%20&%20Flyer%20Stand',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Merchandise',
+    sectionTitle: 'Brochure & Flyer Stand',
+    content:
+      'Brochure & Flyer Stand. Two versions of stands have been illustrated on this page: a floor model and a countertop model. A similar design may be applied to a wall-mounted brochure display. Choose the application that best fits the space available where the printed materials will be displayed.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Merchandise'],
+  },
+  {
+    url: '/using-our-brand/brand-application/merchandise#Countertop%20Stand',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Merchandise',
+    sectionTitle: 'Countertop Stand',
+    content:
+      'Countertop Stand. This double-sided stand is designed to hold six different kinds of A5 landscape flyers. It is helpful for these smaller materials to be at consumer’s eye-level.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Merchandise'],
+  },
+  {
+    url: '/using-our-brand/brand-application/merchandise#Floor%20Stand',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Merchandise',
+    sectionTitle: 'Floor Stand',
+    content:
+      'Floor Stand. This stand is designed to hold eight different kinds of A4 brochures but can also accommodate flyers. If adding flyers to this display, avoid placing them on the bottom two rungs of the stand',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Merchandise'],
+  },
+  {
+    url: '/using-our-brand/brand-application/merchandise#Wall-Mounted%20Display',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Merchandise',
+    sectionTitle: 'Wall-Mounted Display',
+    content:
+      'Wall-Mounted Display. A wall-mounted brochure display may be adapted from the designs on this page by eliminating the foot of the stands and adding hanging hardware to one side of the display. Multiple units can be hung to accommodate printed materials depending on the space available.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Merchandise'],
+  },
+  {
+    url: '/using-our-brand/brand-application/uniform-equipment#Overviews',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Uniform & Equipment',
+    sectionTitle: 'Overviews',
+    content:
+      'Branded uniforms and equipment play a significant role in promoting our brand, creating a professional image, and enhancing brand recognition.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Uniform & Equipment'],
+  },
+  {
+    url: '/using-our-brand/brand-application/uniform-equipment#Exterior%20Signage',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Uniform & Equipment',
+    sectionTitle: 'Exterior Signage',
+    content:
+      'Exterior Signage. Clear and cohesive signage enhances the overall experience for employees, visitors, and clients. Interior signage goes beyond mere wayfinding; it plays a crucial role in creating a positive, functional, and branded environment that benefits both visitors and the organization itself. Exterior Signage include; A - Parking sign. B - Wheelchair Access sign. C&D - Directional uprights. E - Branded Pylon',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Uniform & Equipment'],
+  },
+  {
+    url: '/using-our-brand/brand-application/uniform-equipment#Interior%20Signage',
+    documentTitle: 'Using our brand',
+    pageTitle: 'Uniform & Equipment',
+    sectionTitle: 'Interior Signage',
+    content:
+      'Interior Signage. Clear and cohesive signage enhances the overall experience for employees, visitors, and clients. Interior signage goes beyond mere wayfinding; it plays a crucial role in creating a positive, functional, and branded environment that benefits both visitors and the organization itself. Interior Signage include; A - Wall-mounted bathroom sign. B - Eye level Wall-mounted (informational). C&D - Directional uprights. E - Informational upright. A frame signage is a useful, portable way to bring wayfinding to a venue that is not owned by Coronation. The signage pictured here features a snap frame so that the contents can be replaced, and the sign reused for several events.',
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'Uniform & Equipment'],
+  },
+  {
+    url: '/using-our-brand/brand-application/faqs',
+    documentTitle: 'Using our brand',
+    pageTitle: 'FAQs',
+    content:
+      "Brand Application FAQs. Can I customise the PowerPoint templates provided? Yes, the PowerPoint templates are fully customisable. You can adapt them to suit your presentation needs while ensuring that brand consistency is maintained. What is the house style for engaging with guests and colleagues? We uphold a standard of professionalism, courtesy, and respect across the Coronation ecosystem. Whether you are hosting guests, using shared spaces, or interacting with clients and colleagues, you are expected to adhere to these values. How do I use the infographics library? The infographic library offers visual tools that simplify complex data into clear and impactful visuals. You can download these resources for use in presentations, reports, and social media from the designated section. What are the guidelines for uniform and equipment use? Our uniform and equipment guidelines ensure safety, professionalism, and brand alignment. Detailed specifications for attire and maintenance procedures are available for download. What types of business partnerships are encouraged by Coronation? Coronation values strategic alliances, co-branding opportunities, distribution partnerships, content collaborations, and event sponsorships. These partnerships are crucial for extending our reach, enhancing credibility, and aligning with our brand values. What are the requirements for print layouts in sponsorships? For print layouts as a sole, equal, major, or minor sponsor, follow the letterhead guidelines for wordmark placement and co-branding. Detailed instructions on size and positioning are provided in the 'Print Materials' section. What is Coronation’s tone of voice in communications? Our tone of voice reflects our brand's personality—professional, authentic, and engaging. All communications should consistently reflect this tone to reinforce our brand identity. How should I display brochures and flyers? We offer three display options: countertop, floor, and wall-mounted stands. Each option is designed for optimal visibility, with specific guidelines on how to organise materials based on the chosen display type. What is the process for engaging in sponsorships as a sole or major sponsor? As a sole or major sponsor, our brand should be prominently visible. Follow our Corporate Identity (CI) guidelines to ensure the wordmark is the most prominent element while maintaining a balanced presence of partner logos.",
+    type: DataType.page,
+    parentPagesTitle: ['Brand Application', 'FAQs'],
+  },
+  {
+    url: '/brand-in-the-world/coronation-ecosystem/introduction',
+    documentTitle: 'Brand in the World',
+    pageTitle: 'Introduction',
+    content:
+      "Mission Priorities. Democratising access to loans, investments and assurance. Deploy integrated financial services platforms. Run 24/7 'always on' financial literacy and education programs. Orchestrate strategic partnerships with leading banks, telcos, etc. Deliver market leading and world class customer experience. Deliver superior investment returns to our clients and investors. Manage investments that generate FX Revenue. Demonstrate leadership in public and private market asset management. Orchestrate leading ecosystems in wealth management, automobility, health, etc. Build successful technology enabled startups. Improve the quality of public goods and services. Orchestrate public-private partnerships that solve citizens pain points at scale. Support public sector reforms that transform the capacity of the public service. Deploy gov-tech solutions to citizens and general public. Invest in the provision of financial markets infrastructure. Position Nigeria as Africa's premier financial market. Flag bearer for positioning Nigeria financial market as world class. Build a world class brand. Attract and develop world class talent. Establish global partnerships for ecosystem sustainability",
+    type: DataType.page,
+    parentPagesTitle: ['Coronation Ecosystem', 'Introduction'],
+  },
+  {
+    url: '/brand-in-the-world/coronation-ecosystem/verticals',
+    documentTitle: 'Brand in the World',
+    pageTitle: 'Verticals',
+    content:
+      'Coronation Group Limited acquired a Capital Market Holding License from the Securities and Exchange Commission (SEC) and transitioned into a licensed group structure in June 2023. This enables Coronation to expand its reach and influence in shaping Africa’s financial landscape.',
+    type: DataType.page,
+    parentPagesTitle: ['Coronation Ecosystem', 'Verticals'],
+  },
+  {
+    url: '/brand-in-the-world/coronation-ecosystem/brand-wheel',
+    documentTitle: 'Brand in the World',
+    pageTitle: 'Brand Wheel',
+    content:
+      'Customer Insight. At Coronation, we understand our clients are driven by a desire to shape their legacy and secure a prosperous future. They seek partners who share their vision, offering solutions that provide stability today and growth for tomorrow. We are that partner, committed to supporting their long-term ambitions with expertise and innovation. Our Brand Role. Coronation empowers individuals and corporations to achieve financial independence and build enduring legacies that stand the test of time. Our Brand Purpose. Coronation is dedicated to transforming Africa. Coronation empowers individuals and corporations to achieve financial independence and build enduring legacies that stand the test of time. Benefits. Long-term superior returns. Sustainable solutions that are market-driven and technology-enabled, create win-win outcomes for all stakeholders.  Consumer Target. Our focus is on affluent to ultra-high-net-worth individuals and corporate clients, male and female ranging from ages 29 - 69, who seek personalised, sophisticated financial services that align with their unique goals. Reason To Believe. A proven track record of success and stability. Industry-leading risk ratings. experience. Best-in-class talent. A suite of top-tier products and solutions tailored to diverse needs.Cutting-edge technology and systems that enhance the client. Brand Personality. confident. We stand tall in the financial services industry, offering reliable expertise. Driven. Our passion fuels our ambition to transform Africa. Resourceful. We navigate challenges with creativity and insight, providing dynamic solutions.',
+    type: DataType.page,
+    parentPagesTitle: ['Coronation Ecosystem', 'Brand Wheel'],
+  },
+  {
+    url: '/brand-in-the-world/coronation-ecosystem/application-portals',
+    documentTitle: 'Brand in the World',
+    pageTitle: 'Application & Portals',
+    content:
+      'Our digital platforms empower clients to access world-class financial tools and solutions, streamlining their journey towards independence and legacy-building.',
+    type: DataType.page,
+    parentPagesTitle: ['Coronation Ecosystem', 'Application & Portals'],
+  },
+  {
+    url: '/brand-in-the-world/coronation-ecosystem/faqs',
+    documentTitle: 'Brand in the World',
+    pageTitle: 'FAQs',
+    content:
+      "Coronation Ecosystem FAQs. What is Coronation’s main objective? Coronation seeks to lead Africa's financial evolution by building a technology-enabled financial services ecosystem, promoting financial literacy, and fostering strategic partnerships to deliver world-class customer experiences. What are Coronation’s mission priorities? Coronation's mission priorities include: • Democratising access to loans, investments, and assurance. • Deliver superior investment returns to clients and investors. • Improve the quality of public goods and services. • Positioning Nigeria as Africa's premier financial market. How does Coronation democratise access to financial services? Through integrated platforms, strategic partnerships and financial literacy initiatives, Coronation makes loans, investments, and assurances more accessible to underserved populations. What is Coronation’s approach to delivering superior investment returns? Coronation manages high-yield investments that generate FX revenue, leads in public and private market asset management, and builds innovative ecosystems in wealth management, automobility, and health sectors. How does Coronation position Nigeria as Africa’s premier financial market? Coronation aims to position Nigeria as a world-class financial market by building a world-class brand, attracting and developing top talent, and establishing global partnerships for ecosystem sustainability. What is  Coronation’s brand purpose? Coronation's purpose is to transform Africa by enabling a prosperous future for clients and the continent through sustainable, technology-enabled solutions. Who is Coronation’s target consumer? Coronation's target consumers are affluent to ultra-high-net-worth individuals (male and female, aged 29–69), and corporate entities seeking long-term returns and sustainable financial solutions. What defines Coronation’s brand personality? Coronation brand personality is Confident, Driven, and Resourceful, reflecting the company's leadership, determination, and ability to provide innovative solutions to complex challenges.",
+    type: DataType.page,
+    parentPagesTitle: ['Coronation Ecosystem', 'FAQs'],
+  },
+  {
+    url: '/brand-in-the-world/coronation-platforms/introduction',
+    documentTitle: 'Brand in the World',
+    pageTitle: 'Introduction',
+    content:
+      'Your Financial World, Unified. Coronation offers a robust suite of digital platforms designed to optimise your financial journey, providing the tools needed for seamless financial management. Our platforms offer convenient access to a range of services, including investment management, insurance claims, online banking, and retail transactions, all tailored to meet your needs. Whether it is managing your portfolio through Coronation Wealth, submitting claims via the Claims Portal, or conducting transactions on Coronation Mobile, every platform is built with a focus on precision, security, and ease of use. We are committed to providing a streamlined, digital-first experience that empowers you to take control of your financial future, wherever you are.',
+    type: DataType.page,
+    parentPagesTitle: ['Coronation Platforms', 'Introduction'],
+  },
+  {
+    url: '/brand-in-the-world/coronation-platforms/coronation-wealth#Top%20of%20Page',
+    documentTitle: 'Brand in the World',
+    pageTitle: 'Coronation Wealth',
+    sectionTitle: 'Top of Page',
+    content:
+      "Your Wealth, Your Rules. Take control of your financial future with the Coronation Wealth app. Buy and sell stocks, invest in mutual funds, and manage your wealth, all from the palm of your hand. Coronation Investment Academy. Your Financial Future Starts Here. Take control of your wealth journey. Whether you're a seasoned investor or just starting, we've got the tools to help you succeed. Master the Art of Investing. Deep dive into the world of finance with our expert-led academy. Enrol for free today. Learn and Earn with Fantasy Investing. Play, compete, and win while building financial knowledge. Join the fun today. Your Investments, Your Way. Manage your portfolio, explore investment options, and watch your wealth grow. Download the app now. Become an Investment Expert. Gain the knowledge and confidence to succeed with our free investment academy. Compete, Learn, Win. Join the fantasy league and turn your investment knowledge into cash prizes. Grow Your Wealth Smarter. Take control of your investments with our user-friendly app. Explore diverse options and watch your money flourish.",
+    type: DataType.page,
+    parentPagesTitle: ['Coronation Platforms', 'Coronation Wealth'],
+  },
+  {
+    url: '/brand-in-the-world/coronation-platforms/coronation-wealth#Coronation%20Wealth%20video',
+    documentTitle: 'Brand in the World',
+    pageTitle: 'Coronation Wealth',
+    sectionTitle: 'Coronation Wealth video',
+    content:
+      "Coronation Wealth video. Learn everything you need to know about Coronation Wealth with our informative video series. From app tutorials to investment education and fun competitions, we've got you covered. Discover how to build your wealth, manage your investments, and achieve your financial goals.",
+    type: DataType.page,
+    parentPagesTitle: ['Coronation Platforms', 'Coronation Wealth'],
+  },
+  {
+    url: '/brand-in-the-world/coronation-platforms/marine-portal#Safeguard%20Your%20Cargo%20with%20Confidence',
+    documentTitle: 'Brand in the World',
+    pageTitle: 'Marine Portal',
+    sectionTitle: 'Safeguard Your Cargo with Confidence',
+    content:
+      'Safeguard Your Cargo with Confidence. The unexpected can happen during transit. Ensure your business is protected with Coronation Marine Insurance. We offer comprehensive coverage for your goods, from origin to destination. Get a free quote today and keep your peace of mind. Comprehensive Protection for Your Cargo. Safeguard your goods from loss or damage during transit. Our Marine Insurance offers: Flexible Options: Choose from single shipments or annual coverage. Financial Security: Compensation for loss, damage, or theft. Peace of Mind: Trust in our reliable insurance coverage. Ready to protect your business? Get a free quote today. Choose Coronation for Superior Marine Insurance. Experience the Coronation difference. Expert Guidance: Benefit from free risk assessments to protect your business. Rapid Claims Payment: Get back on track with our 48-hour claims processing. Dedicated Support: Our team is here to assist you every step of the way. Choose the Right Coverage for Your Cargo. We offer a range of Marine Insurance options to suit your specific needs. ICC A (All Risks): Provides comprehensive coverage for your cargo against most risks, including loss, damage, and shortage. Exceptions are clearly defined in the policy. ICC C (Specific Risks): Offers coverage for total loss of your cargo only. Partial losses are not covered under this policy.',
+    type: DataType.page,
+    parentPagesTitle: ['Coronation Platforms', 'Marine Portal'],
+  },
+  {
+    url: '/brand-in-the-world/coronation-platforms/marine-portal#Protect%20Your%20Entire%20Business',
+    documentTitle: 'Brand in the World',
+    pageTitle: 'Marine Portal',
+    sectionTitle: 'Protect Your Entire Business',
+    content:
+      'Protect Your Entire Business. In addition to our comprehensive Marine Insurance, consider these essential covers to safeguard your operations: Business Interruption Insurance. Safeguard your income in case of unexpected disruptions. Business Vehicles Insurance. Protect your fleet and drivers from unforeseen incidents. Construction Insurance. Ensure your construction projects are covered.',
+    type: DataType.page,
+    parentPagesTitle: ['Coronation Platforms', 'Marine Portal'],
+  },
+  {
+    url: '/brand-in-the-world/coronation-platforms/shareholderlive',
+    documentTitle: 'Brand in the World',
+    pageTitle: 'ShareholderLive',
+    content: '',
+    type: DataType.page,
+    parentPagesTitle: ['Coronation Platforms', 'ShareholderLive'],
+  },
+  {
+    url: '/brand-in-the-world/coronation-platforms/issuerlive',
+    documentTitle: 'Brand in the World',
+    pageTitle: 'IssuerLive',
+    content:
+      'Harness the power of data-driven insights with IssuerLive, a cutting-edge platform designed to help issuers navigate the capital market confidently. Gain actionable analytics on your shareholder base and stock performance, enabling you to make informed decisions and foster stronger relationships with investors. Key Features. Dashboard: Visualise key metrics such as market cap, investor numbers, and trading activity. Shareholder & Market Analytics: Dive deep into shareholder behaviour and monitor market trends in real time. AGM & Shareholder Management: Streamline annual general meetings and manage shareholder relationships with ease. Director & Insider Trade Tracking: Profile directors and track insider trading for transparency. Report Downloads: Access essential reports like Trade and Insider Reports with a few clicks. Benefits. Instant Report Generation: Get key insights on demand. Real-Time Data: Stay ahead with up-to-the-minute market analytics. Insider Trading Transparency: Make informed decisions by tracking insider trades. Director Profiling: Easily access and manage director details. Comprehensive Shareholder View: Review shareholder profiles, transactions, and more. Customised Reporting: Tailor reports to specific timeframes and needs. With IssuerLive, issuers can optimise stock performance and confidently navigate the complexities of the capital market, unlocking their full potential.',
+    type: DataType.page,
+    parentPagesTitle: ['Coronation Platforms', 'IssuerLive'],
+  },
+  {
+    url: '/brand-in-the-world/coronation-platforms/digital-claims',
+    documentTitle: 'Brand in the World',
+    pageTitle: 'Digital Claims',
+    content:
+      "Our Digital Claims Portal simplifies the insurance claims process, providing you with a seamless and efficient way to settle claims. Whether it's for personal or business-related insurance, the portal ensures that your claim is processed quickly, with real-time updates on the status of your request. Key Features. Fast Processing: Submit and track claims easily with a step-by-step guide. Real-Time Updates: Stay informed with instant notifications and updates on the status of your claim. Document Uploads: Securely upload necessary documents for swift claims approval. Customer Support: Access assistance anytime with our dedicated claims support team. Experience a smoother, faster claims process and focus on what matters most while we handle your insurance needs.",
+    type: DataType.page,
+    parentPagesTitle: ['Coronation Platforms', 'Digital Claims'],
+  },
+  {
+    url: '/brand-in-the-world/coronation-platforms/retail-portal',
+    documentTitle: 'Brand in the World',
+    pageTitle: 'Retail Portal',
+    content:
+      'The Retail Portal offers a user-friendly platform that makes it easy to manage and complete your retail transactions. From browsing available products to finalising purchases, the portal provides a seamless retail experience for both individuals and businesses. Key Features. Product Catalogue: Explore a wide range of retail products tailored to your preferences. Easy Transactions: Complete your purchases quickly with secure payment options. Order Management: Track orders and review transaction history at any time. Personalised Offers: Enjoy exclusive offers and recommendations based on your purchasing habits',
+    type: DataType.page,
+    parentPagesTitle: ['Coronation Platforms', 'Retail Portal'],
+  },
+  {
+    url: '/brand-in-the-world/coronation-platforms/investment-portal',
+    documentTitle: 'Brand in the World',
+    pageTitle: 'Investment Portal',
+    content:
+      'Our digital investment platform offers convenient access to your investment portfolios, products, and account information, ensuring a seamless experience with an intuitive interface designed for effective portfolio management. Features. Portfolio Management. View your portfolio holdings, performance, and transaction history. Analyse your asset allocation and risk exposure. Mutual Fund Selection. Explore diverse mutual funds tailored to your investment goals and risk tolerance. Compare fund performance for informed decision-making. Fund Purchase and Redemption. Subscribe to mutual funds directly through the platform. Redeem funds and review transaction history at your convenience. Research and Analysis. Access market news, research reports, and analytical tools. Stay updated on market trends and potential investment opportunities. Customer Support. Reach out to Coronation’s support team for assistance with accounts or investments. Benefits. Convenience: Manage your investments from anywhere, at any time. Efficiency: Quick access to account details and streamlined transactions. Transparency: Real-time insights into portfolio performance and transaction history. Diversification: Build a balanced portfolio with a variety of mutual fund options to mitigate risk. Accessibility: A wide range of mutual funds is available. Cost-Effective: Lower minimum investment requirements compared to stocks or bonds.',
+    type: DataType.page,
+    parentPagesTitle: ['Coronation Platforms', 'Investment Portal'],
+  },
+  {
+    url: '/brand-in-the-world/coronation-platforms/coronation-mobile',
+    documentTitle: 'Brand in the World',
+    pageTitle: 'Coronation Mobile',
+    content:
+      "Experience effortless banking with Coronation Merchant Bank. Our mobile platform gives you complete control over your finances, whether you're managing accounts or making payments. Achieve your financial goals seamlessly, from anywhere in the world. Key Features. Account Access: View detailed statements and transaction history in real-time. Fund Transfers: Transfer money locally or internationally with ease and security. Bill Payments: Pay bills and settle payments quickly and conveniently.",
+    type: DataType.page,
+    parentPagesTitle: ['Coronation Platforms', 'Coronation Mobile'],
+  },
+  {
+    url: '/brand-in-the-world/coronation-platforms/viva',
+    documentTitle: 'Brand in the World',
+    pageTitle: 'Viva',
+    content:
+      'Unifying Tools for Engagement, Learning, and Well-Being. Microsoft Viva is a comprehensive platform designed to unify communication, learning, and employee engagement in one streamlined solution. Seamlessly integrated with Microsoft 365 and Teams, Viva enhances workflows, boosts productivity, and empowers employees to thrive in their roles. With its user-friendly interface and intuitive navigation, accessing resources and information has never been easier. Key Features. Seamless Integration: Viva connects effortlessly with Microsoft applications, simplifying collaboration and making workflows more efficient. Enhanced Communication: Centralised spaces for conversations, company news, and shared interests promote transparency and inclusion. Learning and Development: Viva Learning, in partnership with LinkedIn Learning, delivers a diverse range of learning resources accessible across departments and roles. Employee Engagement: Viva Engage fosters interaction and community-building across teams, enhancing engagement and shared purpose. Workplace Insights: Viva Insights provides real-time analytics and feedback, offering valuable insights into employee well-being, productivity, and opportunities for improvement. Microsoft Viva serves as a multi-layered platform with distinct modules that cater to different needs: Viva Learning. Centralises learning resources for continuous employee development. Viva Connect. Acts as a digital gateway for company-wide communication and collaboration. Viva Engage. Cultivates community interaction across departments and teams. Viva Insights. Provides analytics to improve workplace efficiency and employee satisfaction. By integrating these capabilities into one platform, Microsoft Viva not only enhances daily operations but also nurtures a more engaged, productive, and balanced workforce.',
+    type: DataType.page,
+    parentPagesTitle: ['Coronation Platforms', 'Viva'],
+  },
+  {
+    url: '/brand-in-the-world/coronation-platforms/faqs',
+    documentTitle: 'Brand in the World',
+    pageTitle: 'FAQs',
+    content:
+      "Coronation Platform FAQs. How do I get started with Coronation Wealth? Top of Page is simple. Download the app, complete the registration process, and verify your identity. Once your account is set up, you can start exploring investment options and making trades. What kind of investments can I make in Coronation Wealth? Coronation Wealth offers a diverse range of investment options to suit your financial goals. You can invest in stocks, mutual funds, and other financial instruments. Our platform provides detailed information on each investment, including performance history and risk profiles. Is my money safe on Coronation Wealth? Security is our top priority. We employ advanced encryption technology and robust security measures to protect your personal and financial information. Your investments are held in secure custody accounts. How do I contact customer support? Our dedicated customer support team is available to assist you. You can reach us through our in-app support feature, by email atmarine@coronation insurance.com.ng or by phone at +234 1277 4500. What types of Marine Insurance do you offer? Coronation offers a range of marine insurance solutions tailored to your specific needs. Our coverage options include: Cargo Insurance: Protects your goods during transit. Hull Insurance: Covers damages to your vessel. Marine Liability Insurance: Protects you from legal claims arising from maritime accidents. Freight Insurance: Covers potential losses due to delayed or damaged shipments. What information do I need to get a quote? To provide you with an accurate quote, we'll need information about your cargo, the mode of transportation, the value of your goods, and the specific coverage you require. Providing detailed information will help us tailor a policy to your exact needs. What are the different coverage options available? Our marine insurance policies offer various coverage options to suit your business requirements. You can choose from: All Risks (ICC A): Provides comprehensive coverage for most losses and damages. Specific Risks (ICC C): Covers only specific perils, such as fire, shipwreck, or stranding. Named Perils: Offers coverage for a predefined list of perils. Is there a deductible for claims? Yes, there is a deductible for marine insurance claims. The deductible amount varies depending on the policy and coverage chosen. The deductible is the portion of the loss you are responsible for paying before the insurance coverage kicks in. What types of insurance claims can be processed through the portal? Our digital claims portal is designed to handle a wide range of insurance claims, including motor vehicle accidents, home insurance claims, and personal accident claims. We are continually expanding the types of claims that can be processed through the portal. What documents are required to file a claim? The specific documents required for your claim will depend on the nature of the claim. However, you will generally need to provide proof of insurance, details of the incident, and supporting documentation such as photographs or repair estimates. A detailed checklist of required documents will be available within the claims portal. How do I track the progress of my claim? Once you have submitted your claim, you can easily track its progress through our online portal. You will be provided with regular updates on the status of your claim, including any required actions on your part. What is the claims settlement process? Our goal is to process claims efficiently and fairly. Upon receiving your completed claim, our team will review the necessary documents and assess the claim. If approved, the settlement amount will be processed according to the terms of your insurance policy. You will be notified of the settlement decision and payment details. How do I transfer funds between accounts on Coronation Mobile? Log in to the app, select the transfer section, choose the source and destination accounts, and enter the transfer amount. Confirm to complete the transaction. How do I pay bills online? Paying bills through our online banking platform is convenient and secure. Add your billers to your payee list, input the required payment details, and schedule or make immediate payments. You can also set up recurring payments for regular bills. What is the security process for online banking? We use advanced encryption and recommend strong passwords, two-factor authentication, and monitoring account activity to safeguard your information.",
+    type: DataType.page,
+    parentPagesTitle: ['Coronation Platforms', 'FAQs'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/print-advertising/portrait-layout#Top%20of%20Page',
+    documentTitle: 'Advertising',
+    pageTitle: 'Portrait Layout',
+    sectionTitle: 'Top of Page',
+    content:
+      'Advertising builds brand recognition and awareness. In order for this to be effective, adverts must be recognisable as belonging to Coronation. Being consistant in logo placement, colour usage and tone will achieve this.',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'Print Advertising', 'Portrait Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/print-advertising/portrait-layout#Logo%20size%20&%20position',
+    documentTitle: 'Advertising',
+    pageTitle: 'Portrait Layout',
+    sectionTitle: 'Logo size & position',
+    content:
+      'Logo size & position. Wordmark width = 30% of the width of the media size. The wordmark may be displayed in black or white depending on what provides the most contrast to the background image. If using a detailed image that compromises the visibility of the wordmark, make use of a holding device (70% Black, Multiply). Use the N spacer to determine the distances between edges and different elements as illustrated in the diagrams on this page.',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'Print Advertising', 'Portrait Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/print-advertising/portrait-layout#Text%20Box',
+    documentTitle: 'Advertising',
+    pageTitle: 'Portrait Layout',
+    sectionTitle: 'Text Box',
+    content:
+      'Text Box. Colour Corporate:Orange/red gradient, 90% opacity.Colour Consumer: Any of the bright colours from the consumer palette, 90% opacity. Position: as illustrated.',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'Print Advertising', 'Portrait Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/print-advertising/portrait-layout#Copy',
+    documentTitle: 'Advertising',
+    pageTitle: 'Portrait Layout',
+    sectionTitle: 'Copy',
+    content:
+      'Copy. Text colour: Black or white, whichever is more legible (see examples on the pages that follow). The sizes specified below are for an A4 size advert. Use these and the diagrams on this page as a visual guideline and resize if necessary, keeping legibility in mind. Headline: Lato Black, Uppercase, 24pt | 34pt | Optical, 300. Body Copy: Lato SemiBold, Sentence Case, 10pt | 14pt | Optical, 40. Contact Details: Lato Black, Uppercase, 9pt | 13pt | Optical, 0.',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'Print Advertising', 'Portrait Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/print-advertising/portrait-layout#Image',
+    documentTitle: 'Advertising',
+    pageTitle: 'Portrait Layout',
+    sectionTitle: 'Image',
+    content:
+      'Image. Corporate: Black and white architectural image (refer to the corporate photography for more guidelines). Consumer: Full colour lifestyle image (refer to consumer photography for more guidelines). Type specification key: 10pt/11.3pt/-15. Size/leading/tracking',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'Print Advertising', 'Portrait Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/print-advertising/landscape-layout#Top%20of%20Page',
+    documentTitle: 'Advertising',
+    pageTitle: 'Landscape Layout',
+    sectionTitle: 'Top of Page',
+    content:
+      'Advertising builds brand recognition and awareness. In order for this to be effective, adverts must be recognisable as belonging to Coronation. Being consistant in logo placement, colour usage and tone will achieve this.',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'Print Advertising', 'Landscape Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/print-advertising/landscape-layout#Logo%20size%20&%20position',
+    documentTitle: 'Advertising',
+    pageTitle: 'Landscape Layout',
+    sectionTitle: 'Logo size & position',
+    content:
+      'Landscape Layout. These are the layouts to take note of when creating print advertsing for Landscape view. Logo size & position. Wordmark width = 30% of the width of the media size. The wordmark may be displayed in black or white depending on what provides the most contrast to the background image. If using a detailed image that compromises the visibility of the wordmark, make use of a holding device (70% Black, Multiply). Use the N spacer to determine the distances between edges and different elements as illustrated in the diagrams on this page.',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'Print Advertising', 'Landscape Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/print-advertising/landscape-layout#Text%20Box',
+    documentTitle: 'Advertising',
+    pageTitle: 'Landscape Layout',
+    sectionTitle: 'Text Box',
+    content:
+      'Text Box. Colour Corporate:Orange/red gradient, 90% opacity. Colour Consumer: Any of the bright colours from the consumer palette, 90% opacity. Position: as illustrated.',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'Print Advertising', 'Landscape Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/print-advertising/landscape-layout#Copy',
+    documentTitle: 'Advertising',
+    pageTitle: 'Landscape Layout',
+    sectionTitle: 'Top of Page',
+    content:
+      'Copy. Text colour: Black or white, whichever is more legible (see examples on the pages that follow). The sizes specified below are for an A4 size advert. Use these and the diagrams on this page as a visual guideline and resize if necessary, keeping legibility in mind. Headline: Lato Black, Uppercase, 24pt | 34pt | Optical, 300. Body Copy: Lato SemiBold, Sentence Case, 10pt | 14pt | Optical, 40. Contact Details: Lato Black, Uppercase, 9pt | 13pt | Optical, 0',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'Print Advertising', 'Landscape Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/print-advertising/landscape-layout#Image',
+    documentTitle: 'Advertising',
+    pageTitle: 'Landscape Layout',
+    sectionTitle: 'Image',
+    content:
+      'Image. Corporate: Black and white architectural image (refer to the corporate photography for more guidelines). Consumer: Full colour lifestyle image (refer to consumer photography for more guidelines). Type specification key: 10pt/11.3pt/-15. Size/leading/tracking',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'Print Advertising', 'Landscape Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/print-advertising/narrow-layout#Top%20of%20Page',
+    documentTitle: 'Advertising',
+    pageTitle: 'Narrow Layout',
+    sectionTitle: 'Top of Page',
+    content:
+      'Advertising builds brand recognition and awareness. In order for this to be effective, adverts must be recognisable as belonging to Coronation. Being consistant in logo placement, colour usage and tone will achieve this. Narrow Layout. These are the layouts to take note of when creating print advertsing for Landscape view.',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'Print Advertising', 'Narrow Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/print-advertising/narrow-layout#Logo%20size%20&%20position',
+    documentTitle: 'Advertising',
+    pageTitle: 'Narrow Layout',
+    sectionTitle: 'Logo size & position',
+    content:
+      'Logo size & position. Wordmark width = 0% of the shortest side of the media size OR a minimum of 50mm wide. The wordmark may be displayed in black or white depending on what provides the most contrast to the background image. If using a detailed image that compromises the visibility of the wordmark, make use of a holding device (70% Black, Multiply) - see an example of this. Use the N spacer to determine the distances between edges and different elements as illustrated in the diagrams on this page.',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'Print Advertising', 'Narrow Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/print-advertising/narrow-layout#Text%20Box',
+    documentTitle: 'Advertising',
+    pageTitle: 'Narrow Layout',
+    sectionTitle: 'Text Box',
+    content:
+      'Text Box. Colour Corporate:Orange/red gradient, 90% opacity. Colour Consumer: Any of the bright colours from the consumer palette, 90% opacity. Position: as illustrated',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'Print Advertising', 'Narrow Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/print-advertising/narrow-layout#Copy',
+    documentTitle: 'Advertising',
+    pageTitle: 'Narrow Layout',
+    sectionTitle: 'Copy',
+    content:
+      'Copy. Text colour: Black or white, whichever is more legible (see examples). The sizes specified below are for a 99x210mm size advert. Use these and the diagrams on this page as a visual guideline and resize if necessary, keeping legibility in mind. Headline: Lato Black, Uppercase, 24pt | 34pt | Optical, 300. Body Copy: Lato SemiBold, Sentence Case, 10pt | 14pt | Optical, 40. Contact Details: Lato Black, Uppercase, 9pt | 13pt | Optical, 0',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'Print Advertising', 'Narrow Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/print-advertising/narrow-layout#Image',
+    documentTitle: 'Advertising',
+    pageTitle: 'Narrow Layout',
+    sectionTitle: 'Image',
+    content:
+      'Image. Narrow adverts do not allow much space for imagery. If an ad is not copy heavy, use a simple icon in black and white that relates to the headline. If however, more body copy is required, no image is used at all.',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'Print Advertising', 'Narrow Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/print-advertising/narrow-layout#Colour',
+    documentTitle: 'Advertising',
+    pageTitle: 'Narrow Layout',
+    sectionTitle: 'Colour',
+    content:
+      "Colour. In the absence of an image to add interest, we use colour to reinforce Coronation's brand identity. Use the red/orange gradient wherever possible for the Corporate (see colour page for details on how to construct this). or Use black, white and any one of the secondary colours from the Consumer palette.",
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'Print Advertising', 'Narrow Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/print-advertising/narrow-layout#News%20Exception',
+    documentTitle: 'Advertising',
+    pageTitle: 'Narrow Layout',
+    sectionTitle: 'News Exception',
+    content:
+      'News Exception. When designing adverts for small-size newspaper adverts, the gradient may affect the legibility of copy. In this case the background colour is removed and the headline is set in red for Corporate palette or one of the bright colours from the Consumer palette. Type specification key: 10pt/11.3pt/-15',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'Print Advertising', 'Narrow Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/ooh-advertising/portrait-layout#Logo%20size%20&%20position',
+    documentTitle: 'Advertising',
+    pageTitle: 'Portrait Layout',
+    sectionTitle: 'Logo size & position',
+    content:
+      'Portrait Layout. Logo size & position. Wordmark width = 30% of the width of the media size. On very narrow applications, logo may be placed at 50% of the width of the media size. The wordmark may be displayed in black or white depending on what provides the most contrast to the background image. If using a detailed image that compromises the visibility of the wordmark, make use of a holding device (70% Black, Multiply). Use the N spacer to determine the distances between edges and different elements as illustrated in the diagrams on this page.',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'OOH Advertising', 'Portrait Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/ooh-advertising/portrait-layout#Text%20Box',
+    documentTitle: 'Advertising',
+    pageTitle: 'Portrait Layout',
+    sectionTitle: 'Text Box',
+    content:
+      'Text Box. Colour Corporate:Orange/red gradient, 90% opacity. Colour Consumer: Any of the bright colours from the consumer palette, 90% opacity. Position: as illustrated',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'OOH Advertising', 'Portrait Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/ooh-advertising/portrait-layout#Copy',
+    documentTitle: 'Advertising',
+    pageTitle: 'Portrait Layout',
+    sectionTitle: 'Copy',
+    content:
+      'Text Box. Colour Corporate:Orange/red gradient, 90% opacity. Colour Consumer: Any of the bright colours from the consumer palette, 90% opacity. Position: as illustrated. Copy. Text colour: Black or white, whichever is more legible (see examples on the pages that follow). The size of the copy should be quite large to ensure legibility from a distance. This will largely be determined by the size of the billboard. Designer to use own discretion.',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'OOH Advertising', 'Portrait Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/ooh-advertising/portrait-layout#Image',
+    documentTitle: 'Advertising',
+    pageTitle: 'Portrait Layout',
+    sectionTitle: 'Image',
+    content:
+      'Image. Corporate: Black and white architectural image (refer to the corporate photography for more guidelines). Consumer: Full colour lifestyle image (refer to consumer photography for more guidelines). Type specification key: 10pt/11.3pt/-15',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'OOH Advertising', 'Portrait Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/ooh-advertising/landscape-layout#Logo%20size%20&%20position',
+    documentTitle: 'Advertising',
+    pageTitle: 'Landscape Layout',
+    sectionTitle: 'Logo size & position',
+    content:
+      'Landscape Layout. These are the layouts to take note of when creating print advertsing for Landscape view. Logo size & position. Wordmark width = 30% of the width of the media size. The wordmark may be displayed in black or white depending on what provides the most contrast to the background image. If using a detailed image that compromises the visibility of the wordmark, make use of a holding device (70% Black, Multiply). Use the N spacer to determine the distances between edges and different elements as illustrated in the diagrams on this page.',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'OOH Advertising', 'Landscape Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/ooh-advertising/landscape-layout#Text%20Box',
+    documentTitle: 'Advertising',
+    pageTitle: 'Landscape Layout',
+    sectionTitle: 'Text Box',
+    content:
+      'Text Box. Colour Corporate:Orange/red gradient, 90% opacity. Colour Consumer: Any of the bright colours from the consumer palette, 90% opacity. Position: as illustrated',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'OOH Advertising', 'Landscape Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/ooh-advertising/landscape-layout#Copy',
+    documentTitle: 'Advertising',
+    pageTitle: 'Landscape Layout',
+    sectionTitle: 'Copy',
+    content:
+      'Copy. Text colour: Black or white, whichever is more legible (see examples on the pages that follow). The size of the copy should be quite large to ensure legibility from a distance. This will largely be determined by the size of the billboard. Designer to use own discretion.',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'OOH Advertising', 'Landscape Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/ooh-advertising/landscape-layout#Image',
+    documentTitle: 'Advertising',
+    pageTitle: 'Landscape Layout',
+    sectionTitle: 'Image',
+    content:
+      'Image. Corporate: Black and white architectural image (refer to the corporate photography for more guidelines). Consumer: Full colour lifestyle image (refer to consumer photography for more guidelines).',
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'OOH Advertising', 'Landscape Layout'],
+  },
+  {
+    url: '/brand-in-the-world/advertising/faqs',
+    documentTitle: 'Advertising',
+    pageTitle: 'FAQs',
+    content:
+      "Advertising FAQs. What are the available print advertising formats? Top of Page is simple. Download the app, complete the registration process, and verify your identity. Once your account is set up, you can start exploring investment options and making trades. What kind of investments can I make in Coronation Wealth? Coronation Wealth offers a diverse range of investment options to suit your financial goals. You can invest in stocks, mutual funds, and other financial instruments. Our platform provides detailed information on each investment, including performance history and risk profiles. Is my money safe on Coronation Wealth? Security is our top priority. We employ advanced encryption technology and robust security measures to protect your personal and financial information. Your investments are held in secure custody accounts. How do I contact customer support? Our dedicated customer support team is available to assist you. You can reach us through our in-app support feature, by email atmarine@coronationinsurance.com.ng or by phone at +234 1277 4500. What types of Marine Insurance do you offer? Coronation offers a range of marine insurance solutions tailored to your specific needs. Our coverage options include: Cargo Insurance: Protects your goods during transit. Hull Insurance: Covers damages to your vessel. Marine Liability Insurance: Protects you from legal claims arising from maritime accidents. Freight Insurance: Covers potential losses due to delayed or damaged shipments. What information do I need to get a quote? To provide you with an accurate quote, we'll need information about your cargo, the mode of transportation, the value of your goods, and the specific coverage you require. Providing detailed information will help us tailor a policy to your exact needs. What are the different coverage options available? Our marine insurance policies offer various coverage options to suit your business requirements. You can choose from: All Risks (ICC A): Provides comprehensive coverage for most losses and damages. Specific Risks (ICC C): Covers only specific perils, such as fire, shipwreck, or stranding. Named Perils: Offers coverage for a predefined list of perils. Is there a deductible for claims? Yes, there is a deductible for marine insurance claims. The deductible amount varies depending on the policy and coverage chosen. The deductible is the portion of the loss you are responsible for paying before the insurance coverage kicks in. What types of insurance claims can be processed through the portal? Our digital claims portal is designed to handle a wide range of insurance claims, including motor vehicle accidents, home insurance claims, and personal accident claims. We are continually expanding the types of claims that can be processed through the portal. What documents are required to file a claim? The specific documents required for your claim will depend on the nature of the claim. However, you will generally need to provide proof of insurance, details of the incident, and supporting documentation such as photographs or repair estimates. A detailed checklist of required documents will be available within the claims portal. How do I track the progress of my claim? Once you have submitted your claim, you can easily track its progress through our online portal. You will be provided with regular updates on the status of your claim, including any required actions on your part. What is the claims settlement process? Our goal is to process claims efficiently and fairly. Upon receiving your completed claim, our team will review the necessary documents and assess the claim. If approved, the settlement amount will be processed according to the terms of your insurance policy. You will be notified of the settlement decision and payment details. How do I transfer funds between accounts? Transferring funds between your Coronation accounts is easy. Simply log in to your online banking, navigate to the transfer section, select the source and destination accounts, and input the desired transfer amount. Confirm the transaction to initiate the transfer. How do I pay bills online? Paying bills through our online banking platform is convenient and secure. Add your billers to your payee list, input the required payment details, and schedule or make immediate payments. You can also set up recurring payments for regular bills. How do I set up online banking? To enrol in our online banking service, visit our website or your nearest Coronation branch. You'll need to provide the necessary identification and account details. Once your enrollment is complete, you can access your accounts online. What is the security process for online banking? Coronation prioritises the security of your financial information. We employ advanced encryption technology to protect your data. Additionally, we recommend using strong, unique passwords, enabling two-factor authentication, and regularly monitoring your account activity for any suspicious transactions.",
+    type: DataType.page,
+    parentPagesTitle: ['Advertising', 'FAQs'],
+  },
+  {
+    url: '/brand-in-the-world/best-of-brands/introduction',
+    documentTitle: 'Best of Brands',
+    pageTitle: 'Introduction',
+    content:
+      "At Coronation, we are dedicated to empowering you with the tools and solutions to secure your financial future. Our core offerings combine wealth management, investment opportunities, and financial protection, providing a comprehensive approach to achieving your goals. From Coronation Wealth, which helps you manage and grow your assets, to our Owner's Approach, fostering shared responsibility for financial well-being, we are focused on your success. Our commitment to Transformed Africa highlights our role in driving growth across the continent, with over three decades of leadership in the financial sector. We also offer Bancassurance, seamlessly blending banking with insurance to offer peace of mind and asset protection. Coronation is committed to delivering value and innovation across all financial services.",
+    type: DataType.page,
+    parentPagesTitle: ['Best of Brands', 'Introduction'],
+  },
+  {
+    url: '/brand-in-the-world/best-of-brands/we-are-coronation-owner',
+    documentTitle: 'Best of Brands',
+    pageTitle: 'We are Coronation - Owner',
+    content:
+      "At Coronation, we adopt an owner's mindset in managing your financial well-being. We act as partners in your financial journey, ensuring that every decision aligns with your long-term goals. With a focus on delivering superior returns and value, we empower you to take control of your financial future, just as we do with our investments. This approach drives every decision we make, from selecting investment opportunities to delivering exceptional client service.",
+    type: DataType.page,
+    parentPagesTitle: ['Best of Brands', 'We are Coronation - Owner'],
+  },
+  {
+    url: '/brand-in-the-world/best-of-brands/transformed-africa',
+    documentTitle: 'Best of Brands',
+    pageTitle: 'Transformed Africa',
+    content:
+      "Shaping Africa's Financial Future. At Coronation, we are more than a financial services provider - we are your partner in success. With a deep understanding of the African market, we offer solutions that drive growth and prosperity across the continent. With over three decades of financial leadership, we have shaped the investment landscape and continue to empower institutions and individuals alike. Our Journey: A Legacy of Financial Excellence. With a strong foundation built over three decades of banking across Africa, Coronation emerged as a pioneer in shaping the continent's financial landscape. Our founders envisioned a future where Africans could harness the power of investment to build a stronger tomorrow. Today, we stand as Nigeria's fastest-growing investment managers, entrusted with over $1 billion in client assets. This milestone is a testament to our unwavering commitment to delivering exceptional value and driving sustainable growth. Empowering Financial Growth. At Coronation, we're committed to providing tailored financial solutions that meet the diverse needs of our clients. From individuals seeking to build wealth to institutions aiming to optimise their portfolios, we offer a comprehensive range of investment products and services designed to drive prosperity across Africa. Private Banking: Tailored Financial Solutions. Experience exclusive services tailored to your unique financial needs. Our private banking solutions offer personalised wealth management and seamless global transactions to help you build and protect your wealth. Invest Smarter with Coronation Securities. Unlock your investment potential with our comprehensive suite of securities solutions. Whether you need brokerage or advisory services, Coronation Securities equips you with the tools and expertise to build a robust investment portfolio. Insurance Solution Suitee. Our insurance solutions provide comprehensive protection for you and your assets. From home and car coverage to tailored life insurance plans, we offer a wide range of options to ensure financial security and peace of mind for you and your loved ones. Expand Your Global Reach. Our trade finance experts help you navigate the complexities of international markets. Whether it is structured finance or letters of credit, Coronation’s experts are here to support your business growth and ensure seamless global transactions. Unlocking Data-Driven Insights. At Coronation, we harness the power of data science to provide actionable insights that drive smarter decision-making. Our team of experts analyzes complex data sets, identifies key trends, and creates tailored strategies, delivering optimized results and personalized client experiences. Private Banking: Tailored Financial Solutions. At Coronation, we invest in our people. We are dedicated to fostering talent and creating an environment where individuals can thrive and grow. We offer opportunities for professional development and leadership. Join us as we nurture the next generation of financial leaders.",
+    type: DataType.page,
+    parentPagesTitle: ['Best of Brands', 'Transformed Africa'],
+  },
+  {
+    url: '/brand-in-the-world/best-of-brands/bancassurance',
+    documentTitle: 'Best of Brands',
+    pageTitle: 'Bancassurance',
+    content:
+      "Protect what matters the most with our Bancassurance offering which combines the convenience of banking with the security of insurance. In partnership with Access Bank, we provide a range of customised insurance plans, conveniently accessible through your banking platform. Whether it's securing your home, car, or life, we ensure comprehensive protection that fits your needs.",
+    type: DataType.page,
+    parentPagesTitle: ['Best of Brands', 'Bancassurance'],
+  },
+  {
+    url: '/brand-in-the-world/best-of-brands/faqs',
+    documentTitle: 'Best of Brands',
+    pageTitle: 'FAQs',
+    content:
+      "Best of Brands FAQs. What is Coronation Wealth? Coronation Wealth is an all-encompassing platform designed to support your journey towards financial independence. Through investment education, it equips you with the knowledge and tools to manage and grow your wealth effectively. What is the 'Owner's Mindset' approach at Coronation? The Owner's Mindset at Coronation reflects our commitment to your financial well-being. We don’t just manage assets—we act as partners in your financial journey, aligning our strategies with your long-term goals to deliver the best possible returns. What is Coronation’s history in the financial industry? With over three decades of banking expertise across Africa, Coronation has been a pioneer in shaping the continent’s financial landscape. Today, we manage over $1 billion in client assets, positioning us as one of Nigeria's fastest-growing investment managers. What is Bancassurance and how does Coronation provide it? Bancassurance is the integration of banking and insurance, providing both services under one roof. Through Coronation’s bancassurance solutions, you can access tailored insurance solutions for your home, car, life, and more, all conveniently available on the Access More app. What is Coronation’s commitment to talent development? Coronation invests heavily in nurturing the next generation of financial leaders by offering a dynamic and supportive environment for professional growth and development,  ensuring that employees can achieve their full potential. How does Coronation support global trade finance? Coronation offers a comprehensive suite of trade finance solutions, including structured finance and letters of credit, designed to help businesses navigate international markets, expand their global footprint, and thrive in an increasingly interconnected world.",
+    type: DataType.page,
+    parentPagesTitle: ['Best of Brands', 'FAQs'],
+  },
 ];
