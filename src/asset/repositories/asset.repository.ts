@@ -53,6 +53,31 @@ export class AssetRepository extends Repository<Asset> {
         throw new BadRequestException('Asset type not found');
       }
 
+      if (assetType.name === 'videos') {
+        const videoMimeRegex = /^video\/(mp4|mpeg|avi|mkv)$/;
+
+        if (!videoMimeRegex.test(file.mimetype)) {
+          throw new BadRequestException(
+            'Only video files are allowed for this asset type',
+          );
+        }
+      } else if (assetType.name === 'photographs') {
+        const imageMimeRegex = /^image\/(jpeg|png|jpg|gif|webp)$/;
+
+        if (!imageMimeRegex.test(file.mimetype)) {
+          throw new BadRequestException(
+            'Only image files are allowed for this asset type',
+          );
+        }
+      } else {
+        const generalMimeRegex =
+          /^(video\/(mp4|mpeg|avi|mkv)|image\/(jpeg|png|jpg|gif|webp)|application\/(pdf|msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet|presentationml\.presentation))|text\/plain)$/;
+
+        if (!generalMimeRegex.test(file.mimetype)) {
+          throw new BadRequestException('File type is not supported');
+        }
+      }
+
       if (assetType?.categories.length && !dto.category) {
         throw new BadRequestException(
           'Category is required for this asset type.',

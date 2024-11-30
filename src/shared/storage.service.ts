@@ -5,6 +5,7 @@ import {
 } from '@azure/storage-blob';
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { Readable } from 'stream';
 
 @Injectable()
 export class StorageService {
@@ -25,10 +26,17 @@ export class StorageService {
       const blobName = name;
       const blockBlobClient = this.client.getBlockBlobClient(blobName);
 
-      await blockBlobClient.upload(file.buffer, file.size);
+      const stream = Readable.from(file.buffer);
+
+      const blockSize = 4 * 1024 * 1024; // 4MB
+      const maxConcurrency = 5;
+
+      await blockBlobClient.uploadStream(stream, blockSize, maxConcurrency);
+
       return blockBlobClient.url;
     } catch (error) {
-      this.logger.error(error);
+      this.logger.error('Error uploading file to Azure Blob Storage', error);
+      throw error;
     }
   }
 
