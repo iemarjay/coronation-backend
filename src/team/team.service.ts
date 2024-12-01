@@ -3,6 +3,7 @@ import { CreateTeamDto } from './dto/create-team.dto';
 import { UpdateTeamDto } from './dto/update-team.dto';
 import { TeamRepository } from './repositories/team.repository';
 import { User } from 'src/user/entities/user.entity';
+import { Status } from './types';
 
 @Injectable()
 export class TeamService {
@@ -20,10 +21,12 @@ export class TeamService {
     page,
     search,
     date,
+    status,
   }: {
     limit: number;
     page: number;
-    search: string;
+    search?: string;
+    status?: Status;
     date?: Date;
   }) {
     return await this.repository.getAllTeams({
@@ -31,6 +34,7 @@ export class TeamService {
       page: page ?? 1,
       search,
       date,
+      status,
     });
   }
 

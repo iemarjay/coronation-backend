@@ -17,6 +17,7 @@ import {
 } from 'src/shared/decorators/auth-user.decorator';
 import { Role } from 'src/user/types';
 import { User } from 'src/user/entities/user.entity';
+import { Status } from './types';
 
 @Controller('teams')
 @Authenticate(Role.admin)
@@ -33,9 +34,10 @@ export class TeamController {
     @Query('page') page: number,
     @Query('limit') limit: number,
     @Query('search') search: string,
+    @Query('status') status: Status,
     @Query('date') date: Date,
   ) {
-    return this.teamService.getAll({ page, limit, search, date });
+    return this.teamService.getAll({ page, limit, search, date, status });
   }
 
   @Patch(':id')

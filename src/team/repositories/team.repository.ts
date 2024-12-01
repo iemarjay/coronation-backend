@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
 
 import { Team } from '../entities/team.entity';
+import { Status } from '../types';
 
 @Injectable()
 export class TeamRepository extends Repository<Team> {
@@ -13,6 +14,7 @@ export class TeamRepository extends Repository<Team> {
     limit: number;
     page: number;
     search?: string;
+    status?: Status;
     date?: Date;
   }) {
     const query = this.createQueryBuilder('team')
@@ -31,6 +33,12 @@ export class TeamRepository extends Repository<Team> {
     if (filter.date) {
       query.andWhere('CONVERT(date,team.createdAt) = :date', {
         date: filter.date,
+      });
+    }
+
+    if (filter.status) {
+      query.andWhere('team.status = :status', {
+        status: filter.status,
       });
     }
 
