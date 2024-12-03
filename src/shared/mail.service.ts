@@ -95,6 +95,39 @@ export class MailService {
     });
   }
 
+  async testTemplate<T>(
+    template: string,
+    data: T,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    mail?: {
+      recipient: { email: string; name: string };
+      cc?: string;
+      subject: string;
+    },
+  ) {
+    const templatePath = getResourcesDir(
+      path.join('templates/email', `${template}_en-us.ejs`),
+    );
+
+    const html = await ejs.renderFile(templatePath, data);
+
+    const url = new URL(this.config.get('mail.url', { infer: true }));
+
+    const requestData: EmailRequest = {
+      to: 'echukwurah99@gmail.com',
+      subject: 'Test this now',
+      body: html.toString(),
+    };
+
+    const response = await axios.post(url.toString(), requestData, {
+      headers: {
+        'x-api-key': this.config.get('mail.apiKey', { infer: true }),
+      },
+    });
+
+    return response.data;
+  }
+
   async sendEmail<T>(
     template: string,
     data: T,
@@ -145,6 +178,17 @@ export class MailService {
   //     })
   //     .catch((error) => this.logger.error('Failed to send email', error));
   // }
+
+  sendTestUserLoginOtp(user, otp: string) {
+    const data = {
+      user,
+      otp,
+    };
+    return this.testTemplate('user_login', data, {
+      recipient: { email: data.user.email, name: data.user.full_name },
+      subject: 'Login to Coronation',
+    });
+  }
 
   // sendUserWelcomeEmail(data: UserCreatedEvent) {
   //   const payload = {

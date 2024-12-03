@@ -19,6 +19,7 @@ import { In } from 'typeorm';
 import { UpdateUserDto } from '../dtos/update-user.dto';
 import { Permission } from '../entities/permission.entity';
 import { ActivateDeactvateUserDto } from '../dtos/activate-deactivate-user.dto';
+import { MailService } from 'src/shared/mail.service';
 
 @Injectable()
 export class UserService {
@@ -28,6 +29,7 @@ export class UserService {
     protected teamRepository: TeamRepository,
     protected permissionRepository: PermissionRepository,
     private readonly event: EventEmitter2,
+    private readonly mail: MailService,
   ) {}
 
   async create(dto: CreateUserDto, modifier: User) {
@@ -53,7 +55,7 @@ export class UserService {
       }
     }
 
-    let data: any = {
+    const data: any = {
       role,
       email,
       firstName: firstName.trim(),
@@ -258,5 +260,18 @@ export class UserService {
       success: true,
       data: result,
     };
+  }
+
+  async testEmail() {
+    const resp = await this.mail.sendTestUserLoginOtp(
+      {
+        user: {
+          email: 'saka@mailinator.com',
+          full_name: 'Saka Egbon',
+        },
+      },
+      '24242',
+    );
+    return { data: resp };
   }
 }
