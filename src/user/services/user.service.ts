@@ -4,6 +4,7 @@ import {
   InternalServerErrorException,
   Logger,
   NotFoundException,
+  OnModuleInit,
   UnauthorizedException,
 } from '@nestjs/common';
 import { CreateUserDto } from 'src/user/dtos/create-user.dto';
@@ -20,17 +21,23 @@ import { UpdateUserDto } from '../dtos/update-user.dto';
 import { Permission } from '../entities/permission.entity';
 import { ActivateDeactvateUserDto } from '../dtos/activate-deactivate-user.dto';
 import { MailService } from 'src/shared/mail.service';
+import { OktaService } from './okta.service';
 
 @Injectable()
-export class UserService {
+export class UserService implements OnModuleInit {
   private readonly logger = new Logger(UserService.name);
   constructor(
     protected repository: UserRepository,
     protected teamRepository: TeamRepository,
     protected permissionRepository: PermissionRepository,
+    protected okta: OktaService,
     private readonly event: EventEmitter2,
     private readonly mail: MailService,
   ) {}
+
+  async onModuleInit() {
+    await this.okta.createGroups(['owner', 'admin', 'staff']);
+  }
 
   async create(dto: CreateUserDto, modifier: User) {
     if (await this.repository.credentialsExists(dto)) {
@@ -61,10 +68,9 @@ export class UserService {
       firstName: firstName.trim(),
       team,
     };
-    let lastName: string;
 
     if (dto.lastName) {
-      data.lastName = lastName.trim();
+      data.lastName = dto.lastName.trim();
     }
     let user = Object.assign(new User(), data);
     if (role === Role.vendor && teamId) {
@@ -105,15 +111,13 @@ export class UserService {
   }
 
   async createSuperUser(dto: {
-    given_name: string;
-    family_name: string;
+    name: string;
     email: string;
-    picture: string;
     role: Role;
     isOwner: boolean;
   }) {
     let user: User;
-    const { given_name, family_name, email, role, isOwner, picture } = dto;
+    const { name, email, role, isOwner } = dto;
 
     if (!isOwner) {
       return new UnauthorizedException('Unathorized user access');
@@ -123,11 +127,9 @@ export class UserService {
     } catch {
       const userPermissions = await this.permissionRepository.find();
       user = await this.repository.save({
-        firstName: given_name,
-        lastName: family_name,
+        firstName: name,
         email,
         role,
-        imageUrl: picture,
         status: Status.active,
         permissions: userPermissions,
       });

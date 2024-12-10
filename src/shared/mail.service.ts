@@ -159,8 +159,6 @@ export class MailService {
       },
     });
 
-    console.log(typeof html);
-
     return response.data;
   }
 

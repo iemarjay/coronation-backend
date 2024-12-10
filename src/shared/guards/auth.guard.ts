@@ -2,6 +2,7 @@ import {
   CanActivate,
   ExecutionContext,
   HttpException,
+  HttpStatus,
   Injectable,
   Logger,
   NotFoundException,
@@ -14,6 +15,7 @@ import { isUUID } from 'class-validator';
 import { Auth0Service } from 'src/user/services/auth0.service';
 import { UserRepository } from 'src/user/repositories/user.repository';
 import { Role } from 'src/user/types';
+import { OktaService } from 'src/user/services/okta.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -22,6 +24,7 @@ export class AuthGuard implements CanActivate {
     private readonly reflector: Reflector,
     private readonly jwtService: JwtService,
     private readonly auth0Service: Auth0Service,
+    private readonly oktaService: OktaService,
     private userRepository: UserRepository,
     private config: ConfigService,
   ) {}
@@ -39,7 +42,7 @@ export class AuthGuard implements CanActivate {
           secret: this.config.get('auth.secret'),
         });
       } catch {
-        payload = await this.auth0Service.verify(token);
+        payload = await this.oktaService.verify(token);
       }
 
       if (!payload) {
@@ -66,7 +69,7 @@ export class AuthGuard implements CanActivate {
 
       return this.authorizeUser(request, context);
     } catch (err) {
-      throw new HttpException(err.message, err.status);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 

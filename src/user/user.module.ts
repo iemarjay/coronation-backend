@@ -22,7 +22,9 @@ import { PermissionService } from './services/permission.service';
   imports: [
     TypeOrmModule.forFeature([User, Permission]),
     SharedModule,
-    PassportModule.register({ defaultStrategy: 'jwt' }),
+    PassportModule.register({
+      defaultStrategy: 'okta',
+    }),
     forwardRef(() => TeamModule),
   ],
   controllers: [UserController, AuthController],

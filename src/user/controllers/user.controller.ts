@@ -17,7 +17,7 @@ import {
   Authenticate,
   AuthUser,
 } from 'src/shared/decorators/auth-user.decorator';
-import { AuthGuard as JwtAuthGuard } from '@nestjs/passport';
+import { AuthGuard } from '@nestjs/passport';
 
 import { User } from '../entities/user.entity';
 import { UpdateUserDto } from '../dtos/update-user.dto';
@@ -38,7 +38,7 @@ export class UserController {
   }
 
   @Post('create/super')
-  @UseGuards(JwtAuthGuard('jwt'))
+  @UseGuards(AuthGuard('okta'))
   async oktaLogin(@Req() req) {
     return this.userService.createSuperUser(req.user);
   }

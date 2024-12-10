@@ -130,11 +130,13 @@ export class AssetRepository extends Repository<Asset> {
 
       const filename = `${dto.name.toLowerCase().replaceAll(' ', '-')}${path.extname(file.originalname).toLowerCase()}`;
       uploadedFile = await this.storage.upload(file, filename);
+      const type =
+        file.mimetype === 'image/svg+xml' ? 'image/svg' : file.mimetype;
 
       const asset = this.create({
         name: dto.name,
         filename,
-        type: file.mimetype,
+        type,
         size: file.size,
         createdBy: user,
         lastModifiedBy: user,
@@ -269,7 +271,6 @@ export class AssetRepository extends Repository<Asset> {
       }
 
       if (file) {
-        await this.storage.deleteFile(asset.filename);
         const filename = `${dto.name.toLowerCase().replaceAll(' ', '-')}${path.extname(file.originalname).toLowerCase()}`;
         uploadedFile = await this.storage.upload(file, filename);
         asset.filename = filename;
