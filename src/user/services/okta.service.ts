@@ -44,7 +44,7 @@ export class OktaService {
       );
       return jwt.claims;
     } catch (error) {
-      throw new UnauthorizedException('Invalid Token');
+      throw new UnauthorizedException(error.message ?? 'Invalid Token');
     }
   }
 
