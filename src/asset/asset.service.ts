@@ -278,14 +278,19 @@ export class AssetService {
     if (user.role === Role.admin) {
       return;
     }
+    await this.getUserPermission(user, accessType);
     const userAccess =
       await this.accessRequestRepository.findAcceptedRequestUserAndAssetId(
         user,
         asset,
       );
     if (!userAccess) {
+      const value = {
+        read: 'view',
+        download: 'download',
+      };
       throw new UnauthorizedException(
-        'You do not have access to view this asset',
+        `You do not have access to ${value[accessType]} this asset`,
       );
     }
     if (asset.status === Status.inactive && accessType !== 'write') {
@@ -297,7 +302,6 @@ export class AssetService {
     } else if (asset.users.includes(user)) {
       return;
     }
-    await this.getUserPermission(user, accessType);
 
     return;
   }

@@ -8,7 +8,7 @@ import { ConfigService } from '@nestjs/config';
 import { MailService } from 'src/shared/mail.service';
 import { AuthVerifyDto } from '../dtos/auth-verify.dto';
 import { instanceToPlain } from 'class-transformer';
-import { Role } from '../types';
+import { Role, Status } from '../types';
 
 @Injectable()
 export class AuthService {
@@ -36,6 +36,11 @@ export class AuthService {
       );
     }
 
+    if (user.status === Status.inactive) {
+      throw new UnauthorizedException(
+        `User account inactive. Contact admin to activate account`,
+      );
+    }
     const code = await this.otp.getOtpByUserId(user.id);
     if (code) {
       await this.otp.invalidate(code, user.id);

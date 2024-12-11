@@ -248,7 +248,13 @@ export class UserService implements OnModuleInit {
     });
     if (!user) throw new NotFoundException('User not found');
 
-    this.repository.remove(user);
+    await this.repository.update({ createdBy: { id } }, { createdBy: null });
+    await this.repository.update(
+      { lastModifiedBy: { id } },
+      { lastModifiedBy: null },
+    );
+
+    await this.repository.remove(user);
 
     return {
       message: `user with email ${user.email} deleted`,

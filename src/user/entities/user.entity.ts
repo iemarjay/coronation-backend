@@ -48,10 +48,14 @@ export class User {
   @Column({ nullable: true })
   imageUrl: string;
 
-  @Column({ default: Status.inactive, type: 'varchar', enum: Status })
+  @Column({
+    default: Status.active,
+    type: 'varchar',
+    enum: Status,
+  })
   status: Status;
 
-  @ManyToOne(() => Team, { nullable: true })
+  @ManyToOne(() => Team, { nullable: true, onDelete: 'SET NULL' })
   team: Team;
 
   @OneToMany(() => AccessRequest, (accessRequest) => accessRequest.user)

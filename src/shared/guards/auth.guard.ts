@@ -13,8 +13,9 @@ import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { Auth0Service } from 'src/user/services/auth0.service';
 import { UserRepository } from 'src/user/repositories/user.repository';
-import { Role } from 'src/user/types';
+import { Role, Status } from 'src/user/types';
 import { OktaService } from 'src/user/services/okta.service';
+import { isUUID } from 'class-validator';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -48,13 +49,22 @@ export class AuthGuard implements CanActivate {
         throw new UnauthorizedException('Token validation error');
       }
 
+      const isValidUUID = isUUID(payload.sub);
+
+      const queryField = isValidUUID ? 'id' : 'email';
       const param = payload.sub;
       let userExists = await this.userRepository.findOne({
-        where: { email: param },
+        where: { [queryField]: param },
       });
 
       if (!userExists) {
         throw new NotFoundException(`User not registered on portal`);
+      }
+
+      if (userExists.status === Status.inactive) {
+        throw new UnauthorizedException(
+          `User account inactive. Contact admin to activate account`,
+        );
       }
 
       if (payload.picture && !userExists.imageUrl) {
