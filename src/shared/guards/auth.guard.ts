@@ -49,12 +49,9 @@ export class AuthGuard implements CanActivate {
         throw new UnauthorizedException('Token validation error');
       }
 
-      const isValidUUID = isUUID(payload.sub);
-
-      const queryField = isValidUUID ? 'id' : 'email';
-      const param = isValidUUID ? payload.sub : payload.email;
+      const param = payload.sub;
       let userExists = await this.userRepository.findOne({
-        where: { [queryField]: param },
+        where: { email: param },
       });
 
       if (!userExists) {

@@ -42,6 +42,7 @@ export class OktaService {
         token,
         this.config.get('okta.audience'),
       );
+
       return jwt.claims;
     } catch (error) {
       throw new UnauthorizedException(error.message ?? 'Invalid Token');
