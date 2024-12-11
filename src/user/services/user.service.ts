@@ -137,7 +137,7 @@ export class UserService implements OnModuleInit {
       user.createdBy = user;
       this.repository.save(user);
       this.event.emit(
-        UserEvents.USER_CREATED,
+        UserEvents.SUPER_USER_CREATED,
         new UserCreatedEvent(user, UserCreatedEventRoute.OKTA),
       );
     }

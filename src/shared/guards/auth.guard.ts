@@ -11,7 +11,6 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
-import { isUUID } from 'class-validator';
 import { Auth0Service } from 'src/user/services/auth0.service';
 import { UserRepository } from 'src/user/repositories/user.repository';
 import { Role } from 'src/user/types';
@@ -55,7 +54,7 @@ export class AuthGuard implements CanActivate {
       });
 
       if (!userExists) {
-        throw new NotFoundException(`Authorization failed`);
+        throw new NotFoundException(`User not registered on portal`);
       }
 
       if (payload.picture && !userExists.imageUrl) {

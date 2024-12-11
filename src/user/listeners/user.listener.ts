@@ -37,4 +37,27 @@ export class UserListener {
         });
     }
   }
+
+  @OnEvent(UserEvents.SUPER_USER_CREATED)
+  async handleSuperUserCreatedEvent(event: UserCreatedEvent) {
+    const { user } = event;
+    const dto: any = {
+      email: user.email,
+      given_name: user.firstName,
+      roles: [Role.owner, Role.admin],
+    };
+
+    if (user.lastName) {
+      dto.family_name = user.lastName.trim();
+    }
+
+    this.okta
+      .assignRole(dto)
+      .then(() => {
+        this.mail.sendUserWelcomeEmail(event);
+      })
+      .catch((error) => {
+        this.logger.error(error);
+      });
+  }
 }

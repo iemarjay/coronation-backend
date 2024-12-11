@@ -2,6 +2,7 @@ import {
   Injectable,
   InternalServerErrorException,
   Logger,
+  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
@@ -99,6 +100,43 @@ export class OktaService {
     } catch (error) {
       throw new InternalServerErrorException(
         error.message ?? 'Failed to create user on tenant',
+      );
+    }
+  }
+
+  async assignRole(dto: {
+    email: string;
+    given_name: string;
+    family_name: string;
+    roles: string[];
+  }) {
+    try {
+      const users = await this.oktaClient.userApi.listUsers();
+
+      let userId = null;
+      for await (const user of users) {
+        if (user.profile.email === dto.email) {
+          userId = user.id;
+          return userId;
+        }
+      }
+      if (!userId) throw new NotFoundException('User not fount on Okta');
+
+      for (const role of dto.roles) {
+        const groupFound = await this.getGroupIdByName(role);
+
+        if (groupFound) {
+          await this.oktaClient.groupApi.assignUserToGroup({
+            groupId: groupFound,
+            userId,
+          });
+        }
+      }
+
+      return userId;
+    } catch (error) {
+      throw new InternalServerErrorException(
+        error.message ?? 'Failed to assign user to groups',
       );
     }
   }

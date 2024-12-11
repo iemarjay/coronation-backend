@@ -10,4 +10,5 @@ export class UserCreatedEvent {
 
 export const UserEvents = {
   USER_CREATED: 'user.created',
+  SUPER_USER_CREATED: 'super.user.created',
 };
