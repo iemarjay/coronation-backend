@@ -64,6 +64,12 @@ export class AuthService {
     } catch (error) {
       throw new UnauthorizedException('User does not exist');
     }
+
+    if (user.status === Status.inactive) {
+      throw new UnauthorizedException(
+        `User account inactive. Contact admin to activate account`,
+      );
+    }
     if (!(await this.otp.verify(dto.code, user.id))) {
       throw new UnauthorizedException('Invalid or expired OTP code');
     }
