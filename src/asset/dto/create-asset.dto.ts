@@ -1,4 +1,9 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+
+export enum AssetSourceType {
+  SharePoint = 'sharepoint',
+  File = 'file',
+}
 
 export class CreateAssetDto {
   @IsString()
@@ -13,9 +18,17 @@ export class CreateAssetDto {
   @IsOptional()
   category?: string;
 
+  @IsEnum(AssetSourceType)
+  @IsNotEmpty()
+  sourceType: AssetSourceType;
+
   @IsString()
   @IsOptional()
   subcategory?: string;
+
+  @IsString()
+  @IsOptional()
+  fileUrl: string;
 
   @IsString({ each: true })
   @IsOptional()

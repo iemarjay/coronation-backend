@@ -12,7 +12,7 @@ import { AccessRequestStatus } from './types';
 import { AccessRequestRepository } from './repositories/access-request.repository';
 import { Role, Status } from 'src/user/types';
 import { AssetDownloadRepository } from './repositories/access-download.repository';
-import { CreateAssetDto } from './dto/create-asset.dto';
+import { AssetSourceType, CreateAssetDto } from './dto/create-asset.dto';
 import { ChangeAssetStatusDto } from './dto/change-asset-status.dto';
 import { UserRepository } from 'src/user/repositories/user.repository';
 import { FindAllQueryDto } from './dto/find-all-asset.dto';
@@ -40,13 +40,16 @@ export class AssetService {
 
   async create(user: User, file: Express.Multer.File, dto: CreateAssetDto) {
     await this.getUserPermission(user, 'upload');
-    if (!file) {
+    if (dto.sourceType === AssetSourceType.File && !file) {
       throw new BadRequestException('File missing');
+    } else if (dto.sourceType === AssetSourceType.SharePoint && !dto.fileUrl) {
+      throw new BadRequestException('file link missing');
     }
     const assets = await this.assetRepository.createAsset(user, file, dto);
     return {
       success: true,
-      message: 'File has been uploaded successfully.',
+      message:
+        'File uploaded successfully. It will be available once published.',
       data: assets,
     };
   }
@@ -58,6 +61,11 @@ export class AssetService {
     dto: UpdateAssetDto,
   ) {
     await this.getUserPermission(user, 'write');
+    if (dto.sourceType === AssetSourceType.File && !file) {
+      throw new BadRequestException('File missing');
+    } else if (dto.sourceType === AssetSourceType.SharePoint && !dto.fileUrl) {
+      throw new BadRequestException('file link missing');
+    }
     const assets = await this.assetRepository.updateAsset(user, id, file, dto);
     return {
       success: true,

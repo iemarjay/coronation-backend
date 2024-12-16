@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Injectable,
   InternalServerErrorException,
+  Logger,
   NotFoundException,
 } from '@nestjs/common';
 import * as path from 'path';
@@ -9,7 +10,7 @@ import { DataSource, In, Repository } from 'typeorm';
 import { Asset } from '../entities/asset.entity';
 import { User } from 'src/user/entities/user.entity';
 import { Role, Status } from 'src/user/types';
-import { CreateAssetDto } from '../dto/create-asset.dto';
+import { AssetSourceType, CreateAssetDto } from '../dto/create-asset.dto';
 import { StorageService } from 'src/shared/storage.service';
 import { AssetTypeRepository } from './asset-type.repository';
 import { AssetVersion } from '../entities/asset-version.entity';
@@ -22,6 +23,7 @@ import { UpdateAssetDto } from '../dto/update-asset.dto';
 
 @Injectable()
 export class AssetRepository extends Repository<Asset> {
+  private readonly logger = new Logger(AssetRepository.name);
   constructor(
     private readonly datasource: DataSource,
     private readonly storage: StorageService,
@@ -53,7 +55,10 @@ export class AssetRepository extends Repository<Asset> {
         throw new BadRequestException('Asset type not found');
       }
 
-      if (assetType.name === 'videos') {
+      if (
+        assetType.name === 'videos' &&
+        dto.sourceType === AssetSourceType.File
+      ) {
         const videoMimeRegex = /^video\/(mp4|mpeg|avi|mkv)$/;
 
         if (!videoMimeRegex.test(file.mimetype)) {
@@ -61,7 +66,10 @@ export class AssetRepository extends Repository<Asset> {
             'Only video files are allowed for this asset type',
           );
         }
-      } else if (assetType.name === 'photographs') {
+      } else if (
+        assetType.name === 'photographs' &&
+        dto.sourceType === AssetSourceType.File
+      ) {
         const imageMimeRegex = /^image\/(jpeg|png|jpg|gif|webp)$/;
 
         if (!imageMimeRegex.test(file.mimetype)) {
@@ -73,7 +81,10 @@ export class AssetRepository extends Repository<Asset> {
         const generalMimeRegex =
           /^(video\/(mp4|mpeg|avi|mkv)|image\/(jpeg|png|jpg|gif|webp)|application\/(pdf|msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet|presentationml\.presentation))|text\/plain)$/;
 
-        if (!generalMimeRegex.test(file.mimetype)) {
+        if (
+          dto.sourceType === AssetSourceType.File &&
+          !generalMimeRegex.test(file.mimetype)
+        ) {
           throw new BadRequestException('File type is not supported');
         }
       }
@@ -127,26 +138,37 @@ export class AssetRepository extends Repository<Asset> {
           where: { id: In(usersArray) },
         });
       }
+      let filename = '';
+      let type = '';
+      let size = 0;
+      let url = '';
+      if (dto.sourceType === AssetSourceType.File) {
+        filename = `${dto.name.toLowerCase().replaceAll(' ', '-')}${path.extname(file.originalname).toLowerCase()}`;
+        uploadedFile = await this.storage.upload(file, filename);
+        type = file.mimetype === 'image/svg+xml' ? 'image/svg' : file.mimetype;
+        size = file.size;
+        url = uploadedFile;
+      } else {
+        url = dto.fileUrl;
+        filename = dto.name;
+      }
 
-      const filename = `${dto.name.toLowerCase().replaceAll(' ', '-')}${path.extname(file.originalname).toLowerCase()}`;
-      uploadedFile = await this.storage.upload(file, filename);
-      const type =
-        file.mimetype === 'image/svg+xml' ? 'image/svg' : file.mimetype;
+      console.log(url, size, filename, type);
 
       const asset = this.create({
         name: dto.name,
         filename,
         type,
-        size: file.size,
+        size,
         createdBy: user,
         lastModifiedBy: user,
-        url: uploadedFile,
+        url,
         assetType,
       });
 
       const assetVersion = new AssetVersion();
-      assetVersion.path = uploadedFile;
-      assetVersion.url = uploadedFile;
+      assetVersion.path = url;
+      assetVersion.url = url;
       assetVersion.asset = asset;
 
       if (dto.category) {
@@ -175,7 +197,7 @@ export class AssetRepository extends Repository<Asset> {
       if (error instanceof BadRequestException) {
         throw error;
       } else {
-        console.log(error);
+        this.logger.error(error);
         throw new InternalServerErrorException('Failed to upload asset');
       }
     }
@@ -207,6 +229,40 @@ export class AssetRepository extends Repository<Asset> {
 
       if (!asset) {
         throw new BadRequestException('Asset not found');
+      }
+
+      if (
+        asset.assetType.name === 'videos' &&
+        dto.sourceType === AssetSourceType.File
+      ) {
+        const videoMimeRegex = /^video\/(mp4|mpeg|avi|mkv)$/;
+
+        if (!videoMimeRegex.test(file.mimetype)) {
+          throw new BadRequestException(
+            'Only video files are allowed for this asset type',
+          );
+        }
+      } else if (
+        asset.assetType.name === 'photographs' &&
+        dto.sourceType === AssetSourceType.File
+      ) {
+        const imageMimeRegex = /^image\/(jpeg|png|jpg|gif|webp)$/;
+
+        if (!imageMimeRegex.test(file.mimetype)) {
+          throw new BadRequestException(
+            'Only image files are allowed for this asset type',
+          );
+        }
+      } else {
+        const generalMimeRegex =
+          /^(video\/(mp4|mpeg|avi|mkv)|image\/(jpeg|png|jpg|gif|webp)|application\/(pdf|msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet|presentationml\.presentation))|text\/plain)$/;
+
+        if (
+          dto.sourceType === AssetSourceType.File &&
+          !generalMimeRegex.test(file.mimetype)
+        ) {
+          throw new BadRequestException('File type is not supported');
+        }
       }
 
       if (!asset.assetType.categories.length && dto.category) {
@@ -270,19 +326,34 @@ export class AssetRepository extends Repository<Asset> {
         asset.name = dto.name;
       }
 
-      if (file) {
-        const filename = `${dto.name.toLowerCase().replaceAll(' ', '-')}${path.extname(file.originalname).toLowerCase()}`;
+      let filename = asset.filename;
+      let type = asset.type;
+      let size = asset.size;
+      let url = asset.url;
+      if (dto.sourceType === AssetSourceType.File && file) {
+        filename = asset.filename
+          ? `${asset.filename.toLowerCase().replaceAll(' ', '-')}${path.extname(file.originalname).toLowerCase()}`
+          : `${dto.name.toLowerCase().replaceAll(' ', '-')}${path.extname(file.originalname).toLowerCase()}`;
         uploadedFile = await this.storage.upload(file, filename);
-        asset.filename = filename;
-        asset.type = file.mimetype;
-        asset.size = file.size;
-        asset.lastModifiedBy = user;
-        asset.url = uploadedFile;
+        type = file.mimetype === 'image/svg+xml' ? 'image/svg' : file.mimetype;
+        size = file.size;
+        url = uploadedFile;
+      } else if (dto.sourceType === AssetSourceType.SharePoint && dto.fileUrl) {
+        url = dto.fileUrl;
+        filename = dto.name;
+        type = '';
+        size = 0;
       }
 
+      asset.filename = filename;
+      asset.type = type;
+      asset.size = size;
+      asset.lastModifiedBy = user;
+      asset.url = url;
+
       const assetVersion = new AssetVersion();
-      assetVersion.path = file ? uploadedFile : asset.url;
-      assetVersion.url = file ? uploadedFile : asset.url;
+      assetVersion.path = url;
+      assetVersion.url = url;
       assetVersion.asset = asset;
 
       asset.versions.push(assetVersion);

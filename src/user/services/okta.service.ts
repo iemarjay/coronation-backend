@@ -170,7 +170,7 @@ export class OktaService {
         });
       } catch (error) {
         this.logger.log(
-          error.errorCauses[0]['errorSummary'] ??
+          (error?.errorCauses?.[0]?.['errorSummary'] || error) ??
             `Failed to create group "${groupName}":`,
         );
       }
