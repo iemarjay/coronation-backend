@@ -1,13 +1,12 @@
 import { OmitType } from '@nestjs/mapped-types';
-import { AssetSourceType, CreateAssetDto } from './create-asset.dto';
-import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { CreateAssetDto } from './create-asset.dto';
+import { IsOptional, IsString } from 'class-validator';
 
-export class UpdateAssetDto extends OmitType(CreateAssetDto, ['type']) {
+export class UpdateAssetDto extends OmitType(CreateAssetDto, [
+  'type',
+  'sourceType',
+]) {
   @IsString()
   @IsOptional()
   name: string;
-
-  @IsEnum(AssetSourceType)
-  @IsNotEmpty()
-  sourceType: AssetSourceType;
 }

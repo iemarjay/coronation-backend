@@ -61,11 +61,6 @@ export class AssetService {
     dto: UpdateAssetDto,
   ) {
     await this.getUserPermission(user, 'write');
-    if (dto.sourceType === AssetSourceType.File && !file) {
-      throw new BadRequestException('File missing');
-    } else if (dto.sourceType === AssetSourceType.SharePoint && !dto.fileUrl) {
-      throw new BadRequestException('file link missing');
-    }
     const assets = await this.assetRepository.updateAsset(user, id, file, dto);
     return {
       success: true,

@@ -231,10 +231,7 @@ export class AssetRepository extends Repository<Asset> {
         throw new BadRequestException('Asset not found');
       }
 
-      if (
-        asset.assetType.name === 'videos' &&
-        dto.sourceType === AssetSourceType.File
-      ) {
+      if (asset.assetType.name === 'videos' && file) {
         const videoMimeRegex = /^video\/(mp4|mpeg|avi|mkv)$/;
 
         if (!videoMimeRegex.test(file.mimetype)) {
@@ -242,10 +239,7 @@ export class AssetRepository extends Repository<Asset> {
             'Only video files are allowed for this asset type',
           );
         }
-      } else if (
-        asset.assetType.name === 'photographs' &&
-        dto.sourceType === AssetSourceType.File
-      ) {
+      } else if (asset.assetType.name === 'photographs' && file) {
         const imageMimeRegex = /^image\/(jpeg|png|jpg|gif|webp)$/;
 
         if (!imageMimeRegex.test(file.mimetype)) {
@@ -257,10 +251,7 @@ export class AssetRepository extends Repository<Asset> {
         const generalMimeRegex =
           /^(video\/(mp4|mpeg|avi|mkv)|image\/(jpeg|png|jpg|gif|webp)|application\/(pdf|msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet|presentationml\.presentation))|text\/plain)$/;
 
-        if (
-          dto.sourceType === AssetSourceType.File &&
-          !generalMimeRegex.test(file.mimetype)
-        ) {
+        if (file && !generalMimeRegex.test(file.mimetype)) {
           throw new BadRequestException('File type is not supported');
         }
       }
@@ -330,7 +321,7 @@ export class AssetRepository extends Repository<Asset> {
       let type = asset.type;
       let size = asset.size;
       let url = asset.url;
-      if (dto.sourceType === AssetSourceType.File && file) {
+      if (file) {
         filename = asset.filename
           ? `${asset.filename.toLowerCase().replaceAll(' ', '-')}${path.extname(file.originalname).toLowerCase()}`
           : `${dto.name.toLowerCase().replaceAll(' ', '-')}${path.extname(file.originalname).toLowerCase()}`;
@@ -338,7 +329,7 @@ export class AssetRepository extends Repository<Asset> {
         type = file.mimetype === 'image/svg+xml' ? 'image/svg' : file.mimetype;
         size = file.size;
         url = uploadedFile;
-      } else if (dto.sourceType === AssetSourceType.SharePoint && dto.fileUrl) {
+      } else if (dto.fileUrl) {
         url = dto.fileUrl;
         filename = dto.name;
         type = '';
