@@ -91,7 +91,7 @@ export class UserRepository extends Repository<User> {
     });
 
     const users = await this.find({
-      select: ['id', 'firstName', 'lastName'],
+      select: ['id', 'firstName', 'lastName', 'role', 'email'],
     });
 
     return {

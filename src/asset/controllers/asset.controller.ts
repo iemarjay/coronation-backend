@@ -43,7 +43,7 @@ export class AssetController {
     private readonly assetTypeService: AssetTypeService,
   ) {}
 
-  @Authenticate(Role.admin)
+  @Authenticate()
   @UseInterceptors(FileInterceptor('file'))
   @Post('add')
   create(
@@ -77,7 +77,7 @@ export class AssetController {
     return this.assetService.getAsset(user, id);
   }
 
-  @Authenticate(Role.admin)
+  @Authenticate()
   @UseInterceptors(FileInterceptor('file'))
   @Patch('update/:id')
   update(

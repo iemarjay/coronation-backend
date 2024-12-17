@@ -60,6 +60,16 @@ export class AccessRequestRepository extends Repository<AccessRequest> {
     });
   }
 
+  async findAllAcceptedRequestUserAndAssetId(user: User) {
+    return this.find({
+      relations: ['asset', 'user', 'updatedBy'],
+      where: {
+        status: AccessRequestStatus.accepted,
+        user: { id: user.id },
+      },
+    });
+  }
+
   async getAllAccessRequest(filter: {
     limit: number;
     page: number;

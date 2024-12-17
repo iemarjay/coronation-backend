@@ -278,7 +278,7 @@ export class AssetService {
   }
 
   async getUserAccess(user: User, asset: Asset, accessType: string) {
-    if (user.role === Role.admin) {
+    if (user.role === Role.admin || user.role === Role.staff) {
       return;
     }
     await this.getUserPermission(user, accessType);
@@ -287,15 +287,7 @@ export class AssetService {
         user,
         asset,
       );
-    if (!userAccess) {
-      const value = {
-        read: 'view',
-        download: 'download',
-      };
-      throw new UnauthorizedException(
-        `You do not have access to ${value[accessType]} this asset`,
-      );
-    }
+
     if (asset.status === Status.inactive && accessType !== 'write') {
       throw new UnauthorizedException('Asset has not been published');
     } else if (userAccess.status === AccessRequestStatus.accepted) {
@@ -304,6 +296,14 @@ export class AssetService {
       return;
     } else if (asset.users.includes(user)) {
       return;
+    } else if (!userAccess) {
+      const value = {
+        read: 'view',
+        download: 'download',
+      };
+      throw new UnauthorizedException(
+        `You do not have access to ${value[accessType]} this asset`,
+      );
     }
 
     return;
@@ -318,7 +318,7 @@ export class AssetService {
         },
       },
     });
-    if (user.role === Role.admin) {
+    if (user.role === Role.admin || user.role === Role.staff) {
       return;
     }
     if (!hasPermission) {

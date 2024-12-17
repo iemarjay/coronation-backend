@@ -6,7 +6,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import * as path from 'path';
-import { DataSource, In, Repository } from 'typeorm';
+import { Brackets, DataSource, In, Repository } from 'typeorm';
 import { Asset } from '../entities/asset.entity';
 import { User } from 'src/user/entities/user.entity';
 import { Role, Status } from 'src/user/types';
@@ -20,6 +20,7 @@ import { TeamRepository } from 'src/team/repositories/team.repository';
 import { Team } from 'src/team/entities/team.entity';
 import { UserRepository } from 'src/user/repositories/user.repository';
 import { UpdateAssetDto } from '../dto/update-asset.dto';
+import { AccessRequestRepository } from './access-request.repository';
 
 @Injectable()
 export class AssetRepository extends Repository<Asset> {
@@ -30,6 +31,7 @@ export class AssetRepository extends Repository<Asset> {
     private teamRepository: TeamRepository,
     private assetTypeRepository: AssetTypeRepository,
     private userRepository: UserRepository,
+    private accessRequestRepository: AccessRequestRepository,
   ) {
     super(Asset, datasource.createEntityManager());
   }
@@ -152,8 +154,6 @@ export class AssetRepository extends Repository<Asset> {
         url = dto.fileUrl;
         filename = dto.name;
       }
-
-      console.log(url, size, filename, type);
 
       const asset = this.create({
         name: dto.name,
@@ -423,20 +423,11 @@ export class AssetRepository extends Repository<Asset> {
   }) {
     const query = this.createQueryBuilder('asset');
 
+    // Pagination and Basic Joins
     query
       .take(filter.limit)
       .skip(filter.limit * ((filter.page ?? 1) - 1))
-      .orderBy('asset.createdAt', 'DESC');
-
-    if (filter.user.role !== Role.admin) {
-      query.andWhere('asset.status = :status', { status: Status.active });
-    } else if (
-      filter.user.role === Role.admin &&
-      filter.context === 'download'
-    ) {
-      query.andWhere('asset.status = :status', { status: Status.active });
-    }
-    query
+      .orderBy('asset.createdAt', 'DESC')
       .leftJoinAndSelect('asset.versions', 'versions')
       .leftJoinAndSelect('asset.users', 'users')
       .leftJoinAndSelect('asset.teams', 'teams')
@@ -447,6 +438,7 @@ export class AssetRepository extends Repository<Asset> {
       .leftJoinAndSelect('asset.lastModifiedBy', 'lastModifiedBy')
       .andWhere('assetType.name = :type', { type: filter.type });
 
+    // Optional Filters
     if (filter.search) {
       const searchTerm = `%${filter.search}%`;
       query.andWhere('asset.name LIKE :search', { search: searchTerm });
@@ -461,20 +453,66 @@ export class AssetRepository extends Repository<Asset> {
     }
 
     if (filter.date) {
-      query.andWhere('CONVERT(date,asset.createdAt) = :date', {
+      query.andWhere('CONVERT(date, asset.createdAt) = :date', {
         date: filter.date,
       });
     }
 
-    const [assets, totalCount] = await query.getManyAndCount();
+    // Download Context: Only Active Assets
+    if (filter.context === 'download') {
+      query.andWhere('asset.status = :status', { status: Status.active });
+    }
 
-    const totalPages = Math.ceil(totalCount / filter.limit);
+    // Non-Admin User Access Control
+    if (filter.user.role !== Role.admin && filter.context !== 'download') {
+      const userAccessAssets =
+        await this.accessRequestRepository.findAllAcceptedRequestUserAndAssetId(
+          filter.user,
+        );
+      const userAccessAssetIds = userAccessAssets.map(
+        (access) => access.asset.id,
+      );
+
+      query.andWhere(
+        new Brackets((qb) => {
+          qb
+            // Assets created by the user
+            .where('createdBy.id = :userId', { userId: filter.user.id })
+            // Or active assets with associations
+            .orWhere(
+              new Brackets((activeQb) => {
+                activeQb
+                  .where('asset.status = :activeStatus', {
+                    activeStatus: Status.active,
+                  })
+                  .andWhere(
+                    new Brackets((associationQb) => {
+                      associationQb
+                        .where('users.id = :userId', { userId: filter.user.id })
+                        .orWhere('teams.id = :teamId', {
+                          teamId: filter.user.team?.id,
+                        })
+                        .orWhere('asset.id IN (:...authorizedAssetIds)', {
+                          authorizedAssetIds: userAccessAssetIds.length
+                            ? userAccessAssetIds
+                            : [null],
+                        });
+                    }),
+                  );
+              }),
+            );
+        }),
+      );
+    }
+
+    // Execute query
+    const [assets, totalCount] = await query.getManyAndCount();
 
     return {
       currentPage: filter.page,
       pageSize: filter.limit,
-      totalCount: totalCount,
-      totalPages: totalPages,
+      totalCount,
+      totalPages: Math.ceil(totalCount / filter.limit),
       assets,
     };
   }
