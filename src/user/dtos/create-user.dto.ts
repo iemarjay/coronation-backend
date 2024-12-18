@@ -17,10 +17,6 @@ export class CreateUserDto {
   @IsString()
   firstName: string;
 
-  @IsOptional()
-  @IsString()
-  lastName: string;
-
   @IsEnum(Role, {
     message: 'role must be one of the following values: admin, staff, vendor',
   })

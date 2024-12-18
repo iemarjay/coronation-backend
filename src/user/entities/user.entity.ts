@@ -74,6 +74,6 @@ export class User {
   downloads: AssetDownload[];
 
   get full_name(): string {
-    return `${this.firstName}${this.lastName ? ' ' + this.lastName : ''}`;
+    return `${this.firstName}`;
   }
 }

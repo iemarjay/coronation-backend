@@ -119,7 +119,6 @@ export class AccessRequestRepository extends Repository<AccessRequest> {
           qb.where('accessRequest.message LIKE :search', { search: searchTerm })
             .orWhere('user.email LIKE :search', { search: searchTerm })
             .orWhere('user.firstName LIKE :search', { search: searchTerm })
-            .orWhere('user.lastName LIKE :search', { search: searchTerm })
             .orWhere('asset.name LIKE :search', { search: searchTerm });
         }),
       );

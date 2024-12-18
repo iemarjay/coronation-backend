@@ -69,9 +69,6 @@ export class UserService implements OnModuleInit {
       team,
     };
 
-    if (dto.lastName) {
-      data.lastName = dto.lastName.trim();
-    }
     let user = Object.assign(new User(), data);
     if (role === Role.vendor && teamId) {
       throw new BadRequestException('A vendor cannot be added to a department');
@@ -184,7 +181,7 @@ export class UserService implements OnModuleInit {
     });
     if (!user) throw new NotFoundException('User not found');
 
-    const { firstName, lastName, role, teamId, permissions } = dto;
+    const { firstName, role, teamId, permissions } = dto;
 
     if (permissions) {
       const selectedPermissions = await this.permissionRepository.findBy({
@@ -198,10 +195,6 @@ export class UserService implements OnModuleInit {
 
     if (firstName) {
       user.firstName = firstName;
-    }
-
-    if (lastName) {
-      user.lastName = lastName;
     }
 
     if (role) {

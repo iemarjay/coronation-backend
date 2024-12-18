@@ -61,7 +61,7 @@ export class UserRepository extends Repository<User> {
     if (filter.search) {
       const searchTerm = `%${filter.search}%`;
       query.andWhere(
-        '(LOWER(user.firstName) LIKE :search OR LOWER(user.lastName) LIKE :search OR LOWER(user.email) LIKE :search)',
+        '(LOWER(user.firstName) LIKE :search OR LOWER(user.email) LIKE :search)',
         { search: searchTerm.toLocaleLowerCase() },
       );
     }
@@ -91,7 +91,7 @@ export class UserRepository extends Repository<User> {
     });
 
     const users = await this.find({
-      select: ['id', 'firstName', 'lastName', 'role', 'email'],
+      select: ['id', 'firstName', 'role', 'email'],
     });
 
     return {
