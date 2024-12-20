@@ -28,6 +28,10 @@ export const assetTypeData = [
     categories: [],
   },
   {
+    name: 'pitchbooks',
+    categories: [],
+  },
+  {
     name: 'forms',
     categories: [],
   },
