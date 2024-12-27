@@ -1,9 +1,5 @@
 export const assetTypeData = [
   {
-    name: 'animations',
-    categories: [],
-  },
-  {
     name: 'awards',
     categories: [],
   },

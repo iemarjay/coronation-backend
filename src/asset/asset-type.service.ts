@@ -29,6 +29,15 @@ export class AssetTypeService implements OnModuleInit {
         await this.createAssetType(type);
       }
     }
+
+    const found = await this.assetTypeRepository.findOne({
+      where: {
+        name: 'animations',
+      },
+    });
+    if (found) {
+      await this.assetTypeRepository.delete(found);
+    }
   }
 
   async createAssetType(dto: CreateAssetTypeDto) {
