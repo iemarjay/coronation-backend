@@ -38,6 +38,15 @@ export class AssetTypeService implements OnModuleInit {
     if (found) {
       await this.assetTypeRepository.delete(found);
     }
+
+    const stationary = await this.assetTypeRepository.findOne({
+      where: {
+        name: 'stationary',
+      },
+    });
+    if (stationary) {
+      await this.assetTypeRepository.delete(stationary);
+    }
   }
 
   async createAssetType(dto: CreateAssetTypeDto) {

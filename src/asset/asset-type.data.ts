@@ -28,7 +28,7 @@ export const assetTypeData = [
     categories: [],
   },
   {
-    name: 'stationary',
+    name: 'stationery',
     categories: [],
   },
   {
