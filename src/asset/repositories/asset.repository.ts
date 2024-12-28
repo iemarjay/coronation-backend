@@ -69,6 +69,18 @@ export class AssetRepository extends Repository<Asset> {
           );
         }
       } else if (
+        (assetType.name === 'stationery' || assetType.name === 'pitchbooks') &&
+        dto.sourceType === AssetSourceType.File
+      ) {
+        const documentMimeRegex =
+          /^application\/(msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet)|pdf)|text\/plain$/;
+
+        if (!documentMimeRegex.test(file.mimetype)) {
+          throw new BadRequestException(
+            'Only document or pdf files are allowed for this asset type',
+          );
+        }
+      } else if (
         assetType.name === 'photographs' &&
         dto.sourceType === AssetSourceType.File
       ) {
