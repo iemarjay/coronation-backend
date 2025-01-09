@@ -1,8 +1,6 @@
 import {
   CanActivate,
   ExecutionContext,
-  HttpException,
-  HttpStatus,
   Injectable,
   Logger,
   NotFoundException,
@@ -75,7 +73,7 @@ export class AuthGuard implements CanActivate {
 
       return this.authorizeUser(request, context);
     } catch (err) {
-      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new UnauthorizedException(err.message);
     }
   }
 
