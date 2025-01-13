@@ -162,20 +162,20 @@ export class MailService {
     return response.data;
   }
 
-  // sendUserLoginOtp(user: Partial<User>, otp: string) {
-  //   const data = {
-  //     user,
-  //     otp,
-  //   };
-  //   this.sendEmail('user_login', data, {
-  //     recipient: { email: data.user.email, name: data.user.full_name },
-  //     subject: 'Login to Coronation',
-  //   })
-  //     .then((r) => {
-  //       this.logger.log({ response: r, data });
-  //     })
-  //     .catch((error) => this.logger.error('Failed to send email', error));
-  // }
+  sendUserLoginOtp(user: Partial<User>, otp: string) {
+    const data = {
+      user,
+      otp,
+    };
+    this.sendEmail('user_login', data, {
+      recipient: { email: data.user.email, name: data.user.full_name },
+      subject: 'Login to Coronation',
+    })
+      .then((r) => {
+        this.logger.log({ response: r, data });
+      })
+      .catch((error) => this.logger.error('Failed to send email', error));
+  }
 
   sendTestUserLoginOtp(user, otp: string) {
     const data = {
@@ -188,82 +188,14 @@ export class MailService {
     });
   }
 
-  // sendUserWelcomeEmail(data: UserCreatedEvent) {
-  //   const payload = {
-  //     user: data.user,
-  //     url: `${this.config.get('client.url', { infer: true })}sign-in`,
-  //   };
-  //   this.sendEmail('user_welcome', payload, {
-  //     recipient: { email: data.user.email, name: data.user.full_name },
-  //     subject: 'Login to Coronation Brand Portal',
-  //   })
-  //     .then((r) => {
-  //       this.logger.log({ response: r, data });
-  //     })
-  //     .catch((error) => this.logger.error('Failed to send email', error));
-  // }
-
-  // sendAccessApprovedEmail(data: AccessRequestedEvent) {
-  //   const payload = {
-  //     user: data.request.user,
-  //     url: `${this.config.get('client.url', { infer: true })}downloads?tab=${data.request.asset.assetType.name}`,
-  //     fileName: data.request.asset.filename,
-  //   };
-  //   this.sendEmail('access_approved', payload, {
-  //     recipient: { email: payload.user.email, name: payload.user.full_name },
-  //     subject: 'Request for File Download - Access Approved',
-  //   })
-  //     .then((r) => {
-  //       this.logger.log({ response: r, data });
-  //     })
-  //     .catch((error) => this.logger.error('Failed to send email', error));
-  // }
-
-  // sendAccessDeclinedEmail(data: AccessRequestedEvent) {
-  //   const payload = {
-  //     user: data.request.user,
-  //     reason: data.request.rejectionReason,
-  //     fileName: data.request.asset.filename,
-  //   };
-  //   this.sendEmail('access_declined', payload, {
-  //     recipient: { email: payload.user.email, name: payload.user.full_name },
-  //     subject: 'Request for File Download - Access Declined',
-  //   })
-  //     .then((r) => {
-  //       this.logger.log({ response: r, data });
-  //     })
-  //     .catch((error) => this.logger.error('Failed to send email', error));
-  // }
-
-  sendUserLoginOtp(user: Partial<User>, otp: string) {
-    const data = {
-      user,
-      otp,
-    };
-    this.sendTemplate('user_login', data, {
-      mail: {
-        recipient: { email: data.user.email, name: data.user.full_name },
-        tags: ['user_login'],
-        subject: 'Login to Coronation',
-      },
-    })
-      .then((r) => {
-        this.logger.log({ response: r, data });
-      })
-      .catch((error) => this.logger.error('Failed to send email', error));
-  }
-
   sendUserWelcomeEmail(data: UserCreatedEvent) {
     const payload = {
       user: data.user,
       url: `${this.config.get('client.url', { infer: true })}sign-in`,
     };
-    this.sendTemplate('user_welcome', payload, {
-      mail: {
-        recipient: { email: data.user.email, name: data.user.full_name },
-        tags: ['user_registration'],
-        subject: 'Login to Coronation Brand Portal',
-      },
+    this.sendEmail('user_welcome', payload, {
+      recipient: { email: data.user.email, name: data.user.full_name },
+      subject: 'Login to Coronation Brand Portal',
     })
       .then((r) => {
         this.logger.log({ response: r, data });
@@ -277,12 +209,9 @@ export class MailService {
       url: `${this.config.get('client.url', { infer: true })}downloads?tab=${data.request.asset.assetType.name}`,
       fileName: data.request.asset.filename,
     };
-    this.sendTemplate('access_approved', payload, {
-      mail: {
-        recipient: { email: payload.user.email, name: payload.user.full_name },
-        tags: ['access_granted'],
-        subject: 'Request for File Download - Access Approved',
-      },
+    this.sendEmail('access_approved', payload, {
+      recipient: { email: payload.user.email, name: payload.user.full_name },
+      subject: 'Request for File Download - Access Approved',
     })
       .then((r) => {
         this.logger.log({ response: r, data });
@@ -296,12 +225,9 @@ export class MailService {
       reason: data.request.rejectionReason,
       fileName: data.request.asset.filename,
     };
-    this.sendTemplate('access_declined', payload, {
-      mail: {
-        recipient: { email: payload.user.email, name: payload.user.full_name },
-        tags: ['access_granted'],
-        subject: 'Request for File Download - Access Declined',
-      },
+    this.sendEmail('access_declined', payload, {
+      recipient: { email: payload.user.email, name: payload.user.full_name },
+      subject: 'Request for File Download - Access Declined',
     })
       .then((r) => {
         this.logger.log({ response: r, data });

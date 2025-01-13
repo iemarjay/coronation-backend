@@ -107,6 +107,30 @@ export class UserService implements OnModuleInit {
     return user;
   }
 
+  async createFirstAdmin(dto: CreateUserDto) {
+    if (await this.repository.credentialsExists(dto)) {
+      throw new BadRequestException('User email already exists');
+    }
+
+    const { email, firstName } = dto;
+
+    const data: any = {
+      role: Role.admin,
+      email,
+      firstName: firstName.trim(),
+    };
+
+    let user = Object.assign(new User(), data);
+
+    const userPermissions = await this.permissionRepository.find();
+
+    user.permissions = userPermissions;
+
+    user = await this.repository.save(user);
+
+    return user;
+  }
+
   async createSuperUser(dto: {
     name: string;
     email: string;

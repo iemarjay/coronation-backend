@@ -30,11 +30,11 @@ export class AuthService {
       throw new UnauthorizedException('User does not exist');
     }
 
-    if (user.role !== Role.vendor) {
-      throw new UnauthorizedException(
-        `Access denied. ${user.role} members should log in using Microsoft social login`,
-      );
-    }
+    // if (user.role !== Role.vendor) {
+    //   throw new UnauthorizedException(
+    //     `Access denied. ${user.role} members should log in using Microsoft social login`,
+    //   );
+    // }
 
     if (user.status === Status.inactive) {
       throw new UnauthorizedException(

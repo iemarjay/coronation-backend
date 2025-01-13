@@ -37,6 +37,11 @@ export class UserController {
     return this.userService.create(dto, user);
   }
 
+  @Post('create-first-user')
+  createFirstAdmin(@Body() dto: CreateUserDto) {
+    return this.userService.createFirstAdmin(dto);
+  }
+
   @Post('create/super')
   @UseGuards(AuthGuard('okta'))
   async oktaLogin(@Req() req) {
