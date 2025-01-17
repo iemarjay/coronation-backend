@@ -39,6 +39,7 @@ export default function configuration() {
       host: process.env.REDIS_HOST,
       port: parseInt(process.env.REDIS_PORT),
       // db: parseInt(process.env.REDIS_DB),
+      tls: {},
       password: process.env.REDIS_PASSWORD,
     },
     azure: {
