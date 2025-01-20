@@ -113,9 +113,4 @@ export class UserController {
   getAllTeamsAndUsers() {
     return this.userService.getAllTeamsAndUsers();
   }
-
-  @Get('testmail')
-  testMail() {
-    return this.userService.testEmail();
-  }
 }

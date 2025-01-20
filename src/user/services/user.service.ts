@@ -286,17 +286,4 @@ export class UserService implements OnModuleInit {
       data: result,
     };
   }
-
-  async testEmail() {
-    const resp = await this.mail.sendTestUserLoginOtp(
-      {
-        user: {
-          email: 'saka@mailinator.com',
-          full_name: 'Saka Egbon',
-        },
-      },
-      '24242',
-    );
-    return { data: resp };
-  }
 }
