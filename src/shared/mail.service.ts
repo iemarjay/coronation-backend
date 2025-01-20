@@ -137,10 +137,10 @@ export class MailService {
       subject: string;
     },
   ) {
-    const templatePath = getResourcesDir(
-      path.join('templates/email', `${template}_en-us.ejs`),
+    const templatePath = path.join(
+      'resources/templates/email',
+      `${template}_en-us.ejs`,
     );
-
     const html = await ejs.renderFile(templatePath, data);
     const url = new URL(this.config.get('mail.url', { infer: true }));
 
