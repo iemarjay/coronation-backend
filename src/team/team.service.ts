@@ -80,7 +80,7 @@ export class TeamService {
 
     if (teams.length === 0) {
       return {
-        message: `departments deleted successfully`,
+        message: `Departments deleted successfully`,
       };
     }
 
@@ -94,7 +94,7 @@ export class TeamService {
     await this.repository.remove(teams);
 
     return {
-      message: `departments deleted successfully`,
+      message: `Departments deleted successfully`,
     };
   }
 }

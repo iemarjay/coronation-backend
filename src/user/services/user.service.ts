@@ -292,7 +292,7 @@ export class UserService implements OnModuleInit {
     await this.repository.remove(user);
 
     return {
-      message: `user deleted successfully`,
+      message: `User deleted successfully`,
     };
   }
 
@@ -303,7 +303,7 @@ export class UserService implements OnModuleInit {
 
     if (users.length === 0) {
       return {
-        message: `users deleted successfully`,
+        message: `Users deleted successfully`,
       };
     }
 
@@ -337,7 +337,7 @@ export class UserService implements OnModuleInit {
     await this.repository.remove(users);
 
     return {
-      message: `users deleted successfully`,
+      message: `Users deleted successfully`,
     };
   }
 
