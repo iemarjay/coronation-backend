@@ -109,6 +109,12 @@ export class UserController {
   }
 
   @Authenticate(Role.admin)
+  @Delete('delete/multiple')
+  deleteUsers(@Body() body: { userIds: string[] }) {
+    return this.userService.deleteUsers(body.userIds);
+  }
+
+  @Authenticate(Role.admin)
   @Get('teams-and-users')
   getAllTeamsAndUsers() {
     return this.userService.getAllTeamsAndUsers();

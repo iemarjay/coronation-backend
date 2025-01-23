@@ -17,6 +17,7 @@ import { UserListener } from './listeners/user.listener';
 import { Permission } from './entities/permission.entity';
 import { PermissionRepository } from './repositories/permission.repository';
 import { PermissionService } from './services/permission.service';
+import { AssetModule } from 'src/asset/asset.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { PermissionService } from './services/permission.service';
       defaultStrategy: 'okta',
     }),
     forwardRef(() => TeamModule),
+    forwardRef(() => AssetModule),
   ],
   controllers: [UserController, AuthController],
   providers: [

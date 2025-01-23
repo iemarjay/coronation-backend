@@ -22,12 +22,14 @@ import { Permission } from '../entities/permission.entity';
 import { ActivateDeactvateUserDto } from '../dtos/activate-deactivate-user.dto';
 import { MailService } from 'src/shared/mail.service';
 import { OktaService } from './okta.service';
+import { AssetRepository } from 'src/asset/repositories/asset.repository';
 
 @Injectable()
 export class UserService implements OnModuleInit {
   private readonly logger = new Logger(UserService.name);
   constructor(
     protected repository: UserRepository,
+    protected assetRepository: AssetRepository,
     protected teamRepository: TeamRepository,
     protected permissionRepository: PermissionRepository,
     protected okta: OktaService,
@@ -265,8 +267,24 @@ export class UserService implements OnModuleInit {
     });
     if (!user) throw new NotFoundException('User not found');
 
+    await this.assetRepository.update(
+      { createdBy: { id } },
+      { createdBy: null },
+    );
+    await this.assetRepository.update(
+      { lastModifiedBy: { id } },
+      { lastModifiedBy: null },
+    );
     await this.repository.update({ createdBy: { id } }, { createdBy: null });
     await this.repository.update(
+      { lastModifiedBy: { id } },
+      { lastModifiedBy: null },
+    );
+    await this.teamRepository.update(
+      { createdBy: { id } },
+      { createdBy: null },
+    );
+    await this.teamRepository.update(
       { lastModifiedBy: { id } },
       { lastModifiedBy: null },
     );
@@ -275,6 +293,51 @@ export class UserService implements OnModuleInit {
 
     return {
       message: `user with email ${user.email} deleted`,
+    };
+  }
+
+  async deleteUsers(ids: string[]) {
+    const users = await this.repository.findBy({
+      id: In(ids),
+    });
+
+    if (users.length === 0) {
+      return {
+        message: `users deleted successfully`,
+      };
+    }
+
+    for (const user of users) {
+      await this.repository.update(
+        { createdBy: { id: user.id } },
+        { createdBy: null },
+      );
+      await this.repository.update(
+        { lastModifiedBy: { id: user.id } },
+        { lastModifiedBy: null },
+      );
+      await this.assetRepository.update(
+        { createdBy: { id: user.id } },
+        { createdBy: null },
+      );
+      await this.assetRepository.update(
+        { lastModifiedBy: { id: user.id } },
+        { lastModifiedBy: null },
+      );
+      await this.teamRepository.update(
+        { createdBy: { id: user.id } },
+        { createdBy: null },
+      );
+      await this.teamRepository.update(
+        { lastModifiedBy: { id: user.id } },
+        { lastModifiedBy: null },
+      );
+    }
+
+    await this.repository.remove(users);
+
+    return {
+      message: `users deleted successfully`,
     };
   }
 

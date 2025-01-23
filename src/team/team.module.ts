@@ -6,12 +6,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Team } from './entities/team.entity';
 import { TeamRepository } from './repositories/team.repository';
 import { UserModule } from 'src/user/user.module';
+import { AssetModule } from 'src/asset/asset.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Team]),
     SharedModule,
     forwardRef(() => UserModule),
+    forwardRef(() => AssetModule),
   ],
   controllers: [TeamController],
   providers: [TeamService, TeamRepository],

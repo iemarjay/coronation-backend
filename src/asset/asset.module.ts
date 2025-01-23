@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { AssetService } from './asset.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SharedModule } from 'src/shared/shared.module';
@@ -35,8 +35,8 @@ import { TeamModule } from 'src/team/team.module';
       Subcategory,
     ]),
     SharedModule,
-    UserModule,
-    TeamModule,
+    forwardRef(() => UserModule),
+    forwardRef(() => TeamModule),
   ],
   controllers: [AssetController, CategoryController],
   providers: [
@@ -51,5 +51,6 @@ import { TeamModule } from 'src/team/team.module';
     AssetTypeRepository,
     SubcategoryRepository,
   ],
+  exports: [AssetRepository],
 })
 export class AssetModule {}
