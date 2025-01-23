@@ -4,10 +4,15 @@ import { UpdateTeamDto } from './dto/update-team.dto';
 import { TeamRepository } from './repositories/team.repository';
 import { User } from 'src/user/entities/user.entity';
 import { Status } from './types';
+import { In } from 'typeorm';
+import { UserRepository } from 'src/user/repositories/user.repository';
 
 @Injectable()
 export class TeamService {
-  constructor(protected repository: TeamRepository) {}
+  constructor(
+    protected repository: TeamRepository,
+    protected userRepository: UserRepository,
+  ) {}
   async create(dto: CreateTeamDto, user: User) {
     return await this.repository.save({
       ...dto,
@@ -58,9 +63,38 @@ export class TeamService {
 
   async remove(id: string) {
     const team = await this.repository.findOneByOrFail({ id });
+    await this.userRepository.update(
+      { team: { id: team.id } },
+      { createdBy: null },
+    );
     await this.repository.delete({ id });
     return {
-      message: `${team.name} department deleted`,
+      message: `${team.name} department deleted successfully`,
+    };
+  }
+
+  async deleteTeams(ids: string[]) {
+    const teams = await this.repository.findBy({
+      id: In(ids),
+    });
+
+    if (teams.length === 0) {
+      return {
+        message: `departments deleted successfully`,
+      };
+    }
+
+    for (const team of teams) {
+      await this.userRepository.update(
+        { team: { id: team.id } },
+        { createdBy: null },
+      );
+    }
+
+    await this.repository.remove(teams);
+
+    return {
+      message: `departments deleted successfully`,
     };
   }
 }

@@ -49,8 +49,15 @@ export class TeamController {
     return this.teamService.update(id, updateTeamDto, user);
   }
 
+  @Authenticate(Role.admin)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.teamService.remove(id);
+  }
+
+  @Authenticate(Role.admin)
+  @Delete('delete/multiple')
+  deleteTeams(@Body() dto: { teamIds: string[] }) {
+    return this.teamService.deleteTeams(dto.teamIds);
   }
 }

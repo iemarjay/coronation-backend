@@ -292,7 +292,7 @@ export class UserService implements OnModuleInit {
     await this.repository.remove(user);
 
     return {
-      message: `user with email ${user.email} deleted`,
+      message: `user deleted successfully`,
     };
   }
 

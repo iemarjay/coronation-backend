@@ -15,7 +15,7 @@ export class AssetDownload {
   @ManyToOne(() => Asset, (asset) => asset.downloads, { onDelete: 'CASCADE' })
   asset: Asset;
 
-  @ManyToOne(() => User, (user) => user.downloads)
+  @ManyToOne(() => User, (user) => user.downloads, { onDelete: 'CASCADE' })
   user: User;
 
   @CreateDateColumn()
