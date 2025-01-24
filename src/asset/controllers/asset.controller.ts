@@ -89,13 +89,13 @@ export class AssetController {
     return this.assetService.update(user, id, file, dto);
   }
 
-  @Authenticate(Role.admin)
+  @Authenticate()
   @Delete('/:id')
   delete(@AuthUser() user: User, @Param('id') id: string) {
     return this.assetService.deleteAsset(user, id);
   }
 
-  @Authenticate(Role.admin)
+  @Authenticate()
   @Delete('delete/multiple')
   async deleteFiles(@Body() dto: DeleteBulkAssetDto, @AuthUser() user: User) {
     return await this.assetService.deleteAssets(dto, user);
