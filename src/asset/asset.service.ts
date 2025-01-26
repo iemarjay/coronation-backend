@@ -290,7 +290,10 @@ export class AssetService {
 
     if (asset.status === Status.inactive && accessType !== 'write') {
       throw new UnauthorizedException('Asset has not been published');
-    } else if (userAccess.status === AccessRequestStatus.accepted) {
+    } else if (
+      userAccess &&
+      userAccess?.status === AccessRequestStatus.accepted
+    ) {
       return;
     } else if (asset.teams.includes(user.team)) {
       return;
