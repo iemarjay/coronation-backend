@@ -58,7 +58,9 @@ export class User {
   @ManyToOne(() => Team, { nullable: true, onDelete: 'SET NULL' })
   team: Team;
 
-  @OneToMany(() => AccessRequest, (accessRequest) => accessRequest.user)
+  @OneToMany(() => AccessRequest, (accessRequest) => accessRequest.user, {
+    cascade: true,
+  })
   requests: AccessRequest[];
 
   @ManyToMany(() => Permission)

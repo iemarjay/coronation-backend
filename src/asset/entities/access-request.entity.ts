@@ -22,7 +22,10 @@ export class AccessRequest {
   @Column('text', { nullable: true })
   rejectionReason: string;
 
-  @ManyToOne(() => User, (user) => user.requests, { eager: true })
+  @ManyToOne(() => User, (user) => user.requests, {
+    eager: true,
+    onDelete: 'CASCADE',
+  })
   user: User;
 
   @ManyToOne(() => Asset, (asset) => asset.requests, {
