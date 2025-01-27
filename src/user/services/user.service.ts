@@ -264,6 +264,7 @@ export class UserService implements OnModuleInit {
   async deleteUser(id: string) {
     const user = await this.repository.findOne({
       where: { id },
+      relations: ['assets.users'],
     });
     if (!user) throw new NotFoundException('User not found');
 
@@ -301,8 +302,9 @@ export class UserService implements OnModuleInit {
   }
 
   async deleteUsers(ids: string[]) {
-    const users = await this.repository.findBy({
-      id: In(ids),
+    const users = await this.repository.find({
+      where: { id: In(ids) },
+      relations: ['assets.users'],
     });
 
     if (users.length === 0) {

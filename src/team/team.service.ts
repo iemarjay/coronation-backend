@@ -64,7 +64,10 @@ export class TeamService {
   }
 
   async remove(id: string) {
-    const team = await this.repository.findOneByOrFail({ id });
+    const team = await this.repository.findOneOrFail({
+      where: { id },
+      relations: ['assets.teams'],
+    });
     await this.userRepository.update(
       { team: { id: team.id } },
       { createdBy: null },
@@ -80,8 +83,9 @@ export class TeamService {
   }
 
   async deleteTeams(ids: string[]) {
-    const teams = await this.repository.findBy({
-      id: In(ids),
+    const teams = await this.repository.find({
+      where: { id: In(ids) },
+      relations: ['assets.teams'],
     });
 
     if (teams.length === 0) {
