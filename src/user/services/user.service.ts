@@ -347,7 +347,7 @@ export class UserService implements OnModuleInit {
     await this.repository.remove(users);
 
     return {
-      message: `Users deleted successfully`,
+      message: `${users.length > 1 ? 'Users' : 'User'} deleted successfully`,
     };
   }
 

@@ -108,7 +108,7 @@ export class TeamService {
     await this.repository.remove(teams);
 
     return {
-      message: `Departments deleted successfully`,
+      message: `${teams.length > 1 ? 'Departments' : 'Department'} deleted successfully`,
     };
   }
 }
