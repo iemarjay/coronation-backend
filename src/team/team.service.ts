@@ -6,12 +6,14 @@ import { User } from 'src/user/entities/user.entity';
 import { Status } from './types';
 import { In } from 'typeorm';
 import { UserRepository } from 'src/user/repositories/user.repository';
+import { AssetRepository } from 'src/asset/repositories/asset.repository';
 
 @Injectable()
 export class TeamService {
   constructor(
     protected repository: TeamRepository,
     protected userRepository: UserRepository,
+    protected assetRepository: AssetRepository,
   ) {}
   async create(dto: CreateTeamDto, user: User) {
     return await this.repository.save({
@@ -67,6 +69,10 @@ export class TeamService {
       { team: { id: team.id } },
       { createdBy: null },
     );
+    for (const asset of team.assets) {
+      asset.teams = asset.teams.filter((t) => t.id !== team.id);
+      await this.assetRepository.save(asset);
+    }
     await this.repository.delete({ id });
     return {
       message: `${team.name} department deleted successfully`,
@@ -89,6 +95,10 @@ export class TeamService {
         { team: { id: team.id } },
         { createdBy: null },
       );
+      for (const asset of team.assets) {
+        asset.teams = asset.teams.filter((t) => t.id !== team.id);
+        await this.assetRepository.save(asset);
+      }
     }
 
     await this.repository.remove(teams);

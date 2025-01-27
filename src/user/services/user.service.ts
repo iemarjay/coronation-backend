@@ -288,6 +288,10 @@ export class UserService implements OnModuleInit {
       { lastModifiedBy: { id } },
       { lastModifiedBy: null },
     );
+    for (const asset of user.assets) {
+      asset.users = asset.users.filter((u) => u.id !== user.id);
+      await this.assetRepository.save(asset);
+    }
 
     await this.repository.remove(user);
 
@@ -332,6 +336,10 @@ export class UserService implements OnModuleInit {
         { lastModifiedBy: { id: user.id } },
         { lastModifiedBy: null },
       );
+      for (const asset of user.assets) {
+        asset.users = asset.users.filter((u) => u.id !== user.id);
+        await this.assetRepository.save(asset);
+      }
     }
 
     await this.repository.remove(users);
