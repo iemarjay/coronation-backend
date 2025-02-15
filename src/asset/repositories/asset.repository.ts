@@ -72,12 +72,12 @@ export class AssetRepository extends Repository<Asset> {
         (assetType.name === 'stationery' || assetType.name === 'pitchbooks') &&
         dto.sourceType === AssetSourceType.File
       ) {
-        const documentMimeRegex =
-          /^application\/(msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet)|pdf)|text\/plain$/;
+        const allowedMimeRegex =
+          /^(application\/(msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet)|pdf)|text\/plain|image\/(jpeg|png|jpg|gif|bmp|webp))$/;
 
-        if (!documentMimeRegex.test(file.mimetype)) {
+        if (!allowedMimeRegex.test(file.mimetype)) {
           throw new BadRequestException(
-            'Only document or pdf files are allowed for this asset type',
+            'Only document or image files are allowed for this asset type',
           );
         }
       } else if (
@@ -249,6 +249,19 @@ export class AssetRepository extends Repository<Asset> {
         if (!videoMimeRegex.test(file.mimetype)) {
           throw new BadRequestException(
             'Only video files are allowed for this asset type',
+          );
+        }
+      } else if (
+        (asset.assetType.name === 'stationery' ||
+          asset.assetType.name === 'pitchbooks') &&
+        file
+      ) {
+        const allowedMimeRegex =
+          /^(application\/(msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet)|pdf)|text\/plain|image\/(jpeg|png|jpg|gif|bmp|webp))$/;
+
+        if (!allowedMimeRegex.test(file.mimetype)) {
+          throw new BadRequestException(
+            'Only document or image files are allowed for this asset type',
           );
         }
       } else if (asset.assetType.name === 'photographs' && file) {

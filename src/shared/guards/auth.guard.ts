@@ -73,7 +73,7 @@ export class AuthGuard implements CanActivate {
 
       return this.authorizeUser(request, context);
     } catch (err) {
-      throw new UnauthorizedException('User not authorized for this action');
+      throw err;
     }
   }
 
