@@ -81,7 +81,7 @@ export class AssetRepository extends Repository<Asset> {
           );
         }
       } else if (
-        assetType.name === 'photographs' &&
+        (assetType.name === 'photographs' || assetType.name === 'logos') &&
         dto.sourceType === AssetSourceType.File
       ) {
         const imageMimeRegex = /^image\/(jpeg|png|jpg|gif|webp)$/;
@@ -176,6 +176,7 @@ export class AssetRepository extends Repository<Asset> {
         lastModifiedBy: user,
         url,
         assetType,
+        sourceType: dto.sourceType,
       });
 
       const assetVersion = new AssetVersion();
@@ -264,7 +265,11 @@ export class AssetRepository extends Repository<Asset> {
             'Only document or image files are allowed for this asset type',
           );
         }
-      } else if (asset.assetType.name === 'photographs' && file) {
+      } else if (
+        (asset.assetType.name === 'photographs' ||
+          asset.assetType.name === 'logos') &&
+        file
+      ) {
         const imageMimeRegex = /^image\/(jpeg|png|jpg|gif|webp)$/;
 
         if (!imageMimeRegex.test(file.mimetype)) {

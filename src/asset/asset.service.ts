@@ -74,7 +74,20 @@ export class AssetService {
 
     await this.getUserAccess(user, asset, 'download');
 
+    if (!asset.type.length) {
+      throw new BadRequestException(
+        'This asset is not downloadable. SharePoint files can only be accessed via browser.',
+      );
+    }
+
     const response = await this.storage.download(asset.filename);
+
+    res.setHeader('Content-Type', asset.type);
+    res.setHeader('Content-Length', response.contentLength);
+    res.setHeader(
+      'Content-Disposition',
+      `attachment; filename="${asset.filename}"`,
+    );
 
     await this.assetDownloadRepository.save({
       asset,

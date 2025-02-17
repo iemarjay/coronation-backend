@@ -19,6 +19,8 @@ import { AccessRequest } from './access-request.entity';
 import { AssetType } from './asset-type.entity';
 import { Subcategory } from './subcategory.entity';
 import { Status } from 'src/user/types';
+import { AssetSourceType } from '../dto/create-asset.dto';
+import { Exclude } from 'class-transformer';
 
 @Entity()
 export class Asset {
@@ -95,6 +97,14 @@ export class Asset {
 
   @Column({ default: Status.inactive, type: 'varchar', enum: Status })
   status: Status;
+
+  @Column({
+    default: AssetSourceType.File,
+    type: 'varchar',
+    enum: AssetSourceType,
+  })
+  @Exclude()
+  sourceType: AssetSourceType;
 
   @ManyToOne(() => AssetType, (assetType) => assetType.assets)
   assetType: AssetType;
