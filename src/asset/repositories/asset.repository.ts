@@ -64,9 +64,7 @@ export class AssetRepository extends Repository<Asset> {
         const videoMimeRegex = /^video\/(mp4|mpeg|avi|mkv)$/;
 
         if (!videoMimeRegex.test(file.mimetype)) {
-          throw new BadRequestException(
-            'Only video files are allowed for this asset type',
-          );
+          throw new BadRequestException('Only video files are allowed');
         }
       } else if (
         (assetType.name === 'stationery' || assetType.name === 'pitchbooks') &&
@@ -77,19 +75,29 @@ export class AssetRepository extends Repository<Asset> {
 
         if (!allowedMimeRegex.test(file.mimetype)) {
           throw new BadRequestException(
-            'Only document or image files are allowed for this asset type',
+            'Only document or image files are allowed',
           );
         }
       } else if (
-        (assetType.name === 'photographs' || assetType.name === 'logos') &&
+        assetType.name === 'logos' &&
+        dto.sourceType === AssetSourceType.File
+      ) {
+        const allowedMimeRegex =
+          /^(video\/(mp4|mpeg|avi|mkv)|application\/(msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet)|pdf)|text\/plain|image\/(jpeg|png|jpg|gif|bmp|webp))$/;
+
+        if (!allowedMimeRegex.test(file.mimetype)) {
+          throw new BadRequestException(
+            'Only document, video or image files are allowed',
+          );
+        }
+      } else if (
+        assetType.name === 'photographs' &&
         dto.sourceType === AssetSourceType.File
       ) {
         const imageMimeRegex = /^image\/(jpeg|png|jpg|gif|webp)$/;
 
         if (!imageMimeRegex.test(file.mimetype)) {
-          throw new BadRequestException(
-            'Only image files are allowed for this asset type',
-          );
+          throw new BadRequestException('Only image files are allowed');
         }
       } else {
         const generalMimeRegex =
@@ -104,13 +112,9 @@ export class AssetRepository extends Repository<Asset> {
       }
 
       if (assetType?.categories.length && !dto.category) {
-        throw new BadRequestException(
-          'Category is required for this asset type.',
-        );
+        throw new BadRequestException('Category is required.');
       } else if (!assetType.categories.length && dto.category) {
-        throw new BadRequestException(
-          'Category is not applicable for this asset type.',
-        );
+        throw new BadRequestException('Category is not applicable.');
       } else if (dto.category) {
         category = assetType.categories.find(
           (item) => item.name === dto.category.toLowerCase(),
@@ -248,9 +252,7 @@ export class AssetRepository extends Repository<Asset> {
         const videoMimeRegex = /^video\/(mp4|mpeg|avi|mkv)$/;
 
         if (!videoMimeRegex.test(file.mimetype)) {
-          throw new BadRequestException(
-            'Only video files are allowed for this asset type',
-          );
+          throw new BadRequestException('Only video files are allowed');
         }
       } else if (
         (asset.assetType.name === 'stationery' ||
@@ -262,20 +264,23 @@ export class AssetRepository extends Repository<Asset> {
 
         if (!allowedMimeRegex.test(file.mimetype)) {
           throw new BadRequestException(
-            'Only document or image files are allowed for this asset type',
+            'Only document or image files are allowed',
           );
         }
-      } else if (
-        (asset.assetType.name === 'photographs' ||
-          asset.assetType.name === 'logos') &&
-        file
-      ) {
+      } else if (asset.assetType.name === 'logos' && file) {
+        const allowedMimeRegex =
+          /^(video\/(mp4|mpeg|avi|mkv)|application\/(msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet)|pdf)|text\/plain|image\/(jpeg|png|jpg|gif|bmp|webp))$/;
+
+        if (!allowedMimeRegex.test(file.mimetype)) {
+          throw new BadRequestException(
+            'Only document, video or image files are allowed',
+          );
+        }
+      } else if (asset.assetType.name === 'photographs' && file) {
         const imageMimeRegex = /^image\/(jpeg|png|jpg|gif|webp)$/;
 
         if (!imageMimeRegex.test(file.mimetype)) {
-          throw new BadRequestException(
-            'Only image files are allowed for this asset type',
-          );
+          throw new BadRequestException('Only image files are allowed');
         }
       } else {
         const generalMimeRegex =
@@ -287,9 +292,7 @@ export class AssetRepository extends Repository<Asset> {
       }
 
       if (!asset.assetType.categories.length && dto.category) {
-        throw new BadRequestException(
-          'Category is not applicable for this asset type.',
-        );
+        throw new BadRequestException('Category is not applicable.');
       } else if (dto.category) {
         category = asset.assetType.categories.find(
           (item) => item.name === dto.category.toLowerCase(),
