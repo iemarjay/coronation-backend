@@ -1,9 +1,4 @@
-import {
-  Injectable,
-  Logger,
-  NotFoundException,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { OtpService } from 'src/shared/otp.service';
 import { UserRepository } from 'src/user/repositories/user.repository';
 import { AuthCreateDto } from 'src/user/dtos/auth-create.dto';
@@ -86,20 +81,6 @@ export class AuthService {
       data: instanceToPlain<Partial<User>>(user),
       access_token: await this.generateAccessToken(user.id),
     };
-  }
-
-  async sendOtp(email: string) {
-    const user = await this.userRepository.findOneBy({ email });
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
-    const code = await this.otp.getOtpByUserId(email);
-    if (code) {
-      await this.otp.invalidate(code, user.id);
-    }
-    this.mail.sendUserLoginOtp(user, await this.otp.generateFor(email));
-
-    return { success: true, message: 'OTP has been sent to your email' };
   }
 
   async generateAccessToken(sub: string) {

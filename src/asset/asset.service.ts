@@ -147,6 +147,13 @@ export class AssetService {
     });
   }
 
+  async getAllDownloads({ limit, page }: { limit: number; page: number }) {
+    return await this.assetDownloadRepository.findAll({
+      limit: limit ?? 10,
+      page: page ?? 1,
+    });
+  }
+
   async changeStatus(dto: ChangeAssetStatusDto, user: User) {
     await this.getUserPermission(user, 'write');
     const asset = await this.assetRepository.findAssetOrFail(dto.id);

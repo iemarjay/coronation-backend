@@ -101,6 +101,19 @@ export class AssetController {
     return await this.assetService.deleteAssets(dto, user);
   }
 
+  @Authenticate(Role.staff, Role.admin)
+  @Get('download/all')
+  getDownloads(
+    @AuthUser() user: User,
+    @Query('page') page: number,
+    @Query('limit') limit: number,
+  ) {
+    return this.assetService.getAllDownloads({
+      page,
+      limit,
+    });
+  }
+
   @Authenticate()
   @Get('download/:id')
   download(
@@ -111,13 +124,13 @@ export class AssetController {
     return this.assetService.downloadAsset(user, id, res);
   }
 
-  @Authenticate(Role.admin)
+  @Authenticate(Role.admin, Role.staff)
   @Patch('change-status')
   toggleActivation(@Body() dto: ChangeAssetStatusDto, @AuthUser() user: User) {
     return this.assetService.changeStatus(dto, user);
   }
 
-  @Authenticate(Role.admin)
+  @Authenticate(Role.admin, Role.staff)
   @Patch('change-status/bulk')
   async updateAssetsStatus(
     @Body() dto: ChangeBulkAssetStatusDto,
@@ -126,7 +139,7 @@ export class AssetController {
     return await this.assetService.updateAssetStatus(dto, user);
   }
 
-  @Authenticate(Role.admin)
+  @Authenticate(Role.admin, Role.staff)
   @Patch('request/:id')
   updateAccessStatus(
     @Param('id') id: string,
@@ -142,7 +155,7 @@ export class AssetController {
     return this.assetService.requestAccess(user, dto);
   }
 
-  @Authenticate(Role.admin)
+  @Authenticate(Role.admin, Role.staff)
   @Get('request/all')
   getAllAccessRequest(
     @Query('page') page: number,
