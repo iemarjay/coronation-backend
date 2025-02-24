@@ -377,7 +377,7 @@ export class MailService {
       html,
     })
       .then((r) => {
-        this.logger.log({ response: r, data });
+        this.logger.log({ response: r });
       })
       .catch((error) => this.logger.error('Failed to send email', error));
   }
@@ -656,7 +656,7 @@ export class MailService {
       html,
     })
       .then((r) => {
-        this.logger.log({ response: r, data });
+        this.logger.log({ response: r });
       })
       .catch((error) => this.logger.error('Failed to send email', error));
   }
@@ -1185,7 +1185,7 @@ export class MailService {
       html,
     })
       .then((r) => {
-        this.logger.log({ response: r, data });
+        this.logger.log({ response: r });
       })
       .catch((error) => this.logger.error('Failed to send email', error));
   }

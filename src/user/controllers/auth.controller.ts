@@ -22,6 +22,11 @@ export class AuthController {
     return this.authService.verify(verifyAuthDto);
   }
 
+  @Post('otp/send')
+  sendOtp(@Body() dto: AuthCreateDto) {
+    return this.authService.sendOtp(dto.email);
+  }
+
   @Post('check')
   async check() {
     return this.auth0Service.getAllRoles(Role.staff);

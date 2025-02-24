@@ -5,7 +5,6 @@ import {
   Logger,
   NotFoundException,
   OnModuleInit,
-  UnauthorizedException,
 } from '@nestjs/common';
 import { CreateUserDto } from 'src/user/dtos/create-user.dto';
 import { UserRepository } from '../repositories/user.repository';
@@ -142,9 +141,6 @@ export class UserService implements OnModuleInit {
     let user: User;
     const { name, email, role, isOwner } = dto;
 
-    if (!isOwner) {
-      return new UnauthorizedException('Unathorized user access');
-    }
     try {
       user = await this.repository.findBAdminByEmailOrFail(email);
     } catch {
@@ -158,11 +154,14 @@ export class UserService implements OnModuleInit {
       });
       user.lastModifiedBy = user;
       user.createdBy = user;
-      this.repository.save(user);
-      this.event.emit(
-        UserEvents.SUPER_USER_CREATED,
-        new UserCreatedEvent(user, UserCreatedEventRoute.OKTA),
-      );
+      await this.repository.save(user);
+
+      if (isOwner) {
+        this.event.emit(
+          UserEvents.SUPER_USER_CREATED,
+          new UserCreatedEvent(user, UserCreatedEventRoute.OKTA),
+        );
+      }
     }
     return user;
   }

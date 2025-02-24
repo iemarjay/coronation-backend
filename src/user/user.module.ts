@@ -42,6 +42,12 @@ import { AssetModule } from 'src/asset/asset.module';
     Auth0Service,
     JwtStrategy,
   ],
-  exports: [OktaService, UserRepository, PermissionRepository, Auth0Service],
+  exports: [
+    OktaService,
+    UserRepository,
+    PermissionRepository,
+    Auth0Service,
+    UserService,
+  ],
 })
 export class UserModule {}

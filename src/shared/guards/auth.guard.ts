@@ -4,6 +4,7 @@ import {
   Injectable,
   Logger,
   NotFoundException,
+  PreconditionFailedException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -14,6 +15,7 @@ import { UserRepository } from 'src/user/repositories/user.repository';
 import { Role, Status } from 'src/user/types';
 import { OktaService } from 'src/user/services/okta.service';
 import { isUUID } from 'class-validator';
+import { UserService } from 'src/user/services/user.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -24,6 +26,7 @@ export class AuthGuard implements CanActivate {
     private readonly auth0Service: Auth0Service,
     private readonly oktaService: OktaService,
     private userRepository: UserRepository,
+    private userService: UserService,
     private config: ConfigService,
   ) {}
 
@@ -34,29 +37,47 @@ export class AuthGuard implements CanActivate {
       throw new UnauthorizedException('No token provided');
     }
     try {
-      let payload;
+      interface Payload {
+        data: any;
+        type: 'jwt' | 'okta';
+      }
+      const payload: Payload = { data: null, type: null };
       try {
-        payload = await this.jwtService.verifyAsync(token, {
+        payload.data = await this.jwtService.verifyAsync(token, {
           secret: this.config.get('auth.secret'),
         });
+        payload.type = 'jwt';
       } catch {
-        payload = await this.oktaService.verify(token);
+        payload.data = await this.oktaService.verify(token);
+        payload.type = 'okta';
       }
 
-      if (!payload) {
+      if (!payload?.data) {
         throw new UnauthorizedException('Token validation error');
       }
 
-      const isValidUUID = isUUID(payload.sub);
+      const isValidUUID = isUUID(payload.data.sub);
 
       const queryField = isValidUUID ? 'id' : 'email';
-      const param = payload.sub;
+      const param = payload.data.sub;
       let userExists = await this.userRepository.findOne({
         where: { [queryField]: param },
       });
 
+      if (!userExists && payload.type === 'okta') {
+        await this.userService.createSuperUser({
+          email: payload.data.sub,
+          name: payload.data.name,
+          role: Role.staff,
+          isOwner: false,
+        });
+        throw new PreconditionFailedException(
+          'Contact admin to complete registration',
+        );
+      }
+
       if (!userExists) {
-        throw new NotFoundException(`User not registered on portal`);
+        throw new NotFoundException(`Vendor not registered on portal`);
       }
 
       if (userExists.status === Status.inactive) {
@@ -65,8 +86,14 @@ export class AuthGuard implements CanActivate {
         );
       }
 
-      if (payload.picture && !userExists.imageUrl) {
-        userExists.imageUrl = payload.picture;
+      if (!userExists.team && userExists.role === Role.staff) {
+        throw new PreconditionFailedException(
+          'Contact admin to complete registration',
+        );
+      }
+
+      if (payload.data.picture && !userExists.imageUrl) {
+        userExists.imageUrl = payload.data.picture;
         userExists = await this.userRepository.save(userExists);
       }
       request.user = userExists;
