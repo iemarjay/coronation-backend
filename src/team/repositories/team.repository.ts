@@ -21,7 +21,7 @@ export class TeamRepository extends Repository<Team> {
       .leftJoinAndSelect('team.createdBy', 'createdBy')
       .leftJoinAndSelect('team.users', 'users')
       .leftJoinAndSelect('team.lastModifiedBy', 'lastModifiedBy')
-      .orderBy('team.updatedAt', 'DESC')
+      .orderBy('team.name', 'ASC')
       .take(filter.limit)
       .skip(filter.limit * ((filter.page ?? 1) - 1));
 
