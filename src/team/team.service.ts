@@ -7,6 +7,7 @@ import { Status } from './types';
 import { In } from 'typeorm';
 import { UserRepository } from 'src/user/repositories/user.repository';
 import { AssetRepository } from 'src/asset/repositories/asset.repository';
+import { teams } from './team.data';
 
 @Injectable()
 export class TeamService {
@@ -21,6 +22,18 @@ export class TeamService {
       createdBy: user,
       lastModifiedBy: user,
     });
+  }
+
+  async createAllTeams() {
+    for (const team of teams) {
+      if (await this.repository.findOneBy({ name: team })) {
+        continue;
+      }
+      await this.repository.save({ name: team, status: Status.active });
+    }
+    return {
+      message: 'Departments created successfully',
+    };
   }
 
   async getAll({

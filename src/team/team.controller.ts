@@ -29,6 +29,11 @@ export class TeamController {
     return this.teamService.create(createTeamDto, user);
   }
 
+  @Post('all')
+  createAllTeams() {
+    return this.teamService.createAllTeams();
+  }
+
   @Get()
   findAll(
     @Query('page') page: number,
