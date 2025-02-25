@@ -377,7 +377,7 @@ export class MailService {
       html,
     })
       .then((r) => {
-        this.logger.log({ response: r });
+        this.logger.log({ response: r, data });
       })
       .catch((error) => this.logger.error('Failed to send email', error));
   }

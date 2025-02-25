@@ -13,6 +13,7 @@ import { UserModule } from 'src/user/user.module';
 import { AssetModule } from './asset/asset.module';
 import { TeamModule } from './team/team.module';
 import { PageModule } from './page/page.module';
+import { AuditLogModule } from './audit-log/audit-log.module';
 
 @Module({
   imports: [
@@ -58,6 +59,7 @@ import { PageModule } from './page/page.module';
     AssetModule,
     TeamModule,
     PageModule,
+    AuditLogModule,
   ],
   controllers: [AppController],
   providers: [AppService],

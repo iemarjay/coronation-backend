@@ -25,6 +25,8 @@ import { ChangeRequestStatusDto } from './dto/change-request-status.dto';
 import { ChangeBulkAssetStatusDto } from './dto/bulk-change-asset-status.dto';
 import { In } from 'typeorm';
 import { DeleteBulkAssetDto } from './dto/bulk-delete-asset.dto';
+import { AuditLogService } from 'src/audit-log/audit-log.service';
+import { Method } from 'src/audit-log/entites/audit-log.entity';
 
 @Injectable()
 export class AssetService {
@@ -36,6 +38,7 @@ export class AssetService {
     private permissionRepository: UserRepository,
     private readonly event: EventEmitter2,
     private readonly storage: StorageService,
+    private readonly auditLogService: AuditLogService,
   ) {}
 
   async create(user: User, file: Express.Multer.File, dto: CreateAssetDto) {
@@ -46,6 +49,7 @@ export class AssetService {
       throw new BadRequestException('file link missing');
     }
     const assets = await this.assetRepository.createAsset(user, file, dto);
+    this.auditLogService.logAction(Method.upload, user, assets.id);
     return {
       success: true,
       message:
@@ -62,6 +66,7 @@ export class AssetService {
   ) {
     await this.getUserPermission(user, 'write');
     const assets = await this.assetRepository.updateAsset(user, id, file, dto);
+    this.auditLogService.logAction(Method.update, user, assets.id);
     return {
       success: true,
       message: 'File has been updated successfully.',
@@ -93,6 +98,7 @@ export class AssetService {
       asset,
       user,
     });
+    this.auditLogService.logAction(Method.download, user, asset.id);
 
     response.readableStreamBody.pipe(res);
   }
@@ -106,6 +112,7 @@ export class AssetService {
     const asset = await this.assetRepository.findAssetOrFail(id);
     await this.getUserAccess(user, asset, 'write');
     await this.storage.deleteFile(asset.filename);
+    this.auditLogService.logAction(Method.delete, user, asset.id);
     await this.assetRepository.remove(asset);
     return {
       success: true,
@@ -120,6 +127,7 @@ export class AssetService {
       const asset = await this.assetRepository.findAssetById(id);
       if (asset) {
         await this.storage.deleteFile(asset.filename);
+        this.auditLogService.logAction(Method.delete, user, asset.id);
         await this.assetRepository.remove(asset);
       } else {
         this.logger.error(`Asset with id ${id} not found`);
@@ -160,6 +168,9 @@ export class AssetService {
 
     asset.status = dto.status;
     const result = await this.assetRepository.save(asset);
+    const method =
+      dto.status === Status.active ? Method.activate : Method.deactivate;
+    this.auditLogService.logAction(method, user, asset.id);
     return {
       success: true,
       message: `File ${dto.status === Status.active ? 'Activated' : 'Deactivated'}`,
@@ -173,6 +184,14 @@ export class AssetService {
       { id: In(dto.assetIds) },
       { status: dto.status },
     );
+    const method =
+      dto.status === Status.active ? Method.activate : Method.deactivate;
+    for (const assetId of dto.assetIds) {
+      const asset = await this.assetRepository.findAssetById(assetId);
+      if (asset) {
+        this.auditLogService.logAction(method, user, asset.id);
+      }
+    }
 
     return {
       success: true,

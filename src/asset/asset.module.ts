@@ -22,6 +22,7 @@ import { SubcategoryRepository } from './repositories/subcategory.repository';
 import { AssetTypeService } from './asset-type.service';
 import { AssetListener } from './listeners/asset.listener';
 import { TeamModule } from 'src/team/team.module';
+import { AuditLogModule } from 'src/audit-log/audit-log.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { TeamModule } from 'src/team/team.module';
       Subcategory,
     ]),
     SharedModule,
+    AuditLogModule,
     forwardRef(() => UserModule),
     forwardRef(() => TeamModule),
   ],

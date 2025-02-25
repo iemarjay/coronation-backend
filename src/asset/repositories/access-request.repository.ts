@@ -83,6 +83,7 @@ export class AccessRequestRepository extends Repository<AccessRequest> {
       .leftJoinAndSelect('accessRequest.user', 'user')
       .leftJoinAndSelect('accessRequest.asset', 'asset')
       .leftJoinAndSelect('accessRequest.updatedBy', 'updatedBy')
+      .leftJoinAndSelect('asset.createdBy', 'createdBy')
       .orderBy('accessRequest.createdAt', 'DESC')
       .take(filter.limit)
       .skip(filter.limit * ((filter.page ?? 1) - 1));

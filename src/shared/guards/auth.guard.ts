@@ -10,7 +10,6 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
-import { Auth0Service } from 'src/user/services/auth0.service';
 import { UserRepository } from 'src/user/repositories/user.repository';
 import { Role, Status } from 'src/user/types';
 import { OktaService } from 'src/user/services/okta.service';
@@ -23,7 +22,6 @@ export class AuthGuard implements CanActivate {
   constructor(
     private readonly reflector: Reflector,
     private readonly jwtService: JwtService,
-    private readonly auth0Service: Auth0Service,
     private readonly oktaService: OktaService,
     private userRepository: UserRepository,
     private userService: UserService,
@@ -80,7 +78,7 @@ export class AuthGuard implements CanActivate {
         throw new NotFoundException(`Vendor not registered on portal`);
       }
 
-      if (userExists.status === Status.inactive) {
+      if (userExists.status === Status.inactive.toLowerCase()) {
         throw new UnauthorizedException(
           `User account inactive. Contact admin to activate account`,
         );
