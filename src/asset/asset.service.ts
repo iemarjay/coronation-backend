@@ -79,10 +79,8 @@ export class AssetService {
 
     await this.getUserAccess(user, asset, 'download');
 
-    if (!asset.type.length) {
-      throw new BadRequestException(
-        'This asset is not downloadable. SharePoint files can only be accessed via browser.',
-      );
+    if (!asset.type.length || asset.sourceType === AssetSourceType.SharePoint) {
+      return res.redirect(asset.url);
     }
 
     const response = await this.storage.download(asset.filename);
