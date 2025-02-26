@@ -96,7 +96,6 @@ export class AssetService {
       asset,
       user,
     });
-    this.auditLogService.logAction(Method.download, user, asset.id);
 
     response.readableStreamBody.pipe(res);
   }
