@@ -65,7 +65,7 @@ export class AuthGuard implements CanActivate {
       if (!userExists && payload.type === 'okta') {
         await this.userService.createSuperUser({
           email: payload.data.sub,
-          name: payload.data.name,
+          name: payload.data.name || payload.data.sub.split('@')[0],
           role: Role.staff,
           isOwner: false,
         });
