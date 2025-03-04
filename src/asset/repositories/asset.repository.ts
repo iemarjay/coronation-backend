@@ -159,7 +159,7 @@ export class AssetRepository extends Repository<Asset> {
       if (dto?.users) {
         const usersArray = Array.isArray(dto.users) ? dto.users : [dto.users];
 
-        if (dto.teams.includes('All Staff')) {
+        if (dto.users.includes('All Staff')) {
           users = await this.userRepository.find();
         } else {
           users = await this.userRepository.find({

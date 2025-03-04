@@ -109,7 +109,7 @@ export class AssetService {
     const asset = await this.assetRepository.findAssetOrFail(id);
     await this.getUserAccess(user, asset, 'write');
     await this.storage.deleteFile(asset.filename);
-    this.auditLogService.logAction(Method.delete, user, asset.id);
+    // this.auditLogService.logAction(Method.delete, user, asset.id);
     await this.assetRepository.remove(asset);
     return {
       success: true,
@@ -124,7 +124,7 @@ export class AssetService {
       const asset = await this.assetRepository.findAssetById(id);
       if (asset) {
         await this.storage.deleteFile(asset.filename);
-        this.auditLogService.logAction(Method.delete, user, asset.id);
+        // this.auditLogService.logAction(Method.delete, user, asset.id);
         await this.assetRepository.remove(asset);
       } else {
         this.logger.error(`Asset with id ${id} not found`);

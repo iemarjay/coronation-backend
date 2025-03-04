@@ -34,6 +34,6 @@ export class AuditLog {
   @ManyToOne(() => User)
   user: User;
 
-  @ManyToOne(() => Asset, { nullable: true })
+  @ManyToOne(() => Asset, { nullable: true, onDelete: 'CASCADE' })
   asset: Asset;
 }
