@@ -146,6 +146,7 @@ export class AssetRepository extends Repository<Asset> {
 
       if (dto?.teams) {
         const teamsArray = Array.isArray(dto.teams) ? dto.teams : [dto.teams];
+        console.log(teamsArray);
         if (dto.teams.includes('All Departments')) {
           teams = await this.teamRepository.find();
         } else {
