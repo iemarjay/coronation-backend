@@ -6,12 +6,14 @@ import { AuditLog } from './entites/audit-log.entity';
 import { AuditLogRepository } from './repositories/audit-log.repository';
 import { SharedModule } from 'src/shared/shared.module';
 import { UserModule } from 'src/user/user.module';
+import { TeamModule } from 'src/team/team.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([AuditLog]),
     SharedModule,
     forwardRef(() => UserModule),
+    forwardRef(() => TeamModule),
   ],
   controllers: [AuditLogController],
   providers: [AuditLogService, AuditLogRepository],

@@ -146,16 +146,25 @@ export class AssetRepository extends Repository<Asset> {
 
       if (dto?.teams) {
         const teamsArray = Array.isArray(dto.teams) ? dto.teams : [dto.teams];
-        teams = await this.teamRepository.find({
-          where: { id: In(teamsArray) },
-        });
+        if (dto.teams.includes('All Departments')) {
+          teams = await this.teamRepository.find();
+        } else {
+          teams = await this.teamRepository.find({
+            where: { id: In(teamsArray) },
+          });
+        }
       }
 
       if (dto?.users) {
         const usersArray = Array.isArray(dto.users) ? dto.users : [dto.users];
-        users = await this.userRepository.find({
-          where: { id: In(usersArray) },
-        });
+
+        if (dto.teams.includes('All Staff')) {
+          users = await this.userRepository.find();
+        } else {
+          users = await this.userRepository.find({
+            where: { id: In(usersArray) },
+          });
+        }
       }
       let filename = '';
       let type = '';

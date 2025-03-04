@@ -10,6 +10,14 @@ export class TeamRepository extends Repository<Team> {
     super(Team, datasource.createEntityManager());
   }
 
+  async findByNameOrCreate(name: string) {
+    const existingTeam = await this.findOne({ where: { name } });
+    if (existingTeam) return existingTeam;
+
+    const newTeam = this.create({ name });
+    return await this.save(newTeam);
+  }
+
   async getAllTeams(filter: {
     limit: number;
     page: number;

@@ -22,6 +22,7 @@ import { ActivateDeactvateUserDto } from '../dtos/activate-deactivate-user.dto';
 import { MailService } from 'src/shared/mail.service';
 import { OktaService } from './okta.service';
 import { AssetRepository } from 'src/asset/repositories/asset.repository';
+import { Team } from 'src/team/entities/team.entity';
 
 @Injectable()
 export class UserService implements OnModuleInit {
@@ -137,9 +138,10 @@ export class UserService implements OnModuleInit {
     email: string;
     role: Role;
     isOwner: boolean;
+    team?: Team;
   }) {
     let user: User;
-    const { name, email, role, isOwner } = dto;
+    const { name, email, role, isOwner, team } = dto;
 
     try {
       user = await this.repository.findBAdminByEmailOrFail(email);
@@ -154,6 +156,10 @@ export class UserService implements OnModuleInit {
       });
       user.lastModifiedBy = user;
       user.createdBy = user;
+
+      if (team) {
+        user.team = team;
+      }
       await this.repository.save(user);
 
       if (isOwner) {

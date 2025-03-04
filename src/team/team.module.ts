@@ -7,6 +7,7 @@ import { Team } from './entities/team.entity';
 import { TeamRepository } from './repositories/team.repository';
 import { UserModule } from 'src/user/user.module';
 import { AssetModule } from 'src/asset/asset.module';
+import { AuditLogModule } from 'src/audit-log/audit-log.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AssetModule } from 'src/asset/asset.module';
     SharedModule,
     forwardRef(() => UserModule),
     forwardRef(() => AssetModule),
+    forwardRef(() => AuditLogModule),
   ],
   controllers: [TeamController],
   providers: [TeamService, TeamRepository],

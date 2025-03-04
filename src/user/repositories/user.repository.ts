@@ -95,8 +95,22 @@ export class UserRepository extends Repository<User> {
     });
 
     return {
-      users,
-      teams,
+      users: [
+        {
+          id: 'All Staff',
+          firstName: 'All Staff',
+          email: 'All Staff',
+          role: 'vendor',
+        },
+        ...users,
+      ],
+      teams: [
+        {
+          id: 'All Departments',
+          name: 'All Departments',
+        },
+        ...teams,
+      ],
     };
   }
 }
