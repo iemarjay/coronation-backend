@@ -4,7 +4,6 @@ import {
   Injectable,
   Logger,
   NotFoundException,
-  PreconditionFailedException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -15,6 +14,7 @@ import { Role, Status } from 'src/user/types';
 import { OktaService } from 'src/user/services/okta.service';
 import { isUUID } from 'class-validator';
 import { UserService } from 'src/user/services/user.service';
+import { TeamRepository } from 'src/team/repositories/team.repository';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -24,6 +24,7 @@ export class AuthGuard implements CanActivate {
     private readonly jwtService: JwtService,
     private readonly oktaService: OktaService,
     private userRepository: UserRepository,
+    private teamRepository: TeamRepository,
     private userService: UserService,
     private config: ConfigService,
   ) {}
@@ -63,15 +64,16 @@ export class AuthGuard implements CanActivate {
       });
 
       if (!userExists && payload.type === 'okta') {
+        const team = await this.teamRepository.findByNameOrCreate(
+          payload.data.department,
+        );
         await this.userService.createSuperUser({
           email: payload.data.sub,
           name: payload.data.name || payload.data.sub,
           role: Role.staff,
           isOwner: false,
+          team,
         });
-        throw new PreconditionFailedException(
-          'Contact admin to complete registration',
-        );
       }
 
       if (!userExists) {
@@ -85,9 +87,11 @@ export class AuthGuard implements CanActivate {
       }
 
       if (!userExists.team && userExists.role === Role.staff) {
-        throw new PreconditionFailedException(
-          'Contact admin to complete registration',
+        const team = await this.teamRepository.findByNameOrCreate(
+          payload.data.department,
         );
+        userExists.team = team;
+        this.userRepository.save(userExists);
       }
 
       if (payload.data.picture && !userExists.imageUrl) {
