@@ -67,8 +67,10 @@ export class AuthGuard implements CanActivate {
       if (!userExists && payload.type === 'okta') {
         if (!payload.data.department) {
           throw new PreconditionFailedException({
-            message: 'Contact admin to complete registration',
-            email: 'Okechukwu.Olovo@CoronationGroup.com',
+            message: {
+              text: 'Contact admin to complete registration',
+              email: 'Okechukwu.Olovo@CoronationGroup.com',
+            },
           });
         }
 
