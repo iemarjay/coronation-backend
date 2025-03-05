@@ -83,11 +83,11 @@ export class AssetRepository extends Repository<Asset> {
         dto.sourceType === AssetSourceType.File
       ) {
         const allowedMimeRegex =
-          /^(video\/(mp4|mpeg|avi|mkv)|application\/(msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet)|pdf)|text\/plain|image\/(jpeg|png|jpg|gif|bmp|webp))$/;
+          /^(video\/(mp4|mpeg|avi|mkv)|application\/pdf|image\/(jpeg|png|jpg|gif|bmp|webp))$/;
 
         if (!allowedMimeRegex.test(file.mimetype)) {
           throw new BadRequestException(
-            'Only document, video or image files are allowed',
+            'Only pdf, video or image files are allowed',
           );
         }
       } else if (
@@ -275,11 +275,11 @@ export class AssetRepository extends Repository<Asset> {
         }
       } else if (asset.assetType.name === 'logos' && file) {
         const allowedMimeRegex =
-          /^(video\/(mp4|mpeg|avi|mkv)|application\/(msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet)|pdf)|text\/plain|image\/(jpeg|png|jpg|gif|bmp|webp))$/;
+          /^(video\/(mp4|mpeg|avi|mkv)|application\/pdf|image\/(jpeg|png|jpg|gif|bmp|webp))$/;
 
         if (!allowedMimeRegex.test(file.mimetype)) {
           throw new BadRequestException(
-            'Only document, video or image files are allowed',
+            'Only pdf, video or image files are allowed',
           );
         }
       } else if (
