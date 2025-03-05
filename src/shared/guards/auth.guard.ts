@@ -4,6 +4,7 @@ import {
   Injectable,
   Logger,
   NotFoundException,
+  PreconditionFailedException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -64,6 +65,13 @@ export class AuthGuard implements CanActivate {
       });
 
       if (!userExists && payload.type === 'okta') {
+        if (!payload.data.department) {
+          throw new PreconditionFailedException({
+            message: 'Contact admin to complete registration',
+            email: 'Okechukwu.Olovo@CoronationGroup.com',
+          });
+        }
+
         const team = await this.teamRepository.findByNameOrCreate(
           payload.data.department,
         );
