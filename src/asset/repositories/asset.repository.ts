@@ -71,7 +71,7 @@ export class AssetRepository extends Repository<Asset> {
         dto.sourceType === AssetSourceType.File
       ) {
         const allowedMimeRegex =
-          /^(application\/(msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet)|pdf)|text\/plain|image\/(jpeg|png|jpg|gif|bmp|webp))$/;
+          /^(application\/(msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet|presentationml\.presentation)|pdf)|text\/plain|image\/(jpeg|png|jpg|gif|bmp|webp))$/;
 
         if (!allowedMimeRegex.test(file.mimetype)) {
           throw new BadRequestException(
@@ -266,11 +266,11 @@ export class AssetRepository extends Repository<Asset> {
         file
       ) {
         const allowedMimeRegex =
-          /^(application\/(msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet)|pdf)|text\/plain|image\/(jpeg|png|jpg|gif|bmp|webp))$/;
+          /^(application\/(msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet|presentationml\.presentation)|pdf)|text\/plain|image\/(jpeg|png|jpg|gif|bmp|webp))$/;
 
         if (!allowedMimeRegex.test(file.mimetype)) {
           throw new BadRequestException(
-            'Only document or image files are allowed',
+            'Only document or image files asre allowed',
           );
         }
       } else if (asset.assetType.name === 'logos' && file) {

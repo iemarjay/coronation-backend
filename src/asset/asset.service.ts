@@ -85,17 +85,17 @@ export class AssetService {
 
     const response = await this.storage.download(asset.filename);
 
+    await this.assetDownloadRepository.save({
+      asset,
+      user,
+    });
+
     res.setHeader('Content-Type', asset.type);
     res.setHeader('Content-Length', response.contentLength);
     res.setHeader(
       'Content-Disposition',
       `attachment; filename="${asset.filename}"`,
     );
-
-    await this.assetDownloadRepository.save({
-      asset,
-      user,
-    });
 
     response.readableStreamBody.pipe(res);
   }
