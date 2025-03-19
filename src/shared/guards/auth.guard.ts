@@ -3,7 +3,6 @@ import {
   ExecutionContext,
   Injectable,
   Logger,
-  NotFoundException,
   PreconditionFailedException,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -84,10 +83,8 @@ export class AuthGuard implements CanActivate {
           isOwner: false,
           team,
         });
-      }
-
-      if (!userExists) {
-        throw new NotFoundException(`Vendor not registered on portal`);
+      } else if (!userExists && payload.type === 'jwt') {
+        throw new UnauthorizedException(`Invalid or expired token`);
       }
 
       if (userExists.status === Status.inactive.toLowerCase()) {
