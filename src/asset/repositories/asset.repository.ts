@@ -169,6 +169,13 @@ export class AssetRepository extends Repository<Asset> {
       if (dto.sourceType === AssetSourceType.File) {
         filename = `${dto.name.toLowerCase().replaceAll(' ', '-')}${path.extname(file.originalname).toLowerCase()}`;
         uploadedFile = await this.storage.upload(file, filename);
+        console.log({ name: file.originalname });
+        if (file.mimetype.includes('application')) {
+          file.mimetype = path
+            .extname(file.originalname)
+            .toLowerCase()
+            .substring(1);
+        }
         type = file.mimetype === 'image/svg+xml' ? 'image/svg' : file.mimetype;
         size = file.size;
         url = uploadedFile;
@@ -369,6 +376,12 @@ export class AssetRepository extends Repository<Asset> {
           ? `${asset.filename.toLowerCase().replaceAll(' ', '-')}${path.extname(file.originalname).toLowerCase()}`
           : `${dto.name.toLowerCase().replaceAll(' ', '-')}${path.extname(file.originalname).toLowerCase()}`;
         uploadedFile = await this.storage.upload(file, filename);
+        if (file.mimetype.includes('application')) {
+          file.mimetype = path
+            .extname(file.originalname)
+            .toLowerCase()
+            .substring(1);
+        }
         type = file.mimetype === 'image/svg+xml' ? 'image/svg' : file.mimetype;
         size = file.size;
         url = uploadedFile;
