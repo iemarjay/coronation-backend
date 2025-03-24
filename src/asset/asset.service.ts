@@ -85,9 +85,12 @@ export class AssetService {
 
     const response = await this.storage.download(asset.filename);
 
+    const currentDate = new Date();
+    currentDate.setHours(currentDate.getHours() + 1);
     await this.assetDownloadRepository.save({
       asset,
       user,
+      createdAt: currentDate,
     });
 
     res.setHeader('Content-Type', asset.type);

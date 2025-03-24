@@ -8,14 +8,17 @@ export class AuditLogService {
   constructor(private readonly auditLogRepository: AuditLogRepository) {}
 
   async logAction(method: Method, user: User, asset: string): Promise<void> {
-    const log = this.auditLogRepository.create({
+    const currentDate = new Date();
+    currentDate.setHours(currentDate.getHours() + 1);
+    await this.auditLogRepository.save({
       method,
       user,
       asset: {
         id: asset,
       },
+      createdAt: currentDate,
     });
-    await this.auditLogRepository.save(log);
+    return;
   }
 
   async getRecentLogs({ limit, page }: { limit: number; page: number }) {
