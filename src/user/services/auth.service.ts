@@ -8,7 +8,7 @@ import { ConfigService } from '@nestjs/config';
 import { MailService } from 'src/shared/mail.service';
 import { AuthVerifyDto } from '../dtos/auth-verify.dto';
 import { instanceToPlain } from 'class-transformer';
-import { Role, Status } from '../types';
+import { Status } from '../types';
 
 @Injectable()
 export class AuthService {
@@ -29,12 +29,6 @@ export class AuthService {
     } catch (error) {
       throw new UnauthorizedException('User does not exist');
     }
-
-    // if (user.role !== Role.vendor) {
-    //   throw new UnauthorizedException(
-    //     `Access denied. ${user.role} members should log in using Microsoft social login`,
-    //   );
-    // }
 
     if (user.status === Status.inactive) {
       throw new UnauthorizedException(
