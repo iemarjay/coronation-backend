@@ -18,7 +18,7 @@ import { Permission } from './entities/permission.entity';
 import { PermissionRepository } from './repositories/permission.repository';
 import { PermissionService } from './services/permission.service';
 import { AssetModule } from 'src/asset/asset.module';
-
+import { MicrosoftService } from './services/microsoft.service';
 @Module({
   imports: [
     TypeOrmModule.forFeature([User, Permission]),
@@ -41,6 +41,7 @@ import { AssetModule } from 'src/asset/asset.module';
     OktaService,
     Auth0Service,
     JwtStrategy,
+    MicrosoftService,
   ],
   exports: [
     OktaService,
@@ -48,6 +49,7 @@ import { AssetModule } from 'src/asset/asset.module';
     PermissionRepository,
     Auth0Service,
     UserService,
+    MicrosoftService,
   ],
 })
 export class UserModule {}

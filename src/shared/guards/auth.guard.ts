@@ -11,10 +11,9 @@ import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { UserRepository } from 'src/user/repositories/user.repository';
 import { Role, Status } from 'src/user/types';
-import { OktaService } from 'src/user/services/okta.service';
-import { isUUID } from 'class-validator';
 import { UserService } from 'src/user/services/user.service';
 import { TeamRepository } from 'src/team/repositories/team.repository';
+import { MicrosoftService } from 'src/user/services/microsoft.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -22,7 +21,7 @@ export class AuthGuard implements CanActivate {
   constructor(
     private readonly reflector: Reflector,
     private readonly jwtService: JwtService,
-    private readonly oktaService: OktaService,
+    private readonly microsoftService: MicrosoftService,
     private userRepository: UserRepository,
     private teamRepository: TeamRepository,
     private userService: UserService,
@@ -38,7 +37,7 @@ export class AuthGuard implements CanActivate {
     try {
       interface Payload {
         data: any;
-        type: 'jwt' | 'okta';
+        type: 'jwt' | 'microsoft';
       }
       const payload: Payload = { data: null, type: null };
       try {
@@ -47,23 +46,25 @@ export class AuthGuard implements CanActivate {
         });
         payload.type = 'jwt';
       } catch {
-        payload.data = await this.oktaService.verify(token);
-        payload.type = 'okta';
+        payload.data = await this.microsoftService.verify(token);
+        payload.type = 'microsoft';
       }
+
+      console.log(payload);
+      console.log(payload.data.prov_data);
 
       if (!payload?.data) {
         throw new UnauthorizedException('Token validation error');
       }
 
-      const isValidUUID = isUUID(payload.data.sub);
-
-      const queryField = isValidUUID ? 'id' : 'email';
-      const param = payload.data.sub;
+      const queryField = payload.type === 'microsoft' ? 'email' : 'id';
+      const param =
+        payload.type === 'microsoft' ? payload.data.email : payload.data.sub;
       let userExists = await this.userRepository.findOne({
         where: { [queryField]: param },
       });
 
-      if (!userExists && payload.type === 'okta') {
+      if (!userExists && payload.type === 'microsoft') {
         if (!payload.data.department) {
           throw new PreconditionFailedException({
             message: {
@@ -76,24 +77,28 @@ export class AuthGuard implements CanActivate {
         const team = await this.teamRepository.findByNameOrCreate(
           payload.data.department,
         );
-        await this.userService.createSuperUser({
-          email: payload.data.sub,
-          name: payload.data.name || payload.data.sub,
+        const user = await this.userService.createSuperUser({
+          email: payload.data.email,
+          name: payload.data.name || payload.data.email,
           role: Role.staff,
           isOwner: false,
           team,
+        });
+
+        userExists = await this.userRepository.findOne({
+          where: { id: user.id },
         });
       } else if (!userExists && payload.type === 'jwt') {
         throw new UnauthorizedException(`Invalid or expired token`);
       }
 
-      if (userExists.status === Status.inactive.toLowerCase()) {
+      if (userExists && userExists?.status === Status.inactive.toLowerCase()) {
         throw new UnauthorizedException(
           `User account inactive. Contact admin to activate account`,
         );
       }
 
-      if (!userExists.team && userExists.role === Role.staff) {
+      if (userExists && !userExists?.team && userExists?.role === Role.staff) {
         const team = await this.teamRepository.findByNameOrCreate(
           payload.data.department,
         );
@@ -101,7 +106,7 @@ export class AuthGuard implements CanActivate {
         this.userRepository.save(userExists);
       }
 
-      if (payload.data.picture && !userExists.imageUrl) {
+      if (payload.data.picture && userExists && !userExists?.imageUrl) {
         userExists.imageUrl = payload.data.picture;
         userExists = await this.userRepository.save(userExists);
       }

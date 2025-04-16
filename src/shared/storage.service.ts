@@ -13,8 +13,8 @@ export class StorageService {
   private readonly logger = new Logger(StorageService.name);
 
   constructor(private config: ConfigService) {
-    const connectionString = this.config.get('azure.connection_string');
-    const containerName = this.config.get('azure.container_name');
+    const connectionString = this.config.get('azure.storage.connection_string');
+    const containerName = this.config.get('azure.storage.container_name');
 
     const blobServiceClient =
       BlobServiceClient.fromConnectionString(connectionString);

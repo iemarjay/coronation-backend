@@ -18,4 +18,9 @@ export const dataSource = new DataSource({
   database: database.database,
   entities: [join(__dirname, '../src/**/*.entity{.ts,.js}')],
   migrations: [join(__dirname, 'migrations/*{.ts,.js}')],
+  options: {
+    encrypt: true,
+    trustServerCertificate: true,
+    connectTimeout: 60000,
+  },
 });

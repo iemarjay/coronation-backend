@@ -49,5 +49,6 @@ export default function configuration() {
   };
 }
 
-export * from './okta.config';
 export * from './auth0.config';
+export * from './okta.config';
+export * from './azure.config';

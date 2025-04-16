@@ -26,16 +26,16 @@ export class UserListener {
       dto.family_name = user.lastName.trim();
     }
 
-    if (user.role !== Role.vendor) {
-      this.okta
-        .createUser(dto)
-        .then(() => {
-          this.mail.sendUserWelcomeEmail(event);
-        })
-        .catch((error) => {
-          this.logger.error(error);
-        });
-    }
+    // if (user.role !== Role.vendor) {
+    //   this.okta
+    //     .createUser(dto)
+    //     .then(() => {
+    //       this.mail.sendUserWelcomeEmail(event);
+    //     })
+    //     .catch((error) => {
+    //       this.logger.error(error);
+    //     });
+    // }
   }
 
   @OnEvent(UserEvents.SUPER_USER_CREATED)

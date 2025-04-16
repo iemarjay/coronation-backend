@@ -6,7 +6,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import configuration, { auth0Configuration, oktaConfiguration } from 'config';
+import configuration, {
+  auth0Configuration,
+  oktaConfiguration,
+  azureConfiguration,
+} from 'config';
 import { join } from 'path';
 import { env } from 'process';
 import { UserModule } from 'src/user/user.module';
@@ -18,7 +22,12 @@ import { AuditLogModule } from './audit-log/audit-log.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [configuration, oktaConfiguration, auth0Configuration],
+      load: [
+        configuration,
+        oktaConfiguration,
+        auth0Configuration,
+        azureConfiguration,
+      ],
       cache: env.APP_ENV === 'production',
       isGlobal: true,
     }),

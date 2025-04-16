@@ -22,6 +22,7 @@
   "dependencies": {
     "@azure/storage-blob": "^12.24.0",
     "@mailchimp/mailchimp_transactional": "^1.0.59",
+    "@microsoft/microsoft-graph-client": "^3.0.7",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.2.3",
     "@nestjs/core": "^10.0.0",
@@ -44,7 +45,7 @@
     "express": "^4.21.0",
     "express-session": "^1.18.0",
     "ioredis": "^5.4.1",
-    "jwks-rsa": "^3.1.0",
+    "jwks-rsa": "^3.2.0",
     "passport": "^0.7.0",
     "passport-auth0": "^1.4.4",
     "passport-http-bearer": "^1.0.1",
