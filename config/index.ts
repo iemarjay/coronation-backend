@@ -12,6 +12,20 @@ export default function configuration() {
     mailchimp: {
       apiKey: process.env.MAILCHIMP_API_KEY,
     },
+    domains: [
+      'coronationmb.com',
+      'coronationam.com',
+      'coronationsl.com',
+      'coronationnt.com',
+
+      'coronationregistrars.com',
+      'coronationinsurance.com.ng',
+      'coronationcapital.com.ng',
+      'trium.ng',
+      'coronationgroup.com',
+      'coronationtechnology.com',
+      'myfiducia.com',
+    ],
     mail: {
       from: process.env.MAIL_FROM ?? 'noreply@pouchfi.io',
       from_name: process.env.MAIL_FROM_NAME ?? 'PouchFi',

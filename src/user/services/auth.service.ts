@@ -27,7 +27,11 @@ export class AuthService {
         email: dto.email,
       });
     } catch (error) {
-      throw new UnauthorizedException('User does not exist');
+      let message = 'User does not exist';
+      if (this.config.get('domains').includes(dto.email.split('@')[1])) {
+        message = 'Please use Microsoft for your first login.';
+      }
+      throw new UnauthorizedException(message);
     }
 
     if (user.status === Status.inactive) {

@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { AuthService } from 'src/user/services/auth.service';
 import { AuthCreateDto } from 'src/user/dtos/auth-create.dto';
 import { AuthVerifyDto } from '../dtos/auth-verify.dto';
@@ -25,5 +25,14 @@ export class AuthController {
   @Post('check')
   async check() {
     return this.auth0Service.getAllRoles(Role.staff);
+  }
+
+  @Get('sign-in')
+  signIn(@Req() req: any, @Res() res: any) {
+    const code = req.query.code;
+    const state = req.query.state;
+    res.redirect(
+      `https://brandportal-test-bscka6gwbug0hmck.westeurope-01.azurewebsites.net/sign-in?code=${code}&state=${state}`,
+    );
   }
 }
