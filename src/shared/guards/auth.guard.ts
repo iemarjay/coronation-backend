@@ -66,10 +66,15 @@ export class AuthGuard implements CanActivate {
 
       if (!userExists && payload.type === 'microsoft') {
         if (!payload.data.department) {
+          const userDomain = payload.data.email.split('@')[1];
+          const adminEmails = this.config.get('adminEmails');
+          const adminEmail =
+            adminEmails[userDomain] || adminEmails['coronationgroup.com']; // fallback to coronation group admin
+
           throw new PreconditionFailedException({
             message: {
               text: 'Contact admin to complete registration',
-              email: 'Okechukwu.Olovo@CoronationGroup.com',
+              email: adminEmail,
             },
           });
         }
