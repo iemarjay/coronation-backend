@@ -25,6 +25,7 @@ export default function configuration() {
       'coronationgroup.com',
       'coronationtechnology.com',
       'myfiducia.com',
+      'coronationinsurance.com.gh',
     ],
     adminEmails: {
       'coronationcapital.com.ng': process.env.CORONATION_CAPITAL_EMAIL,
