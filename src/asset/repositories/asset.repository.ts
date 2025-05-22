@@ -169,7 +169,6 @@ export class AssetRepository extends Repository<Asset> {
       if (dto.sourceType === AssetSourceType.File) {
         filename = `${dto.name.toLowerCase().replaceAll(' ', '-')}${path.extname(file.originalname).toLowerCase()}`;
         uploadedFile = await this.storage.upload(file, filename);
-        console.log({ name: file.originalname });
         if (file.mimetype.includes('application')) {
           file.mimetype = path
             .extname(file.originalname)

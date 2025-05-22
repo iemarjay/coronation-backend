@@ -356,15 +356,21 @@ export class MailService {
     </center>
 
     <script>
-      function copyToClipboard(text) {
-        const input = document.createElement('input');
-        input.value = text;
-        document.body.appendChild(input);
-
-        input.select();
-        document.execCommand('copy');
-
-        document.body.removeChild(input);
+      async function copyToClipboard(text) {
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch (err) {
+          const input = document.createElement('input');
+          input.value = text;
+          document.body.appendChild(input);
+          input.select();
+          try {
+            document.execCommand('copy');
+          } catch (e) {
+            console.error('Fallback: Could not copy text: ', e);
+          }
+          document.body.removeChild(input);
+        }
       }
     </script>
   </body>
@@ -634,16 +640,22 @@ export class MailService {
       </table>
     </center>
 
-    <script>
-      function copyToClipboard(text) {
-        const input = document.createElement('input');
-        input.value = text;
-        document.body.appendChild(input);
-
-        input.select();
-        document.execCommand('copy');
-
-        document.body.removeChild(input);
+   <script>
+      async function copyToClipboard(text) {
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch (err) {
+          const input = document.createElement('input');
+          input.value = text;
+          document.body.appendChild(input);
+          input.select();
+          try {
+            document.execCommand('copy');
+          } catch (e) {
+            console.error('Fallback: Could not copy text: ', e);
+          }
+          document.body.removeChild(input);
+        }
       }
     </script>
   </body>
@@ -664,7 +676,7 @@ export class MailService {
   sendAccessApprovedEmail(data: AccessRequestedEvent) {
     const payload = {
       user: data.request.user,
-      url: `${this.config.get('client.url', { infer: true })}downloads?tab=${data.request.asset.assetType.name}`,
+      url: `${this.config.get('client.url', { infer: true })}/asset-management/${data.request.asset.assetType.name === 'logos' ? 'logo' : data.request.asset.assetType.name}/${data.request.asset.id}`,
       fileName: data.request.asset.filename,
     };
 
@@ -920,15 +932,21 @@ export class MailService {
     </center>
 
     <script>
-      function copyToClipboard(text) {
-        const input = document.createElement('input');
-        input.value = text;
-        document.body.appendChild(input);
-
-        input.select();
-        document.execCommand('copy');
-
-        document.body.removeChild(input);
+      async function copyToClipboard(text) {
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch (err) {
+          const input = document.createElement('input');
+          input.value = text;
+          document.body.appendChild(input);
+          input.select();
+          try {
+            document.execCommand('copy');
+          } catch (e) {
+            console.error('Fallback: Could not copy text: ', e);
+          }
+          document.body.removeChild(input);
+        }
       }
     </script>
   </body>
@@ -1165,15 +1183,21 @@ export class MailService {
     </center>
 
     <script>
-      function copyToClipboard(text) {
-        const input = document.createElement('input');
-        input.value = text;
-        document.body.appendChild(input);
-
-        input.select();
-        document.execCommand('copy');
-
-        document.body.removeChild(input);
+      async function copyToClipboard(text) {
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch (err) {
+          const input = document.createElement('input');
+          input.value = text;
+          document.body.appendChild(input);
+          input.select();
+          try {
+            document.execCommand('copy');
+          } catch (e) {
+            console.error('Fallback: Could not copy text: ', e);
+          }
+          document.body.removeChild(input);
+        }
       }
     </script>
   </body>

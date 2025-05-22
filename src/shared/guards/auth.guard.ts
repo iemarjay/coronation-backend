@@ -50,9 +50,6 @@ export class AuthGuard implements CanActivate {
         payload.type = 'microsoft';
       }
 
-      console.log(payload);
-      console.log(payload.data.prov_data);
-
       if (!payload?.data) {
         throw new UnauthorizedException('Token validation error');
       }
