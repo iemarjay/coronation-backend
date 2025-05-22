@@ -354,25 +354,6 @@ export class MailService {
         </tr>
       </table>
     </center>
-
-    <script>
-      async function copyToClipboard(text) {
-        try {
-          await navigator.clipboard.writeText(text);
-        } catch (err) {
-          const input = document.createElement('input');
-          input.value = text;
-          document.body.appendChild(input);
-          input.select();
-          try {
-            document.execCommand('copy');
-          } catch (e) {
-            console.error('Fallback: Could not copy text: ', e);
-          }
-          document.body.removeChild(input);
-        }
-      }
-    </script>
   </body>
 </html>
 `;
@@ -569,14 +550,6 @@ export class MailService {
                             ${payload.url}
                           </p>
                         </td>
-                        <td style="vertical-align: top">
-                          <img
-                            src="https://res.cloudinary.com/ddwsbqk2d/image/upload/v1729678739/coronation/f5zn9bvrpasf2av6ovy1.png"
-                            style="width: 20px; height: 20px; cursor: pointer"
-                            alt=""
-                            onclick="copyToClipboard('${payload.url}')"
-                          />
-                        </td>
                       </tr>
                     </table>
                   </div>
@@ -639,25 +612,6 @@ export class MailService {
         </tr>
       </table>
     </center>
-
-   <script>
-      async function copyToClipboard(text) {
-        try {
-          await navigator.clipboard.writeText(text);
-        } catch (err) {
-          const input = document.createElement('input');
-          input.value = text;
-          document.body.appendChild(input);
-          input.select();
-          try {
-            document.execCommand('copy');
-          } catch (e) {
-            console.error('Fallback: Could not copy text: ', e);
-          }
-          document.body.removeChild(input);
-        }
-      }
-    </script>
   </body>
 </html>
 `;
@@ -676,7 +630,7 @@ export class MailService {
   sendAccessApprovedEmail(data: AccessRequestedEvent) {
     const payload = {
       user: data.request.user,
-      url: `${this.config.get('client.url', { infer: true })}/asset-management/${data.request.asset.assetType.name === 'logos' ? 'logo' : data.request.asset.assetType.name}/${data.request.asset.id}`,
+      url: `${this.config.get('client.url', { infer: true })}/asset-management/${data.request.asset.assetType.name.toLowerCase().trim().replaceAll(' ', '-') === 'logos' ? 'logo' : data.request.asset.assetType.name}/${data.request.asset.id}`,
       fileName: data.request.asset.filename,
     };
 
@@ -821,7 +775,22 @@ export class MailService {
                     the file, ${payload.fileName}, has been approved. You can access
                     the requested file by clicking the button below:
                   </p>
-                  <a class="login" target="_blank" href="${payload.url}">
+                  <a
+                    href="${payload.url}"
+                    target="_blank"
+                    style="
+                      display: inline-block;
+                      width: 100%;
+                      padding: 11px 0;
+                      text-align: center;
+                      background-color: #000;
+                      font-family: 'Lato', sans-serif;
+                      font-size: 14px;
+                      font-weight: 600;
+                      color: #fff !important;
+                      text-decoration: none;
+                    "
+                  >
                     DOWNLOAD ASSET
                   </a>
                   <p style="margin-bottom: 12px">
@@ -854,14 +823,6 @@ export class MailService {
                           >
                             ${payload.url}
                           </p>
-                        </td>
-                        <td style="vertical-align: top">
-                          <img
-                            src="https://res.cloudinary.com/ddwsbqk2d/image/upload/v1729678739/coronation/f5zn9bvrpasf2av6ovy1.png"
-                            style="width: 20px; height: 20px; cursor: pointer"
-                            alt=""
-                            onclick="copyToClipboard('${payload.url}')"
-                          />
                         </td>
                       </tr>
                     </table>
@@ -930,25 +891,6 @@ export class MailService {
         </tr>
       </table>
     </center>
-
-    <script>
-      async function copyToClipboard(text) {
-        try {
-          await navigator.clipboard.writeText(text);
-        } catch (err) {
-          const input = document.createElement('input');
-          input.value = text;
-          document.body.appendChild(input);
-          input.select();
-          try {
-            document.execCommand('copy');
-          } catch (e) {
-            console.error('Fallback: Could not copy text: ', e);
-          }
-          document.body.removeChild(input);
-        }
-      }
-    </script>
   </body>
 </html>
 `;
@@ -1181,25 +1123,6 @@ export class MailService {
         </tr>
       </table>
     </center>
-
-    <script>
-      async function copyToClipboard(text) {
-        try {
-          await navigator.clipboard.writeText(text);
-        } catch (err) {
-          const input = document.createElement('input');
-          input.value = text;
-          document.body.appendChild(input);
-          input.select();
-          try {
-            document.execCommand('copy');
-          } catch (e) {
-            console.error('Fallback: Could not copy text: ', e);
-          }
-          document.body.removeChild(input);
-        }
-      }
-    </script>
   </body>
 </html>
 `;
