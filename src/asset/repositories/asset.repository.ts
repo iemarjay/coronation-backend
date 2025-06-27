@@ -71,11 +71,11 @@ export class AssetRepository extends Repository<Asset> {
         dto.sourceType === AssetSourceType.File
       ) {
         const allowedMimeRegex =
-          /^(application\/(msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet|presentationml\.presentation)|pdf)|text\/plain|image\/(jpeg|png|jpg|gif|bmp|webp))$/;
+          /^(application\/(msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet|presentationml\.presentation)|pdf|vnd\.ms-powerpoint|vnd\.ms-powerpoint\.presentation\.macroenabled\.12|vnd\.openxmlformats-officedocument\.presentationml\.slide|vnd\.openxmlformats-officedocument\.presentationml\.slideshow|vnd\.openxmlformats-officedocument\.presentationml\.template|vnd\.openxmlformats-officedocument\.presentationml\.presentation)|text\/plain|image\/(jpeg|png|jpg|gif|bmp|webp))$/;
 
         if (!allowedMimeRegex.test(file.mimetype)) {
           throw new BadRequestException(
-            'Only document or image files are allowed',
+            'Only document, powerpoint, or image files are allowed',
           );
         }
       } else if (
@@ -88,6 +88,18 @@ export class AssetRepository extends Repository<Asset> {
         if (!allowedMimeRegex.test(file.mimetype)) {
           throw new BadRequestException(
             'Only pdf, video or image files are allowed',
+          );
+        }
+      } else if (
+        assetType.name === 'awards' &&
+        dto.sourceType === AssetSourceType.File
+      ) {
+        const allowedMimeRegex =
+          /^(image\/(jpeg|png|jpg|gif|bmp|webp)|application\/(msword|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet|presentationml\.presentation)|pdf|x-coreldraw|photoshop|vnd\.adobe\.photoshop))$/;
+
+        if (!allowedMimeRegex.test(file.mimetype)) {
+          throw new BadRequestException(
+            'Only image, document, CorelDRAW, or Photoshop files are allowed',
           );
         }
       } else if (
