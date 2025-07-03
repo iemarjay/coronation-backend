@@ -14,6 +14,8 @@ import { Role, Status } from 'src/user/types';
 import { UserService } from 'src/user/services/user.service';
 import { TeamRepository } from 'src/team/repositories/team.repository';
 import { MicrosoftService } from 'src/user/services/microsoft.service';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { UserEvents } from 'src/user/constants/user-events';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -26,6 +28,7 @@ export class AuthGuard implements CanActivate {
     private teamRepository: TeamRepository,
     private userService: UserService,
     private config: ConfigService,
+    private eventEmitter: EventEmitter2,
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -112,6 +115,13 @@ export class AuthGuard implements CanActivate {
         userExists.imageUrl = payload.data.picture;
         userExists = await this.userRepository.save(userExists);
       }
+      
+      // Emit Microsoft login event and update last login
+      if (payload.type === 'microsoft' && userExists) {
+        this.eventEmitter.emit(UserEvents.LOGIN_MICROSOFT, { user: userExists });
+        await this.userService.updateLastLogin(userExists.id);
+      }
+      
       request.user = userExists;
 
       return this.authorizeUser(request, context);
