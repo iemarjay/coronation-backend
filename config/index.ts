@@ -26,6 +26,7 @@ export default function configuration() {
       'coronationtechnology.com',
       'myfiducia.com',
       'coronationinsurance.com.gh',
+      'coronationinsurance.com.ng',
     ],
     adminEmails: {
       'coronationcapital.com.ng': process.env.CORONATION_CAPITAL_EMAIL,
@@ -33,6 +34,10 @@ export default function configuration() {
       'coronationtechnology.com': process.env.CORONATION_TECH_EMAIL,
       'myfiducia.com': process.env.MYFIDUCIA_EMAIL,
       'trium.ng': process.env.TRIUM_EMAIL,
+      'coronationmb.com': process.env.CORONATION_MB_EMAIL,
+      'coronationam.com': process.env.CORONATION_AM_EMAIL,
+      'coronationregistrars.com': process.env.CORONATION_REGISTERS_EMAIL,
+      'coronationinsurance.com.ng': process.env.CORONATION_INSURANCE_EMAIL,
     },
     mail: {
       from: process.env.MAIL_FROM ?? 'noreply@pouchfi.io',
