@@ -356,6 +356,18 @@ export class UserService implements OnModuleInit {
     };
   }
 
+  async updateLastLogin(userId: string): Promise<void> {
+    const user = await this.repository.findOne({
+      where: { id: userId },
+    });
+    
+    if (user) {
+      user.lastLoginAt = new Date();
+      user.loginCount = (user.loginCount || 0) + 1;
+      await this.repository.save(user);
+    }
+  }
+
   async getAllTeamsAndUsers() {
     const result = await this.repository.getAllTeamsAndUsers();
 

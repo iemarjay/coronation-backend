@@ -36,6 +36,12 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
+  @Column({ nullable: true })
+  lastLoginAt: Date;
+
+  @Column({ default: 0 })
+  loginCount: number;
+
   @Column({ default: Role.staff, type: 'varchar', enum: Role })
   role: Role;
 

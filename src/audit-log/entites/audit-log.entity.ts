@@ -15,6 +15,10 @@ export enum Method {
   deactivate = 'deactivate',
   update = 'update',
   delete = 'delete',
+  login_email = 'login_email',
+  login_microsoft = 'login_microsoft',
+  logout = 'logout',
+  login_failed = 'login_failed',
 }
 
 @Entity()
@@ -36,4 +40,10 @@ export class AuditLog {
 
   @ManyToOne(() => Asset, { nullable: true, onDelete: 'CASCADE' })
   asset: Asset;
+
+  @Column({ nullable: true })
+  loginMethod: string;
+
+  @Column({ nullable: true })
+  failureReason: string;
 }

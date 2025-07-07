@@ -19,6 +19,7 @@ import { PermissionRepository } from './repositories/permission.repository';
 import { PermissionService } from './services/permission.service';
 import { AssetModule } from 'src/asset/asset.module';
 import { MicrosoftService } from './services/microsoft.service';
+import { AuditLogModule } from 'src/audit-log/audit-log.module';
 @Module({
   imports: [
     TypeOrmModule.forFeature([User, Permission]),
@@ -28,6 +29,7 @@ import { MicrosoftService } from './services/microsoft.service';
     }),
     forwardRef(() => TeamModule),
     forwardRef(() => AssetModule),
+    AuditLogModule,
   ],
   controllers: [UserController, AuthController],
   providers: [

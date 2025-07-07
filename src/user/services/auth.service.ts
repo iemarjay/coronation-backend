@@ -9,6 +9,9 @@ import { MailService } from 'src/shared/mail.service';
 import { AuthVerifyDto } from '../dtos/auth-verify.dto';
 import { instanceToPlain } from 'class-transformer';
 import { Status } from '../types';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { UserService } from './user.service';
+import { UserEvents } from '../constants/user-events';
 
 @Injectable()
 export class AuthService {
@@ -19,6 +22,8 @@ export class AuthService {
     private readonly mail: MailService,
     private readonly config: ConfigService,
     private readonly otp: OtpService,
+    private readonly eventEmitter: EventEmitter2,
+    private readonly userService: UserService,
   ) {}
   async create(dto: AuthCreateDto) {
     let user: User;
@@ -31,13 +36,16 @@ export class AuthService {
       if (this.config.get('domains').includes(dto.email.split('@')[1])) {
         message = 'Please use Microsoft for your first login.';
       }
+      // Emit failed login event
+      this.eventEmitter.emit(UserEvents.LOGIN_FAILED, { email: dto.email, reason: message });
       throw new UnauthorizedException(message);
     }
 
     if (user.status === Status.inactive) {
-      throw new UnauthorizedException(
-        `User account inactive. Contact admin to activate account`,
-      );
+      const message = `User account inactive. Contact admin to activate account`;
+      // Emit failed login event
+      this.eventEmitter.emit(UserEvents.LOGIN_FAILED, { email: dto.email, reason: message });
+      throw new UnauthorizedException(message);
     }
     const code = await this.otp.getOtpByUserId(user.id);
     if (code) {
@@ -60,17 +68,28 @@ export class AuthService {
         email: dto.email,
       });
     } catch (error) {
+      // Emit failed login event
+      this.eventEmitter.emit(UserEvents.LOGIN_FAILED, { email: dto.email, reason: 'User does not exist' });
       throw new UnauthorizedException('User does not exist');
     }
 
     if (user.status === Status.inactive) {
-      throw new UnauthorizedException(
-        `User account inactive. Contact admin to activate account`,
-      );
+      const message = `User account inactive. Contact admin to activate account`;
+      // Emit failed login event
+      this.eventEmitter.emit(UserEvents.LOGIN_FAILED, { email: dto.email, reason: message });
+      throw new UnauthorizedException(message);
     }
     if (!(await this.otp.verify(dto.code, user.id))) {
+      // Emit failed login event
+      this.eventEmitter.emit(UserEvents.LOGIN_FAILED, { email: dto.email, reason: 'Invalid or expired OTP code' });
       throw new UnauthorizedException('Invalid or expired OTP code');
     }
+
+    // Emit successful email login event
+    this.eventEmitter.emit(UserEvents.LOGIN_EMAIL, { user });
+    
+    // Update last login time and count
+    await this.userService.updateLastLogin(user.id);
 
     this.otp.invalidate(dto.code, user.id).catch((error) => {
       this.logger.error(error);
